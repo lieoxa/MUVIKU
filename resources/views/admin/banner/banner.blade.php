@@ -266,7 +266,7 @@
                 <div class="justify-content-center">
                     <div class="text-center">
                         <img src="img/empty-banner.png" width="300" style="margin-top: 120px; opacity: 0.5;"><br>
-                        <h6 class="fw-medium">Tidak Ada Banner!</h6>
+                        <h6 class="fw-medium">Belum Ada Banner!</h6>
                         <a data-bs-toggle="modal" data-bs-target="#create" id="btn-add-contact"
                             class="btn btn-warning justify-content-center mt-1 align-items-center"
                             style="padding: 7px 16px 7px 10px;">

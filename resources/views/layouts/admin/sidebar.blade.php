@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="admin/user" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('rekomendasi.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-photo-search"></i>
                         </span>
