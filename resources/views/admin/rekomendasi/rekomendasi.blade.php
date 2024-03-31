@@ -328,3 +328,36 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('admin') }}/dist/libs/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('admin') }}/dist/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="{{ asset('admin') }}/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{{ asset('admin') }}/dist/js/app.min.js"></script>
+    <script src="{{ asset('admin') }}/dist/js/app.init.js"></script>
+    <script src="{{ asset('admin') }}/dist/js/app-style-switcher.js"></script>
+    <script src="{{ asset('admin') }}/dist/js/sidebarmenu.js"></script>
+
+    <script src="{{ asset('admin') }}/dist/js/custom.js"></script>
+
+    <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
+
+    <script>
+        function previewImage() {
+            var imgProfil = document.getElementById('gambar');
+            var preview = document.getElementById('preview');
+
+            if (imgProfil.files && imgProfil.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(imgProfil.files[0]);
+            }
+        }
+    </script>
+@endpush
