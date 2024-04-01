@@ -44,7 +44,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('film.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('film', 'film/*') ? 'active' : null }}"
+                        href="{{ route('film.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-movie"></i>
                         </span>
@@ -52,7 +53,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/serial" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('serial.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-brand-youtube"></i>
                         </span>
@@ -60,7 +61,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('broadcast.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('broadcast', 'broadcast/*') ? 'active' : null }}"
+                        href="{{ route('broadcast.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-broadcast"></i>
                         </span>
@@ -68,7 +70,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('banner.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('banner', 'banner/*') ? 'active' : null }}" href="{{ route('banner.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-badge-ad"></i>
                         </span>
@@ -76,31 +78,16 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('rekomendasi.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('rekomendasi', 'rekomendasi/*') ? 'active' : null }}" href="{{ route('rekomendasi.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-photo-search"></i>
                         </span>
                         <span class="hide-menu">Rekomendasi</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="admin/user" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-trending-up"></i>
-                        </span>
-                        <span class="hide-menu"> Anime</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="admin/user" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-photo-edit"></i>
-                        </span>
-                        <span class="hide-menu">Edit Bg Login</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('laporan.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('laporan', 'laporan/*') ? 'active' : null }}" href="{{ route('laporan.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-clipboard-text"></i>
                         </span>
@@ -108,7 +95,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/kategori" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('kategori.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-square-plus"></i>
                         </span>

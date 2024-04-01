@@ -93,16 +93,20 @@ class PodcastController extends Controller
             'status' => 'required',
         ]);
 
-        $thumbnail = $request->file('thumbnail');
-        $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-        $thumbnail->move(public_path('imgdb'), $imgFile);
-        
+        if($request->thumbnail){
+            $thumbnail = $request->file('thumbnail');
+            $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('imgdb'), $imgFile);
+            } else {
+                $podcast=Podcast::find( $id );
+                $thumbnail = $podcast->thumbnail;
+            }
 
         $podcast = Podcast::find( $id );
         $podcast->judul = $request->judul;
         $podcast->channel = $request->channel;
         $podcast->host = $request->host;
-        $podcast->thumbnail = $imgFile;
+        $podcast->thumbnail = $thumbnail;
         $podcast->deskripsi = $request->deskripsi;
         $podcast->video = $request->video;
         $podcast->status = $request->status;

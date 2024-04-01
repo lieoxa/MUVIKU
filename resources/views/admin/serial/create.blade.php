@@ -9,16 +9,6 @@
             font-family: 'Ubuntu';
         }
 
-        .published {
-            color: rgb(0, 192, 0);
-            font-weight: bolder;
-        }
-
-        .Unpublish {
-            color: red;
-            font-weight: bolder;
-        }
-
         .btn.disabled {
             background-color: black !important;
             color: white !important;
@@ -46,12 +36,12 @@
         <div class="card card-body px-4 p-2 mb-3">
             <div class="row">
                 <div class="col-md-4 col-xl-3 my-auto">
-                    <h4 class="my-auto fw-bolder" style="font-size: 18px">Tambah Film</h4>
+                    <h4 class="my-auto fw-bolder" style="font-size: 18px">Tambah Serial</h4>
                 </div>
                 <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                    <a href="{{ route('film.index') }}" class="btn btn-warning d-flex align-items-center"
+                    <a href="{{ route('serial.index') }}" class="btn btn-warning d-flex align-items-center"
                         style="padding: 7px 16px 7px 8px;">
-                        <i class="ti ti-chevron-left fs-6 me-1"></i>Daftar Film
+                        <i class="ti ti-chevron-left fs-6 me-1"></i>Daftar Serial
                     </a>
                 </div>
             </div>
@@ -60,22 +50,22 @@
                                                                 end Contact
                                                             ---------------- -->
         <!-- Modal -->
-        <div x-data="{ judul: '', tahun: '', usia: '', durasi: '', perusahaan: '', sutradara: '', kategori: '', thumbnail: '', status: 'Unpublish', video: '', deskripsi: '', }">
-            <form action="{{ route('film.store') }}" method="POST" enctype="multipart/form-data">
+        <div x-data="{ judul: '', tahun: '', usia: '', season: '', perusahaan: '', sutradara: '',  thumbnail: '', status: 'Unpublish', video: '', deskripsi: '', }">
+            <form action="{{ route('serial.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label class="form-label">Judul<span class="text-danger">*</span></label>
                         <input type="text" name="judul" class="form-control" placeholder="Ketik di sini..."
                             x-model="judul">
                     </div>
+                </div>
+                <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Tahun Release<span class="text-danger">*</span></label>
                         <input type="number" name="tahun" min="1000" max="3000" step="1" value=""
                             class="d-block form-control" x-model="tahun">
                     </div>
-                </div>
-                <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Rating Usia<span class="text-danger">*</span></label>
                         <select name="usia" class="form-select mr-sm-2" x-model="usia">
@@ -86,35 +76,23 @@
                             <option value="21+">21+</option>
                         </select>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Durasi FIlm<span class="text-danger">*</span></label>
-                        <input type="time" name="durasi" class="form-control" x-model="durasi">
-                    </div>
                 </div>
                 <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Season<span class="text-danger">*</span></label>
+                        <input type="number" name="season" class="form-control" x-model="season">
+                    </div>
                     <div class="col-md-6">
                         <label class="form-label">Perusahaan Produksi<span class="text-danger">*</span></label>
                         <input type="Text" name="perusahaan" class="form-control" placeholder="Ketik di sini..."
                             x-model="perusahaan">
                     </div>
+                </div>
+                <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Sutradara<span class="text-danger">*</span></label>
                         <input type="text" name="sutradara" class="form-control" placeholder="Ketik di sini..."
                             x-model="sutradara">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                        <select name="kategori" class="form-select mr-sm-2" x-model="kategori">
-                            <option value="">Pilih...</option>
-                            <option value="Film Indonesia">Film Indonesia</option>
-                            <option value="Film Korea">Film Korea</option>
-                            <option value="Anime">Anime</option>
-                            <option value="Super Hero">Super Hero</option>
-                            <option value="Horror">Horror</option>
-                            <option value="Film MUVIKU">Film MUVIKU</option>
-                        </select>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Status<span class="text-danger" x-model="status">*</span></label>
@@ -126,13 +104,13 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label class="form-label">Thumbnail Film<span class="text-danger">*</span></label>
+                        <label class="form-label">Thumbnail Serial<span class="text-danger">*</span></label>
                         <input name="thumbnail" id="thumbnail" type="file" class="form-control" x-model="thumbnail"
                             onchange="previewImage()">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Video<span class="text-danger">*</span></label>
-                        <input type="url" name="video" class="form-control" x-model="video">
+                        <input type="url" name="video" class="form-control" x-model="video" placeholder="URL Video...">
                     </div>
                 </div>
                 <div class="img-profil mb-2">
@@ -141,14 +119,14 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <label class="d-block form-label">Deskripsi Film<span class="text-danger">*</span></label>
+                        <label class="d-block form-label">Deskripsi Serial<span class="text-danger">*</span></label>
                         <textarea class="d-block rounded px-2" name="deskripsi" id="" cols="141"
                             style="height: 250px; resize: none;" x-model="deskripsi"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="btn-add" class="btn rounded-2 px-3"
-                        :class="judul && tahun && usia && durasi && perusahaan && sutradara && kategori && status &&
+                        :class="judul && tahun && usia && season && perusahaan && sutradara && status &&
                             thumbnail && video && deskripsi ? null : 'disabled'">Tambah</button>
                 </div>
             </form>

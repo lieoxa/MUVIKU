@@ -122,7 +122,7 @@ class FilmController extends Controller
         $film->durasi = $request->durasi;
         $film->perusahaan = $request->perusahaan;
         $film->sutradara = $request->sutradara;
-        $film->thumbnail = $imgFile;
+        $film->thumbnail = $thumbnail;
         $film->video = $request->video;
         $film->deskripsi = $request->deskripsi;
         $film->kategori = $request->kategori;

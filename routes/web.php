@@ -9,6 +9,8 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\RekomendasiController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SerialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,3 +73,7 @@ Route::resource('film', FilmController::class);
 Route::resource('broadcast', PodcastController::class);
 
 Route::resource('rekomendasi', RekomendasiController::class);
+
+Route::resource('kategori', KategoriController::class);
+
+Route::resource('serial', SerialController::class);

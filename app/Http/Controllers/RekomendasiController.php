@@ -22,7 +22,8 @@ class RekomendasiController extends Controller
      */
     public function create()
     {
-        //
+        $rekomendasis = Rekomendasi::all();
+        return view('admin.rekomendasi.rekomendasi', ['reomendasis' => $rekomendasis]);
     }
 
     /**
@@ -30,7 +31,30 @@ class RekomendasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'gambar' => 'required',
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'tgl' => 'required',
+            'jam' => 'required',
+            'status' => 'required',
+        ]);
+
+        $gambarBarang = $request->file('gambar');
+        $namaFile = time() . '.' . $gambarBarang->getClientOriginalExtension();
+        $gambarBarang->move(public_path('imgdb'), $namaFile);
+
+        $rekomendasi = new Rekomendasi;
+        $rekomendasi->gambar = $namaFile;
+        $rekomendasi->judul = $request->judul;
+        $rekomendasi->deskripsi = $request->deskripsi;
+        $rekomendasi->tgl = $request->tgl;
+        $rekomendasi->jam = $request->jam;
+        $rekomendasi->status = $request->status;
+
+        $rekomendasi->save();
+
+        return redirect()->route('rekomendasi.index')->with('success', 'Rekomendasi berhasil ditambahkan.');
     }
 
     /**
@@ -54,7 +78,30 @@ class RekomendasiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'gambar' => 'nullable',
+            'judul' => 'required',
+            'deskripsi' => 'required',
+            'tgl' => 'required',
+            'jam' => 'required',
+            'status' => 'required',
+        ]);
+
+        $gambarBarang = $request->file('gambar');
+        $namaFile = time() . '.' . $gambarBarang->getClientOriginalExtension();
+        $gambarBarang->move(public_path('imgdb'), $namaFile);
+
+        $rekomendasi = Rekomendasi::find($id);
+        $rekomendasi->gambar = $namaFile;
+        $rekomendasi->judul = $request->judul;
+        $rekomendasi->deskripsi = $request->deskripsi;
+        $rekomendasi->tgl = $request->tgl;
+        $rekomendasi->jam = $request->jam;
+        $rekomendasi->status = $request->status;
+
+        $rekomendasi->save();
+
+        return redirect()->route('rekomendasi.index')->with('success', 'Rekomendasi berhasil ditambahkan.');
     }
 
     /**

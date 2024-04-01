@@ -51,7 +51,7 @@
                         class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
                         <a href="{{ route('film.create') }}" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 10px;">
-                            <i class="ti ti-plus fs-5"></i>Tambah Film
+                            <i class="ti ti-plus fs-5"></i>Tambah
                         </a>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                             <th>Status</th>
                             <th>Aksi</th>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($films as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
@@ -87,7 +87,7 @@
                                             class="usr-status-kost @if ($item->status == 'Publish') published @else Unpublish @endif">{{ $item->status }}</span>
                                     </td>
                                     <td class="px-0">
-                                        <div class="action-btn d-flex">
+                                        <div class="action-btn d-flex justify-content-center">
                                             <form action="{{ route('film.destroy', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -103,7 +103,7 @@
                                                 <i class="bi bi-eye"></i></button>
                                         </div>
 
-                                        <div class="modal fade" id="detail" data-bs-backdrop="static" tabindex="-1"
+                                        <div class="modal fade text-start" id="detail" data-bs-backdrop="static" tabindex="-1"
                                             data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content px-3">
@@ -133,19 +133,15 @@
                                                                                             <p>{{ $item->tahun }}</p>
                                                                                             <p>{{ $item->usia }}</p>
                                                                                             <p>{{ $item->durasi }}</p>
-                                                                                            <p>{{ $item->kategori }}</p>
                                                                                         </div>
                                                                                         <div class="col-9">
+                                                                                            <p>{{ $item->kategori }}</p>
                                                                                             <p>{{ $item->perusahaan }}</p>
                                                                                             <p>{{ $item->sutradara }}</p>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            {{-- <div class="col-md-8">
-                                                                            <div class="ms-2 d-block">
-                                                                            </div>
-                                                                        </div> --}}
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-12" style="max-width: 100%;">
@@ -175,7 +171,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-success">Publish</button>
-                                                            <button data-bs-dismiss="modal" style="background: #8a8a8a; color: white;"
+                                                            <button data-bs-dismiss="modal"
                                                                 type="button" class="btn btn-primary">Tutup</button>
                                                         </div>
                                                     </form>
@@ -197,7 +193,7 @@
                         <a href="{{ route('film.create') }}" id="btn-add-contact"
                             class="btn btn-warning justify-content-center mt-1 align-items-center"
                             style="padding: 7px 16px 7px 10px;">
-                            <i class="bi bi-plus fs-5" style="vertical-align: -0.1em;"></i>Tambah Film
+                            <i class="bi bi-plus fs-5" style="vertical-align: -0.1em;"></i>Tambah
                         </a>
                     </div>
                 </div>

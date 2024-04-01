@@ -38,6 +38,11 @@
             background: #5c5c5c !important;
             color: white !important;
         }
+
+        #btn-add {
+            background: #FFAE1F;
+            color: white;
+        }
     </style>
     <!-- --------------------------------------------------- -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
@@ -64,23 +69,14 @@
                 </div>
             </div>
             <!-- ---------------------
-                                            end Contact
-                                            ---------------- -->
+                                                    end Contact
+                                                    ---------------- -->
             <!-- Modal -->
 
             <div class="card card-body">
                 <div class="table-responsive">
                     <table class="table search-table align-middle text-nowrap">
-                        <thead class="header-item">
-                            {{-- <th>
-                            <div class="n-chk align-self-center text-center">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input primary" id="contact-check-all" />
-                                    <label class="form-check-label" for="contact-check-all"></label>
-                                    <span class="new-control-indicator"></span>
-                                </div>
-                            </div>
-                        </th> --}}
+                        <thead class="header-item text-center">
                             <th class="w-0">No.</th>
                             <th>Gambar</th>
                             <th>Nama</th>
@@ -88,9 +84,9 @@
                             <th>Tgl. Publish</th>
                             <th>Jam Publish</th>
                             <th>Status</th>
-                            <th>Aksi</th>
+                            <th class="text-center justify-content-center">Aksi</th>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($banner as $items)
                                 <tr>
                                     <td class="w-0">{{ $items->id }}</td>
@@ -105,7 +101,7 @@
                                             class="usr-status-kost @if ($items->status == 'Publish') published @else Unpublish @endif">{{ $items->status }}</span>
                                     </td>
                                     <td class="px-0">
-                                        <div class="action-btn d-flex">
+                                        <div class="action-btn d-flex justify-content-center">
                                             <form action="{{ route('banner.destroy', $items->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -119,8 +115,8 @@
                                                     class="bi bi-pencil-square"></i></button>
                                         </div>
 
-                                        <div class="modal fade" id="edit-{{ $items->id }}" data-bs-backdrop="static"
-                                            tabindex="-1" data-bs-keyboard="false">
+                                        <div class="modal fade text-start" id="edit-{{ $items->id }}"
+                                            data-bs-backdrop="static" tabindex="-1" data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content px-3">
                                                     <div class="modal-header d-flex align-items-center">
@@ -242,15 +238,17 @@
                                                             </div>
                                                         </div>
                                                         <div class="rounded-2">
-                                                            <img src="{{ asset('imgdb/' . $items->gambar) }}" alt=""
-                                                            width="100%" height="200" class="rounded-1" style="border-radius: 0.5rem !important;">
+                                                            <img src="{{ asset('imgdb/' . $items->gambar) }}"
+                                                                alt="" width="100%" height="200"
+                                                                class="rounded-1"
+                                                                style="border-radius: 0.5rem !important;">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <a href="#" class="btn rounded-2 px-3"
                                                                 data-bs-dismiss="modal"
                                                                 style="background: #838383; color: white;">Batal</a>
-                                                            <button type="submit" class="btn rounded-2 px-3"
-                                                                style="background: #838383; color: white;">Simpan</button>
+                                                            <button type="submit"
+                                                                class="btn btn-warning rounded-2 px-3">Simpan</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -270,16 +268,16 @@
                         <a data-bs-toggle="modal" data-bs-target="#create" id="btn-add-contact"
                             class="btn btn-warning justify-content-center mt-1 align-items-center"
                             style="padding: 7px 16px 7px 10px;">
-                            <i class="bi bi-plus fs-5" style="vertical-align: -0.1em;"></i>Tambah Banner
+                            <i class="bi bi-plus fs-5" style="vertical-align: -0.1em;"></i>Tambah
                         </a>
                     </div>
                 </div>
+            </div>
         @endif
-    </div>
     </div>
     <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" x-data="{ nama: '', tglfilm: '', gambar: '', jamfilm: '', status: '', lokasi: '' }">
+        <div class="modal-dialog modal-dialog-centered" role="document" x-data="{ nama: '', tglfilm: '', gambar: '', jamfilm: '', status: 'Unpublish', lokasi: '' }">
             <form action="{{ route('banner.store') }}" class="row" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content px-2">
@@ -360,7 +358,7 @@
                                     </div>
                                     <div class="img-profil mb-2">
                                         <img class="mx-auto rounded" id="preview" src="#" alt="Preview"
-                                        width="100%" height="200" style="display: none;">
+                                            width="100%" height="200" style="display: none;">
                                     </div>
                                 </form>
                             </div>

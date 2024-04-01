@@ -27,6 +27,11 @@
             cursor: not-allowed;
             /* Mengubah kursor menjadi not-allowed saat dinonaktifkan */
         }
+
+        #btn-add{
+            background: #FFAE1F;
+            color: white;
+        }
     </style>
     <!-- --------------------------------------------------- -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
@@ -58,7 +63,7 @@
             <div class="card card-body rounded-top-0">
                 <div class="table-responsive">
                     <table class="table search-table align-middle text-nowrap">
-                        <thead class="header-item">
+                        <thead class="header-item text-center">
                             <th>No.</th>
                             <th>Thumbnail</th>
                             <th>Judul</th>
@@ -68,7 +73,7 @@
                             <th>Status</th>
                             <th>Aksi</th>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($podcast as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
@@ -82,7 +87,7 @@
                                             class="usr-status-kost @if ($item->status == 'Publish') published @else Unpublish @endif">{{ $item->status }}</span>
                                     </td>
                                     <td class="px-0">
-                                        <div class="action-btn d-flex">
+                                        <div class="action-btn d-flex justify-content-center">
                                             <form action="{{ route('broadcast.destroy', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -94,7 +99,7 @@
                                                 class="btn btn-outline-warning ms-1" style="padding: 7px 18px"
                                                 data-bs-toggle="modal" data-bs-target="#edit">
                                                 <i class="bi bi-pencil-square"></i></a>
-                                            <div class="modal fade" id="edit" data-bs-backdrop="static"
+                                            <div class="modal fade text-start" id="edit" data-bs-backdrop="static"
                                                 data-bs-keyboard="false" tabindex="-1"
                                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -336,7 +341,7 @@
                         <a data-bs-toggle="modal" data-bs-target="#create"
                             class="btn btn-warning justify-content-center mt-1 align-items-center"
                             style="padding: 7px 16px 7px 10px;">
-                            <i class="bi bi-plus fs-5" style="vertical-align: -0.1em;"></i>Tambah Film
+                            <i class="bi bi-plus fs-5" style="vertical-align: -0.1em;"></i>Tambah
                         </a>
                     </div>
                 </div>
@@ -345,7 +350,7 @@
     </div>
     <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" x-data="{ judul: '', channel: '', host: '', thumbnail: '', status: '', deskripsi: '', video: '' }">
+        <div class="modal-dialog modal-dialog-centered" role="document" x-data="{ judul: '', channel: '', host: '', thumbnail: '',  status: 'Unpublish', deskripsi: '', video: '' }">
             <form action="{{ route('broadcast.store') }}" class="row" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content px-2">
@@ -393,7 +398,7 @@
                                                     <h6>Host <span class="text-danger">*</span></h6>
                                                 </label>
                                                 <input name="host" id="host" type="text" class="form-control"
-                                                    x-model="host" onchange="previewImage()" placeholder="Ketik...">
+                                                    x-model="host" placeholder="Ketik...">
                                             </div>
                                         </div>
                                     </div>
@@ -403,8 +408,8 @@
                                                 <label for="">
                                                     <h6>Thumbnail <span class="text-danger">*</span></h6>
                                                 </label>
-                                                <input name="thumbnail" id="thumbnail" x-model="thumbnail"
-                                                    type="file" class="form-control">
+                                                <input name="thumbnail" id="gambar" x-model="thumbnail"
+                                                    type="file" class="form-control" onchange="previewImage()">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -443,7 +448,6 @@
                         <button type="button" class="btn rounded-2 px-3" style="background: #838383; color: white;"
                             data-bs-dismiss="modal">Batal</button>
                         <button type="submit" id="btn-add" class="btn rounded-2 px-3"
-                            style="background: #838383; color: white;"
                             :class="judul && channel && host && thumbnail && status && deskripsi && video ? null : 'disabled'">Tambah</button>
                     </div>
                 </div>
@@ -465,4 +469,22 @@
     <script src="{{ asset('admin') }}/dist/js/custom.js"></script>
 
     <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
+
+    <script>
+        function previewImage() {
+            var imgProfil = document.getElementById('gambar');
+            var preview = document.getElementById('preview');
+
+            if (imgProfil.files && imgProfil.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(imgProfil.files[0]);
+            }
+        }
+    </script>
 @endpush
