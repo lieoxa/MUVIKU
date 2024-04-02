@@ -233,10 +233,9 @@
                                                                     style="background: #838383; color: white;"
                                                                     data-bs-dismiss="modal">Batal</button>
                                                                 <button type="submit" id="btn-add"
-                                                                    class="btn rounded-2 px-3"
-                                                                    style="background: #838383; color: white;"
+                                                                    class="btn btn-warning rounded-2 px-3"
                                                                     :class="judul && channel && host && thumbnail && status &&
-                                                                        deskripsi && video ? null : 'disabled'">Ubah</button>
+                                                                        deskripsi && video ? null : 'disabled'">Simpan</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -425,6 +424,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {{-- <div class="img-profil mb-2">
+                                        <img class="mx-auto rounded" id="preview" src="#" alt="Preview" height="100"
+                                            width="200.66" style="display: none;">
+                                    </div> --}}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 contact-occupation">
@@ -432,16 +435,12 @@
                                                     <h6>Deskripsi<span class="text-danger">*</span></h6>
                                                 </label>
                                                 <textarea class="d-block rounded px-1" name="deskripsi" id="" cols="70" x-model="deskripsi"
-                                                    style="height: 156px; resize: none;"></textarea>
+                                                    style="height: 120px; resize: none;"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                        <div class="img-profil mb-2">
-                            <img class="mx-auto rounded" id="preview" src="#" alt="Preview" height="150"
-                                width="266.66" style="display: none;">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -470,7 +469,7 @@
 
     <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
 
-    <script>
+    {{-- <script>
         function previewImage() {
             var imgProfil = document.getElementById('gambar');
             var preview = document.getElementById('preview');
@@ -486,5 +485,5 @@
                 reader.readAsDataURL(imgProfil.files[0]);
             }
         }
-    </script>
+    </script> --}}
 @endpush

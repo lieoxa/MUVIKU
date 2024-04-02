@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class FilmController extends Controller
@@ -23,7 +24,8 @@ class FilmController extends Controller
     public function create()
     {
         $films = Film::all();
-        return view('admin.film.create', ['films' => $films]);
+        $categories = Kategori::all();
+        return view('admin.film.create', ['films' => $films, 'categories'=> $categories]);
     }
 
     /**
@@ -38,7 +40,7 @@ class FilmController extends Controller
             'durasi' => 'required',
             'perusahaan' => 'required',
             'sutradara' => 'required',
-            'deskripsi' => 'required|max:999',
+            'deskripsi' => 'required',
             'kategori_id' => 'required',
             'thumbnail' => 'required',
             'video' => 'required',
@@ -81,9 +83,11 @@ class FilmController extends Controller
      */
     public function edit(string $id)
     {
+        $categories = Kategori::get('all');
         return view('admin.film.edit')->with([
             'films' => Film::find($id),
             'imgfilm' => Film::find($id)->thumbnail,
+            'categorie' => $categories,
         ]);
     }
 

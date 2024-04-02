@@ -35,13 +35,13 @@
         </div>
         <div class="scroll-horizontal h-100 d-flex">
             <section class="w-100" id="anime"></section>
-            <section class="w-100" id="korea"></section>
+            {{-- <section class="w-100" id="korea"></section>
             <section class="w-100" id="podcast"></section>
             <section class="w-100" id="indonesia"></section>
             <section class="w-100" id="animasi"></section>
             <section class="w-100" id="hero"></section>
             <section class="w-100" id="serial"></section>
-            <section class="w-100" id="horror"></section>
+            <section class="w-100" id="horror"></section> --}}
         </div>
 
     </div>

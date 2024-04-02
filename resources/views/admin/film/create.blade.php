@@ -42,8 +42,8 @@
             </div>
         </div>
         <!-- ---------------------
-                                                                        end Contact
-                                                                    ---------------- -->
+                                                                            end Contact
+                                                                        ---------------- -->
         <!-- Modal -->
         <div x-data="{ judul: '', tahun: '', usia: '', durasi: '', perusahaan: '', sutradara: '', kategori: '', thumbnail: '', status: 'Unpublish', video: '', deskripsi: '', }">
             <form action="{{ route('film.store') }}" method="POST" enctype="multipart/form-data">
@@ -91,8 +91,11 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                        <select name="kategori_id" class="form-select mr-sm-2" x-model="kategori">
-                            <option value="{{ $films->id }}">{{ $films->kategori_id }}</option>
+                        <select name="  " class="form-select mr-sm-2" x-model="kategori">
+                            <option selected>Pilih...</option>
+                            @foreach ($categories as $categorie)
+                                <option value="{{ $categorie->id }}">{{ $categorie->kategori }}</option>
+                            @endforeach
                             @error('kategori_id')
                                 {{ $message }}
                             @enderror
