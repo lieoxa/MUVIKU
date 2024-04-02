@@ -23,11 +23,6 @@
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
-    <style>
-        * {
-            font-family: 'Ubuntu';
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -46,10 +41,7 @@
                 </div>
             </div>
         </div>
-        <!-- ---------------------
-                                                                end Contact
-                                                            ---------------- -->
-        <!-- Modal -->
+
         <div x-data="{ judul: '', tahun: '', usia: '', season: '', perusahaan: '', sutradara: '',  thumbnail: '', status: 'Unpublish', video: '', deskripsi: '', }">
             <form action="{{ route('serial.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -96,9 +88,9 @@
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Status<span class="text-danger" x-model="status">*</span></label>
-                        <select name="status" class="form-select mr-sm-2">
+                        <select name="status" class="form-select mr-sm-2" x-model="status">
                             <option value="Publish">Publish</option>
-                            <option value="Unpublish" selected>Unpublish</option>
+                            <option value="Unpublish">Unpublish</option>
                         </select>
                     </div>
                 </div>

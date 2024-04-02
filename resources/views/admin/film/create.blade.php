@@ -9,16 +9,6 @@
             font-family: 'Ubuntu';
         }
 
-        .published {
-            color: rgb(0, 192, 0);
-            font-weight: bolder;
-        }
-
-        .Unpublish {
-            color: red;
-            font-weight: bolder;
-        }
-
         .btn.disabled {
             background-color: black !important;
             color: white !important;
@@ -33,11 +23,6 @@
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
-    <style>
-        * {
-            font-family: 'Ubuntu';
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -57,8 +42,8 @@
             </div>
         </div>
         <!-- ---------------------
-                                                                end Contact
-                                                            ---------------- -->
+                                                                        end Contact
+                                                                    ---------------- -->
         <!-- Modal -->
         <div x-data="{ judul: '', tahun: '', usia: '', durasi: '', perusahaan: '', sutradara: '', kategori: '', thumbnail: '', status: 'Unpublish', video: '', deskripsi: '', }">
             <form action="{{ route('film.store') }}" method="POST" enctype="multipart/form-data">
@@ -106,14 +91,17 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                        <select name="kategori" class="form-select mr-sm-2" x-model="kategori">
-                            <option value="">Pilih...</option>
-                            <option value="Film Indonesia">Film Indonesia</option>
+                        <select name="kategori_id" class="form-select mr-sm-2" x-model="kategori">
+                            <option value="{{ $films->id }}">{{ $films->kategori_id }}</option>
+                            @error('kategori_id')
+                                {{ $message }}
+                            @enderror
+                            {{-- <option value="Film Indonesia">Film Indonesia</option>
                             <option value="Film Korea">Film Korea</option>
                             <option value="Anime">Anime</option>
                             <option value="Super Hero">Super Hero</option>
                             <option value="Horror">Horror</option>
-                            <option value="Film MUVIKU">Film MUVIKU</option>
+                            <option value="Film MUVIKU">Film MUVIKU</option> --}}
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -136,8 +124,8 @@
                     </div>
                 </div>
                 <div class="img-profil mb-2">
-                    <img class="mt-3 rounded" id="preview" src="#" alt="Preview"
-                    width="80" height="120" style="display: none;">
+                    <img class="mt-3 rounded" id="preview" src="#" alt="Preview" width="80"
+                        height="120" style="display: none;">
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-12">

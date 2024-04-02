@@ -12,4 +12,8 @@ class Film extends Model
     protected $table = "films";
 
     protected $guarded = ["id"];
+    public function kategorifilm(){
+        return $this->belongsTo(Kategori::class,'kategori_id', 'id');
+    }
 }
+

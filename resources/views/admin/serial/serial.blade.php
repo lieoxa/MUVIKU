@@ -49,7 +49,7 @@
                     </div>
                     <div
                         class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                        <a href="{{ route('Serial.create') }}" class="btn btn-warning d-flex align-items-center"
+                        <a href="{{ route('serial.create') }}" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 10px;">
                             <i class="ti ti-plus fs-5"></i>Tambah
                         </a>
@@ -57,8 +57,8 @@
                 </div>
             </div>
             <!-- ---------------------
-                                                                                end Contact
-                                                                            ---------------- -->
+                                                                                    end Contact
+                                                                                ---------------- -->
             <!-- Modal -->
             <div class="card card-body rounded-top-0">
                 <div class="table-responsive">
@@ -68,7 +68,6 @@
                             <th>Thumbnail</th>
                             <th>Judul</th>
                             <th>Video</th>
-                            <th>Kategori</th>
                             <th>View</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -81,7 +80,6 @@
                                             height="90" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->video }}</td>
-                                    <td>{{ $item->kategori }}</td>
                                     <td>{{ $item->view }}</td>
                                     <td><span
                                             class="usr-status-kost @if ($item->status == 'Publish') published @else Unpublish @endif">{{ $item->status }}</span>
@@ -133,7 +131,6 @@
                                                                                             <p>{{ $item->tahun }}</p>
                                                                                             <p>{{ $item->usia }}</p>
                                                                                             <p>{{ $item->durasi }}</p>
-                                                                                            <p>{{ $item->kategori }}</p>
                                                                                         </div>
                                                                                         <div class="col-9">
                                                                                             <p>{{ $item->perusahaan }}</p>
@@ -176,8 +173,7 @@
                                                         <div class="modal-footer">
                                                             <button type="button"
                                                                 class="btn btn-success">Publish</button>
-                                                            <button data-bs-dismiss="modal"
-                                                                style="background: #8a8a8a; color: white;" type="button"
+                                                            <button data-bs-dismiss="modal" type="button"
                                                                 class="btn btn-primary">Tutup</button>
                                                         </div>
                                                     </form>

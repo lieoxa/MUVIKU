@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('serials', function (Blueprint $table) {
             $table->id();
-            $table->string('thumbnail')->nullable();
+            $table->string('thumbnail');
             $table->string('judul');
             $table->string('tahun');
             $table->string('usia');
@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('sutradara');
             $table->string('deskripsi');
             $table->string('video');
-            $table->string('kategori');
             $table->string('view')->nullable();
             $table->string('status');
             $table->timestamps();

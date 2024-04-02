@@ -76,14 +76,14 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                    <select name="kategori" class="form-select mr-sm-2">
+                    <select name="kategori_id" class="form-select mr-sm-2">
                         <option value="">Pilih...</option>
-                        <option value="Film Indonesia" {{ $films->kategori == 'Film Indonesia' ? 'selected' : '' }}>Film Indonesia</option>
-                        <option value="Film Korea" {{ $films->kategori == 'Film Korea' ? 'selected' : '' }}>Film Korea</option>
-                        <option value="Anime" {{ $films->kategori == 'Anime' ? 'selected' : '' }}>Anime</option>
-                        <option value="Super Hero" {{ $films->kategori == 'Super Hero' ? 'selected' : '' }}>Super Hero</option>
-                        <option value="Horror" {{ $films->kategori == 'Horror' ? 'selected' : '' }}>Horror</option>
-                        <option value="Film MUVIKU" {{ $films->kategori == 'Film MUVIKU' ? 'selected' : '' }}>Film MUVIKU</option>
+                        <option value="Film Indonesia" {{ $films->kategori_id == 'Film Indonesia' ? 'selected' : '' }}>Film Indonesia</option>
+                        <option value="Film Korea" {{ $films->kategori_id == 'Film Korea' ? 'selected' : '' }}>Film Korea</option>
+                        <option value="Anime" {{ $films->kategori_id == 'Anime' ? 'selected' : '' }}>Anime</option>
+                        <option value="Super Hero" {{ $films->kategori_id == 'Super Hero' ? 'selected' : '' }}>Super Hero</option>
+                        <option value="Horror" {{ $films->kategori_id == 'Horror' ? 'selected' : '' }}>Horror</option>
+                        <option value="Film MUVIKU" {{ $films->kategori_id == 'Film MUVIKU' ? 'selected' : '' }}>Film MUVIKU</option>
                     </select>
                 </div>
                 <div class="col-md-6">

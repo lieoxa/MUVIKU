@@ -81,7 +81,7 @@
                                         height="90" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->video }}</td>
-                                    <td>{{ $item->kategori }}</td>
+                                    <td>{{ $item->kategori_id }}</td>
                                     <td>{{ $item->view }}</td>
                                     <td><span
                                             class="usr-status-kost @if ($item->status == 'Publish') published @else Unpublish @endif">{{ $item->status }}</span>
@@ -135,7 +135,7 @@
                                                                                             <p>{{ $item->durasi }}</p>
                                                                                         </div>
                                                                                         <div class="col-9">
-                                                                                            <p>{{ $item->kategori }}</p>
+                                                                                            <p>{{ $item->kategori_id }}</p>
                                                                                             <p>{{ $item->perusahaan }}</p>
                                                                                             <p>{{ $item->sutradara }}</p>
                                                                                         </div>

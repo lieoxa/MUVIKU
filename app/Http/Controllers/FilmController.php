@@ -39,7 +39,7 @@ class FilmController extends Controller
             'perusahaan' => 'required',
             'sutradara' => 'required',
             'deskripsi' => 'required|max:999',
-            'kategori' => 'required',
+            'kategori_id' => 'required',
             'thumbnail' => 'required',
             'video' => 'required',
             'status' => 'required',
@@ -60,7 +60,7 @@ class FilmController extends Controller
         $film->perusahaan = $request->perusahaan;
         $film->sutradara = $request->sutradara;
         $film->deskripsi = $request->deskripsi;
-        $film->kategori = $request->kategori;
+        $film->kategori_id = $request->kategori_id;
         $film->status = $request->status;
 
         $film->save();
@@ -100,7 +100,7 @@ class FilmController extends Controller
             'perusahaan' => 'required',
             'sutradara' => 'required',
             'deskripsi' => 'required|max:999',
-            'kategori' => 'required',
+            'kategori_id' => 'required',
             'thumbnail' => 'nullable',
             'video' => 'required',
             'status' => 'required',
@@ -125,7 +125,7 @@ class FilmController extends Controller
         $film->thumbnail = $thumbnail;
         $film->video = $request->video;
         $film->deskripsi = $request->deskripsi;
-        $film->kategori = $request->kategori;
+        $film->kategori_id = $request->kategori_id;
         $film->status = $request->status;
 
         $film->save();

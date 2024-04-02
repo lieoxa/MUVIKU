@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('perusahaan');
             $table->string('sutradara');
             $table->string('deskripsi');
-            $table->string('kategori');
+            $table->foreignId('kategori_id');
             $table->string('view')->nullable();
             $table->string('status');
             $table->timestamps();
