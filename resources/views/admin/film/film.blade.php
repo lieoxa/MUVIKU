@@ -81,7 +81,7 @@
                                         height="90" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->video }}</td>
-                                    <td>{{ $item->kategori_id }}</td>
+                                    <td>{{ $item->kategorifilm->kategori }}</td>
                                     <td>{{ $item->view }}</td>
                                     <td><span
                                             class="usr-status-kost @if ($item->status == 'Publish') published @else Unpublish @endif">{{ $item->status }}</span>
@@ -145,7 +145,7 @@
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-12" style="max-width: 100%;">
-                                                                                <textarea style="height: 200px; resize: none; width: 100%;" class="rounded px-1 border-0" readonly>{{ $item->deskripsi }}</textarea>
+                                                                                <textarea style="height: 200px; resize: none; width: 100%;" class="rounded px-1 border-black" readonly>{{ $item->deskripsi }}</textarea>
                                                                             </div>
                                                                         </div>
                                                                         <div class="img-profil mb-2">

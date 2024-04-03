@@ -386,7 +386,14 @@
                         <section class="splide new-11" aria-label="Splide Basic HTML Example">
                             <div class="splide__track">
                                 <ul class="splide__list">
-                                    <li class="splide__slide coming-soon">
+                                    @foreach ($banner->where('lokasi', 'Utama') as $item)
+                                        <li class="splide__slide coming-soon">
+                                            <div class="cs">
+                                                <img src="{{ asset('imgdb/' . $item->gambar) }}" class="card-img-top-1 w-100" alt="...">
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                    {{-- <li class="splide__slide coming-soon">
                                         <div class="cs">
                                             <img src="img/cs.jpg" class="card-img-top-1 w-100" alt="...">
                                         </div>
@@ -400,7 +407,7 @@
                                         <div class="cs">
                                             <img src="img/cs2.jpg" class="card-img-top-1 w-100" alt="...">
                                         </div>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </section>
@@ -453,7 +460,7 @@
 
                     {{-- SLIDE KE LIMA --}}
 
-                    <div class="hero mb-4" style="margin-right: 12px; margin-left:12px; margin-bottom: 1.9rem;"
+                    <div class="hero mb-4 container" style="margin-bottom: 1.9rem;"
                         x-show="sliders == '' ? true : (sliders == 'hero')">
                         <h1 class="text-white text-start fw-bold">Super Hero</h1>
                         <section>
@@ -898,8 +905,10 @@
                             <div class="splide__track">
                                 <ul class="splide__list">
                                     <li class="splide__slide saran-2">
-                                        <div class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
-                                            <div id="main-slider" class="splide pb-2" onclick="window.location='{{ route('pertaruhan') }}'">
+                                        <div
+                                            class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
+                                            <div id="main-slider" class="splide pb-2"
+                                                onclick="window.location='{{ route('pertaruhan') }}'">
                                                 <div class="splide__track">
                                                     <ul class="splide__list">
                                                         <li class="splide__slide rounded-3">
@@ -951,7 +960,8 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="saran-bawah d-flex ps-6 pe-4" onclick="window.location='{{ route('pertaruhan') }}'">
+                                            <div class="saran-bawah d-flex ps-6 pe-4"
+                                                onclick="window.location='{{ route('pertaruhan') }}'">
                                                 <div class="text-white my-auto text-start" style="width: 80%">
                                                     <h6 class="m-0">Pertaruhan The Series</h6>
                                                     <p class="mb-0 text-secondary" style="font-size: 12px">2024</p>
@@ -1096,13 +1106,13 @@
 
     <div class="menu-wrapper sticky-bottom start-50">
         <div class="navigation container-fluid" id="navigationn">
-            <li onclick="window.location='{{ route('movie') }}'">
+            <li>
                 <a class="btnn border-end-0 border-bottom-0 border-start-0 active">
                     <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
                     <span>Utama</span>
                 </a>
             </li>
-            <li onclick="window.location='{{ route('search') }}'">
+            <li>
                 <a class="btnn border-end-0 border-bottom-0 border-start-0">
                     <i class="bi bi-search" aria-hidden="true"></i>
                     <span>Cari</span>

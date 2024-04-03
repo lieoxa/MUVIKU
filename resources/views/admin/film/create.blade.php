@@ -42,8 +42,8 @@
             </div>
         </div>
         <!-- ---------------------
-                                                                            end Contact
-                                                                        ---------------- -->
+                                                                                end Contact
+                                                                            ---------------- -->
         <!-- Modal -->
         <div x-data="{ judul: '', tahun: '', usia: '', durasi: '', perusahaan: '', sutradara: '', kategori: '', thumbnail: '', status: 'Unpublish', video: '', deskripsi: '', }">
             <form action="{{ route('film.store') }}" method="POST" enctype="multipart/form-data">

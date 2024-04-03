@@ -83,11 +83,11 @@ class FilmController extends Controller
      */
     public function edit(string $id)
     {
-        $categories = Kategori::get('all');
+        $categories = Kategori::get();
         return view('admin.film.edit')->with([
             'films' => Film::find($id),
             'imgfilm' => Film::find($id)->thumbnail,
-            'categorie' => $categories,
+            'categories' => $categories,
         ]);
     }
 

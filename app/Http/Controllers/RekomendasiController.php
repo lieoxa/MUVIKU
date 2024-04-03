@@ -87,9 +87,14 @@ class RekomendasiController extends Controller
             'status' => 'required',
         ]);
 
-        $gambarBarang = $request->file('gambar');
-        $namaFile = time() . '.' . $gambarBarang->getClientOriginalExtension();
-        $gambarBarang->move(public_path('imgdb'), $namaFile);
+        if($request->thumbnail){
+            $namaFile = $request->file('thumbnail');
+            $imgFile = time() . '.' . $namaFile->getClientOriginalExtension();
+            $namaFile->move(public_path('imgdb'), $imgFile);
+            } else {
+                $film=Rekomendasi::find( $id );
+                $namaFile = $film->thumbnail;
+            }
 
         $rekomendasi = Rekomendasi::find($id);
         $rekomendasi->gambar = $namaFile;

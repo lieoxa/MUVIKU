@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
 use App\Models\Serial;
 use Illuminate\Http\Request;
 

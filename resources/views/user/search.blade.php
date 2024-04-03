@@ -28,26 +28,32 @@
         </nav>
     </header>
 
-    <div class="old pb-5">
+    <div class="old">
         <div class="iklan mb-4">
             <section class="splide new-11" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide coming-soon">
-                            <div class="cs">
-                                <img src="img/cs.jpg" class="card-img-top-1 w-100 rounded-3">
+                        @if (count($banner) > 0)
+                        @foreach ($banner->where('lokasi', 'Search')->where('status', 'Publish') as $item)
+                            <li class="splide__slide coming-soon card-img-top">
+                                <div class="cs">
+                                    <img src="{{ asset('imgdb/' . $item->gambar) }}" class="card-img-top w-100">
+                                </div>
+                            </li>
+                        @endforeach
+                        @else
+                        <li class="splide__slide li">
+                            <div class="card card-img-empty border border-secondary bg-secondary">
+                                <div class="m-auto">
+                                    <img src="img/movie.png" width="80" height="80" style="opacity: 0.1" class="card-img-empty-1">
+                                </div>
+                                {{-- <div class="card-img-overlay card-1 text-white p-6"> --}}
+                                    {{-- <h5 class="card-title fw-bold" style="color: #DA137F">{{ $item->judul }}</h5>
+                                    <p class="card-text lh-1"><small>{{ $item->deskripsi }}</small></p> --}}
+                                </div>
                             </div>
                         </li>
-                        <li class="splide__slide coming-soon">
-                            <div class="cs">
-                                <img src="img/cs1.jpg" class="card-img-top-1 w-100 rounded-3">
-                            </div>
-                        </li>
-                        <li class="splide__slide coming-soon">
-                            <div class="cs">
-                                <img src="img/cs2.jpg" class="card-img-top-1 w-100 rounded-3">
-                            </div>
-                        </li>
+                        @endif
                     </ul>
                 </div>
             </section>
@@ -57,60 +63,28 @@
             <section class="splide new-1" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
+                        @if (count($rekomendasis) > 0)
+                        @foreach ($rekomendasis->where('id')->where('status', 'Publish') as $item)
+                            <li class="splide__slide li">
+                                <div class="card bg-transparent card-img-top">
+                                    <img src="{{ asset('imgdb/' . $item->gambar) }}" width="160" height="160" class="card-img-top-1 w-100">
+                                    <div class="card-img-overlay card-1 text-white p-6">
+                                        <h5 class="card-title fw-bold" style="color: #DA137F">{{ $item->judul }}</h5>
+                                        <p class="card-text lh-1"><small>{{ $item->deskripsi }}</small></p>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                        @else
                         <li class="splide__slide li">
-                            <div class="card bg-transparent">
-                                <img src="img/jumanji.jpg" class="card-img">
-                                <div class="card-img-overlay card-1 text-white p-6">
-                                    <h5 class="card-title fw-bold" style="color: #DA137F">Jumanji</h5>
-                                    <p class="card-text lh-1"><small>Teka teki didalam game</small></p>
+                            <div class="card bg-secondary border border-secondary card-img-empty">
+                                <div class="m-auto">
+                                    <img src="img/movie.png" width="80" height="80" style="opacity: 0.1" class="card-img-empty-1">
+                                </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="splide__slide li" onclick="window.location='{{ route('detailsrc') }}'">
-                            <div class="card bg-transparent">
-                                <img src="img/pilih2.jpg" class="card-img">
-                                <div class="card-img-overlay card-2 text-white p-6">
-                                    <h5 class="card-title fw-bold" style="color: #DA137F">One Piece Red</h5>
-                                    <p class="card-text lh-1"><small>Petualangan bajak laut</small></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="splide__slide li">
-                            <div class="card bg-transparent">
-                                <img src="img/horror2.jpg" class="card-img">
-                                <div class="card-img-overlay card-3 text-white p-6">
-                                    <h5 class="card-title fw-bold" style="color: #DA137F">KKN</h5>
-                                    <p class="card-text lh-1"><small>Kisah horror desa penari</small></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="splide__slide li">
-                            <div class="card bg-transparent">
-                                <img src="img/anim1.jpg" class="card-img">
-                                <div class="card-img-overlay card-4 text-white p-6">
-                                    <h5 class="card-title fw-bold" style="color: #DA137F">Demon Slayer</h5>
-                                    <p class="card-text lh-1"><small>Kehidupan pemburu iblis</small></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="splide__slide li">
-                            <div class="card bg-transparent">
-                                <img src="img/pilih.jpg" class="card-img">
-                                <div class="card-img-overlay card-3 text-white p-6">
-                                    <h5 class="card-title fw-bold" style="color: #DA137F">Rio 2</h5>
-                                    <p class="card-text lh-1"><small>Perjalanan keluarga blu</small></p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="splide__slide li">
-                            <div class="card bg-transparent">
-                                <img src="img/pilih1.jpg" class="card-img">
-                                <div class="card-img-overlay card-4 text-white p-6">
-                                    <h5 class="card-title fw-bold" style="color: #DA137F">Squid Game</h5>
-                                    <p class="card-text lh-1"><small>Bertahan untuk uang</small></p>
-                                </div>
-                            </div>
-                        </li>
+                        @endif
                     </ul>
                 </div>
             </section>
@@ -121,12 +95,12 @@
             <section class="splide anim" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide d-grid gap-2 li-anim" onclick="window.location='{{ route('detailsrc') }}'">
+                        <li class="splide__slide d-grid gap-2 li-anim"
+                            onclick="window.location='{{ route('detailsrc') }}'">
                             <div class="card bg-transparent border-0" style="max-width: 540px;">
                                 <div class="row g-0 d-flex">
                                     <div class="col-4">
-                                        <img src="img/tren-anim.jpg" class="img-fluid rounded img-anim"
-                                            alt="...">
+                                        <img src="img/tren-anim.jpg" class="img-fluid rounded img-anim" alt="...">
                                     </div>
                                     <div class="col-8 text-white">
                                         <div class="card-body py-0 px-2">
@@ -141,8 +115,7 @@
                             <div class="card bg-transparent border-0" style="max-width: 540px;">
                                 <div class="row g-0 d-flex">
                                     <div class="col-4">
-                                        <img src="img/tren-anim1.jpg" class="img-fluid rounded img-anim"
-                                            alt="...">
+                                        <img src="img/tren-anim1.jpg" class="img-fluid rounded img-anim" alt="...">
                                     </div>
                                     <div class="col-8 text-white">
                                         <div class="card-body py-0 px-2">
@@ -157,8 +130,7 @@
                             <div class="card bg-transparent border-0" style="max-width: 540px;">
                                 <div class="row g-0 d-flex">
                                     <div class="col-4">
-                                        <img src="img/tren-anim6.jpg" class="img-fluid rounded img-anim"
-                                            alt="...">
+                                        <img src="img/tren-anim6.jpg" class="img-fluid rounded img-anim" alt="...">
                                     </div>
                                     <div class="col-8 text-white">
                                         <div class="card-body py-0 px-2">
@@ -344,7 +316,8 @@
                             <img src="{{ asset('img/drakor1.jpg') }}" class="card-img-top slider-img" alt="...">
                         </li>
                         <li class="splide__slide li-1">
-                            <img src="{{ asset('img/thumb-pertaruhan.jpg') }}" class="card-img-top slider-img" alt="...">
+                            <img src="{{ asset('img/thumb-pertaruhan.jpg') }}" class="card-img-top slider-img"
+                                alt="...">
                         </li>
                         <li class="splide__slide li-1">
                             <img src="{{ asset('img/animasi7.jpg') }}" class="card-img-top slider-img"
@@ -410,13 +383,13 @@
     </div>
     <footer class="menu-wrapper fixed-bottom">
         <div class="navigation container" id="navigationn">
-            <li onclick="window.location='{{ route('movie') }}'">
+            <li>
                 <a class="btnn border-end-0 border-bottom-0 border-start-0">
                     <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
                     <span>Utama</span>
                 </a>
             </li>
-            <li onclick="window.location='{{ route('search') }}'">
+            <li>
                 <a class="btnn border-end-0 border-bottom-0 border-start-0 active">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25"
                         viewBox="0,0,256,256">

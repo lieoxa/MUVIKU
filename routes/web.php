@@ -11,6 +11,8 @@ use App\Http\Controllers\PodcastController;
 use App\Http\Controllers\RekomendasiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SerialController;
+use App\Http\Controllers\UtamaController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,17 +33,16 @@ Route::get('/detail', function () {
     return view('detail');
 });
 
-Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [AuthController::class, 'register'])->name('register');
-    Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
-});
+// Route::group(['middleware' => 'guest'], function () {
+//     Route::get('/register', [AuthController::class, 'register'])->name('register');
+//     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+//     Route::get('/login', [AuthController::class, 'login'])->name('login');
+//     Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+// });
 
-Route::get('/movie', [AuthController::class, 'movie'])->name('movie');
 Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/serial', [AuthController::class, 'serial'])->name('serial');
-Route::get('/search', [AuthController::class, 'search'])->name('search');
+// Route::get('/search', [AuthController::class, 'search'])->name('search');
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::get('/watchlist', [AuthController::class, 'watchlist'])->name('watchlist');
 Route::get('/film', [AuthController::class, 'film'])->name('film');
@@ -77,3 +78,7 @@ Route::resource('rekomendasi', RekomendasiController::class);
 Route::resource('kategori', KategoriController::class);
 
 Route::resource('serial', SerialController::class);
+
+Route::get('utama', [UtamaController::class, 'home']);
+
+Route::get('search', [SearchController::class, 'search']);

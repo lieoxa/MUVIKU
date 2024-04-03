@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     <link rel="stylesheet" href="css/watchlist.css">
+    {{-- <link rel="stylesheet" href="css/style.css"> --}}
 </head>
 
 <body>
@@ -22,27 +23,147 @@
                     <h3 class="mb-0 text-white">Daftar Tonton</h3>
                 </div>
             </div>
-            <nav class="kategori">
-                <a class="active" href="#anime">Anime</a>
-                <a href="#korea">Korea</a>
-                <a href="#podcast">Podcast</a>
-                <a href="#indonesia">Indonesia</a>
-                <a href="#animasi">Animasi</a>
-                <a href="#hero">Hero</a>
-                <a href="#serial">Serial</a>
-                <a href="#horror">Horror</a>
-            </nav>
+            <div x-data="{ sliders: '' }">
+                <div class="container-sm">
+                    <div class="container mb-2 p-0 border-bottom-1" style="max-height: 44px;" x-data="{ filter: 'all' }">
+                        <section class="splide slider-1 mt-0 mb-4" aria-label="Splide Basic HTML Example">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    {{-- <li class="splide__slide">
+                                        <span
+                                            :class="filter == 'all' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'all';sliders = ''">Rekomendasi</span>
+                                    </li>
+                                    <li class="splide__slide ">
+                                        <span
+                                            :class="filter == 'indonesia' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'indonesia';sliders = 'indonesia'">Film Indonesia</span>
+                                    </li> --}}
+                                    {{-- <li class="splide__slide">
+                                        <span
+                                            :class="filter == 'korea' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'korea';sliders = 'korea'">Film Korea</span>
+                                    </li>
+                                    <li class="splide__slide"> 
+                                        <span
+                                            :class="filter == 'podcast' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'podcast';sliders = 'podcast'">Podcast</span>
+                                    </li> --}}
+                                    <li class="splide__slide ">
+                                        <span
+                                            :class="filter == 'anime' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'anime';sliders = 'anime'">Anime</span>
+                                    </li>
+                                    {{-- <li class="splide__slide">
+                                        <span
+                                            :class="filter == 'hero' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'hero';sliders = 'hero'">Super Hero</span>
+                                    </li> --}}
+                                    {{-- <li class="splide__slide ">
+                                        <span
+                                            :class="filter == 'serial' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'serial';sliders = 'serial'">Serial</span>
+                                    </li>
+                                    <li class="splide__slide">
+                                        <span
+                                            :class="filter == 'horror' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'horror';sliders = 'horror'">Horror</span>
+                                    </li>
+                                    <li class="splide__slide ">
+                                        <span
+                                            :class="filter == 'animasi' ? 'title-service text-white fs-8 fw-bold' :
+                                                'text-secondary'"
+                                            x-on:click="filter = 'animasi';sliders = 'animasi'">Animasi</span>
+                                    </li> --}}
+                                </ul>
+                            </div>
+                        </section>
+                        <div class="d-flex gap-2 bar mt-3">
+                        </div>
+                    </div>
+                </div>
+                <section>
+                    <div class="hero my-3 container" style="margin-bottom: 1.9rem;"
+                        x-show="sliders == '' ? true : (sliders == 'hero')">
+                        {{-- <h1 class="text-white text-start fw-bold">Super Hero</h1> --}}
+                        <section>
+                            <div class="d-flex bar gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded" onclick="window.location='{{ route('detailsrc') }}'">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/anim.jpg') }}" class="rounded slider-img" width="100" height="130">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">One Piece Red</h5>
+                                    <p>MAPPA</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1">
+                                    <i class="bi bi-three-dots-vertical fs-4"></i>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    {{-- <div class="korea mb-4 container"
+                    x-show="sliders == '' ? true : (sliders == 'korea')">
+                    <h1 class="text-white text-start fw-bold">Film Korea</h1>
+                    <section>
+                        <div class="d-flex gap-2 bar mt-1">
+                            <div class="li position-relative" onclick="window.location='{{ route('century') }}'">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor1.jpg') }}" class="card-img-top slider-img">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor2.jpg') }}" class="card-img-top slider-img">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor3.jpg') }}" class="card-img-top slider-img">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor4.jpg') }}" class="card-img-top slider-img">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor5.jpg') }}" class="card-img-top slider-img"
+                                    alt="...">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor6.jpg') }}" class="card-img-top slider-img"
+                                    alt="...">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor7.jpg') }}" class="card-img-top slider-img">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor8.jpg') }}" class="card-img-top slider-img">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor9.jpg') }}" class="card-img-top slider-img"
+                                    alt="...">
+                            </div>
+                            <div class="li position-relative">
+                                <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
+                                <img src="{{ asset('img/drakor10.jpg') }}" class="card-img-top slider-img">
+                            </div>
+                        </div>
+                    </section>
+                </div> --}}
+                </section>
+            </div>
         </div>
-        <div class="scroll-horizontal h-100 d-flex">
-            <section class="w-100" id="anime"></section>
-            {{-- <section class="w-100" id="korea"></section>
-            <section class="w-100" id="podcast"></section>
-            <section class="w-100" id="indonesia"></section>
-            <section class="w-100" id="animasi"></section>
-            <section class="w-100" id="hero"></section>
-            <section class="w-100" id="serial"></section>
-            <section class="w-100" id="horror"></section> --}}
-        </div>
+    </div>
 
     </div>
 

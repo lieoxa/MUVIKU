@@ -10,11 +10,6 @@ body {
     user-select: none;
 }
 
-nav {
-    background: 222327;
-    color: white;
-}
-
 li {
     list-style: none;
 }
@@ -29,6 +24,13 @@ p {
     margin-bottom: 0;
 }
 
+.bi .bi-chevron-left::before,
+[class*=" bi-chevron-left"]::before,
+[class^=bi-chevron-left]::before {
+    line-height: 0.5;
+    vertical-align: 3px;
+}
+
 .navbar {
     justify-content: left;
 }
@@ -41,7 +43,7 @@ p {
 }
 
 .btn1 {
-    position: absolute;
+    margin-right: 5px;
     left: 8px;
     bottom: 8px;
     font-family: Roboto, sans-serif;
@@ -54,13 +56,13 @@ p {
 }
 
 .atas {
-    border-bottom: 0.5px solid rgb(116, 116, 116);
+    /* border-bottom: 0.5px solid rgb(116, 116, 116); */
     background: #222327;
 }
 
-.txt-daftar {
+/* .txt-daftar {
     margin-left: 2.6rem;
-}
+} */
 
 #mainNav .txt-detail.scrolled {
     color: white;
@@ -70,16 +72,16 @@ p {
     position: relative;
 }
 
-.kategori {
+/* .kategori {
     overflow-x: scroll;
     display: flex;
-    overflow: auto; /* Hide scrollbars */
-}
+    overflow: auto; 
+} */
 .kategori::-webkit-scrollbar {
     display: none;
 }
 
-.kategori a {
+li span {
     display: inline-block;
     color: white;
     text-align: center;
@@ -88,23 +90,30 @@ p {
     width: 100%;
 }
 
-.kategori a.active{
-    border-bottom: 2px solid white;
+.li {
+    min-width: 29% !important;
 }
 
-section{
-    min-height: 90vh;
+.bar {
+    overflow-x: auto;
+    overflow: overlay;
 }
 
-section:nth-child(odd){
-    background-color: #eee;
+.bar::-webkit-scrollbar {
+    display: none;
 }
 
-.scroll-horizontal{
-    overflow: auto;
-    overflow-x: scroll;
+.card-img-top {
+    max-width: 100%;
+    min-height: 160px;
+    max-height: 160px;
+    border-radius: 0.5rem !important;
 }
-/* .li {
-    max-width: 28%;
-    min-width: 28%;
-} */
+
+.slider-img {
+    /* width: 100%; */
+}
+
+.border-bottom-1 {
+    border-bottom: 0.1px solid #60636d;
+}

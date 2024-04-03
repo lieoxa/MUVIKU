@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AccUser;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
-class AccUserController extends Controller
+class UtamaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() 
-    {
-        return view('admin.user.user')->with([
-            'users' => AccUser::all(),
-        ]);
+    // public function index()
+    // {
+    //     return view('user.movie')->with([
+    //         'banner' => Banner::all(),
+    //     ]);
+    // }
+
+    public function home() {
+        $banner = Banner::all();
+        
+        return view('user.movie', compact('banner'));
     }
-    
     /**
      * Show the form for creating a new resource.
      */
@@ -46,7 +51,7 @@ class AccUserController extends Controller
      */
     public function edit(string $id)
     {
-        
+        //
     }
 
     /**
@@ -54,19 +59,14 @@ class AccUserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {   
-        $useracc = AccUser::find($id);
-        $useracc->delete();
-    
-        return back()->with('success', 'Data Berhasil Di hapus');
-        // AccUser::destroy($id);
-        // return back('/admin/user');
+    {
+        //
     }
 }

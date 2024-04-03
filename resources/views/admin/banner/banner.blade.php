@@ -69,8 +69,8 @@
                 </div>
             </div>
             <!-- ---------------------
-                                                    end Contact
-                                                    ---------------- -->
+                                                        end Contact
+                                                        ---------------- -->
             <!-- Modal -->
 
             <div class="card card-body">
@@ -408,5 +408,18 @@
                 reader.readAsDataURL(imgProfil.files[0]);
             }
         }
+    </script>
+
+    <script>
+        document.getElementById('btn-add').addEventListener('click', function() {
+
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                text: "Berhasil Ditambah",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        });
     </script>
 @endpush

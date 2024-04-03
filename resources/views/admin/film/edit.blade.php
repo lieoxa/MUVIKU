@@ -80,7 +80,7 @@
                         <option selected>Pilih...</option>
                         @foreach ($categories as $categorie)
                             <option value="{{ $categorie->id }}"
-                                {{ $films->$kategori_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->kategori }}</option>
+                                {{ $films->kategori_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->kategori }}</option>
                         @endforeach
                     </select>
                 </div>

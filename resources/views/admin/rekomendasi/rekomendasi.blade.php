@@ -296,7 +296,7 @@
                                             <label for="">
                                                 <h6>Deskripsi <span class="text-danger">*<span style="font-size: 12px">MAX : 26</span>*</span></h6>
                                             </label>
-                                            <textarea class="form-control" maxlength="26" name="deskripsi" id="" style="height: 39px;resize: none;"
+                                            <textarea class="form-control" maxlength="21" name="deskripsi" id="" style="height: 39px;resize: none;"
                                                 x-model="deskripsi" placeholder="Ketik..."></textarea>
                                         </div>
                                     </div>
