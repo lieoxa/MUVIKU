@@ -91,10 +91,10 @@ class RekomendasiController extends Controller
             $namaFile = $request->file('thumbnail');
             $imgFile = time() . '.' . $namaFile->getClientOriginalExtension();
             $namaFile->move(public_path('imgdb'), $imgFile);
-            } else {
-                $film=Rekomendasi::find( $id );
-                $namaFile = $film->thumbnail;
-            }
+        } else {
+            $film=Rekomendasi::find( $id );
+            $namaFile = $film->gambar;
+        }
 
         $rekomendasi = Rekomendasi::find($id);
         $rekomendasi->gambar = $namaFile;

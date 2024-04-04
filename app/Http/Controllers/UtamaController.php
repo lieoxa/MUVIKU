@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Film;
+use App\Models\Podcast;
 use Illuminate\Http\Request;
 
 class UtamaController extends Controller
@@ -18,9 +20,11 @@ class UtamaController extends Controller
     // }
 
     public function home() {
-        $banner = Banner::all();
+        $banner = Banner::where('status','Publish')->get();
+        $podcast = Podcast::all();
+        $films = Film::all();
         
-        return view('user.movie', compact('banner'));
+        return view('user.utama', compact('banner','podcast','films'));
     }
     /**
      * Show the form for creating a new resource.

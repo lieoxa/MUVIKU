@@ -20,15 +20,11 @@
         }
 
         .btn.disabled {
-            background-color: black;
-            /* Warna latar belakang hitam saat dinonaktifkan */
-            color: white;
-            /* Warna teks putih saat dinonaktifkan */
-            cursor: not-allowed;
-            /* Mengubah kursor menjadi not-allowed saat dinonaktifkan */
+            background-color: #838383 !important;
+            color: white !important;
         }
 
-        #btn-add{
+        #btn-add {
             background: #FFAE1F;
             color: white;
         }
@@ -57,8 +53,8 @@
                 </div>
             </div>
             <!-- ---------------------
-                                                                                                            end Contact
-                                                                                                        ---------------- -->
+                                                                                                                end Contact
+                                                                                                            ---------------- -->
             <!-- Modal -->
             <div class="card card-body rounded-top-0">
                 <div class="table-responsive">
@@ -119,7 +115,7 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="mb-3">
                                                                                         <label for="">
-                                                                                            <h6>Judul 
+                                                                                            <h6>Judul
                                                                                             </h6>
                                                                                         </label>
                                                                                         <input name="judul" id="judul"
@@ -132,7 +128,7 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="mb-3">
                                                                                         <label for="">
-                                                                                            <h6>Video 
+                                                                                            <h6>Video
                                                                                             </h6>
                                                                                         </label>
                                                                                         <input name="video" id="video"
@@ -147,7 +143,7 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="mb-3">
                                                                                         <label for="">
-                                                                                            <h6>Channel 
+                                                                                            <h6>Channel
                                                                                             </h6>
                                                                                         </label>
                                                                                         <input name="channel" id="channel"
@@ -160,15 +156,15 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="mb-3 contact-name">
                                                                                         <label for="">
-                                                                                            <h6>Host 
+                                                                                            <h6>Host
                                                                                             </h6>
                                                                                         </label>
-                                                                                        <input name="host"
-                                                                                            id="host" type="text"
+                                                                                        <input name="host" id="host"
+                                                                                            type="text"
                                                                                             class="form-control"
                                                                                             onchange="previewImage()"
                                                                                             placeholder="Ketik..."
-                                                                                            value="{{ $item->host }}">
+                                                                                            value="{{ $item->host }}" >
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -176,33 +172,38 @@
                                                                                 <div class="col-md-6">
                                                                                     <div class="mb-3 contact-location">
                                                                                         <label for="">
-                                                                                            <h6>Thumbnail 
+                                                                                            <h6>Thumbnail
                                                                                             </h6>
                                                                                         </label>
                                                                                         <input name="thumbnail"
-                                                                                            id="thumbnail"
-                                                                                            type="file"
+                                                                                            id="thumbnail" type="file"
                                                                                             class="form-control"
-                                                                                            value="{{ $item->thumbnail }}">
+                                                                                            value="{{ $item->thumbnail }}"
+                                                                                            @error('thumbnail')
+                                                                                                {{ $message }}
+                                                                                            @enderror>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-6">
                                                                                     <div class="mb-3 contact-occupation">
                                                                                         <label for="">
-                                                                                            <h6>Status 
+                                                                                            <h6>Status
                                                                                             </h6>
                                                                                         </label>
                                                                                         <select name="status"
                                                                                             class="form-select mr-sm-2"
                                                                                             id="status">
+                                                                                            <option selected>Pilih...
+                                                                                            </option>
                                                                                             <option value="Publish"
-                                                                                                value="{{ $item->status == 'Publish' ? 'selected' : '' }}">
-                                                                                                Publish
-                                                                                            </option>
+                                                                                                {{ $item->status == 'Publish' ? 'selected' : '' }}>
+                                                                                                Publish</option>
                                                                                             <option value="Unpublish"
-                                                                                                value="{{ $item->status == 'Unpublish' ? 'selected' : '' }}">
-                                                                                                Unpublish
-                                                                                            </option>
+                                                                                                {{ $item->status == 'Unpublish' ? 'selected' : '' }}>
+                                                                                                Unpublish</option>
+                                                                                            @error('status')
+                                                                                                {{ $message }}
+                                                                                            @enderror
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
@@ -349,7 +350,7 @@
     </div>
     <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" x-data="{ judul: '', channel: '', host: '', thumbnail: '',  status: 'Unpublish', deskripsi: '', video: '' }">
+        <div class="modal-dialog modal-dialog-centered" role="document" x-data="{ judul: '', channel: '', host: '', thumbnail: '', status: 'Unpublish', deskripsi: '', video: '' }">
             <form action="{{ route('broadcast.store') }}" class="row" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content px-2">
