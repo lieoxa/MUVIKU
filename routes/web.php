@@ -13,6 +13,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SerialController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,29 +34,30 @@ Route::get('/detail', function () {
     return view('detail');
 });
 
-// Route::group(['middleware' => 'guest'], function () {
-//     Route::get('/register', [AuthController::class, 'register'])->name('register');
-//     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
-//     Route::get('/login', [AuthController::class, 'login'])->name('login');
-//     Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
-// });
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+    Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+});
 
-Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/serial', [AuthController::class, 'serial'])->name('serial');
-// Route::get('/search', [AuthController::class, 'search'])->name('search');
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::get('/watchlist', [AuthController::class, 'watchlist'])->name('watchlist');
-Route::get('/film', [AuthController::class, 'film'])->name('film');
-Route::get('/toystory', [AuthController::class, 'toystory'])->name('toystory');
-Route::get('/mario', [AuthController::class, 'mario'])->name('mario');
-Route::get('/spy', [AuthController::class, 'spy'])->name('spy');
-Route::get('/iron3', [AuthController::class, 'iron3'])->name('iron3');
-Route::get('/century', [AuthController::class, 'century'])->name('century');
-Route::get('/jawa', [AuthController::class, 'jawa'])->name('jawa');
-Route::get('/pertaruhan', [AuthController::class, 'pertaruhan'])->name('pertaruhan');
-Route::get('/detailsrc', [AuthController::class, 'detailsrc'])->name('detailsrc');
-Route::get('/jumanji', [AuthController::class, 'jumanji'])->name('jumanji');
-Route::get('/podcast', [AuthController::class, 'podcast'])->name('podcast');
+
+Route::get('/serial', [UserPageController::class, 'serial'])->name('serial');
+// Route::get('/search', [UserPageController::class, 'search'])->name('search');
+Route::get('/film', [UserPageController::class, 'film'])->name('film');
+Route::get('/toystory', [UserPageController::class, 'toystory'])->name('toystory');
+Route::get('/mario', [UserPageController::class, 'mario'])->name('mario');
+Route::get('/spy', [UserPageController::class, 'spy'])->name('spy');
+Route::get('/iron3', [UserPageController::class, 'iron3'])->name('iron3');
+Route::get('/century', [UserPageController::class, 'century'])->name('century');
+Route::get('/jawa', [UserPageController::class, 'jawa'])->name('jawa');
+Route::get('/pertaruhan', [UserPageController::class, 'pertaruhan'])->name('pertaruhan');
+Route::get('/detailsrc', [UserPageController::class, 'detailsrc'])->name('detailsrc');
+Route::get('/jumanji', [UserPageController::class, 'jumanji'])->name('jumanji');
+Route::get('/podcast', [UserPageController::class, 'podcast'])->name('podcast');
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/admin/product', [AdminController::class, 'product'])->name('product');

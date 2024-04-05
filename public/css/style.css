@@ -57,12 +57,6 @@ h1 {
     width: 100%;
 }
 
-.favorit {
-    background-color: #a1a1a3b2;
-    top: 88%;
-    left: 273px;
-}
-
 .film-khusus {
     min-height: 300px;
     max-height: 300px;
@@ -159,6 +153,9 @@ h1 {
     padding-right: 50px;
     height: 42.5px;
     width: 160px;
+    background-color: #a1a1a3b2;
+    top: 88%;
+    left: 273px;
 }
 
 .wish-list {
@@ -315,6 +312,6 @@ h1 {
     min-height: 470.94px;
     max-height: 470.94px;
 }
-ul::-webkit-scrollbar {
+.modal-body::-webkit-scrollbar {
     display: none;
 }

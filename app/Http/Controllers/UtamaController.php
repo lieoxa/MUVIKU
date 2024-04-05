@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Film;
+use App\Models\Kategori;
 use App\Models\Podcast;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UtamaController extends Controller
@@ -23,11 +25,13 @@ class UtamaController extends Controller
         $banner = Banner::where('status','Publish')->get();
         $podcast = Podcast::all();
         $films = Film::all();
+        $kategoris = Kategori::all();
+        $users = User::all();
         
-        return view('user.utama', compact('banner','podcast','films'));
+        return view('user.utama', compact('banner','podcast','films','kategoris','users'));
     }
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource.   
      */
     public function create()
     {

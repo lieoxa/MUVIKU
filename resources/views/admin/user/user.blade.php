@@ -20,21 +20,12 @@
                     </div>
                     <div
                         class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                        <div class="action-btn show-btn" style="display: none">
-                            <a href="javascript:void(0)"
-                                class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-medium">
-                                <i class="ti ti-trash text-danger text-danger me-1 fs-5"></i> Hapus Semua Akun
-                            </a>
-                        </div>
                         <form class="position-relative">
                             <input type="text" class="form-control product-search ps-5" id="input-search"
-                                placeholder="Cari User..." />
+                                placeholder="Cari Nama   User..." />
                             <i
                                 class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                         </form>
-                        {{-- <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
-                        <i class="ti ti-users text-white me-1 fs-5"></i> Add Contact
-                    </a> --}}
                     </div>
                 </div>
             </div>
@@ -56,7 +47,7 @@
                                     <td>{{ $useracc->id }}</td>
                                     <td class="d-flex align-items-center">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset('admin') }}/dist/images/profile/user-1.jpg" alt="avatar"
+                                            <img src="{{ asset($useracc->gambar ? 'imgdb/' . $useracc->gambar : 'img/imgProfile/profile.png') }}"
                                                 class="rounded-circle" width="35" />
                                         </div>
                                         <div class="ms-2">
@@ -66,6 +57,15 @@
                                     <td>{{ $useracc->email }}</td>
                                     <td>{{ $useracc->nohp }}</td>
                                     <td>{{ $useracc->status }}</td>
+                                    {{-- <td>
+                                        <span id="status_{{ $useracc->id }}">
+                                            @if (strtotime($useracc->created_at) > strtotime('-1 minute'))
+                                                Member baru
+                                            @else
+                                                Member lama
+                                            @endif
+                                        </span>
+                                    </td> --}}
                                     <td class="px-0">
                                         <div class="action-btn d-flex">
                                             <form action="{{ route('user.destroy', $useracc->id) }}" method="POST">
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            @endif
+        @endif
     </div>
 @endsection
 
@@ -111,4 +111,48 @@
     <script src="{{ asset('admin') }}/dist/js/custom.js"></script>
 
     <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#input-search').on('keyup', function() {
+                var searchText = $(this).val().toLowerCase();
+                $('.search-table tbody tr').each(function() {
+                    var nama = $(this).find('td:nth-child(2)').text().toLowerCase();
+                    if (nama.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- <script>
+        $(document).ready(function() {
+            // Fungsi untuk mengubah status setelah satu menit
+            function updateStatus() {
+                $('.search-table tbody tr').each(function() {
+                    var created_at = $(this).find('td:nth-child(1)')
+                .text(); // Ubah 1 sesuai dengan index kolom created_at pada tabel
+                    var userId = $(this).find('td:nth-child(1)')
+                .text(); // Ubah 1 sesuai dengan index kolom id pada tabel
+                    var statusSpan = $('#status_' + userId);
+
+                    // Hitung perbedaan waktu dalam menit
+                    var diffMinutes = Math.round((new Date() - new Date(created_at)) / 60000);
+
+                    // Periksa jika sudah lebih dari 1 menit
+                    if (diffMinutes >= 1) {
+                        statusSpan.text('Member lama');
+                    }
+                });
+            }
+
+            // Panggil fungsi pertama kali saat dokumen siap
+            updateStatus();
+
+            // Panggil fungsi setiap 10 detik untuk memperbarui status secara dinamis
+            setInterval(updateStatus, 60000); // Ubah 10000 menjadi 60000 jika ingin memperbarui setiap menit
+        });
+    </script> --}}
 @endpush

@@ -9,11 +9,16 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="splide.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
     {{-- <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet"> --}}
     <title>MUVIKU</title>
 </head>
 
-
+<style>
+    * {
+        font-family: 'Ubuntu';
+    }
+</style>
 
 <body>
 
@@ -22,27 +27,25 @@
             <img src="img/muviku.png" class="navbar-brand my-auto" style="width: 30%;" loading="lazy">
 
             {{-- SUDAH LOGIN --}}
-
-            <img src="img/profile.png" style="width: 10%" class="">
+            {{-- <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="10%"> --}}
 
             {{-- BLUM LOGIN --}}
 
-            {{-- <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="logout btn btn-outline-light my-auto">Masuk</button>
-            </form> --}}
+            <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
+
+
         </div>
     </nav>
 
     {{-- SLIDE  ATAS --}}
     <div class="justify-content-start container mb-3">
-        <div class="dropdown">
-            <button class="text-white bg-transparent py-2 border px-3 rounded-pill dropdown-toggle" type="button"
+        <div class="dropdown d-flex gap-2">
+            <button onclick="{{ route('watchlist') }}"
+                class="text-white bg-transparent py-1 border px-3 rounded-pill">Daftar Tonton</button>
+            <button class="text-white bg-transparent py-1 border px-3 rounded-pill dropdown-toggle" type="button"
                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Kategori
             </button>
-
         </div>
     </div>
     <div class="mt-1 mb-4">
@@ -174,7 +177,7 @@
                 </div>
             </div> --}}
 
-            {{-- SLIDE PERTAMA --}}
+            {{-- SLIDE Rekomendasi --}}
 
             <section>
                 <div class="text-center mb-2">
@@ -1060,27 +1063,18 @@
         aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content bg-transparent position-relative">
-                <div class="modal-header text-white justify-content-center" style="background: rgba(0, 0, 0, 0.863); border-bottom: 0.1px solid rgb(122, 119, 119);">
+                <div class="modal-header text-white justify-content-center"
+                    style="background: rgba(0, 0, 0, 0.863); border-bottom: 0.1px solid rgb(122, 119, 119);">
                     <h1 class="modal-title fs-1 fw-bold">Kategori</h1>
                 </div>
                 <div class="modal-body" style="background: rgba(0, 0, 0, 0.863)">
-                    <ul class="w-100 text-white text-center z-999 vh-100 list-unstyled overflow-y-auto">
+                    <ul class="w-100 text-white text-center vh-100 list-unstyled overflow-y-auto">
                         <li class="py-3"><a class="dropdown-item" href="#"></a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Animasi Anak-Anak</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Film Indonesia</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Anime Jepang</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Favorite</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Film Korea</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Super Hero</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Podcast</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Film Horror</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Film Indonesia</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Film Korea</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Animasi Anak-Anak</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Super Hero</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Anime Jepang</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Podcast</a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Film Horror</a></li>
+                        <li class="py-3"><a class="dropdown-item" href="#">Daftar Tontonan</a></li>
+                        @foreach ($kategoris as $item)
+                            <li class="py-3"><a class="dropdown-item" href="#">{{ $item->kategori }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="modal-footer justify-content-center bg-transparent border-0 pb-3 z-99"

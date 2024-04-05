@@ -59,80 +59,23 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credetails)) {
-            return redirect('/movie')->with('success', 'Login berhasil');
+            return redirect('utama')->with('success', 'Login berhasil');
         }
 
         return back()->with('error', 'Email or Password salah');
     }
 
-    public function movie()
-    {
-        return view('user.movie');
-    }
-    public function logout()
-    {
-        Auth::logout();
-
-        return redirect()->route('login');
-    }
-    public function serial()
-    {
-        return view('user.serial');
-    }
     public function search()
     {
         return view('user.search');
     }
-    public function profile()
-    {
-        return view('user.profile');
-    }
+    
     public function watchlist()
     {
         return view('user.watchlist');
     }
-    public function film()
+    public function profile()
     {
-        return view('user.film');
-    }
-    public function podcast()
-    {
-        return view('user.podcast');
-    }
-    public function toystory()
-    {
-        return view('user.toystory');
-    }
-    public function mario()
-    {
-        return view('user.mario');
-    }
-    public function spy()
-    {
-        return view('user.spy');
-    }
-    public function iron3()
-    {
-        return view('user.iron3');
-    }
-    public function century()
-    {
-        return view('user.century');
-    }
-    public function jawa()
-    {
-        return view('user.jawa');
-    }
-    public function pertaruhan()
-    {
-        return view('user.pertaruhan');
-    }
-    public function detailsrc()
-    {
-        return view('user.detailsrc');
-    }
-    public function jumanji()
-    {
-        return view('user.jumanji');
+        return view('user.profile');
     }
 }
