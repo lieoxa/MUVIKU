@@ -13,6 +13,19 @@
     <title>Profile</title>
 </head>
 
+<style>
+    #btn-add.disabled {
+        background-color: #838383 !important;
+        color: white !important;
+    }
+
+    #btn-add {
+        background: #FFAE1F;
+        color: white;
+        /* border: white solid 1px; */
+    }
+</style>
+
 <body>
 
     <div class="old">
@@ -39,8 +52,6 @@
                         <i class="bi bi-chevron-right"></i>
                     </button>
                 </div>
-
-
                 <div class="accordion-item rounded-bottom-3">
                     <button class="profil accordion-button collapsed position-relative rounded-bottom-3" type="button"
                         data-bs-toggle="modal" data-bs-target="#akun">
@@ -125,7 +136,8 @@
                 <div class="modal-body container py-0">
                     <div class="image-profil">
                         <div class="img-profil">
-                            <img class="mx-auto mt-3" id="preview" src="#" alt="Preview" height="100" width="100"
+                            <img class="mx-auto mt-3" id="preview" src="#" alt="Preview" height="100"
+                                width="100"
                                 style="display: none;max-width: 100px; max-height: 100px; border-radius: 999px;" />
                         </div>
                     </div>
@@ -149,7 +161,8 @@
                     </div>
                 </div>
                 <div class="modal-footer mx-auto border-top-0 pb-0 pt-4 justify-content-center">
-                    <input type="submit" id="simpanprofil" class="btn-simpan-profil btn btn-secondary text-center m-0 py-2 px-4" value="Simpan" disabled>
+                    <input type="submit" id="simpanprofil"
+                        class="btn-simpan-profil btn btn-secondary text-center m-0 py-2 px-4" value="Simpan" disabled>
                 </div>
             </div>
         </div>
@@ -169,15 +182,18 @@
                 <div class="modal-body container d-grid gap-3 pt-0">
                     <div class="email">
                         <h6>Email Baru</h6>
-                        <input type="email" id="email" class="w-100 rounded border txt" placeholder="Ketik email barumu...">
+                        <input type="email" id="email" class="w-100 rounded border txt"
+                            placeholder="Ketik email barumu...">
                     </div>
                     <div class="img-profile">
                         <h6>No. Tlpn Baru</h6>
-                        <input type="text" id="tlpn" class="w-100 rounded txt" placeholder="Ketik no barumu...">
+                        <input type="text" id="tlpn" class="w-100 rounded txt"
+                            placeholder="Ketik no barumu...">
                     </div>
                 </div>
                 <div class="modal-footer mx-auto border-top-0 pb-0 pt-2">
-                    <input type="submit" id="simpanakun" class="btn-simpan-profil btn btn-secondary py-1 px-4 m-0" value="Simpan" disabled>
+                    <input type="submit" id="simpanakun" class="btn-simpan-profil btn btn-secondary py-1 px-4 m-0"
+                        value="Simpan" disabled>
                 </div>
             </div>
         </div>
@@ -194,7 +210,8 @@
                     <h1 class="modal-title fs-5" id="laporLabel">Laporkan Kesalahan!</h1>
                 </div>
                 <div class="modal-body container py-0" style="height: 148px">
-                    <textarea class="w-100 px-1" cols="30" rows="6" placeholder="Tuliskan laporan Anda di sini..." style="text-indent: 5px"></textarea>
+                    <textarea class="w-100 px-1" cols="30" rows="6" placeholder="Tuliskan laporan Anda di sini..."
+                        style="text-indent: 5px"></textarea>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center p-0 pt-3">
                     <button type="button m-0" class="btn bg-secondary text-white btn-simpan py-2 px-4"
@@ -205,45 +222,47 @@
     </div>
     <div class="modal fade bg-modal px-3" id="password" tabindex="-1" aria-labelledby="passwordLabel"
         aria-hidden="true">
-        <div class="modal-content pw edit-pw rounded-5">
-            <div class="img-lock">
-                <div class="img-pw mx-auto d-flex">
-                    <img class="mx-auto" src="img/lock.png" style="max-width: 25%; max-height: 25%;">
+        <div class="modal-dialog text-center py-3 my-0" role="document">
+            <div class="modal-content pw edit-pw rounded-5" role="document" x-data="{ pwlama: '', pwbaru: '', confirmpw: '' }">
+                <div class="img-lock">
+                    <div class="img-pw mx-auto d-flex">
+                        <img class="mx-auto" src="img/lock.png" style="max-width: 25%; max-height: 25%;">
+                    </div>
                 </div>
-            </div>
-            <div class="modal-dialog text-center py-3 my-0">
                 <h1 class="modal-title fs-5" id="passwordLabel">Ubah Kata Sandi</h1>
-            </div>
-            <div class="modal-body container d-grid gap-3 py-0">
-                <div class="pw-lama">
-                    <h6>kata Sandi Lama</h6>
-                    <input type="password" name="" id="pwlama"
-                        class="w-100 rounded border txt position-relative" placeholder="Ketik kata sandi lamamu...">
-                    <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                        id="togglepwLama"></i>
+                <div class="modal-body container d-grid gap-3 py-0">
+                    <div class="pw-lama position-relative">
+                        <h6>Kata Sandi Lama</h6>
+                        <input type="password" name="" x-model="pwlama"
+                            class="w-100 rounded border txt"
+                            placeholder="Ketik kata sandi lamamu...">
+                        <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
+                            id="togglepwLama"></i>
+                    </div>
+                    <div class="pw-baru position-relative">
+                        <h6>Kata Sandi Baru</h6>
+                        <input type="password" name="" x-model="pwbaru"
+                            class="w-100 rounded border txt"
+                            placeholder="Ketik kata sandi barumu...">
+                        <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
+                            id="togglepwBaru"></i>
+                    </div>
+                    <div class="confirm-pw position-relative">
+                        <h6>Konfirmasi kata Sandi Baru</h6>
+                        <input type="password" name="" x-model="confirmpw"
+                            class="w-100 rounded border txt"
+                            placeholder="Ketik ulang kata sandi barumu...">
+                        <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
+                            id="togglepwConfirm"></i>
+                        <p class="mb-0 mt-1">Lupa kata sandi? <span class="text-warning"><i>Klik disini</i></span></p>
+                    </div>
                 </div>
-                <div class="pw-baru">
-                    <h6>Kata Sandi Baru</h6>
-                    <input type="password" name="" id="pwbaru"
-                        class="w-100 rounded border txt position-relative" placeholder="Ketik kata sandi barumu...">
-                    <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                        id="togglepwBaru"></i>
+                <div class="modal-footer mx-auto border-top-0 d-flex text-center pb-0 pt-4 gap-2">
+                    <button type="button" class="btn btn-simpan border py-2" style="width: 104.25px"
+                        data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" id="btn-add" class="btn btn-simpan px-4"
+                        :class="pwlama && pwbaru && confirmpw ? null : 'disabled'">Simpan</button>
                 </div>
-                <div class="confirm-pw">
-                    <h6>Konfirmasi kata Sandi Baru</h6>
-                    <input type="password" name="" id="confirmpw"
-                        class="w-100 rounded border txt position-relative"
-                        placeholder="Ketik ulang kata sandi barumu...">
-                    <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                        id="togglepwConfirm"></i>
-                    <p class="mb-0 mt-1">Lupa kata sandi? <span class="text-warning"><i>Klik disini</i></span></p>
-                </div>
-            </div>
-            <div class="modal-footer mx-auto border-top-0 d-flex text-center pb-0 pt-4 gap-2">
-                <button type="button m-0" class="btn btn-simpan border py-2" style="width: 104.25px"
-                    data-bs-dismiss="modal">Batal</button>
-                <button type="button m-0" class="btn bg-secondary btn-simpan py-2 px-4" data-bs-toggle="modal"
-                    data-bs-target="#exampleModalToggle2" id="simpan">Simpan</button>
             </div>
         </div>
     </div>
@@ -261,8 +280,7 @@
                     <h1 class="modal-title fs-5" id="logoutLabel">Anda Yakin Ingin Keluar?</h1>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center gap-2">
-                    <button type="button"
-                        class="btn bg-secondary text-white px-3 py-2" data-bs-dismiss="modal"
+                    <button type="button" class="btn bg-secondary text-white px-3 py-2" data-bs-dismiss="modal"
                         style="width: 72.53px">Iya</button>
                     <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
                 </div>
@@ -270,12 +288,17 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
     <script>
         function checkInputs() {
             var namaInput = document.getElementById('nama');
             var imgProfilInput = document.getElementById('imgProfil');
             var simpanButton = document.getElementById('simpanprofil');
-    
+
             if (namaInput.value.trim() !== '' || imgProfilInput.value.trim() !== '') {
                 simpanButton.removeAttribute('disabled');
                 simpanButton.classList.remove('btn-secondary');
@@ -286,40 +309,35 @@
                 simpanButton.classList.add('btn-secondary');
             }
         }
-    
-        document.addEventListener('DOMContentLoaded', function () {
+
+        document.addEventListener('DOMContentLoaded', function() {
             var namaInput = document.getElementById('nama');
             var imgProfilInput = document.getElementById('imgProfil');
-    
+
             namaInput.addEventListener('input', checkInputs);
             imgProfilInput.addEventListener('change', checkInputs);
         });
-    
+
         function previewImage() {
             var preview = document.getElementById('preview');
             var imgProfilInput = document.getElementById('imgProfil');
             var file = imgProfilInput.files[0];
             var reader = new FileReader();
-    
-            reader.onloadend = function () {
+
+            reader.onloadend = function() {
                 preview.src = reader.result;
                 preview.style.display = 'block';
             };
-    
+
             if (file) {
                 reader.readAsDataURL(file);
             } else {
                 preview.src = '#';
             }
         }
-    </script>    
+    </script>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
 
 <script>
     function checkInputs() {
@@ -338,7 +356,7 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         var emailInput = document.getElementById('email');
         var tlpnInput = document.getElementById('tlpn');
 
@@ -435,7 +453,7 @@
     document.getElementById('simpan').addEventListener('click', function() {
         let timerInterval;
         Swal.fire({
-            text: "Harap cek kembali",
+            text: "Harap cek kembali!",
             width: '15em',
             timer: 3000,
             timerProgressBar: true,

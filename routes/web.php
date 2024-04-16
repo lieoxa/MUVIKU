@@ -44,6 +44,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::get('/watchlist', [AuthController::class, 'watchlist'])->name('watchlist');
+Route::get('/favorit', [AuthController::class, 'favorit'])->name('favorit');
 
 Route::get('/serial', [UserPageController::class, 'serial'])->name('serial');
 // Route::get('/search', [UserPageController::class, 'search'])->name('search');

@@ -21,9 +21,9 @@ class AccUser extends Model
 
         // Jika perbedaan waktu kurang dari 1 hari, berarti masih "member baru"
         if ($diffInDays < 1) {
-            return 'member baru';
+            return 'User Baru';
         } else {
-            return 'member lama';
+            return 'User Lama';
         }
     }
 }

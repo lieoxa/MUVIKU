@@ -22,7 +22,7 @@
                         class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
                         <form class="position-relative">
                             <input type="text" class="form-control product-search ps-5" id="input-search"
-                                placeholder="Cari Nama   User..." />
+                                placeholder="Cari nama user..." />
                             <i
                                 class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                         </form>
@@ -33,41 +33,31 @@
             <div class="card card-body rounded-top-0">
                 <div class="table-responsive">
                     <table class="table search-table align-middle text-nowrap">
-                        <thead class="header-item">
+                        <thead class="header-item text-center">
                             <th>No.</th>
+                            <th></th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>No. Tlpn</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($users as $useracc)
                                 <tr>
                                     <td>{{ $useracc->id }}</td>
-                                    <td class="d-flex align-items-center">
-                                        <div class="d-flex align-items-center">
+                                    <td>
+                                        <div class=" justify-content-center">
                                             <img src="{{ asset($useracc->gambar ? 'imgdb/' . $useracc->gambar : 'img/imgProfile/profile.png') }}"
                                                 class="rounded-circle" width="35" />
                                         </div>
-                                        <div class="ms-2">
-                                            {{ $useracc->name }}
-                                        </div>
                                     </td>
+                                    <td>{{ $useracc->name }}</td>
                                     <td>{{ $useracc->email }}</td>
                                     <td>{{ $useracc->nohp }}</td>
                                     <td>{{ $useracc->status }}</td>
-                                    {{-- <td>
-                                        <span id="status_{{ $useracc->id }}">
-                                            @if (strtotime($useracc->created_at) > strtotime('-1 minute'))
-                                                Member baru
-                                            @else
-                                                Member lama
-                                            @endif
-                                        </span>
-                                    </td> --}}
                                     <td class="px-0">
-                                        <div class="action-btn d-flex">
+                                        <div class="action-btn d-flex justify-content-center">
                                             <form action="{{ route('user.destroy', $useracc->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -117,7 +107,7 @@
             $('#input-search').on('keyup', function() {
                 var searchText = $(this).val().toLowerCase();
                 $('.search-table tbody tr').each(function() {
-                    var nama = $(this).find('td:nth-child(2)').text().toLowerCase();
+                    var nama = $(this).find('td:nth-child(3)').text().toLowerCase();
                     if (nama.includes(searchText)) {
                         $(this).show();
                     } else {
@@ -127,32 +117,4 @@
             });
         });
     </script>
-    {{-- <script>
-        $(document).ready(function() {
-            // Fungsi untuk mengubah status setelah satu menit
-            function updateStatus() {
-                $('.search-table tbody tr').each(function() {
-                    var created_at = $(this).find('td:nth-child(1)')
-                .text(); // Ubah 1 sesuai dengan index kolom created_at pada tabel
-                    var userId = $(this).find('td:nth-child(1)')
-                .text(); // Ubah 1 sesuai dengan index kolom id pada tabel
-                    var statusSpan = $('#status_' + userId);
-
-                    // Hitung perbedaan waktu dalam menit
-                    var diffMinutes = Math.round((new Date() - new Date(created_at)) / 60000);
-
-                    // Periksa jika sudah lebih dari 1 menit
-                    if (diffMinutes >= 1) {
-                        statusSpan.text('Member lama');
-                    }
-                });
-            }
-
-            // Panggil fungsi pertama kali saat dokumen siap
-            updateStatus();
-
-            // Panggil fungsi setiap 10 detik untuk memperbarui status secara dinamis
-            setInterval(updateStatus, 60000); // Ubah 10000 menjadi 60000 jika ingin memperbarui setiap menit
-        });
-    </script> --}}
 @endpush

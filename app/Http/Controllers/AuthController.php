@@ -69,6 +69,11 @@ class AuthController extends Controller
     {
         return view('user.search');
     }
+
+    public function favorit()
+    {
+        return view('user.favorit');
+    }
     
     public function watchlist()
     {

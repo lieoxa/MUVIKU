@@ -18,7 +18,7 @@
                 <button class="btn1 border-0 bg-transparent"><i class="bi bi-chevron-left"
                         style="font-size: 25px; margin-bottom: 20px;"></i></button>
                 <div class="txt-daftar">
-                    <h3 class="mb-0 text-white">Daftar Tontonan</h3>
+                    <h3 class="mb-0 text-white">Daftar Favorit</h3>
                 </div>
             </div>
             <div x-data="{ sliders: '' }">
@@ -62,7 +62,7 @@
                                     <p>MAPPA</p>
                                 </div>
                                 <div class="w-auto text-white ms-auto pe-1" id="heart" style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                    <i class="bi bi-heart-fill fs-4 text-danger"></i>
                                 </div>
                             </div>
                         </section>
@@ -71,6 +71,36 @@
             </div>
         </div>
     </div>
+    <footer>
+        <div class="menu-wrapper fixed-bottom">
+            <div class="navigation container-fluid" id="navigationn">
+                <li>
+                    <a class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
+                        <span>Utama</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-search pe-0" aria-hidden="true"></i>
+                        <span>Cari</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btnn border-end-0 border-bottom-0 border-start-0 active">
+                        <img src="img/love.png" width="20">
+                        <span>Suka</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btnn border-end-0 border-bottom-0 border-start-0 ">
+                        <i class="bi bi-person fs-4" aria-hidden="true"></i>
+                        <span style="margin-top: -4px">Profil</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

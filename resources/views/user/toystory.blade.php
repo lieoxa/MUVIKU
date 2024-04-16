@@ -48,7 +48,7 @@
         <nav class="navbar ps-2 pe-3 sticky-top w-100 p-0 d-flex justify-content-between" style="height:68.59px;"
             id="mainNav">
             <div class="d-flex gap-3" style="height: 68.58px">
-                <button onclick="window.location='{{ route('movie') }}'" class="btn1 border-0"><i
+                <button class="btn1 border-0"><i
                         class="bi bi-chevron-left" style="font-size: 25px; margin-bottom: 20px;"></i></button>
                 <h2 class="mb-0 txt-detail">Detail</h2>
             </div>
@@ -57,7 +57,6 @@
                     <div class="select-btn">
                         <span class="sBtn-text"><i class="bi bi-three-dots-vertical"
                                 style="font-size: 25px;"></i></span>
-                        <i class="bx bx-chevron-down"></i>
                         <ul class="options rounded">
                             <li class="option daftar" id="daftar">
                                 <span class="option-text"><i class="bi bi-bookmark-check-fill fs-5"></i>Tambah ke
