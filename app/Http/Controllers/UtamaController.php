@@ -14,12 +14,12 @@ class UtamaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function index()
-    // {
-    //     return view('user.movie')->with([
-    //         'banner' => Banner::all(),
-    //     ]);
-    // }
+    public function index()
+    {
+        return view('user.movie')->with([
+            'banner' => Banner::all(),
+        ]);
+    }
 
     public function home() {
         $banner = Banner::where('status','Publish')->get();

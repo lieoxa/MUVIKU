@@ -24,14 +24,21 @@
 
     <nav class="navbar sticky-top pb-3" style="background: #222327;">
         <div class="container-fluid d-flex mt-2">
+
             <img src="img/muviku.png" class="navbar-brand my-auto" style="width: 30%;" loading="lazy">
+            @if (Auth::user)
+
+            <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="10%">
+            @else
+
+            <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
+            @endif
+
 
             {{-- SUDAH LOGIN --}}
-            {{-- <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="10%"> --}}
 
             {{-- BLUM LOGIN --}}
 
-            <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
 
 
         </div>
@@ -277,7 +284,7 @@
 
                     {{-- SLIDE Animasi Anak-Anak --}}
 
-                    <div class="animate container" x-show="sliders == '' ? true : (sliders == 'animasi')">
+                    <div class="animate container mb-4" x-show="sliders == '' ? true : (sliders == 'animasi')">
                         <h1 class="text-white text-start fw-bold">Animasi Anak-Anak</h1>
                         <section class="animasi">
                             <div class="d-flex gap-2 bar mt-1">
@@ -407,7 +414,6 @@
                             </section>
                         </div>
                     @else
-                        <h6>test</h6>
                     @endif
 
                     {{-- SLIDE KE EMPAT --}}
@@ -1042,13 +1048,13 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="btnn border-end-0 border-bottom-0 border-start-0">
+                <a href="{{ route('favorit')}}" class="btnn border-end-0 border-bottom-0 border-start-0">
                     <i class="bi bi-heart" aria-hidden="true"></i>
                     <span>Suka</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="btnn border-end-0 border-bottom-0 border-start-0">
+                <a href="{{ route('profile')}}" class="btnn border-end-0 border-bottom-0 border-start-0">
                     <i class="bi bi-person fs-4" aria-hidden="true"></i>
                     <span style="margin-top: -4px">Profil</span>
                 </a>
@@ -1068,7 +1074,7 @@
                     <h1 class="modal-title fs-1 fw-bold">Kategori</h1>
                 </div>
                 <div class="modal-body" style="background: rgba(0, 0, 0, 0.863)">
-                    <ul class="w-100 text-white text-center vh-100 list-unstyled overflow-y-auto">
+                    <ul class="w-100 text-white text-center vh-80 list-unstyled overflow-y-auto">
                         <li class="py-3"><a class="dropdown-item" href="#"></a></li>
                         <li class="py-3"><a class="dropdown-item" href="#">Daftar Tontonan</a></li>
                         @foreach ($kategoris as $item)
@@ -1078,7 +1084,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer justify-content-center bg-transparent border-0 pb-3 z-99"
-                    style="background: linear-gradient(0deg, rgba(24, 24, 24, 0.984) 40%, rgba(0,0,0,0.863) 100%);">
+                    style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.984) 40%, rgba(0,0,0,0.863) 100%);">
                     <button type="button" class="border btn-secondary rounded-circle text-black bg-white"
                         style="padding: 10px 16px 10px 16px " data-bs-dismiss="modal"><i
                             class="bi bi-x fs-2"></i></button>

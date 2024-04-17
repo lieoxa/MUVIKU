@@ -11,6 +11,8 @@
         href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.9.0/dist/modus-solid/fonts/modus-icons.css">
     <link rel="stylesheet" href="css/profile.css">
     <title>Profile</title>
+    <script src="//unpkg.com/alpinejs" defer></script>
+
 </head>
 
 <style>
@@ -38,7 +40,7 @@
                     <div class="kelas-foto w-100 mb-3">
                         <img src="img/imgProfile/profile.png" class="w-25 foto">
                     </div>
-                    <h2 class="text-white text-center">Brahmana Apta Putra
+                    <h2 class="text-white text-center">Brahmana Apta Putra</h2>
                 </div>
             </div>
         </div>
@@ -114,13 +116,13 @@
                     </a>
                 </li>
                 <li>
-                    <a class="btnn border-end-0 border-bottom-0 border-start-0">
+                    <a href="{{ route('favorit') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
                         <i class="bi bi-heart pe-0" aria-hidden="true"></i>
                         <span>Suka</span>
                     </a>
                 </li>
                 <li>
-                    <a class="btnn border-end-0 border-bottom-0 border-start-0 active">
+                    <a href="{{ route('profile') }}" class="btnn border-end-0 border-bottom-0 border-start-0 active">
                         <img src="img/group-1.png" width="20">
                         <span style="margin-top: -4px">Profil</span>
                     </a>
@@ -131,7 +133,7 @@
 
     <!-- Modal -->
     <div class="modal fade bg-modal" id="profil" tabindex="-1" aria-labelledby="profilLabel" aria-hidden="true">
-        <div class="modal-dialog container">
+        <div class="modal-dialog container" x-data="{ name: '', img: '' }">
             <div class="modal-content edit-profil rounded-5">
                 <div class="modal-body container py-0">
                     <div class="image-profil">
@@ -147,13 +149,13 @@
                         </div>
                         <div class="nama">
                             <h6>Nama</h6>
-                            <input type="text" class="w-100 rounded border txt" placeholder="Ketik nama barumu..."
+                            <input type="text" class="w-100 rounded border txt" placeholder="Ketik nama barumu..." x-model="name"
                                 id="nama">
                         </div>
                         <div class="img-profile">
                             <h6>Foto Profil</h6>
                             <input type="file" name="" hidden="" class="w-100 rounded border-dark"
-                                onchange="previewImage()" id="imgProfil">
+                                onchange="previewImage()" id="imgProfil" x-model="img">
                             <label for="imgProfil"
                                 class="bgnya-input label-upload w-100 px-2 pt-2 border rounded  text-center"
                                 id="file-input-label" for="file-input"><i class="bi bi-upload"></i>Pilih File</label>
@@ -161,15 +163,15 @@
                     </div>
                 </div>
                 <div class="modal-footer mx-auto border-top-0 pb-0 pt-4 justify-content-center">
-                    <input type="submit" id="simpanprofil"
-                        class="btn-simpan-profil btn btn-secondary text-center m-0 py-2 px-4" value="Simpan" disabled>
+                    <button type="submit" id="simpanprofil"
+                        class="btn-simpan-profil btn btn-secondary text-center m-0 py-2 px-4" :class="name || img ? null : 'disabled'">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal fade bg-modal text-white" id="akun" tabindex="-1" aria-labelledby="akunLabel"
         aria-hidden="true">
-        <div class="modal-dialog container">
+        <div class="modal-dialog container" x-data="{ email: '', no: '' }">
             <div class="modal-content border edit-akun rounded-5">
                 <div>
                     <div class="img-pw mx-auto d-flex">
@@ -183,23 +185,22 @@
                     <div class="email">
                         <h6>Email Baru</h6>
                         <input type="email" id="email" class="w-100 rounded border txt"
-                            placeholder="Ketik email barumu...">
+                            placeholder="Ketik email barumu..." x-model="email">
                     </div>
                     <div class="img-profile">
                         <h6>No. Tlpn Baru</h6>
                         <input type="text" id="tlpn" class="w-100 rounded txt"
-                            placeholder="Ketik no barumu...">
+                            placeholder="Ketik no barumu..." x-model="no">
                     </div>
                 </div>
                 <div class="modal-footer mx-auto border-top-0 pb-0 pt-2">
-                    <input type="submit" id="simpanakun" class="btn-simpan-profil btn btn-secondary py-1 px-4 m-0"
-                        value="Simpan" disabled>
+                    <button type="submit" id="btn-add" class="btn-simpan-profil py-2 px-4 m-0 rounded" :class="email || no ? null : 'disabled'">Simpan</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal bg-modal fade" id="lapor" tabindex="-1" aria-labelledby="laporLabel" aria-hidden="true">
-        <div class="modal-dialog container my-auto">
+        <div class="modal-dialog container my-auto" role="document" x-data="{ lapor: '' }">
             <div class="modal-content rounded-5 laporkan">
                 <div>
                     <div class="img-pw mx-auto d-flex">
@@ -211,11 +212,11 @@
                 </div>
                 <div class="modal-body container py-0" style="height: 148px">
                     <textarea class="w-100 px-1" cols="30" rows="6" placeholder="Tuliskan laporan Anda di sini..."
-                        style="text-indent: 5px"></textarea>
+                        style="text-indent: 5px" x-model="lapor"></textarea>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center p-0 pt-3">
-                    <button type="button m-0" class="btn bg-secondary text-white btn-simpan py-2 px-4"
-                        data-bs-dismiss="modal" style="width: 104.25px">Kirim</button>
+                    <button type="button" class="btn text-white btn-simpan py-2 px-4" :class="lapor ? null : 'disabled'"
+                        data-bs-dismiss="modal" id="btn-add" style="width: 104.25px">Kirim</button>
                 </div>
             </div>
         </div>
@@ -226,11 +227,11 @@
             <div class="modal-content pw edit-pw rounded-5" role="document" x-data="{ pwlama: '', pwbaru: '', confirmpw: '' }">
                 <div class="img-lock">
                     <div class="img-pw mx-auto d-flex">
-                        <img class="mx-auto" src="img/lock.png" style="max-width: 25%; max-height: 25%;">
+                        <img class="mx-auto" src="img/lock.png" width="99" height="99">
                     </div>
                 </div>
                 <h1 class="modal-title fs-5" id="passwordLabel">Ubah Kata Sandi</h1>
-                <div class="modal-body container d-grid gap-3 py-0">
+                <div class="modal-body container d-grid gap-3 py-0 text-start">
                     <div class="pw-lama position-relative">
                         <h6>Kata Sandi Lama</h6>
                         <input type="password" name="" x-model="pwlama"
@@ -266,7 +267,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal bg-modal fade" id="logout" tabindex="-1" aria-labelledby="logoutLabel"
         aria-hidden="true">
         <div class="modal-dialog container">

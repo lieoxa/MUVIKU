@@ -65,10 +65,10 @@ class AuthController extends Controller
         return back()->with('error', 'Email or Password salah');
     }
 
-    public function search()
-    {
-        return view('user.search');
-    }
+    // public function search()
+    // {
+    //     return view('user.search');
+    // }
 
     public function favorit()
     {

@@ -45,9 +45,9 @@ Route::group(['middleware' => 'guest'], function () {
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::get('/watchlist', [AuthController::class, 'watchlist'])->name('watchlist');
 Route::get('/favorit', [AuthController::class, 'favorit'])->name('favorit');
+// Route::get('/search', [AuthController::class, 'search'])->name('search');
 
 Route::get('/serial', [UserPageController::class, 'serial'])->name('serial');
-// Route::get('/search', [UserPageController::class, 'search'])->name('search');
 Route::get('/film', [UserPageController::class, 'film'])->name('film');
 Route::get('/toystory', [UserPageController::class, 'toystory'])->name('toystory');
 Route::get('/mario', [UserPageController::class, 'mario'])->name('mario');
