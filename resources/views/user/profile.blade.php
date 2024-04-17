@@ -38,9 +38,9 @@
             <div class="foto-profile w-100">
                 <div class="foto-nama">
                     <div class="kelas-foto w-100 mb-3">
-                        <img src="img/imgProfile/profile.png" class="w-25 foto">
+                        <img src="{{ Auth::user()->gambar ? 'imgdb/'. Auth::user()->gambar : 'img/imgProfile/profile.png'}}" class="w-25 foto">
                     </div>
-                    <h2 class="text-white text-center">Brahmana Apta Putra</h2>
+                    <h2 class="text-white text-center">{{Str::title(Auth::user()->name)}}</h2>
                 </div>
             </div>
         </div>
@@ -104,13 +104,13 @@
         <div class="menu-wrapper fixed-bottom">
             <div class="navigation container-fluid" id="navigationn">
                 <li>
-                    <a class="btnn border-end-0 border-bottom-0 border-start-0">
+                    <a href="/utama" class="btnn border-end-0 border-bottom-0 border-start-0">
                         <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
                         <span>Utama</span>
                     </a>
                 </li>
                 <li>
-                    <a class="btnn border-end-0 border-bottom-0 border-start-0">
+                    <a href="/search" class="btnn border-end-0 border-bottom-0 border-start-0">
                         <i class="bi bi-search pe-0" aria-hidden="true"></i>
                         <span>Cari</span>
                     </a>
@@ -280,8 +280,8 @@
                     <h1 class="modal-title fs-5" id="logoutLabel">Anda Yakin Ingin Keluar?</h1>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center gap-2">
-                    <button type="button" class="btn bg-secondary text-white px-3 py-2" data-bs-dismiss="modal"
-                        style="width: 72.53px">Iya</button>
+                    <a href="{{route('logoutLogin')}}" class="btn bg-secondary text-white px-3 py-2" 
+                        style="width: 72.53px">Iya</a>
                     <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
                 </div>
             </div>

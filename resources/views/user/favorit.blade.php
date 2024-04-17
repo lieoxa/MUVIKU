@@ -15,9 +15,7 @@
     <div class="old" style="padding-top: 65px">
         <div class="atas sticky-top position-fixed w-100">
             <div class="navbar ps-2 pe-3 w-100 p-0 d-flex" style="height:68.59px;" id="mainNav">
-                <button class="btn1 border-0 bg-transparent"><i class="bi bi-chevron-left"
-                        style="font-size: 25px; margin-bottom: 20px;"></i></button>
-                <div class="txt-daftar">
+                <div class="txt-daftar ms-2">
                     <h3 class="mb-0 text-white">Daftar Favorit</h3>
                 </div>
             </div>
@@ -75,25 +73,25 @@
         <div class="menu-wrapper fixed-bottom">
             <div class="navigation container-fluid" id="navigationn">
                 <li>
-                    <a class="btnn border-end-0 border-bottom-0 border-start-0">
+                    <a href="/utama" class="btnn border-end-0 border-bottom-0 border-start-0">
                         <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
                         <span>Utama</span>
                     </a>
                 </li>
                 <li>
-                    <a class="btnn border-end-0 border-bottom-0 border-start-0">
+                    <a href="/search" class="btnn border-end-0 border-bottom-0 border-start-0">
                         <i class="bi bi-search pe-0" aria-hidden="true"></i>
                         <span>Cari</span>
                     </a>
                 </li>
                 <li>
-                    <a class="btnn border-end-0 border-bottom-0 border-start-0 active">
+                    <a href="/favorit" class="btnn border-end-0 border-bottom-0 border-start-0 active">
                         <img src="img/love.png" width="20">
                         <span>Suka</span>
                     </a>
                 </li>
                 <li>
-                    <a class="btnn border-end-0 border-bottom-0 border-start-0 ">
+                    <a href="/profile" class="btnn border-end-0 border-bottom-0 border-start-0 ">
                         <i class="bi bi-person fs-4" aria-hidden="true"></i>
                         <span style="margin-top: -4px">Profil</span>
                     </a>

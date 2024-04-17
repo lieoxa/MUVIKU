@@ -26,12 +26,10 @@
         <div class="container-fluid d-flex mt-2">
 
             <img src="img/muviku.png" class="navbar-brand my-auto" style="width: 30%;" loading="lazy">
-            @if (Auth::user)
-
-            <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="10%">
+            @if (Auth::user())
+                <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="10%">
             @else
-
-            <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
+                <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
             @endif
 
 
@@ -45,16 +43,20 @@
     </nav>
 
     {{-- SLIDE  ATAS --}}
-    <div class="justify-content-start container mb-3">
-        <div class="dropdown d-flex gap-2">
-            <button onclick="{{ route('watchlist') }}"
-                class="text-white bg-transparent py-1 border px-3 rounded-pill">Daftar Tonton</button>
-            <button class="text-white bg-transparent py-1 border px-3 rounded-pill dropdown-toggle" type="button"
-                data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Kategori
-            </button>
+    @if (Auth::user())
+        <div class="justify-content-start container mb-3">
+            <div class="dropdown d-flex gap-2">
+                <button onclick="window.location='{{ route('watchlist') }}'"
+                    class="text-white bg-transparent py-1 border px-3 rounded-pill">Daftar Tonton</button>
+                <button class="text-white bg-transparent py-1 border px-3 rounded-pill dropdown-toggle" type="button"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Kategori
+                </button>
+            </div>
         </div>
-    </div>
+    @else
+    @endif
+
     <div class="mt-1 mb-4">
         <div class="container-sm">
             <div class="mb-4">
@@ -1036,29 +1038,46 @@
     <div class="menu-wrapper sticky-bottom start-50">
         <div class="navigation container-fluid" id="navigationn">
             <li>
-                <a href="#" class="btnn border-end-0 border-bottom-0 border-start-0 active">
+                <a href="/utama" class="btnn border-end-0 border-bottom-0 border-start-0 active">
                     <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
                     <span>Utama</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="btnn border-end-0 border-bottom-0 border-start-0">
+                <a href="/search" class="btnn border-end-0 border-bottom-0 border-start-0">
                     <i class="bi bi-search" aria-hidden="true"></i>
                     <span>Cari</span>
                 </a>
             </li>
             <li>
-                <a href="{{ route('favorit')}}" class="btnn border-end-0 border-bottom-0 border-start-0">
-                    <i class="bi bi-heart" aria-hidden="true"></i>
-                    <span>Suka</span>
-                </a>
+                @if (Auth::user())
+                    <a href="{{ route('favorit') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-heart" aria-hidden="true"></i>
+                        <span>Suka</span>
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-heart" aria-hidden="true"></i>
+                        <span>Suka</span>
+                    </a>
+                @endif
             </li>
             <li>
-                <a href="{{ route('profile')}}" class="btnn border-end-0 border-bottom-0 border-start-0">
-                    <i class="bi bi-person fs-4" aria-hidden="true"></i>
-                    <span style="margin-top: -4px">Profil</span>
-                </a>
-            </li>
+                @if (Auth::user())
+                    <a href="{{ route('profile') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-person fs-4" aria-hidden="true"></i>
+                        <span style="margin-top: -4px">Profil</span>
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('login') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-person fs-4" aria-hidden="true"></i>
+                        <span style="margin-top: -4px">Profil</span>
+                    </a>
+                </li>
+            @endif
+
         </div>
     </div>
 
@@ -1076,7 +1095,6 @@
                 <div class="modal-body" style="background: rgba(0, 0, 0, 0.863)">
                     <ul class="w-100 text-white text-center vh-80 list-unstyled overflow-y-auto">
                         <li class="py-3"><a class="dropdown-item" href="#"></a></li>
-                        <li class="py-3"><a class="dropdown-item" href="#">Daftar Tontonan</a></li>
                         @foreach ($kategoris as $item)
                             <li class="py-3"><a class="dropdown-item" href="#">{{ $item->kategori }}</a>
                             </li>

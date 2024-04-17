@@ -275,7 +275,7 @@
         </section>
     </div>
 
-    <div class="mb-4 pb-4">
+    <div class="mb-5 pb-5">
         <h1 class="text-white text-start fw-bold">Banyak Ditonton</h1>
         <section class="splide trend-film" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
@@ -352,7 +352,7 @@
     <footer class="menu-wrapper fixed-bottom">
         <div class="navigation container" id="navigationn">
             <li>
-                <a class="btnn border-end-0 border-bottom-0 border-start-0">
+                <a href="/utama" class="btnn border-end-0 border-bottom-0 border-start-0">
                     <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
                     <span>Utama</span>
                 </a>
@@ -395,18 +395,36 @@
                     <span>Cari</span>
                 </a>
             </li>
-            <li>
-                <a class="btnn border-end-0 border-bottom-0 border-start-0">
-                    <i class="bi bi-heart" aria-hidden="true"></i>
-                    <span>Suka</span>
-                </a>
-            </li>
-            <li onclick="window.location='{{ route('profile') }}'">
-                <a class="btnn border-end-0 border-bottom-0 border-start-0">
-                    <i class="bi bi-person fs-4" aria-hidden="true"></i>
-                    <span style="margin-top: -4px">Profil</span>
-                </a>
-            </li>
+            @if (Auth::user())
+                <li>
+                    <a href="{{ route('favorit') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-heart" aria-hidden="true"></i>
+                        <span>Suka</span>
+                    </a>
+                </li>
+                @else
+                <li>
+                    <a href="{{ route('login') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-heart" aria-hidden="true"></i>
+                        <span>Suka</span>
+                    </a>
+                </li>
+            @endif
+            @if (Auth::user())
+                <li>
+                    <a href="{{ route('profile') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-person fs-4" aria-hidden="true"></i>
+                        <span style="margin-top: -4px">Profil</span>
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('login') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                        <i class="bi bi-person fs-4" aria-hidden="true"></i>
+                        <span style="margin-top: -4px">Profil</span>
+                    </a>
+                </li>
+            @endif
         </div>
     </footer>
 </body>

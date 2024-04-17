@@ -39,8 +39,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
-    Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+Route::get('/log-out', [AuthController::class, 'logoutLogin'])->name('logoutLogin');
 
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::get('/watchlist', [AuthController::class, 'watchlist'])->name('watchlist');

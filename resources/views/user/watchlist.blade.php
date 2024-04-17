@@ -15,8 +15,9 @@
     <div class="old" style="padding-top: 65px">
         <div class="atas sticky-top position-fixed w-100">
             <div class="navbar ps-2 pe-3 w-100 p-0 d-flex" style="height:68.59px;" id="mainNav">
-                <button class="btn1 border-0 bg-transparent"><i class="bi bi-chevron-left"
-                        style="font-size: 25px; margin-bottom: 20px;"></i></button>
+                <a href="javascript:void(0)" onclick="window.history.go(-1); return false;"
+                    class="btn1 border-0 bg-transparent"><i class="bi bi-chevron-left"
+                        style="font-size: 25px; margin-bottom: 20px;"></i></a>
                 <div class="txt-daftar">
                     <h3 class="mb-0 text-white">Daftar Tontonan</h3>
                 </div>
@@ -61,7 +62,8 @@
                                     <h5 class="text-white mb-1">One Piece Red</h5>
                                     <p>MAPPA</p>
                                 </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart" style="margin-top: 4px; margin-right: 0.3rem;">
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
                                     <i class="bi bi-trash-fill fs-4 text-danger"></i>
                                 </div>
                             </div>

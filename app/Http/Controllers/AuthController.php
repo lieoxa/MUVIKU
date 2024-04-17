@@ -65,10 +65,10 @@ class AuthController extends Controller
         return back()->with('error', 'Email or Password salah');
     }
 
-    // public function search()
-    // {
-    //     return view('user.search');
-    // }
+    public function search()
+    {
+        return view('user.search');
+    }
 
     public function favorit()
     {
@@ -82,5 +82,10 @@ class AuthController extends Controller
     public function profile()
     {
         return view('user.profile');
+    }
+
+    public function logoutLogin() {
+        Auth::logout();
+        return redirect('/login');
     }
 }
