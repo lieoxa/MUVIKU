@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AccUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -81,7 +82,8 @@ class AuthController extends Controller
     }
     public function profile()
     {
-        return view('user.profile');
+        $users = Auth::user();
+        return view('user.profile', compact('users'));
     }
 
     public function logoutLogin() {

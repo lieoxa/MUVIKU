@@ -38,9 +38,10 @@
             <div class="foto-profile w-100">
                 <div class="foto-nama">
                     <div class="kelas-foto w-100 mb-3">
-                        <img src="{{ Auth::user()->gambar ? 'imgdb/'. Auth::user()->gambar : 'img/imgProfile/profile.png'}}" class="w-25 foto">
+                        <img src="{{ Auth::user()->gambar ? 'imgdb/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
+                            class="w-25 foto">
                     </div>
-                    <h2 class="text-white text-center">{{Str::title(Auth::user()->name)}}</h2>
+                    <h2 class="text-white text-center">{{ Str::title(Auth::user()->name) }}</h2>
                 </div>
             </div>
         </div>
@@ -134,70 +135,80 @@
     <!-- Modal -->
     <div class="modal fade bg-modal" id="profil" tabindex="-1" aria-labelledby="profilLabel" aria-hidden="true">
         <div class="modal-dialog container" x-data="{ name: '', img: '' }">
-            <div class="modal-content edit-profil rounded-5">
-                <div class="modal-body container py-0">
-                    <div class="image-profil">
-                        <div class="img-profil">
-                            <img class="mx-auto mt-3" id="preview" src="#" alt="Preview" height="100"
-                                width="100"
-                                style="display: none;max-width: 100px; max-height: 100px; border-radius: 999px;" />
+            <form action="/profile/editProfil" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{ $users->id }}">
+                <div class="modal-content edit-profil rounded-5">
+                    <div class="modal-body container py-0">
+                        <div class="image-profil">
+                            <div class="img-profil">
+                                <img class="mx-auto mt-3 rounded-circle justify-content-center d-flex" id="preview"
+                                    src="{{ Auth::user()->gambar ? 'imgdb/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
+                                    alt="Preview" height="100" width="100">
+                            </div>
+                        </div>
+                        <div class="body-modal d-grid gap-3">
+                            <div class="modal-dialog text-center">
+                                <h1 class="modal-title fs-5" id="profilLabel">Edit Profil</h1>
+                            </div>
+                            <div class="nama">
+                                <h6>Nama</h6>
+                                <input type="text" name="name" value="{{ Str::title(Auth::user()->name) }}" class="w-100 rounded border txt" placeholder="Ketik nama barumu..."
+                                    x-model="name" id="name">
+                            </div>
+                            <div class="img-profile">
+                                <h6>Foto Profil</h6>
+                                <input type="file" name="" hidden="" class="w-100 rounded border-dark"
+                                    onchange="previewImage()" id="imgProfil" x-model="img">
+                                <label for="imgProfil"
+                                    class="bgnya-input label-upload w-100 px-2 pt-2 border rounded  text-center"
+                                    id="file-input-label" for="file-input"><i class="bi bi-upload"></i>Pilih File</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="body-modal d-grid gap-3">
-                        <div class="modal-dialog text-center">
-                            <h1 class="modal-title fs-5" id="profilLabel">Edit Profil</h1>
-                        </div>
-                        <div class="nama">
-                            <h6>Nama</h6>
-                            <input type="text" class="w-100 rounded border txt" placeholder="Ketik nama barumu..." x-model="name"
-                                id="nama">
-                        </div>
-                        <div class="img-profile">
-                            <h6>Foto Profil</h6>
-                            <input type="file" name="" hidden="" class="w-100 rounded border-dark"
-                                onchange="previewImage()" id="imgProfil" x-model="img">
-                            <label for="imgProfil"
-                                class="bgnya-input label-upload w-100 px-2 pt-2 border rounded  text-center"
-                                id="file-input-label" for="file-input"><i class="bi bi-upload"></i>Pilih File</label>
-                        </div>
+                    <div class="modal-footer mx-auto border-top-0 pb-0 pt-4 justify-content-center">
+                        <button type="submit" id="simpanprofil"
+                            class="btn-simpan-profil btn btn-secondary text-center m-0 py-2 px-4"
+                            :class="name || img ? null : 'disabled'">Simpan</button>
                     </div>
                 </div>
-                <div class="modal-footer mx-auto border-top-0 pb-0 pt-4 justify-content-center">
-                    <button type="submit" id="simpanprofil"
-                        class="btn-simpan-profil btn btn-secondary text-center m-0 py-2 px-4" :class="name || img ? null : 'disabled'">Simpan</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="modal fade bg-modal text-white" id="akun" tabindex="-1" aria-labelledby="akunLabel"
         aria-hidden="true">
-        <div class="modal-dialog container" x-data="{ email: '', no: '' }">
-            <div class="modal-content border edit-akun rounded-5">
-                <div>
-                    <div class="img-pw mx-auto d-flex">
-                        <img class="mx-auto" src="img/email.png" style="max-width: 25%; max-height: 25%;">
+        <form action="/profile/editAkun" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-dialog container" x-data="{ email: '', no: '' }">
+                <div class="modal-content border edit-akun rounded-5">
+                    <div>
+                        <div class="img-pw mx-auto d-flex">
+                            <img class="mx-auto" src="img/email.png" style="max-width: 25%; max-height: 25%;">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-dialog text-center py-2">
-                    <h1 class="modal-title fs-5" id="akunLabel">Edit Akun</h1>
-                </div>
-                <div class="modal-body container d-grid gap-3 pt-0">
-                    <div class="email">
-                        <h6>Email Baru</h6>
-                        <input type="email" id="email" class="w-100 rounded border txt"
-                            placeholder="Ketik email barumu..." x-model="email">
+                    <div class="modal-dialog text-center py-2">
+                        <h1 class="modal-title fs-5" id="akunLabel">Edit Akun</h1>
                     </div>
-                    <div class="img-profile">
-                        <h6>No. Tlpn Baru</h6>
-                        <input type="text" id="tlpn" class="w-100 rounded txt"
-                            placeholder="Ketik no barumu..." x-model="no">
+                    <div class="modal-body container d-grid gap-3 pt-0">
+                        <input type="hidden" name="id" value="{{ $users->id }}">
+                        <div class="email">
+                            <h6>Email Baru</h6>
+                            <input type="email" name="email" id="email" class="w-100 rounded border txt"
+                                placeholder="Ketik email barumu..." x-model="email" value="{{ $users->email }}">
+                        </div>
+                        <div class="img-profile">
+                            <h6>No. Tlpn Baru</h6>
+                            <input type="text" name="nohp" id="tlpn" class="w-100 rounded txt"
+                                placeholder="Ketik no barumu..." x-model="no" value="{{ $users->nohp }}">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer mx-auto border-top-0 pb-0 pt-2">
-                    <button type="submit" id="btn-add" class="btn-simpan-profil py-2 px-4 m-0 rounded" :class="email || no ? null : 'disabled'">Simpan</button>
+                    <div class="modal-footer mx-auto border-top-0 pb-0 pt-2">
+                        <button type="submit" id="btn-add" class="btn-simpan-profil py-2 px-4 m-0 rounded"
+                            :class="email || no ? null : 'disabled'">Simpan</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="modal bg-modal fade" id="lapor" tabindex="-1" aria-labelledby="laporLabel" aria-hidden="true">
         <div class="modal-dialog container my-auto" role="document" x-data="{ lapor: '' }">
@@ -215,57 +226,74 @@
                         style="text-indent: 5px" x-model="lapor"></textarea>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center p-0 pt-3">
-                    <button type="button" class="btn text-white btn-simpan py-2 px-4" :class="lapor ? null : 'disabled'"
-                        data-bs-dismiss="modal" id="btn-add" style="width: 104.25px">Kirim</button>
+                    <button type="button" class="btn text-white btn-simpan py-2 px-4"
+                        :class="lapor ? null : 'disabled'" data-bs-dismiss="modal" id="btn-add"
+                        style="width: 104.25px">Kirim</button>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal fade bg-modal px-3" id="password" tabindex="-1" aria-labelledby="passwordLabel"
         aria-hidden="true">
-        <div class="modal-dialog text-center py-3 my-0" role="document">
-            <div class="modal-content pw edit-pw rounded-5" role="document" x-data="{ pwlama: '', pwbaru: '', confirmpw: '' }">
-                <div class="img-lock">
-                    <div class="img-pw mx-auto d-flex">
-                        <img class="mx-auto" src="img/lock.png" width="99" height="99">
+        <form action="/profile/editSandi" enctype="multipart/form-data" method="POST">
+            @csrf
+            <div class="modal-dialog text-center py-3 my-0" role="document">
+                <div class="modal-content pw edit-pw rounded-5" role="document" x-data="{ pwlama: '', pwbaru: '', confirmpw: '' }">
+                    <div class="img-lock">
+                        <div class="img-pw mx-auto d-flex">
+                            <img class="mx-auto" src="img/lock.png" width="99" height="99">
+                        </div>
                     </div>
-                </div>
-                <h1 class="modal-title fs-5" id="passwordLabel">Ubah Kata Sandi</h1>
-                <div class="modal-body container d-grid gap-3 py-0 text-start">
-                    <div class="pw-lama position-relative">
-                        <h6>Kata Sandi Lama</h6>
-                        <input type="password" name="" x-model="pwlama"
-                            class="w-100 rounded border txt"
-                            placeholder="Ketik kata sandi lamamu...">
-                        <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                            id="togglepwLama"></i>
+                    <h1 class="modal-title fs-5" id="passwordLabel">Ubah Kata Sandi</h1>
+                    @if ($errors->any())
+                        {!! implode('', $errors->all('<div style="color:red">:message</div>')) !!}
+                    @endif
+                    @if (Session::get('error') && Session::get('error') != null)
+                        <div style="color:red">{{ Session::get('error') }}</div>
+                        @php
+                            Session::put('error', null);
+                        @endphp
+                    @endif
+                    @if (Session::get('success') && Session::get('success') != null)
+                        <div style="color:green">{{ Session::get('success') }}</div>
+                        @php
+                            Session::put('success', null);
+                        @endphp
+                    @endif  
+                    <div class="modal-body container d-grid gap-3 py-0 text-start">
+                        <div class="pw-lama position-relative">
+                            <h6>Kata Sandi Lama</h6>
+                            <input type="password" name="password" x-model="pwlama" class="w-100 rounded border txt"
+                                placeholder="Ketik kata sandi lamamu...">
+                            <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
+                                id="togglepwLama"></i>
+                        </div>
+                        <div class="pw-baru position-relative">
+                            <h6>Kata Sandi Baru</h6>
+                            <input type="password" name="new_password" x-model="pwbaru" class="w-100 rounded border txt"
+                                placeholder="Ketik kata sandi barumu...">
+                            <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
+                                id="togglepwBaru"></i>
+                        </div>
+                        <div class="confirm-pw position-relative">
+                            <h6>Konfirmasi kata Sandi Baru</h6>
+                            <input type="password" name="new_password_confimation" x-model="confirmpw"
+                                class="w-100 rounded border txt" placeholder="Ketik ulang kata sandi barumu...">
+                            <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
+                                id="togglepwConfirm"></i>
+                            <p class="mb-0 mt-1">Lupa kata sandi? <span class="text-warning"><i>Klik disini</i></span>
+                            </p>
+                        </div>
                     </div>
-                    <div class="pw-baru position-relative">
-                        <h6>Kata Sandi Baru</h6>
-                        <input type="password" name="" x-model="pwbaru"
-                            class="w-100 rounded border txt"
-                            placeholder="Ketik kata sandi barumu...">
-                        <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                            id="togglepwBaru"></i>
+                    <div class="modal-footer mx-auto border-top-0 d-flex text-center pb-0 pt-4 gap-2">
+                        <button type="button" class="btn btn-simpan border py-2" style="width: 104.25px"
+                            data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" id="btn-add" class="btn btn-simpan px-4"
+                            :class="pwlama && pwbaru && confirmpw ? null : 'disabled'">Simpan</button>
                     </div>
-                    <div class="confirm-pw position-relative">
-                        <h6>Konfirmasi kata Sandi Baru</h6>
-                        <input type="password" name="" x-model="confirmpw"
-                            class="w-100 rounded border txt"
-                            placeholder="Ketik ulang kata sandi barumu...">
-                        <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                            id="togglepwConfirm"></i>
-                        <p class="mb-0 mt-1">Lupa kata sandi? <span class="text-warning"><i>Klik disini</i></span></p>
-                    </div>
-                </div>
-                <div class="modal-footer mx-auto border-top-0 d-flex text-center pb-0 pt-4 gap-2">
-                    <button type="button" class="btn btn-simpan border py-2" style="width: 104.25px"
-                        data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" id="btn-add" class="btn btn-simpan px-4"
-                        :class="pwlama && pwbaru && confirmpw ? null : 'disabled'">Simpan</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="modal bg-modal fade" id="logout" tabindex="-1" aria-labelledby="logoutLabel"
         aria-hidden="true">
@@ -280,7 +308,7 @@
                     <h1 class="modal-title fs-5" id="logoutLabel">Anda Yakin Ingin Keluar?</h1>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center gap-2">
-                    <a href="{{route('logoutLogin')}}" class="btn bg-secondary text-white px-3 py-2" 
+                    <a href="{{ route('logoutLogin') }}" class="btn bg-secondary text-white px-3 py-2"
                         style="width: 72.53px">Iya</a>
                     <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
                 </div>

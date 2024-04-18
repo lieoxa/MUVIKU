@@ -3,8 +3,13 @@
 @section('styles')
     <link rel="shortcut icon" type="image/png" href="{{ asset('admin') }}/dist/images/logos/favicon.ico" />
     <link rel="stylesheet" href="{{ asset('admin') }}/dist/libs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
     <!-- --------------------------------------------------- -->
-    <!-- Core Css -->
+    <style>
+        * {
+            font-family: 'Ubuntu';
+        }
+    </style>
     <!-- --------------------------------------------------- -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
 @endsection

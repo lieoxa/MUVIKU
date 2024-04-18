@@ -14,6 +14,7 @@ use App\Http\Controllers\SerialController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
+use App\Http\Controllers\ValidateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,15 @@ Route::group(['middleware' => 'guest'], function () {
 });
 Route::get('/log-out', [AuthController::class, 'logoutLogin'])->name('logoutLogin');
 
+// Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('/profile/editSandi', [ValidateController::class, 'editSandi']);
+    Route::post('/profile/editAkun', [ValidateController::class, 'editAkun']);
+    Route::post('/profile/editProfil', [ValidateController::class, 'editProfil']);
+});
+
 Route::get('/watchlist', [AuthController::class, 'watchlist'])->name('watchlist');
 Route::get('/favorit', [AuthController::class, 'favorit'])->name('favorit');
 // Route::get('/search', [AuthController::class, 'search'])->name('search');
