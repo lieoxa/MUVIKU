@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccUser;
-// use App\Models\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ValidateController extends Controller
-{
+{   
     public function editSandi(Request $request)
     {
         $request->validate([
@@ -31,9 +31,9 @@ class ValidateController extends Controller
             return redirect()->back()->with('error',"New Password cannot be same as your current password.");
         }
 
-        $user = AccUser::find($auth->id);
-        $user->password = Hash::make($request->new_password);
-        $user->save();
+        $users = AccUser::find($auth->id);
+        $users->password = Hash::make($request->new_password);
+        $users->save();
         return back()->with("success","Password Changed Successfully");
     }
 
@@ -45,7 +45,7 @@ class ValidateController extends Controller
             'nohp' => 'nullable',
         ]);
 
-        $users = AccUser::find($request->id);
+        $users = User::find($request->id);
         $users->email = $request->email;
         $users->nohp = $request->nohp;
         $users->save();
@@ -55,20 +55,22 @@ class ValidateController extends Controller
 
     public function editProfil(Request $request)
     {
+
+
         $request->validate([
-            'name' => 'nullable',
+            'name' => 'nullable', 
             'gambar' => 'nullable',
         ]);
 
         if ($request->gambar) {
             $gambarProfile = $request->file('gambar');
             $namaFile = time() . '.' . $gambarProfile->getClientOriginalExtension();
-            $gambarProfile->move(public_path('imgdb'), $namaFile);
+            $gambarProfile->move(public_path('imgprofil'), $namaFile);
         } else {    
-            $namaFile = '';
+            $namaFile = User::find(Auth::user()->id)->gambar;
         }
 
-        $users = AccUser::find($request->id);
+        $users = User::find(Auth::user()->id);
         $users->name = $request->name;
         $users->gambar = $namaFile ?? $users->gambar;
         $users->save();

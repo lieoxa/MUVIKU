@@ -23,11 +23,12 @@
 <body>
 
     <nav class="navbar sticky-top pb-3" style="background: #222327;">
-        <div class="container-fluid d-flex mt-2">
+        <div class="container-fluid d-flex mt-2 justify-content-between">
 
             <img src="img/muviku.png" class="navbar-brand my-auto" style="width: 30%;" loading="lazy">
             @if (Auth::user())
-                <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="10%">
+                {{-- <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="40.59" height="40.59"> --}}
+                <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}" class="navbar-brand my-auto me-0 rounded-circle foto py-0" height="40.59" width="40.59">
             @else
                 <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
             @endif

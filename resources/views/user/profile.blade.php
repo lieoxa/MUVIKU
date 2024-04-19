@@ -26,6 +26,39 @@
         color: white;
         /* border: white solid 1px; */
     }
+
+    #simpanprofil.disabled {
+        background-color: #838383 !important;
+        color: white !important;
+    }
+
+    #simpanprofil {
+        background: #FFAE1F;
+        color: white;
+        /* border: white solid 1px; */
+    }
+
+    #btn-simpan.disabled {
+        background-color: #838383 !important;
+        color: white !important;
+    }
+
+    #btn-simpan {
+        background: #FFAE1F;
+        color: white;
+        /* border: white solid 1px; */
+    }
+
+    #btn-save.disabled {
+        background-color: #838383 !important;
+        color: white !important;
+    }
+
+    #btn-save {
+        background: #FFAE1F;
+        color: white;
+        /* border: white solid 1px; */
+    }
 </style>
 
 <body>
@@ -38,8 +71,8 @@
             <div class="foto-profile w-100">
                 <div class="foto-nama">
                     <div class="kelas-foto w-100 mb-3">
-                        <img src="{{ Auth::user()->gambar ? 'imgdb/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
-                            class="w-25 foto">
+                        <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
+                            class="foto" width="107.5" height="107.5">
                     </div>
                     <h2 class="text-white text-center">{{ Str::title(Auth::user()->name) }}</h2>
                 </div>
@@ -134,16 +167,15 @@
 
     <!-- Modal -->
     <div class="modal fade bg-modal" id="profil" tabindex="-1" aria-labelledby="profilLabel" aria-hidden="true">
-        <div class="modal-dialog container" x-data="{ name: '', img: '' }">
+        <div class="modal-dialog container" x-data="{ name: '{{ Auth::user()->name }}', img: '' }">
             <form action="/profile/editProfil" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="id" value="{{ $users->id }}">
                 <div class="modal-content edit-profil rounded-5">
                     <div class="modal-body container py-0">
                         <div class="image-profil">
                             <div class="img-profil">
                                 <img class="mx-auto mt-3 rounded-circle justify-content-center d-flex" id="preview"
-                                    src="{{ Auth::user()->gambar ? 'imgdb/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
+                                    src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
                                     alt="Preview" height="100" width="100">
                             </div>
                         </div>
@@ -153,12 +185,12 @@
                             </div>
                             <div class="nama">
                                 <h6>Nama</h6>
-                                <input type="text" name="name" value="{{ Str::title(Auth::user()->name) }}" class="w-100 rounded border txt" placeholder="Ketik nama barumu..."
-                                    x-model="name" id="name">
+                                <input type="text" name="name" id="name" value="{{ Auth::user()->name }}" class="w-100 rounded border txt"
+                                    x-model="name">
                             </div>
                             <div class="img-profile">
                                 <h6>Foto Profil</h6>
-                                <input type="file" name="" hidden="" class="w-100 rounded border-dark"
+                                <input type="file" name="gambar" hidden="" class="w-100 rounded border-dark"
                                     onchange="previewImage()" id="imgProfil" x-model="img">
                                 <label for="imgProfil"
                                     class="bgnya-input label-upload w-100 px-2 pt-2 border rounded  text-center"
@@ -168,7 +200,7 @@
                     </div>
                     <div class="modal-footer mx-auto border-top-0 pb-0 pt-4 justify-content-center">
                         <button type="submit" id="simpanprofil"
-                            class="btn-simpan-profil btn btn-secondary text-center m-0 py-2 px-4"
+                            class="btn-simpan-profil btn text-center m-0 py-2 px-4"
                             :class="name || img ? null : 'disabled'">Simpan</button>
                     </div>
                 </div>
@@ -203,7 +235,7 @@
                         </div>
                     </div>
                     <div class="modal-footer mx-auto border-top-0 pb-0 pt-2">
-                        <button type="submit" id="btn-add" class="btn-simpan-profil py-2 px-4 m-0 rounded"
+                        <button type="submit" id="btn-save" class="btn-simpan-profil py-2 px-4 m-0 rounded"
                             :class="email || no ? null : 'disabled'">Simpan</button>
                     </div>
                 </div>
@@ -263,7 +295,7 @@
                     <div class="modal-body container d-grid gap-3 py-0 text-start">
                         <div class="pw-lama position-relative">
                             <h6>Kata Sandi Lama</h6>
-                            <input type="password" name="password" x-model="pwlama" class="w-100 rounded border txt"
+                            <input type="password" name="password" value="{{ Auth::user()->password }}" x-model="pwlama" class="w-100 rounded border txt"
                                 placeholder="Ketik kata sandi lamamu...">
                             <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
                                 id="togglepwLama"></i>
@@ -288,7 +320,7 @@
                     <div class="modal-footer mx-auto border-top-0 d-flex text-center pb-0 pt-4 gap-2">
                         <button type="button" class="btn btn-simpan border py-2" style="width: 104.25px"
                             data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" id="btn-add" class="btn btn-simpan px-4"
+                        <button type="submit" id="btn-simpan" class="btn btn-simpan px-4"
                             :class="pwlama && pwbaru && confirmpw ? null : 'disabled'">Simpan</button>
                     </div>
                 </div>
@@ -463,7 +495,7 @@
         e.preventDefault();
     });
 </script>
-<script>
+{{-- <script>
     const optionMenu = document.querySelector(".select-menu"),
         selectBtn = optionMenu.querySelector(".select-btn"),
         options = optionMenu.querySelectorAll(".option"),
@@ -476,8 +508,8 @@
             optionMenu.classList.remove("active");
         });
     });
-</script>
-<script>
+</script> --}}
+{{-- <script>
     document.getElementById('simpan').addEventListener('click', function() {
         let timerInterval;
         Swal.fire({
@@ -502,6 +534,6 @@
             }
         });
     });
-</script>
+</script> --}}
 
 </html>

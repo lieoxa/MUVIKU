@@ -294,17 +294,17 @@
                 <div class="py-3 px-7 pb-0">
                   <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                 </div>
-                <div class="d-flex align-items-center py-9 mx-7 border-bottom">
+                <div class="d-flex align-items-center py-9 mx-7">
                   <img src="{{ asset('admin') }}/dist/images/profile/user-1.jpg" class="rounded-circle" width="80" height="80" alt="" />
                   <div class="ms-3">
-                    <h5 class="mb-1 fs-3">Mathew Anderson</h5>
-                    <span class="mb-1 d-block text-dark">Designer</span>
+                    <h5 class="mb-1 fs-3">Felix</h5>
+                    <span class="mb-1 d-block text-dark">Admin</span>
                     <p class="mb-0 d-flex text-dark align-items-center gap-2">
-                      <i class="ti ti-mail fs-4"></i> info@modernize.com
+                      admin@gmail.com
                     </p>
                   </div>
                 </div>
-                <div class="message-body">
+                {{-- <div class="message-body">
                   <a href="./page-user-profile.html" class="py-8 px-7 mt-8 d-flex align-items-center">
                     <span class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
                       <img src="{{ asset('admin') }}/dist/images/svgs/icon-account.svg" alt="" width="24" height="24">
@@ -332,23 +332,7 @@
                       <span class="d-block text-dark">To-do and Daily Tasks</span>
                     </div>
                   </a>
-                </div>
-                <div class="d-grid py-4 px-7 pt-8">
-                  <div class="upgrade-plan bg-light-primary position-relative overflow-hidden rounded-4 p-4 mb-9">
-                    <div class="row">
-                      <div class="col-6">
-                        <h5 class="fs-4 mb-3 w-50 fw-semibold text-dark">Unlimited Access</h5>
-                        <button class="btn btn-primary text-white">Upgrade</button>
-                      </div>
-                      <div class="col-6">
-                        <div class="m-n4">
-                          <img src="{{ asset('admin') }}/dist/images/backgrounds/unlimited-bg.png" alt="" class="w-100">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="./authentication-login.html" class="btn btn-outline-primary">Log Out</a>
-                </div>
+                </div> --}}
               </div>
             </div>
           </li>

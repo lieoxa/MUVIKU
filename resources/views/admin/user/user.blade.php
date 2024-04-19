@@ -49,7 +49,7 @@
                                     <td>
                                         <div class=" justify-content-center">
                                             <img src="{{ asset($useracc->gambar ? 'imgdb/' . $useracc->gambar : 'img/imgProfile/profile.png') }}"
-                                                class="rounded-circle" width="35" />
+                                                class="rounded-circle" width="35" height="35" />
                                         </div>
                                     </td>
                                     <td>{{ $useracc->name }}</td>
@@ -89,17 +89,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('admin') }}/dist/libs/jquery/dist/jquery.min.js"></script>
-    <script src="{{ asset('admin') }}/dist/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="{{ asset('admin') }}/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="{{ asset('admin') }}/dist/js/app.min.js"></script>
-    <script src="{{ asset('admin') }}/dist/js/app.init.js"></script>
-    <script src="{{ asset('admin') }}/dist/js/app-style-switcher.js"></script>
-    <script src="{{ asset('admin') }}/dist/js/sidebarmenu.js"></script>
-
-    <script src="{{ asset('admin') }}/dist/js/custom.js"></script>
-
     <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
 
     <script>
