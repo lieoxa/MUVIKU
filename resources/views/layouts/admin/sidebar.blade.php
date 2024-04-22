@@ -1,4 +1,4 @@
-<aside class="left-sidebar" style="width: 230px">
+<aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">

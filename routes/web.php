@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/profile/editSandi', [ValidateController::class, 'editSandi']);
     Route::post('/profile/editAkun', [ValidateController::class, 'editAkun']);
     Route::post('/profile/editProfil', [ValidateController::class, 'editProfil']);
+    Route::post('/profile/laporkan', [ValidateController::class, 'kirimLaporan']);
 });
 
 Route::get('/watchlist', [AuthController::class, 'watchlist'])->name('watchlist');
@@ -57,7 +58,7 @@ Route::get('/favorit', [AuthController::class, 'favorit'])->name('favorit');
 // Route::get('/search', [AuthController::class, 'search'])->name('search');
 
 Route::get('/serial', [UserPageController::class, 'serial'])->name('serial');
-Route::get('/film', [UserPageController::class, 'film'])->name('film');
+Route::get('/op', [UserPageController::class, 'op'])->name('op');
 Route::get('/toystory', [UserPageController::class, 'toystory'])->name('toystory');
 Route::get('/mario', [UserPageController::class, 'mario'])->name('mario');
 Route::get('/spy', [UserPageController::class, 'spy'])->name('spy');

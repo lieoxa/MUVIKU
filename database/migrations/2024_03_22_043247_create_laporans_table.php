@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('laporans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('judul');
-            $table->string('deskripsi');
+            $table->string('name');
+            $table->string('laporan');
+            $table->string('lokasi');
             $table->timestamps();
         });
     }

@@ -48,7 +48,7 @@
                                     <td>{{ $useracc->id }}</td>
                                     <td>
                                         <div class=" justify-content-center">
-                                            <img src="{{ asset($useracc->gambar ? 'imgdb/' . $useracc->gambar : 'img/imgProfile/profile.png') }}"
+                                            <img src="{{ asset($useracc->gambar ? 'imgprofil/' . $useracc->gambar : 'img/imgProfile/profile.png') }}"
                                                 class="rounded-circle" width="35" height="35" />
                                         </div>
                                     </td>

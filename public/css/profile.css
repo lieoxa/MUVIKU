@@ -24,7 +24,8 @@ hr {
 input {
     border: 1px solid black;
     height: 50px;
-    text-indent: 10px;
+    /* text-indent: 10px; */
+    padding-left: 10px;
 }
 
 p {
@@ -37,6 +38,10 @@ textarea {
     color: white;
     padding-left: 12px;
     padding-right: 12px;
+}
+
+h4 {
+    line-height: 1.5rem !important;
 }
 
 /* h2{
@@ -241,9 +246,12 @@ label {
     justify-content: center;
 }
 
+.pe-55{
+    padding-right: 55px;
+}
+
 .icon-eye-pw {
     margin-top: 8px;
-    margin-right: 4px;
     color: gray;
 }
 

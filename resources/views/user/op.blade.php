@@ -48,8 +48,9 @@
         <nav class="navbar ps-2 pe-3 sticky-top w-100 p-0 d-flex justify-content-between" style="height:68.59px;"
             id="mainNav">
             <div class="d-flex gap-3" style="height: 68.58px">
-                <button onclick="window.location='{{ route('movie') }}'" class="btn1 border-0"><i
-                        class="bi bi-chevron-left" style="font-size: 25px; margin-bottom: 20px;"></i></button>
+                <a href="javascript:void(0)" onclick="window.history.go(-1); return false;">
+                    <button class="btn1 border-0"><i class="bi bi-chevron-left"
+                            style="font-size: 25px; margin-bottom: 20px;"></i></button></a>
                 <h2 class="mb-0 txt-detail">Detail</h2>
             </div>
             <div class="3-dot">
@@ -219,7 +220,10 @@
 
                     <div id="lainnyaTextarea" class="w-100 d-flex hidden">
                         <textarea name="when_other" id="lainnyaInput" rows="4" style="display: none"
-                            placeholder="Tuliskan laporan Anda di sini..."></textarea>
+                            placeholder="Tuliskan laporan Anda di sini..." onkeyup="charCount(this)"></textarea>
+                    </div>
+                    <div class="hidden text-secondary" id="counterChar" style="font-size: 12px">
+                        <span id="textcount">0</span> dari 230 kata
                     </div>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center p-0 pt-3">
@@ -231,10 +235,28 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>\
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        function charCount(textarea) {
+            var max = 230;
+            var length = textarea.value.length;
+            if (length > max) {
+                textarea.value = textarea.value.substring(0, 230);
+            } else {
+                $('#textcount').text(length);
+            }
+        }
+    </script>
     <script>
         document.addEventListener('fullscreenchange', function() {
             var video = document.querySelector('video');
@@ -270,6 +292,7 @@
         const submitButton = document.querySelector('.btn-simpan');
         const lainnyaTextarea = document.getElementById('lainnyaTextarea');
         const lainnyaInput = document.getElementById('lainnyaInput');
+        const counterChar = document.getElementById('counterChar');
 
         // Tambahkan event listener untuk setiap radio button
         radioButtons.forEach(radio => {
@@ -287,11 +310,13 @@
                 // Jika radio button "Lainnya" dipilih, tampilkan textarea dan aktifkan tombol
                 if (radio.id === 'lainnya') {
                     lainnyaTextarea.classList.remove('hidden');
+                    counterChar.classList.remove('hidden')
                     lainnyaInput.style.display = 'block';
                     submitButton.disabled = lainnyaInput.value.trim() ===
-                    ''; // Nonaktifkan tombol jika textarea kosong
+                        ''; // Nonaktifkan tombol jika textarea kosong
                 } else {
                     lainnyaTextarea.classList.add('hidden');
+                    counterChar.classList.add('hidden')
                     lainnyaInput.style.display = 'none';
                 }
             });

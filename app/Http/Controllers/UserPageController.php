@@ -12,9 +12,9 @@ class UserPageController extends Controller
     {
         return view('user.watchlist');
     }
-    public function film()
+    public function op()
     {
-        return view('user.film');
+        return view('user.op');
     }
     public function podcast()
     {

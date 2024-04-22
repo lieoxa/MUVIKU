@@ -3,43 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccUser;
+use App\Models\Laporan;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class ValidateController extends Controller
-{   
+{
     public function editSandi(Request $request)
     {
         $request->validate([
             'password' => 'required',
-            'new_password' => 'required',
+            'new_password' => 'required|min:8',
+            'new_password_confirmation' => 'required|same:new_password'
         ]);
 
-        $this->validate($request, [
-            'password' => 'required|string',
-            'new_password' => 'required|confirmed|min:8|string',
-        ]);
-        $auth = Auth::users();
+        $user = Auth::user();
 
-        if (!Hash::check($request->get('password'), $auth->password)) {
-            return back()->with('error', "Current Password is Invalid");
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json(['error' => 'Password Tidak Sama'], 422);
         }
 
-        if (strcmp($request->get('password'), $request->new_password) == 0) {
-            return redirect()->back()->with('error',"New Password cannot be same as your current password.");
+        if (strcmp($request->password, $request->new_password) == 0) {
+            return response()->json(['error' => 'Sandi Baru Tidak Sama Dengan Password Kamu.'], 422);
         }
 
-        $users = AccUser::find($auth->id);
-        $users->password = Hash::make($request->new_password);
-        $users->save();
-        return back()->with("success","Password Changed Successfully");
+        $user = AccUser::find($user->id);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response()->json(['success' => 'Password Berhasil Dirubah']);
+
     }
 
     public function editAkun(Request $request)
     {
-        // $users = Auth::users();/
         $request->validate([
             'email' => 'nullable',
             'nohp' => 'nullable',
@@ -55,10 +54,8 @@ class ValidateController extends Controller
 
     public function editProfil(Request $request)
     {
-
-
         $request->validate([
-            'name' => 'nullable', 
+            'name' => 'nullable',
             'gambar' => 'nullable',
         ]);
 
@@ -66,7 +63,7 @@ class ValidateController extends Controller
             $gambarProfile = $request->file('gambar');
             $namaFile = time() . '.' . $gambarProfile->getClientOriginalExtension();
             $gambarProfile->move(public_path('imgprofil'), $namaFile);
-        } else {    
+        } else {
             $namaFile = User::find(Auth::user()->id)->gambar;
         }
 
@@ -75,6 +72,24 @@ class ValidateController extends Controller
         $users->gambar = $namaFile ?? $users->gambar;
         $users->save();
 
+        return back();
+    }
+
+    public function kirimLaporan(Request $request)
+    {
+        $request->validate([
+            'laporan' => 'required'
+        ]);
+
+        $user = Auth::user();
+
+        Laporan::create([
+
+            'name' => $user->name,
+            'laporan' => $request->laporan,
+            'lokasi' => 'Profil',
+        ]);
+        
         return back();
     }
 }

@@ -28,7 +28,9 @@
             <img src="img/muviku.png" class="navbar-brand my-auto" style="width: 30%;" loading="lazy">
             @if (Auth::user())
                 {{-- <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="40.59" height="40.59"> --}}
-                <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}" class="navbar-brand my-auto me-0 rounded-circle foto py-0" height="40.59" width="40.59">
+                <a href="/profile">
+                    <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}" class="navbar-brand my-auto me-0 rounded-circle foto py-0" height="40.59" width="40.59">
+                </a>
             @else
                 <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
             @endif
@@ -196,7 +198,7 @@
                         <section class="splide new-1" aria-label="Splide Basic HTML Example">
                             <div class="splide__track">
                                 <ul class="splide__list">
-                                    <li onclick="window.location='{{ route('film') }}'" class="splide__slide li">
+                                    <li onclick="window.location='{{ route('op') }}'" class="splide__slide li">
                                         <img src="{{ asset('img/anim.jpg') }}" class="card-img-top slider-img"
                                             alt="...">
                                     </li>

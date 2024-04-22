@@ -9,6 +9,9 @@
         * {
             font-family: 'Ubuntu';
         }
+        p {
+            margin-bottom: 0px;
+        }
     </style>
     <!-- --------------------------------------------------- -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
@@ -26,12 +29,12 @@
                 <div id="note-full-container" class="note-has-grid row">
                     @foreach ($laporans as $items)
                         <div class="col-md-4 single-note-item all-category">
-                            <div class="card card-body">
+                            <div class="card card-body" style="height: 236.8px; margin-bottom: 24px;">
                                 <span class="side-stick"></span>
                                 <div class="d-flex justify-content-between mb-2">
                                     <div class="div">
-                                        <p class="note-date my-auto fs-2">{{ $items->nama }}</p>
-                                        <h6>{{ $items->judul }}</h6>
+                                        <p class="note-date my-auto fs-2">{{ $items->name }}</p>
+                                        <h6>{{ $items->lokasi }}</h6>
                                     </div>
                                     <form action="{{ route('laporan.destroy', $items->id) }}" method="POST">
                                         @csrf
@@ -43,9 +46,9 @@
                                     </form>
                                 </div>
                                 <div class="note-content">
-                                    <p class="note-inner-content"
+                                    <p class="note-inner-content mb-0"
                                         data-noteContent="Blandit tempus porttitor aasfs. Integer posuere erat a ante venenatis.">
-                                        {{ $items->deskripsi }}</p>
+                                        {{ $items->laporan }}</p>
                                 </div>
                             </div>
                         </div>
