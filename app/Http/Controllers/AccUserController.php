@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccUser;
+use App\Models\Film;
 use Illuminate\Http\Request;
 
 class AccUserController extends Controller
@@ -14,6 +15,7 @@ class AccUserController extends Controller
     {
         return view('admin.user.user')->with([
             'users' => AccUser::all(),
+            // 'films' => Film::get(),
         ]);
     }
     

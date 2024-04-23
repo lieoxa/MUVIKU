@@ -48,10 +48,18 @@
                         <h4 class="my-auto fw-medium" style="font-size: 18px">Daftar Serial</h4>
                     </div>
                     <div
-                        class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+                        class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0 gap-1">
                         <a href="{{ route('serial.create') }}" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 10px;">
                             <i class="ti ti-plus fs-5"></i>Tambah
+                        </a>
+                        <a href="" class="btn btn-warning d-flex align-items-center"
+                            style="padding: 7px 16px 7px 10px;">
+                            <i class="ti ti-plus fs-5"></i>Season
+                        </a>
+                        <a href="" class="btn btn-warning d-flex align-items-center"
+                            style="padding: 7px 16px 7px 10px;">
+                            <i class="ti ti-plus fs-5"></i>Episode
                         </a>
                     </div>
                 </div>

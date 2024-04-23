@@ -42,10 +42,10 @@
             </div>
         </div>
         <!-- ---------------------
-                                                                                end Contact
-                                                                            ---------------- -->
+                                                                                                    end Contact
+                                                                                                ---------------- -->
         <!-- Modal -->
-        <div x-data="{ judul: '', tahun: '', usia: '', durasi: '', perusahaan: '', sutradara: '', kategori: '', thumbnail: '', status: 'Unpublish', video: '', deskripsi: '', }">
+        <div x-data="{ judul: '', tahun: '', usia: '', perusahaan: '', sutradara: '', kategori: '', thumbnail: '', status: 'Unpublish', deskripsi: '', }">
             <form action="{{ route('film.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
@@ -72,26 +72,24 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Durasi FIlm<span class="text-danger">*</span></label>
-                        <input type="time" name="durasi" class="form-control" x-model="durasi">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
                         <label class="form-label">Perusahaan Produksi<span class="text-danger">*</span></label>
                         <input type="Text" name="perusahaan" class="form-control" placeholder="Ketik di sini..."
                             x-model="perusahaan">
                     </div>
+                    {{-- <div class="col-md-6">
+                        <label class="form-label">Durasi FIlm<span class="text-danger">*</span></label>
+                        <input type="time" name="durasi" class="form-control" x-model="durasi">
+                    </div> --}}
+                </div>
+                <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Sutradara<span class="text-danger">*</span></label>
                         <input type="text" name="sutradara" class="form-control" placeholder="Ketik di sini..."
                             x-model="sutradara">
                     </div>
-                </div>
-                <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Kategori<span class="text-danger">*</span></label>
-                        <select name="  " class="form-select mr-sm-2" x-model="kategori">
+                        <select name="kategori_id" class="form-select mr-sm-2" x-model="kategori">
                             <option selected>Pilih...</option>
                             @foreach ($categories as $categorie)
                                 <option value="{{ $categorie->id }}">{{ $categorie->kategori }}</option>
@@ -99,36 +97,26 @@
                             @error('kategori_id')
                                 {{ $message }}
                             @enderror
-                            {{-- <option value="Film Indonesia">Film Indonesia</option>
-                            <option value="Film Korea">Film Korea</option>
-                            <option value="Anime">Anime</option>
-                            <option value="Super Hero">Super Hero</option>
-                            <option value="Horror">Horror</option>
-                            <option value="Film MUVIKU">Film MUVIKU</option> --}}
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Status<span class="text-danger" x-model="status">*</span></label>
-                        <select name="status" class="form-select mr-sm-2">
-                            <option value="Publish">Publish</option>
-                            <option value="Unpublish" selected>Unpublish</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <label class="form-label">Thumbnail Film<span class="text-danger">*</span></label>
                         <input name="thumbnail" id="thumbnail" type="file" class="form-control" x-model="thumbnail"
                             onchange="previewImage()">
+                            <div class="img-profil mb-2">
+                                <img class="mt-3 rounded" id="preview" src="#" alt="Preview" width="80"
+                                    height="120" style="display: none;">
+                            </div>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Video<span class="text-danger">*</span></label>
-                        <input type="url" name="video" class="form-control" x-model="video">
+                    <div class="col-6">
+                        <label class="form-label">Status<span class="text-danger" x-model="status">*</span></label>
+                        <select name="is_publish" class="form-select mr-sm-2">
+                            <option value="Publish">Publish</option>
+                            <option value="Unpublish" selected>Unpublish</option>
+                        </select>
                     </div>
-                </div>
-                <div class="img-profil mb-2">
-                    <img class="mt-3 rounded" id="preview" src="#" alt="Preview" width="80"
-                        height="120" style="display: none;">
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-12">
@@ -139,8 +127,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="btn-add" class="btn rounded-2 px-3"
-                        :class="judul && tahun && usia && durasi && perusahaan && sutradara && kategori && status &&
-                            thumbnail && video && deskripsi ? null : 'disabled'">Tambah</button>
+                        :class="judul && tahun && usia && perusahaan && sutradara && kategori && status &&
+                            thumbnail && deskripsi ? null : 'disabled'">Tambah</button>
                 </div>
             </form>
         </div>

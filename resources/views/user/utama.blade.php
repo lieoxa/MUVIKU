@@ -674,7 +674,7 @@
             </h1>
             <section>
                 <div class="d-flex gap-2 bar mt-1">
-                    <div class="saran-1" onclick="window.location='{{ route('serial') }}'">
+                    <div class="saran-1" onclick="window.location='{{ route('jujutsu') }}'">
                         <div class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
                             <img src="img/saran.jpg" class="card-img-top w-100" alt="...">
                             <div class="saran-bawah d-flex ps-6 pe-4">

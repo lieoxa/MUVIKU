@@ -31,7 +31,7 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kategori' => 'required',
+            'kategori' => 'required',   
         ]);
 
         $kategoris = new Kategori;

@@ -6,25 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Film extends Model
+class Season extends Model
 {
     use HasFactory;
-
-    protected $table = "films";
-
     protected $guarded = ["id"];
-    public function kategorifilm(){
-        return $this->belongsTo(Kategori::class,'kategori_id', 'id');
-    }
 
     /**
-     * Get all of the seasons for the Film
+     * Get all of the episodes for the Season
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function seasons(): HasMany
+    public function episodes(): HasMany
     {
-        return $this->hasMany(Season::class, 'film_id', 'id');
+        return $this->hasMany(Episode::class, 'season_id', 'id');
     }
 }
-

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 class UserPageController extends Controller
 {
-    public function serial()
+    public function jujutsu()
     {
         return view('user.serial');
     }

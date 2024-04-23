@@ -37,16 +37,16 @@ class FilmController extends Controller
             'judul' => 'required',
             'tahun' => 'required',
             'usia' => 'required',
-            'durasi' => 'required',
+            // 'durasi' => 'required',
             'perusahaan' => 'required',
             'sutradara' => 'required',
             'deskripsi' => 'required',
             'kategori_id' => 'required',
             'thumbnail' => 'required',
-            'video' => 'required',
-            'status' => 'required',
+            // 'video' => 'required',
+            'is_publish' => 'required',
         ]);
-
+        
         $thumbnail = $request->file('thumbnail');
         $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
         $thumbnail->move(public_path('imgdb'), $imgFile);
@@ -54,16 +54,16 @@ class FilmController extends Controller
 
         $film = new Film;
         $film->thumbnail = $imgFile;
-        $film->video = $request->video;
+        // $film->video = $request->video;
         $film->judul = $request->judul;
         $film->tahun = $request->tahun;
         $film->usia = $request->usia;
-        $film->durasi = $request->durasi;
+        // $film->durasi = $request->durasi;
         $film->perusahaan = $request->perusahaan;
         $film->sutradara = $request->sutradara;
         $film->deskripsi = $request->deskripsi;
         $film->kategori_id = $request->kategori_id;
-        $film->status = $request->status;
+        $film->is_publish = $request->is_publish;
 
         $film->save();
 
@@ -100,14 +100,14 @@ class FilmController extends Controller
             'judul' => 'required',
             'tahun' => 'required',
             'usia' => 'required',
-            'durasi' => 'required',
+            // 'durasi' => 'required',
             'perusahaan' => 'required',
             'sutradara' => 'required',
-            'deskripsi' => 'required|max:999',
+            'deskripsi' => 'required',
             'kategori_id' => 'required',
             'thumbnail' => 'nullable',
-            'video' => 'required',
-            'status' => 'required',
+            // 'video' => 'required',
+            'is_publish' => 'required',
         ]);
 
         if($request->thumbnail){
@@ -123,14 +123,14 @@ class FilmController extends Controller
         $film->judul = $request->judul;
         $film->tahun = $request->tahun;
         $film->usia = $request->usia;
-        $film->durasi = $request->durasi;
+        // $film->durasi = $request->durasi;
         $film->perusahaan = $request->perusahaan;
         $film->sutradara = $request->sutradara;
         $film->thumbnail = $thumbnail;
-        $film->video = $request->video;
+        // $film->video = $request->video;
         $film->deskripsi = $request->deskripsi;
         $film->kategori_id = $request->kategori_id;
-        $film->status = $request->status;
+        $film->is_publish = $request->is_publish;
 
         $film->save();
 

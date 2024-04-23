@@ -32,7 +32,7 @@
     <nav class="navbar ps-2 pe-3 sticky-top w-100 p-0 d-flex justify-content-between" style="height:68.59px;"
         id="mainNav">
         <div class="d-flex gap-3" style="height: 68.58px">
-            <button onclick="window.location='{{ route('movie') }}'" class="btn1 border-0"><i class="bi bi-chevron-left"
+            <button class="btn1 border-0"><i class="bi bi-chevron-left"
                     style="font-size: 25px; margin-bottom: 20px;"></i></button>
             <h2 class="mb-0 txt-detail">Detail</h2>
         </div>

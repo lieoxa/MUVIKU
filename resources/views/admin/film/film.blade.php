@@ -35,6 +35,11 @@
         p {
             margin-bottom: 0px;
         }
+
+        .ti-plus:before {
+            vertical-align: 0.125rem;
+            content: "\eb0b";
+        }
     </style>
 @endsection
 
@@ -48,17 +53,26 @@
                         <h4 class="my-auto fw-medium" style="font-size: 18px">Daftar Film</h4>
                     </div>
                     <div
-                        class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+                        class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0 gap-1">
                         <a href="{{ route('film.create') }}" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 10px;">
-                            <i class="ti ti-plus fs-5"></i>Tambah
+                            <i class="ti ti-plus fs-5"></i>Film
                         </a>
+                        <a href="" class="btn btn-warning d-flex align-items-center"
+                            style="padding: 7px 16px 7px 10px;">
+                            <i class="ti ti-plus fs-5"></i>Season
+                        </a>
+                        <a href="" class="btn btn-warning d-flex align-items-center"
+                            style="padding: 7px 16px 7px 10px;">
+                            <i class="ti ti-plus fs-5"></i>Episode
+                        </a>
+
                     </div>
                 </div>
             </div>
             <!-- ---------------------
-                                                                            end Contact
-                                                                        ---------------- -->
+                                                                                    end Contact
+                                                                                ---------------- -->
             <!-- Modal -->
             <div class="card card-body rounded-top-0">
                 <div class="table-responsive">
@@ -78,13 +92,13 @@
                                 <tr>
                                     <td>{{ $item->id }}</td>
                                     <td><img src="{{ asset('imgdb/' . $item->thumbnail) }}" alt="" width="60"
-                                        height="90" class="rounded"></td>
+                                            height="90" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->video }}</td>
-                                    <td>{{ $item->kategorifilm->kategori }}</td>
+                                    <td>{{ $item->kategorifilm?->kategori }}</td>
                                     <td>{{ $item->view }}</td>
                                     <td><span
-                                            class="usr-status-kost @if ($item->status == 'Publish') published @else Unpublish @endif">{{ $item->status }}</span>
+                                            class="usr-status-kost @if ($item->is_publish == '1') published @else 0 @endif">{{ $item->is_publish }}</span>
                                     </td>
                                     <td class="px-0">
                                         <div class="action-btn d-flex justify-content-center">
@@ -103,8 +117,8 @@
                                                 <i class="bi bi-eye"></i></button>
                                         </div>
 
-                                        <div class="modal fade text-start" id="detail" data-bs-backdrop="static" tabindex="-1"
-                                            data-bs-keyboard="false">
+                                        <div class="modal fade text-start" id="detail" data-bs-backdrop="static"
+                                            tabindex="-1" data-bs-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content px-3">
                                                     <div class="modal-header d-flex align-items-center">
@@ -170,9 +184,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-success">Publish</button>
-                                                            <button data-bs-dismiss="modal"
-                                                                type="button" class="btn btn-primary">Tutup</button>
+                                                            <button type="button"
+                                                                class="btn btn-success">Publish</button>
+                                                            <button data-bs-dismiss="modal" type="button"
+                                                                class="btn btn-primary">Tutup</button>
                                                         </div>
                                                     </form>
                                                 </div>

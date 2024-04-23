@@ -15,16 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('thumbnail')->nullable();
-            $table->string('video');
-            $table->string('tahun');
+            $table->integer('tahun');
             $table->string('usia');
-            $table->string('durasi');
             $table->string('perusahaan');
             $table->string('sutradara');
-            $table->string('deskripsi');
-            $table->foreignId('kategori_id');
-            $table->string('view')->nullable();
-            $table->string('status');
+            $table->longText('deskripsi');
+            $table->foreignId('kategori_id')->nullable();
+            $table->string('is_publish')    ;
             $table->timestamps();
         });
     }
