@@ -26,7 +26,7 @@ class FilmSeeder extends Seeder
                 'perusahaan' => 'Google',
                 'sutradara' => 'Putra',
                 'deskripsi' => 'Hello World',
-                'is_publish' => rand(0, 1)
+                'is_publish' => 1
             ]);
 
             for ($i = 1; $i <= 1; $i++) { 

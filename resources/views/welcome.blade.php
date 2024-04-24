@@ -9,14 +9,14 @@
   <body>
     @php
         use App\Models\Film;
-        $films = Film::get();
+        $films = Film::where('is_publish', 0)->get();
     @endphp
     @foreach ($films as $film)
         <h6>{{ $film->judul }}</h6>
         <hr>
         Season :
         @foreach ($film->seasons as $season)
-            {{ $season->created_at
+            {{ $season->created_at }}
                 @foreach ($season->episodes as $episode)
                     <li>ABC : {{ $loop->iteration }}</li>
                 @endforeach

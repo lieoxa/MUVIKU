@@ -42,52 +42,50 @@
             </div>
         </div>
         <!-- ---------------------
-                                                                                                    end Contact
-                                                                                                ---------------- -->
+                                                                                                                end Contact
+                                                                                                            ---------------- -->
         <!-- Modal -->
-        <div x-data="{ judul: '', tahun: '', usia: '', perusahaan: '', sutradara: '', kategori: '', thumbnail: '', status: 'Unpublish', deskripsi: '', }">
+        <div x-data="{ judul: '', tahun: '', usia: '', perusahaan: '', sutradara: '', kategori: '', thumbnail: '', status: 'Unpublish', deskripsi: '', durasi: '', tipe: '', video: '', }">
             <form action="{{ route('film.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="row mb-3">
-                    <div class="col-md-6">
+                <div class="row d-flex">
+                    <div class="col-md-12 mb-3" id="judul">
                         <label class="form-label">Judul<span class="text-danger">*</span></label>
                         <input type="text" name="judul" class="form-control" placeholder="Ketik di sini..."
                             x-model="judul">
                     </div>
-                    <div class="col-md-6">
+                    {{-- </div> --}}
+                    {{-- <div class="row mb-3"> --}}
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Tipe<span class="text-danger">*</span></label>
+                        <select name="tipe" class="form-select mr-sm-2" id="tipe" x-model="tipe">
+                            <option selected>Pilih...</option>
+                            <option value="Serial">Serial</option>
+                            <option value="Film">FIlm</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
                         <label class="form-label">Tahun Release<span class="text-danger">*</span></label>
                         <input type="number" name="tahun" min="1000" max="3000" step="1" value=""
                             class="d-block form-control" x-model="tahun">
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label class="form-label">Rating Usia<span class="text-danger">*</span></label>
-                        <select name="usia" class="form-select mr-sm-2" x-model="usia">
-                            <option value="">Pilih...</option>
-                            <option value="SU">SU</option>
-                            <option value="13+">13+</option>
-                            <option value="17+">17+</option>
-                            <option value="21+">21+</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
+                    {{-- </div> --}}
+                    <div class="col-md-6 mb-3">
                         <label class="form-label">Perusahaan Produksi<span class="text-danger">*</span></label>
                         <input type="Text" name="perusahaan" class="form-control" placeholder="Ketik di sini..."
                             x-model="perusahaan">
                     </div>
-                    {{-- <div class="col-md-6">
-                        <label class="form-label">Durasi FIlm<span class="text-danger">*</span></label>
-                        <input type="time" name="durasi" class="form-control" x-model="durasi">
-                    </div> --}}
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3" id="video">
+                        <label class="form-label">Video<span class="text-danger">*</span></label>
+                        <input type="url" name="video" class="d-block form-control" x-model="video">
+                    </div>
+                    {{-- <div class="row mb-3"> --}}
+                    <div class="col-md-6 mb-3">
                         <label class="form-label">Sutradara<span class="text-danger">*</span></label>
                         <input type="text" name="sutradara" class="form-control" placeholder="Ketik di sini..."
                             x-model="sutradara">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
                         <label class="form-label">Kategori<span class="text-danger">*</span></label>
                         <select name="kategori_id" class="form-select mr-sm-2" x-model="kategori">
                             <option selected>Pilih...</option>
@@ -99,27 +97,45 @@
                             @enderror
                         </select>
                     </div>
-                </div>
-                <div class="row mb-3">
+                    {{-- </div> --}}
+                    {{-- <div class="row mb-3"> --}}
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Durasi/Season<span class="text-danger">*</span></label>
+                        <input type="Text" name="durasi" class="form-control" placeholder="Ketik di sini..."
+                            x-model="durasi">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Rating Usia<span class="text-danger">*</span></label>
+                        <select name="usia" class="form-select mr-sm-2" x-model="usia">
+                            <option value="">Pilih...</option>
+                            <option value="SU">SU</option>
+                            <option value="13+">13+</option>
+                            <option value="17+">17+</option>
+                            <option value="21+">21+</option>
+                        </select>
+                    </div>
+                    {{-- </div> --}}
+                    {{-- <div class="row mb-3"> --}}
                     <div class="col-6">
                         <label class="form-label">Thumbnail Film<span class="text-danger">*</span></label>
                         <input name="thumbnail" id="thumbnail" type="file" class="form-control" x-model="thumbnail"
                             onchange="previewImage()">
-                            <div class="img-profil mb-2">
-                                <img class="mt-3 rounded" id="preview" src="#" alt="Preview" width="80"
-                                    height="120" style="display: none;">
-                            </div>
+                        <div class="img-profil mb-2">
+                            <img class="mt-3 rounded" id="preview" src="#" alt="Preview" width="80"
+                                height="120" style="display: none;">
+                        </div>
                     </div>
                     <div class="col-6">
                         <label class="form-label">Status<span class="text-danger" x-model="status">*</span></label>
                         <select name="is_publish" class="form-select mr-sm-2">
-                            <option value="Publish">Publish</option>
-                            <option value="Unpublish" selected>Unpublish</option>
+                            <option value="1">Publish</option>
+                            <option value="0" selected>Unpublish</option>
                         </select>
                     </div>
+                    {{-- </div> --}}
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-12">
+                    <div class="col-md-12 mb-3">
                         <label class="d-block form-label">Deskripsi Film<span class="text-danger">*</span></label>
                         <textarea class="d-block rounded px-2" name="deskripsi" id="" cols="141"
                             style="height: 250px; resize: none;" x-model="deskripsi"></textarea>
@@ -128,7 +144,7 @@
                 <div class="modal-footer">
                     <button type="submit" id="btn-add" class="btn rounded-2 px-3"
                         :class="judul && tahun && usia && perusahaan && sutradara && kategori && status &&
-                            thumbnail && deskripsi ? null : 'disabled'">Tambah</button>
+                            thumbnail && deskripsi && durasi && tipe || video ? null : 'disabled'">Tambah</button>
                 </div>
             </form>
         </div>
@@ -140,6 +156,27 @@
     <script src="{{ asset('admin') }}/dist/libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
     <script src="{{ asset('admin') }}/dist/js/plugins/tables/bootstrap-table.init.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tipeSelect = document.getElementById('tipe');
+            var judulField = document.getElementById('judul');
+            var videoField = document.getElementById('video');
+
+            judulField.style.width = '50%';
+            videoField.style.display = 'none';
+
+            tipeSelect.addEventListener('change', function() {
+                if (tipeSelect.value === 'Film') {
+                    judulField.style.width = '100%';
+                    videoField.style.display = 'block';
+                } else {
+
+                    judulField.style.width = '50%';
+                    videoField.style.display = 'none';
+                }
+            });
+        });
+    </script>
     <script>
         function previewImage() {
             var imgProfil = document.getElementById('thumbnail');

@@ -119,11 +119,9 @@
                         class="bi bi-heart"></i></button>
             </span> --}}
         </nav>
-        <div class="video">
+        <div class="video justify-content-center">
             {{-- <img src="img/podcast.jpg" class="w-100"> --}}
-            <video controls width="100%" poster="img/podcast.jpg">
-                <source src="vid/test.mp4">
-            </video>
+            <iframe width="100%" height="215" src="https://www.youtube.com/embed/KXgH9D1D_OA?autoplay=1&rel=0&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="container pt-2">
             <div class="mb-4 d-flex justify-content-between">

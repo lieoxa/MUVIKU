@@ -15,15 +15,34 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('thumbnail')->nullable();
+            $table->longText('deskripsi');
+
             $table->integer('tahun');
             $table->string('usia');
             $table->string('perusahaan');
             $table->string('sutradara');
-            $table->longText('deskripsi');
+
+            $table->string('video')->nullable();
+            $table->string('durasi')->nullable();
+            $table->bigInteger('view')->nullable();
+
             $table->foreignId('kategori_id')->nullable();
-            $table->string('is_publish')    ;
+            $table->enum('tipe', ['Film','Serial'])->default('Film');
+            $table->boolean('is_publish')->default(1);
             $table->timestamps();
         });
+
+        // $film_tipe_film = Film::where('tipe', 'film')->get();
+        // $film = Film::where('tipe', 'serial')->get();
+        // $film = Film::whereIn('tipe', ['film','serial'])->get();
+        // $film = Film::get();
+
+        // foreach ($film_tipe_film as $value) {
+            
+        //     $value->video;
+        //     $value->durasi;
+
+        // }
     }
 
     /**

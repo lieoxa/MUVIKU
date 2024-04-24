@@ -52,14 +52,14 @@
                         <span class="hide-menu">Film</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link {{ Request::is('serial', 'serial/*') ? 'active' : null }}" href="{{ route('serial.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-brand-youtube"></i>
                         </span>
                         <span class="hide-menu">Serial</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ Request::is('broadcast', 'broadcast/*') ? 'active' : null }}"
                         href="{{ route('broadcast.index') }}" aria-expanded="false">

@@ -56,7 +56,7 @@
                         class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0 gap-1">
                         <a href="{{ route('film.create') }}" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 10px;">
-                            <i class="ti ti-plus fs-5"></i>Film
+                            <i class="ti ti-plus fs-5"></i>Tambah
                         </a>
                         <a href="" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 10px;">
@@ -81,7 +81,7 @@
                             <th>No.</th>
                             <th>Thumbnail</th>
                             <th>Judul</th>
-                            <th>Video</th>
+                            <th>Tipe</th>
                             <th>Kategori</th>
                             <th>View</th>
                             <th>Status</th>
@@ -94,11 +94,11 @@
                                     <td><img src="{{ asset('imgdb/' . $item->thumbnail) }}" alt="" width="60"
                                             height="90" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
-                                    <td>{{ $item->video }}</td>
+                                    <td>{{ $item->tipe }}</td>
                                     <td>{{ $item->kategorifilm?->kategori }}</td>
                                     <td>{{ $item->view }}</td>
                                     <td><span
-                                            class="usr-status-kost @if ($item->is_publish == '1') published @else 0 @endif">{{ $item->is_publish }}</span>
+                                            class="usr-status-kost @if ($item->is_publish == 1) published @endif">{{ $item->is_publish ? 'Publish' : 'Unpublish' }}</span>
                                     </td>
                                     <td class="px-0">
                                         <div class="action-btn d-flex justify-content-center">

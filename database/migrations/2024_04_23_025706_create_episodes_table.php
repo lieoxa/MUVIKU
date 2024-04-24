@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('season_id');
             $table->string('judul')->nullable();
+            $table->string('thumb_eps')->nullable();
             $table->string('video')->nullable();
             $table->string('durasi')->nullable();
             $table->bigInteger('view')->nullable();

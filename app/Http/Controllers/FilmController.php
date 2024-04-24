@@ -35,15 +35,16 @@ class FilmController extends Controller
     {
         $request->validate([
             'judul' => 'required',
+            'tipe' => 'required',
             'tahun' => 'required',
             'usia' => 'required',
-            // 'durasi' => 'required',
+            'durasi' => 'required',
             'perusahaan' => 'required',
             'sutradara' => 'required',
             'deskripsi' => 'required',
             'kategori_id' => 'required',
             'thumbnail' => 'required',
-            // 'video' => 'required',
+            'video' => 'nullable',
             'is_publish' => 'required',
         ]);
         
@@ -54,11 +55,12 @@ class FilmController extends Controller
 
         $film = new Film;
         $film->thumbnail = $imgFile;
-        // $film->video = $request->video;
+        $film->video = $request->video;
         $film->judul = $request->judul;
+        $film->tipe = $request->tipe;
         $film->tahun = $request->tahun;
         $film->usia = $request->usia;
-        // $film->durasi = $request->durasi;
+        $film->durasi = $request->durasi;
         $film->perusahaan = $request->perusahaan;
         $film->sutradara = $request->sutradara;
         $film->deskripsi = $request->deskripsi;
@@ -83,6 +85,7 @@ class FilmController extends Controller
      */
     public function edit(string $id)
     {
+        // dd(Film::find($id));
         $categories = Kategori::get();
         return view('admin.film.edit')->with([
             'films' => Film::find($id),
@@ -98,16 +101,18 @@ class FilmController extends Controller
     {
         $request->validate([
             'judul' => 'required',
+            'tipe' => 'nullable',
             'tahun' => 'required',
             'usia' => 'required',
-            // 'durasi' => 'required',
+            'durasi' => 'required',
             'perusahaan' => 'required',
             'sutradara' => 'required',
             'deskripsi' => 'required',
             'kategori_id' => 'required',
             'thumbnail' => 'nullable',
-            // 'video' => 'required',
+            'video' => 'nullable',
             'is_publish' => 'required',
+            'view' => 'nullable',
         ]);
 
         if($request->thumbnail){
@@ -121,18 +126,20 @@ class FilmController extends Controller
 
         $film = Film::find( $id );
         $film->judul = $request->judul;
+        $film->tipe = $request->tipe;
         $film->tahun = $request->tahun;
         $film->usia = $request->usia;
-        // $film->durasi = $request->durasi;
+        $film->durasi = $request->durasi;
         $film->perusahaan = $request->perusahaan;
         $film->sutradara = $request->sutradara;
         $film->thumbnail = $thumbnail;
-        // $film->video = $request->video;
+        $film->video = $request->video;
         $film->deskripsi = $request->deskripsi;
         $film->kategori_id = $request->kategori_id;
         $film->is_publish = $request->is_publish;
 
         $film->save();
+        // dd($film);
 
         return redirect()->route('film.index')->with('success', 'Film berhasil diedit.');
     }
