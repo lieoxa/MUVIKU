@@ -9,6 +9,7 @@
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+
     <style>
         * {
             font-family: 'Ubuntu';
@@ -58,12 +59,12 @@
                             style="padding: 7px 16px 7px 10px;">
                             <i class="ti ti-plus fs-5"></i>Tambah
                         </a>
-                        <a href="" class="btn btn-warning d-flex align-items-center"
+                        <a data-bs-toggle="modal" data-bs-target="#season" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 10px;">
                             <i class="ti ti-plus fs-5"></i>Season
                         </a>
-                        <a href="" class="btn btn-warning d-flex align-items-center"
-                            style="padding: 7px 16px 7px 10px;">
+                        <a data-bs-toggle="modal" data-bs-target="#episode"
+                            class="btn btn-warning d-flex align-items-center" style="padding: 7px 16px 7px 10px;">
                             <i class="ti ti-plus fs-5"></i>Episode
                         </a>
 
@@ -71,10 +72,10 @@
                 </div>
             </div>
             <!-- ---------------------
-                                                                                    end Contact
-                                                                                ---------------- -->
+                                                                                                        end Contact
+                                                                                                    ---------------- -->
             <!-- Modal -->
-            <div class="card card-body rounded-top-0">
+            <div class="card card-body">
                 <div class="table-responsive">
                     <table class="table search-table align-middle text-nowrap">
                         <thead class="header-item text-center">
@@ -91,7 +92,7 @@
                             @foreach ($films as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td><img src="{{ asset('imgdb/' . $item->thumbnail) }}" alt="" width="60"
+                                    <td><img src="{{ asset('imgfilm/' . $item->thumbnail) }}" alt="" width="60"
                                             height="90" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->tipe }}</td>
@@ -133,7 +134,7 @@
                                                                         <div class="row">
                                                                             <div class="col-md-3 pe-0">
                                                                                 <div class="mb-3 contact-email">
-                                                                                    <img src="{{ asset('imgdb/' . $item->thumbnail) }}"
+                                                                                    <img src="{{ asset('imgfilm/' . $item->thumbnail) }}"
                                                                                         alt="" width="100"
                                                                                         height="130" class="rounded">
                                                                                 </div>
@@ -164,8 +165,9 @@
                                                                         </div>
                                                                         <div class="img-profil mb-2">
                                                                             <img class="mx-auto rounded" id="preview"
-                                                                                src="#" alt="Preview" height="150"
-                                                                                width="266.66" style="display: none;">
+                                                                                src="#" alt="Preview"
+                                                                                height="150" width="266.66"
+                                                                                style="display: none;">
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-6">
@@ -215,10 +217,100 @@
             </div>
         @endif
     </div>
+    <div class="modal fade" id="season" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="{{ route('post.film') }}" method="POST" class="w-100">
+                {{ csrf_field() }}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Season</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="col-12">
+                            <label for="#film">Serial</label>
+                            <select name="film_id[]" id="film" class="form-select">
+                                <option value="">Pilih Serial...</option>
+                                @foreach ($films->where('tipe', 'Serial') as $item)
+                                    <option value="{{ $item->id }}">{{ $item->judul }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="#season">Season</label>
+                            <input type="text" id="season" name="season" class="form-control"
+                                placeholder="Ketik disini...">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning">Tambah</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="episode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="" method="POST">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="col-12 mb-3">
+                            <label for="#film_season">Film - Season</label>
+                            <input type="text" id="film_season" class="form-control">
+                        </div>
+                        <div class="col-12 mb-3 ">
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false" data-bs-auto-close="outside">
+                                    Dropdown form
+                                </button>
+                                <form class="dropdown-menu p-4">
+                                    <div class="mb-3">
+                                        <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+                                        <input type="email" class="form-control" id="exampleDropdownFormEmail2"
+                                            placeholder="email@example.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="exampleDropdownFormPassword2"
+                                            placeholder="Password">
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                                            <label class="form-check-label" for="dropdownCheck2">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Sign in</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
     <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
     <script src="{{ asset('admin') }}/dist/libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
     <script src="{{ asset('admin') }}/dist/js/plugins/tables/bootstrap-table.init.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
 @endpush

@@ -186,13 +186,6 @@ input[type=file]::file-selector-button {
     transition: background .2s ease-in-out;
 }
 
-.edit-profil {
-    margin-top: 35%;
-}
-
-.edit-akun {
-    margin-top: 40%;
-}
 
 .txt {
     background-color: #222327;
@@ -201,17 +194,8 @@ input[type=file]::file-selector-button {
 }
 
 .edit-pw {
-    margin-top: 22%;
     padding-bottom: 0.5rem;
     height: auto;
-}
-
-.laporkan {
-    margin-top: 40%;
-}
-
-.logout {
-    margin-top: 65%;
 }
 
 .btn-simpan {

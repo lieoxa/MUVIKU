@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Film;
 use App\Models\Kategori;
+use App\Models\Season;
 use Illuminate\Http\Request;
 
 class FilmController extends Controller
@@ -25,7 +26,7 @@ class FilmController extends Controller
     {
         $films = Film::all();
         $categories = Kategori::all();
-        return view('admin.film.create', ['films' => $films, 'categories'=> $categories]);
+        return view('admin.film.create', ['films' => $films, 'categories' => $categories]);
     }
 
     /**
@@ -42,16 +43,16 @@ class FilmController extends Controller
             'perusahaan' => 'required',
             'sutradara' => 'required',
             'deskripsi' => 'required',
-            'kategori_id' => 'required',
+            'kategori_id' => 'nullable',
             'thumbnail' => 'required',
             'video' => 'nullable',
             'is_publish' => 'required',
         ]);
-        
+
         $thumbnail = $request->file('thumbnail');
         $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-        $thumbnail->move(public_path('imgdb'), $imgFile);
-        
+        $thumbnail->move(public_path('imgfilm'), $imgFile);
+
 
         $film = new Film;
         $film->thumbnail = $imgFile;
@@ -71,6 +72,18 @@ class FilmController extends Controller
 
         return redirect()->route('film.index')->with('success', 'Film berhasil ditambahkan.');
     }
+
+    public function post(Request $request)
+    {
+        $season = Season::create([
+            'season' => $request->input('season'),
+            // Assuming 'film_id' is the foreign key for the film
+            'film_id' => $request->input('film_id')[0], // Assuming only one film is selected
+        ]);
+
+        return redirect()->back()->with('status', 'Season berhasil ditambahkan');
+    }
+
 
     /**
      * Display the specified resource.
@@ -108,23 +121,23 @@ class FilmController extends Controller
             'perusahaan' => 'required',
             'sutradara' => 'required',
             'deskripsi' => 'required',
-            'kategori_id' => 'required',
+            'kategori_id' => 'nullable',
             'thumbnail' => 'nullable',
             'video' => 'nullable',
             'is_publish' => 'required',
             'view' => 'nullable',
         ]);
 
-        if($request->thumbnail){
-        $thumbnail = $request->file('thumbnail');
-        $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-        $thumbnail->move(public_path('imgdb'), $imgFile);
+        if ($request->thumbnail) {
+            $thumbnail = $request->file('thumbnail');
+            $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('imgfilm'), $imgFile);
         } else {
-            $film=Film::find( $id );
+            $film = Film::find($id);
             $thumbnail = $film->thumbnail;
         }
 
-        $film = Film::find( $id );
+        $film = Film::find($id);
         $film->judul = $request->judul;
         $film->tipe = $request->tipe;
         $film->tahun = $request->tahun;

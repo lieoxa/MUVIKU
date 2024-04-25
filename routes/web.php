@@ -82,8 +82,6 @@ Route::resource('banner', BannerController::class);
 
 Route::resource('laporan', LaporanController::class);
 
-Route::resource('film', FilmController::class);
-
 Route::resource('broadcast', PodcastController::class);
 
 Route::resource('rekomendasi', RekomendasiController::class);
@@ -95,3 +93,8 @@ Route::resource('serial', SerialController::class);
 Route::get('utama', [UtamaController::class, 'home']);
 
 Route::get('search', [SearchController::class, 'search']);
+
+Route::group(['namespace'=>'App\Http\Controllers'], function () {
+    Route::post('season', 'FilmController@post')->name('post.film');
+    Route::resource('film', 'FilmController');
+});

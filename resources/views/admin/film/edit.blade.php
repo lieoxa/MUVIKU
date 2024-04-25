@@ -102,7 +102,7 @@
                     <label class="form-label d-block">Thumbnail Film<span class="text-danger">*</span></label>
                     <input type="file" name="thumbnail" id="thumbnail" class="form-control"
                         value="{{ $films->thumbnail }}" onchange="previewImage()">
-                    <img src="{{ asset('imgdb/' . $imgfilm) }}" id="preview" src="#" alt="Preview"
+                    <img src="{{ asset('imgfilm/' . $imgfilm) }}" id="preview" src="#" alt="Preview"
                         width="80" height="120" class="rounded mt-3">
                 </div>
                 <div class="col-md-6 mb-3">

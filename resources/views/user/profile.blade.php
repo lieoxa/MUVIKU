@@ -173,8 +173,8 @@
     <!-- Modal -->
     <div class="modal fade bg-modal" id="profil" tabindex="-1" aria-labelledby="profilLabel"
         aria-hidden="true">
-        <div class="modal-dialog container" x-data="{ name: '{{ Auth::user()->name }}', img: '' }">
-            <form action="/profile/editProfil" method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog modal-dialog-centered container" x-data="{ name: '{{ Auth::user()->name }}', img: '' }">
+            <form class="w-100" action="/profile/editProfil" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content edit-profil rounded-5">
                     <div class="modal-body container py-0">
@@ -197,7 +197,7 @@
                             <div class="img-profile">
                                 <h6>Foto Profil</h6>
                                 <input type="file" name="gambar" hidden=""
-                                    class="w-100 rounded border-dark" onchange="previewImage()" id="imgProfil"
+                                    class="w-100 rounded border" onchange="previewImage()" id="imgProfil"
                                     x-model="img">
                                 <label for="imgProfil"
                                     class="bgnya-input label-upload w-100 px-2 pt-2 border rounded  text-center"
@@ -217,10 +217,10 @@
     </div>
     <div class="modal fade bg-modal text-white" id="akun" tabindex="-1" aria-labelledby="akunLabel"
         aria-hidden="true">
-        <form action="/profile/editAkun" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-dialog container" x-data="{ email: '{{ Auth::user()->email }}', no: '{{ Auth::user()->nohp }}' }">
-                <div class="modal-content border edit-akun rounded-5">
+        <div class="modal-dialog modal-dialog-centered container" x-data="{ email: '{{ Auth::user()->email }}', no: '{{ Auth::user()->nohp }}' }">
+            <form action="/profile/editAkun" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-content edit-akun rounded-5">
                     <div>
                         <div class="img-pw mx-auto d-flex">
                             <img class="mx-auto" src="img/email.png" style="max-width: 25%; max-height: 25%;">
@@ -243,18 +243,18 @@
                                 placeholder="Ketik no barumu..." x-model="no" value="{{ Auth::user()->nohp }}">
                         </div>
                     </div>
-                    <div class="modal-footer mx-auto border-top-0 pb-0 pt-2">
-                        <button type="submit" id="btn-save" class="btn-simpan-profil py-2 px-4 m-0 rounded"
+                    <div class="modal-footer mx-auto border-0 pb-0 pt-2">
+                        <button type="submit" id="btn-save" class="btn-simpan-profil border-0 py-2 px-4 m-0 rounded"
                             :class="email || no ? null : 'disabled'">Simpan</button>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     <div class="modal bg-modal fade" id="lapor" tabindex="-1" aria-labelledby="laporLabel" aria-hidden="true">
-        <form action="/profile/laporkan" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-dialog container my-auto" role="document" x-data="{ lapor: '' }">
+        <div class="modal-dialog modal-dialog-centered container my-auto" role="document" x-data="{ lapor: '' }">
+            <form action="/profile/laporkan" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="modal-content rounded-5 laporkan">
                     <div>
                         <div class="img-pw mx-auto d-flex">
@@ -265,7 +265,7 @@
                         <h1 class="modal-title fs-5" id="laporLabel">Laporkan Kesalahan!</h1>
                     </div>
                     <div class="modal-body container py-0" style="height: 148px">
-                        <textarea id="description" class="w-100 px-1" cols="30" rows="6" name="laporan"
+                        <textarea id="description" class="w-100 px-1 border" cols="30" rows="6" name="laporan"
                             placeholder="Tuliskan laporan Anda di sini..." style="text-indent: 5px" x-model="lapor"
                             onkeyup="charCount(this)"></textarea>
                     </div>
@@ -278,14 +278,14 @@
                             style="width: 104.25px">Kirim</button>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     <div class="modal fade bg-modal px-3" id="password" tabindex="-1" aria-labelledby="passwordLabel"
         aria-hidden="true">
-        <form id="editForm">
-            @csrf
-            <div class="modal-dialog text-center py-3 my-0" role="document">
+        <div class="modal-dialog modal-dialog-centered text-center py-3 my-0" role="document">
+            <form id="editForm" class="w-100">
+                @csrf
                 <div class="modal-content pw edit-pw rounded-5" role="document" x-data="{ pwlama: '', pwbaru: '', confirmpw: '' }">
                     <div class="img-lock">
                         <div class="img-pw mx-auto d-flex">
@@ -326,12 +326,12 @@
                             :class="pwlama && pwbaru && confirmpw ? null : 'disabled'">Simpan</button>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
     <div class="modal bg-modal fade" id="logout" tabindex="-1" aria-labelledby="logoutLabel"
         aria-hidden="true">
-        <div class="modal-dialog container">
+        <div class="modal-dialog modal-dialog-centered container">
             <div class="modal-content logout rounded-5">
                 <div class="img-lock">
                     <div class="img-pw mx-auto d-flex">
@@ -362,8 +362,8 @@
         function charCount(textarea) {
             var max = 230;
             var length = textarea.value.length;
-            if (length>max) {
-                textarea.value=textarea.value.substring(0,230);
+            if (length > max) {
+                textarea.value = textarea.value.substring(0, 230);
             } else {
                 $('#textcount').text(length);
             }
