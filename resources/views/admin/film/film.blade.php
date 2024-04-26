@@ -41,6 +41,23 @@
             vertical-align: 0.125rem;
             content: "\eb0b";
         }
+
+        .form-select:focus {
+            border-color: none;
+            bottom: 0px;
+            outline: 0;
+            box-shadow: none;
+        }
+
+        .form-select:focus,
+        .form-control:focus {
+            border: 1px solid #dfe5ef;
+        }
+
+        .ti.ti-plus {
+            line-height: 0px;
+            vertical-align: -2px;
+        }
     </style>
 @endsection
 
@@ -71,10 +88,7 @@
                     </div>
                 </div>
             </div>
-            <!-- ---------------------
-                                                                                                        end Contact
-                                                                                                    ---------------- -->
-            <!-- Modal -->
+
             <div class="card card-body">
                 <div class="table-responsive">
                     <table class="table search-table align-middle text-nowrap">
@@ -217,7 +231,11 @@
             </div>
         @endif
     </div>
-    <div class="modal fade" id="season" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <!-- Modal -->
+
+    <div class="modal fade" id="season" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <form action="{{ route('post.film') }}" method="POST" class="w-100">
                 {{ csrf_field() }}
@@ -227,13 +245,20 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body row">
-                        <div class="col-12">
-                            <label for="#film">Serial</label>
+                        <div class="col-6">
+                            <label for="#film"class="form-label">Judul<span class="text-danger" x-model="">*</span></label>
                             <select name="film_id[]" id="film" class="form-select">
                                 <option value="">Pilih Serial...</option>
                                 @foreach ($films->where('tipe', 'Serial') as $item)
                                     <option value="{{ $item->id }}">{{ $item->judul }}</option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label">Status<span class="text-danger" x-model="">*</span></label>
+                            <select name="is_publish" class="form-select mr-sm-2" required>
+                                <option value="1">Publish</option>
+                                <option value="0" selected>Unpublish</option>
                             </select>
                         </div>
                         <div class="col-12">
@@ -250,52 +275,79 @@
         </div>
     </div>
 
-    <div class="modal fade" id="episode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="episode" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form action="" method="POST">
+            <form action="" method="POST" class="w-100">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Episode</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body row">
-                        <div class="col-12 mb-3">
-                            <label for="#film_season">Film - Season</label>
-                            <input type="text" id="film_season" class="form-control">
-                        </div>
                         <div class="col-12 mb-3 ">
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false" data-bs-auto-close="outside">
-                                    Dropdown form
+                            <label class="form-label">Film - Season<span class="text-danger" x-model="">*</span></label>
+                            <select name="" id="" class="form-select">
+                                <option value="">Pilih...</option>
+                                <option value="">...</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Episode<span class="text-danger" x-model="">*</span></label>
+                            <div class="btn-group w-100 mb-2">
+                                <button type="button" class="btn btn-light-primary text-primary dropdown-toggle rounded-end-0"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Form Episode
                                 </button>
-                                <form class="dropdown-menu p-4">
-                                    <div class="mb-3">
-                                        <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleDropdownFormEmail2"
-                                            placeholder="email@example.com">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleDropdownFormPassword2"
-                                            placeholder="Password">
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                                            <label class="form-check-label" for="dropdownCheck2">
-                                                Remember me
-                                            </label>
+                                <div id="rowAdder"><button type="button" class="btn btn-success text-white rounded-start-0"><i
+                                            class="ti ti-plus"></i></button></div>
+                                <div class="dropdown-menu w-100 border" style="padding: 0.5rem 22px;">
+                                    <form class="px-4 py-3">
+                                        <div class="row">
+                                            <div class="mb-2 col-6">
+                                                <label for="exampleDropdownFormEmail1" class="form-label">Judul</label>
+                                                <input type="text" name="judul" class="form-control" id="exampleDropdownFormEmail1"
+                                                    placeholder="Ketik disini...">
+                                            </div>
+                                            <div class="mb-2 col-6">
+                                                <label for="exampleDropdownFormPassword1"
+                                                    class="form-label">Thumbnail</label>
+                                                <input type="file" class="form-control" name="thumb_eps"
+                                                    id="exampleDropdownFormPassword1">
+                                            </div>
+                                            <div class="mb-2 col-6">
+                                                <label for="exampleDropdownFormPassword1" class="form-label">Video</label>
+                                                <input type="file" class="form-control" name="vid_eps"
+                                                    id="exampleDropdownFormPassword1">
+                                            </div>
+                                            <div class="mb-2 col-6">
+                                                <label for="exampleDropdownFormPassword1"
+                                                    class="form-label">Status</label>
+                                                <select name="is_publish" class="form-select" required>
+                                                    <option value="1">Publish</option>
+                                                    <option value="0" selected>Unpublish</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-2 col-12">
+                                                <label for="exampleDropdownFormPassword1"
+                                                    class="form-label d-block">Deskripsi</label>
+                                                <textarea name="desk_eps" id="" class="d-block form-control" style="resize: none; height: 85px;"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Sign in</button>
-                                </form>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div id="row">
+                                </div>
+                                <div id="newinput"></div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-light text-white" style="background: #5c5c5c;"
+                            data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-warning">Tambah</button>
                     </div>
                 </div>
             </form>
@@ -310,7 +362,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    <script src="{{ asset('admin') }}/dist/libs/prismjs/prism.js"></script>
+    <script type="text/javascript">
+        $("#rowAdder").click(function() {
+            newRowAdd =
+                '<div id="row" class="row"> <div class="col-12 mb-2"> <div class="input-group-prepend"> <div class="btn-group w-100">' +
+                '<button type="button" class="btn btn-light-primary text-primary dropdown-toggle rounded-end-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Form Episode </button>' +
+                '<div><button class="btn btn-danger rounded-start-0" id="DeleteRow" type="button"> <i class="bi bi-trash"></i></button></div> ' +
+                '<div class="dropdown-menu w-100 border" style="padding: 0.5rem 22px;"> <form class="px-4 py-3"> <div class="row"> <div class="mb-2 col-6">' +
+                '<label for="exampleDropdownFormEmail1" class="form-label">Judul</label> <input type="email" class="form-control" id="exampleDropdownFormEmail1"placeholder="Ketik disini..." /></div>' +
+                '<div class="mb-2 col-6"> <label for="exampleDropdownFormPassword1" class="form-label">Thumbnail</label> <input type="file" class="form-control" id="exampleDropdownFormPassword1"></div>' +
+                '<div class="mb-2 col-6"> <label for="exampleDropdownFormPassword1" class="form-label">Video</label> <input type="file" class="form-control" id="exampleDropdownFormPassword1"> </div>' +
+                '<div class="mb-2 col-6"> <label for="exampleDropdownFormPassword1" class="form-label">Status</label> <select name="" class="form-select" required> <option value="1">Publish</option> <option value="0" selected>Unpublish</option> </select> </div>' +
+                '<div class="mb-2 col-12"> <label for="exampleDropdownFormPassword1" class="form-label d-block">Deskripsi</label> <textarea name="" id="" class="d-block form-control" style="resize: none; height: 85px;"></textarea> </div>' +
+                '</div> </form> </div> </div> </div>'
+            $('#newinput').append(newRowAdd);
+        });
+        $("body").on("click", "#DeleteRow", function() {
+            $(this).parents("#row").remove();
+        })
     </script>
 @endpush

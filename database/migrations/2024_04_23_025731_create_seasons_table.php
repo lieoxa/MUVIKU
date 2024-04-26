@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('film_id');
             $table->string('season');
+            $table->boolean('is_publish')->default(0);
             $table->timestamps();
         });
     }

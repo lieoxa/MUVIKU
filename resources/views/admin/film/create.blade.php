@@ -137,7 +137,7 @@
                 <div class="row mb-3">
                     <div class="col-md-12 mb-3">
                         <label class="d-block form-label">Deskripsi Film<span class="text-danger">*</span></label>
-                        <textarea class="d-block rounded px-2" name="deskripsi" id="" cols="141"
+                        <textarea class="d-block rounded px-2 form-control" name="deskripsi" id="" cols="141"
                             style="height: 250px; resize: none;" x-model="deskripsi" required></textarea>
                     </div>
                 </div>
