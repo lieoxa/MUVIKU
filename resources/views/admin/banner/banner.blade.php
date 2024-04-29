@@ -110,8 +110,7 @@
                                                 </button>
                                             </form>
                                             <button type="button" class="btn btn-outline-warning ms-1"
-                                                style="padding: 0px 18px;" data-bs-toggle="modal"
-                                                data-bs-target="#edit-{{ $items->id }}"><i
+                                                style="padding: 0px 18px;" data-bs-toggle="modal" data-bs-target="#edit-{{ $items->id }}"><i
                                                     class="bi bi-pencil-square"></i></button>
                                         </div>
 

@@ -3,7 +3,7 @@
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
             <div class="mx-auto">
-                <a href="./index.html" class="text-nowrap logo-img">
+                <a href="../admin/dashboard" class="text-nowrap logo-img">
                     <img src="{{ asset('img') }}/muviku-dark.png" class="logo-muviku fw-bolder" width="130">
                     {{-- <img src="{{ asset('admin') }}/dist/images/logos/dark-logo.svg" class="dark-logo" width="180"
                         alt="" /> --}}

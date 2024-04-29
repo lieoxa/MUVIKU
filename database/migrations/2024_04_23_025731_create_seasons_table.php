@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('seasons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('film_id');
-            $table->string('season');
+            $table->string('season')->nullable();
             $table->boolean('is_publish')->default(0);
             $table->timestamps();
         });

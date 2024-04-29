@@ -94,7 +94,13 @@ Route::get('utama', [UtamaController::class, 'home']);
 
 Route::get('search', [SearchController::class, 'search']);
 
+Route::get('daftarseason', [FilmController::class, 'season']);
+
+Route::get('daftareps', [FilmController::class, 'episode']);
+
 Route::group(['namespace'=>'App\Http\Controllers'], function () {
-    Route::post('season', 'FilmController@post')->name('post.film');
+    Route::post('season', 'FilmController@post')->name('postSeason');
+    Route::post('episode', 'FilmController@post')->name('postEps');
     Route::resource('film', 'FilmController');
+    Route::put('editeps', 'FilmController@put')->name('putEps');
 });

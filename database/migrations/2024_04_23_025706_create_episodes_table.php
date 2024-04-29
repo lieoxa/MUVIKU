@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('season_id');
+            $table->string('episode')->nullable();
             $table->string('judul');
             $table->string('thumb_eps')->nullable();
             $table->string('vid_eps')->nullable();
             $table->boolean('is_publish')->default(0);
             $table->longText('desk_eps');
-            $table->bigInteger('view')->nullable();
             $table->timestamps();
         });
     }

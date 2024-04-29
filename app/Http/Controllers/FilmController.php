@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Episode;
 use App\Models\Film;
 use App\Models\Kategori;
 use App\Models\Season;
@@ -16,6 +17,26 @@ class FilmController extends Controller
     {
         return view('admin.film.film')->with([
             'films' => Film::all(),
+            'seasons' => Season::all(),
+        ]);
+    }
+
+    public function episode()
+    {
+        return view('admin.film.episode')->with([
+            'films' => Film::all(),
+            'seasons' => Season::all(),
+            'episodes' => Episode::all(),
+        ]);
+    
+    }
+
+    public function season()
+    {
+        return view('admin.film.season')->with([
+            'films' => Film::all(),
+            'seasons' => Season::all(),
+            'episodes' => Episode::all(),
         ]);
     }
 
@@ -77,13 +98,19 @@ class FilmController extends Controller
     {
         $season = Season::create([
             'season' => $request->input('season'),
-            // Assuming 'film_id' is the foreign key for the film
-            'film_id' => $request->input('film_id')[0], // Assuming only one film is selected
+            'is_publish' => $request->input('is_publish'),
+            'film_id' => $request->input('film_id')[0],
         ]);
 
         return redirect()->back()->with('status', 'Season berhasil ditambahkan');
     }
 
+    public function postEps(Request $request)
+    {
+        $episode = Episode::create($request->all());
+        $episode->episode()->attach($request->input('season_id'));
+        return redirect()->back()->with('status', 'Episode berhasil ditambahkan');
+    }
 
     /**
      * Display the specified resource.
@@ -155,6 +182,41 @@ class FilmController extends Controller
         // dd($film);
 
         return redirect()->route('film.index')->with('success', 'Film berhasil diedit.');
+    }
+
+    public function editeps(Request $request, string $id)
+    {
+        $request->validate([
+            'serial' => 'required',
+            'season_id' => 'nullable',
+            'judul' => 'required',
+            'thumb_eps' => 'required',
+            'vid_eps' => 'required',
+            'is_publish' => 'required',
+            'desk_eps' => 'required',
+        ]);
+
+        if ($request->thumbnail) {
+            $thumbnail = $request->file('thumb_eps');
+            $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('imgthum'), $imgFile);
+        } else {
+            $eps = Episode::find($id);
+            $thumbnail = $eps->thumbnail;
+        }
+
+        $eps = Episode::find($id);
+        $eps->serial = $request->serial;
+        $eps->season_id= $request->season_id;
+        $eps->judul = $request->judul;
+        $eps->thumb_eps = $thumbnail;
+        $eps->vid_eps = $request->video;
+        $eps->desk_eps = $request->desk_eps;
+        $eps->is_publish = $request->is_publish;
+
+        $eps->save();
+
+        return redirect()->route('daftareps')->with('success', 'Film berhasil diedit.');
     }
 
     /**
