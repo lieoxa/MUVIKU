@@ -31,12 +31,12 @@
                                                 'text-secondary'"
                                             x-on:click="filter = 'anime';sliders = 'anime'">Semua</span>
                                     </li>
-                                    <li class="splide__slide ">
+                                    {{-- <li class="splide__slide ">
                                         <span
                                             :class="filter == 'anime' ? 'title-service text-white fs-8 fw-bold' :
                                                 'text-secondary'"
                                             x-on:click="filter = 'anime';sliders = 'anime'">Anime</span>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </section>

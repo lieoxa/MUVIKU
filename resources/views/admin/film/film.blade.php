@@ -42,12 +42,12 @@
             content: "\eb0b";
         }
 
-        .form-select:focus {
-            border-color: none;
-            bottom: 0px;
-            outline: 0;
-            box-shadow: none;
-        }
+        /* .form-select:focus {
+                border-color: none;
+                bottom: 0px;
+                outline: 0;
+                box-shadow: none;
+            } */
 
         .form-select:focus,
         .form-control:focus {
@@ -76,7 +76,7 @@
                             style="padding: 7px 16px 7px 10px;">
                             <i class="ti ti-plus fs-5"></i>Tambah
                         </a>
-                        <a href="" data-bs-toggle="modal" data-bs-target="#season" class="btn btn-warning d-flex align-items-center"
+                        <a href="/daftarseason" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 16px;">
                             Daftar Season
                         </a>
@@ -93,7 +93,6 @@
                     <table class="table search-table align-middle text-nowrap">
                         <thead class="header-item text-center">
                             <th>No.</th>
-                            <th>Serial</th>
                             <th>Judul</th>
                             <th>Thumbnail</th>
                             <th>Tipe</th>
@@ -106,9 +105,9 @@
                             @foreach ($films as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
+                                    <td>{{ $item->judul }}</td>
                                     <td><img src="{{ asset('imgfilm/' . $item->thumbnail) }}" alt="" width="60"
                                             height="90" class="rounded"></td>
-                                    <td>{{ $item->judul }}</td>
                                     <td>{{ $item->tipe }}</td>
                                     <td>{{ $item->kategorifilm?->kategori }}</td>
                                     <td>{{ $item->view }}</td>
@@ -179,9 +178,8 @@
                                                                         </div>
                                                                         <div class="img-profil mb-2">
                                                                             <img class="mx-auto rounded" id="preview"
-                                                                                src="#" alt="Preview"
-                                                                                height="150" width="266.66"
-                                                                                style="display: none;">
+                                                                                src="#" alt="Preview" height="150"
+                                                                                width="266.66" style="display: none;">
                                                                         </div>
                                                                         <div class="row">
                                                                             <div class="col-md-6">

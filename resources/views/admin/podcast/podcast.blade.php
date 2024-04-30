@@ -73,7 +73,7 @@
                             @foreach ($podcast as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td><img src="{{ asset('imgdb/' . $item->thumbnail) }}" alt="" width="120"
+                                    <td><img src="{{ asset('imgthum/' . $item->thumbnail) }}" alt="" width="120"
                                             height="60" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->channel }}</td>

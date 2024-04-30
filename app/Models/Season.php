@@ -20,4 +20,8 @@ class Season extends Model
     {
         return $this->hasMany(Episode::class, 'season_id', 'id');
     }
+
+    public function film(){
+        return $this->belongsTo(Film::class,'film_id','id');
+    }
 }

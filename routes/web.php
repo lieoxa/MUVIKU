@@ -104,3 +104,5 @@ Route::group(['namespace'=>'App\Http\Controllers'], function () {
     Route::resource('film', 'FilmController');
     Route::put('editeps', 'FilmController@put')->name('putEps');
 });
+
+Route::get('/getSeason', [FilmController::class, 'getSeason'])->name('getSeason');

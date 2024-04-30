@@ -28,7 +28,7 @@ class FilmController extends Controller
             'seasons' => Season::all(),
             'episodes' => Episode::all(),
         ]);
-    
+
     }
 
     public function season()
@@ -155,13 +155,13 @@ class FilmController extends Controller
             'view' => 'nullable',
         ]);
 
-        if ($request->thumbnail) {
-            $thumbnail = $request->file('thumbnail');
+        if ($request->thumb_eps) {
+            $thumbnail = $request->file('thumb_eps');
             $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-            $thumbnail->move(public_path('imgfilm'), $imgFile);
+            $thumbnail->move(public_path('imgthum'), $imgFile);
         } else {
-            $film = Film::find($id);
-            $thumbnail = $film->thumbnail;
+            $eps = Episode::find($id);
+            $thumbnail = $eps->thumbnail;
         }
 
         $film = Film::find($id);
@@ -207,7 +207,7 @@ class FilmController extends Controller
 
         $eps = Episode::find($id);
         $eps->serial = $request->serial;
-        $eps->season_id= $request->season_id;
+        $eps->season_id = $request->season_id;
         $eps->judul = $request->judul;
         $eps->thumb_eps = $thumbnail;
         $eps->vid_eps = $request->video;
@@ -228,5 +228,12 @@ class FilmController extends Controller
         $film->delete();
 
         return back()->with('success', 'Data Berhasil Di hapus');
+    }
+
+    public function getSeason(Request $request)
+    {
+
+        $seasons = Season::whereFilmId($request->film_id)->get();
+        return response()->json($seasons);
     }
 }

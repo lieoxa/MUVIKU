@@ -18,6 +18,11 @@
             background: #FFAE1F;
             color: white;
         }
+
+        .form-select:focus,
+        .form-control:focus {
+            border: 1px solid #dfe5ef;
+        }
     </style>
     <!-- --------------------------------------------------- -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
@@ -77,7 +82,7 @@
                     </div>
                     <div class="col-md-6 mb-3" id="video">
                         <label class="form-label">Video<span class="text-danger">*</span></label>
-                        <input required type="url" name="video" class="d-block form-control" x-model="video">
+                        <input type="url" name="video" class="form-control" x-model="video">
                     </div>
                     {{-- <div class="row mb-3"> --}}
                     <div class="col-md-6 mb-3">

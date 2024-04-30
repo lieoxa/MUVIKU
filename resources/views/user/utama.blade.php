@@ -111,7 +111,7 @@
                                         </span>
                                         <span class="text-btn2">Favorit</span>
                                     </button>
-                                    <img src="{{ asset('img/slide2.jpg') }}" class="w-100 rounded-5 img-slide-atas">
+                                    <img src="{{ asset('img/horror10.jpg') }}" class="w-100 rounded-5 img-slide-atas">
                                 </div>
                             </li>
                         </ul>
@@ -534,7 +534,7 @@
                                                     style="width: 25%;">
                                                 <img src="img/logo-podcast.png"
                                                     class="logo-podcast position-absolute">
-                                                <img src="{{ asset('imgdb/' . $item->thumbnail) }}" class="podcast">
+                                                <img src="{{ asset('imgthum/' . $item->thumbnail) }}" class="podcast">
                                             </div>
                                 @endforeach
                         </div>
@@ -785,7 +785,7 @@
                         @foreach ($films->where('id')->where('status', 'Publish')->where('kategori', 'Horror') as $item)
                             <div class="li position-relative">
                                 <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
-                                <img src="{{ asset('imgdb/' . $item->thumbnail) }}" class="card-img-top slider-img">
+                                <img src="{{ asset('imgthum/' . $item->thumbnail) }}" class="card-img-top slider-img">
                             </div>
                         @endforeach
 

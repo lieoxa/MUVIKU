@@ -96,22 +96,23 @@
                 <div class="table-responsive">
                     <table class="table search-table align-middle text-nowrap">
                         <thead class="header-item text-center">
+                            <th>Season</th>
                             <th>Episode</th>
                             <th>Thumbnail</th>
                             <th>Judul</th>
                             <th>Video</th>
-                            <th>Deskripsi</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </thead>
                         <tbody class="text-center">
                             @foreach ($episodes as $item)
                                 <tr>
+                                    <td>{{ $item->season_id }}</td>
+                                    <td>{{ $item->episode }}</td>
                                     <td><img src="{{ asset('imgfilm/' . $item->thumbnail) }}" alt="" width="120"
                                             height="60" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->thumb_eps }}</td>
-                                    <td>{{ $item->desk_eps }}</td>
                                     <td><span
                                             class="usr-status-kost @if ($item->is_publish == 1) published @endif">{{ $item->is_publish ? 'Publish' : 'Unpublish' }}</span>
                                     </td>
@@ -131,8 +132,7 @@
                                                 style="padding: 7px 18px" data-bs-toggle="modal" data-bs-target="#detail">
                                                 <i class="bi bi-eye"></i></button>
                                         </div>
-
-                                        <div class="modal fade text-start" id="edit-{{ $item->id }}"
+                                        {{-- <div class="modal fade text-start" id="edit-{{ $item->id }}"
                                             data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -160,11 +160,11 @@
                                                             <div class="col-6 mb-3">
                                                                 <label for="1" class="form-label">Season<span
                                                                         class="text-danger" x-model="">*</span></label>
-                                                                <select name="seasons" id="" class="form-select">
+                                                                <select name="season_id" id="" class="form-select">
                                                                     <option value="">Pilih...</option>
                                                                     @foreach ($seasons as $item)
-                                                                    <option value="{{ $item->id }}"
-                                                                    {{ $item->season_id == '{{ $item->season_id }}' ? 'selected' : '' }}>{{ $item->film_id }}</option>
+                                                                        <option value="{{ $item->id }}">
+                                                                            {{ $item->season }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -259,31 +259,41 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        {{-- <div class="modal fade text-start" id="detail" data-bs-backdrop="static"
-                                            tabindex="-1" data-bs-keyboard="false">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content px-3">
-                                                    <div class="modal-header d-flex align-items-center">
-                                                        <h5 class="modal-title fw-medium">Detail</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div> --}}
                                     </td>
                                 </tr>
                             @endforeach
-                            <!-- start row -->
                         </tbody>
                     </table>
                 </div>
             @else
+                <div class="card card-body px-4 p-2 mb-3">
+                    <div class="row">
+                        <div class="col-md-4 col-xl-3 my-auto">
+                            <h4 class="my-auto fw-medium" style="font-size: 18px">Daftar Episode</h4>
+                        </div>
+                        <div
+                            class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0 gap-1">
+                            <a href="{{ route('film.index') }}" class="btn btn-warning d-flex align-items-center"
+                                style="padding: 7px 16px 7px 16px;">
+                                Daftar Film
+                            </a>
+                            <a href="/daftarseason" class="btn btn-warning d-flex align-items-center"
+                                style="padding: 7px 16px 7px 16px;">
+                                Daftar Season
+                            </a>
+                            {{-- <a data-bs-toggle="modal" data-bs-target="#episode"
+                                class="btn btn-warning d-flex align-items-center" style="padding: 7px 16px 7px 10px;">
+                                <i class="ti ti-plus fs-5"></i>Episode
+                            </a> --}}
+                        </div>
+                    </div>
+                </div>
                 <div class="justify-content-center">
                     <div class="text-center">
                         <img src="img/empty-banner.png" width="300" style="margin-top: 120px; opacity: 0.5;"><br>
-                        <h6 class="fw-medium">Belum Ada Serial/Season!</h6>
-                        <a href="{{ route('film.create') }}" id="btn-add-contact"
+                        <h6 class="fw-medium">Belum Ada Episode!</h6>
+                        <a data-bs-toggle="modal" data-bs-target="#episode" id="btn-add-contact"
                             class="btn btn-warning justify-content-center mt-1 align-items-center"
                             style="padding: 7px 16px 7px 10px;">
                             <i class="bi bi-plus fs-5" style="vertical-align: -0.1em;"></i>Tambah
@@ -308,7 +318,7 @@
                     <div class="modal-body row">
                         <div class="col-6 mb-3 ">
                             <label class="form-label">Serial<span class="text-danger" x-model="">*</span></label>
-                            <select name="serial" id="" class="form-select">
+                            <select name="serial" id="film" class="form-select">
                                 <option value="">Pilih...</option>
                                 @foreach ($films->where('tipe', 'Serial') as $item)
                                     <option value="{{ $item->id }}">{{ $item->judul }}</option>
@@ -318,11 +328,11 @@
                         <div class="col-6 mb-3">
                             <label for="1" class="form-label">Season<span class="text-danger"
                                     x-model="">*</span></label>
-                            <select name="season_id" id="" class="form-select">
-                                <option value="">Pilih...</option>
+                            <select name="season_id" class="form-select" id="season">
+                                {{-- <option value="">Pilih...</option>
                                 @foreach ($seasons as $item)
                                     <option value="{{ $item->id }}">{{ $item->season }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                         <div class="col-12">
@@ -361,7 +371,7 @@
                                             <div class="mb-2 col-6">
                                                 <label for="exampleDropdownFormPassword1" class="form-label">Status<span
                                                         class="text-danger" x-model="">*</span></label>
-                                                <select name="is_publish" class="form-select" required>
+                                                <select name="is_publish" class="form-select">
                                                     <option value="1">Publish</option>
                                                     <option value="0" selected>Unpublish</option>
                                                 </select>
@@ -421,5 +431,38 @@
         $("body").on("click", "#DeleteRow", function() {
             $(this).parents("#row").remove();
         })
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $('document').ready(function(){
+            $('#film').change(function(){
+                let film_id = $(this).val();
+                // $('input[name="idDivisi"]').val(film_id);
+                if(film_id){
+                    // console.log(film_id);
+                    $.ajax({
+                        type:"GET",
+                        url:"{{ route('getSeason') }}",
+                        data: {'film_id': film_id},
+                        dataType: 'JSON',
+                        success:function(response){
+                            // console.log(response.season);
+                            if(response){
+                                $("#season").empty();
+                                $("#season").append('<option>---Pilih Season---</option>');
+                                $.each(response,function(key, value){
+                                    // console.log(value);
+                                    $("#season").append('<option value="'+value.id+'">'+value.season+'</option>');
+                                });
+                            }else{
+                                $("#season").empty();
+                            }
+                        }
+                    });
+                }else{
+                    $("#season").empty();
+                }
+            });
+        });
     </script>
 @endpush

@@ -68,7 +68,7 @@
 @section('content')
     <div class="widget-content searchable-container list">
         <!-- --------------------- start Contact ---------------- -->
-        @if (count($episodes) > 0)
+        @if (count($seasons) > 0)
             <div class="card card-body px-4 p-2 mb-3">
                 <div class="row">
                     <div class="col-md-4 col-xl-3 my-auto">
@@ -80,11 +80,12 @@
                             style="padding: 7px 16px 7px 16px;">
                             Daftar Film
                         </a>
-                        <a data-bs-toggle="modal" data-bs-target="#season"
-                            class="btn btn-warning d-flex align-items-center" style="padding: 7px 16px 7px 8px;">
+                        <a data-bs-toggle="modal" data-bs-target="#season" class="btn btn-warning d-flex align-items-center"
+                            style="padding: 7px 16px 7px 8px;">
                             <i class="ti ti-plus fs-5"></i>Season
                         </a>
-                        <a href="/daftareps" class="btn btn-warning d-flex align-items-center" style="padding: 7px 16px 7px 16px;">
+                        <a href="/daftareps" class="btn btn-warning d-flex align-items-center"
+                            style="padding: 7px 16px 7px 16px;">
                             Daftar Episode
                         </a>
                     </div>
@@ -95,22 +96,16 @@
                 <div class="table-responsive">
                     <table class="table search-table align-middle text-nowrap">
                         <thead class="header-item text-center">
+                            <th>Serial Judul</th>
                             <th>Season</th>
-                            <th>Thumbnail</th>
-                            <th>Judul</th>
-                            <th>Video</th>
-                            <th>Deskripsi</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </thead>
                         <tbody class="text-center">
-                            @foreach ($episodes as $item)
+                            @foreach ($seasons as $item)
                                 <tr>
-                                    <td><img src="{{ asset('imgfilm/' . $item->thumbnail) }}" alt="" width="120"
-                                            height="60" class="rounded"></td>
-                                    <td>{{ $item->judul }}</td>
-                                    <td>{{ $item->thumb_eps }}</td>
-                                    <td>{{ $item->desk_eps }}</td>
+                                    <td>{{ $item->film->judul }}</td>
+                                    <td>{{ $item->season }}</td>
                                     <td><span
                                             class="usr-status-kost @if ($item->is_publish == 1) published @endif">{{ $item->is_publish ? 'Publish' : 'Unpublish' }}</span>
                                     </td>
@@ -149,11 +144,33 @@
                     </table>
                 </div>
             @else
+                <div class="card card-body px-4 p-2 mb-3">
+                    <div class="row">
+                        <div class="col-md-4 col-xl-3 my-auto">
+                            <h4 class="my-auto fw-medium" style="font-size: 18px">Daftar Season</h4>
+                        </div>
+                        <div
+                            class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0 gap-1">
+                            <a href="{{ route('film.index') }}" class="btn btn-warning d-flex align-items-center"
+                                style="padding: 7px 16px 7px 16px;">
+                                Daftar Film
+                            </a>
+                            {{-- <a data-bs-toggle="modal" data-bs-target="#season"
+                                class="btn btn-warning d-flex align-items-center" style="padding: 7px 16px 7px 8px;">
+                                <i class="ti ti-plus fs-5"></i>Season
+                            </a> --}}
+                            <a href="/daftareps" class="btn btn-warning d-flex align-items-center"
+                                style="padding: 7px 16px 7px 16px;">
+                                Daftar Episode
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="justify-content-center">
                     <div class="text-center">
                         <img src="img/empty-banner.png" width="300" style="margin-top: 120px; opacity: 0.5;"><br>
-                        <h6 class="fw-medium">Belum Ada Serial/Season!</h6>
-                        <a href="{{ route('film.create') }}" id="btn-add-contact"
+                        <h6 class="fw-medium">Belum Ada Season!</h6>
+                        <a data-bs-toggle="modal" data-bs-target="#season" id="btn-add-contact"
                             class="btn btn-warning justify-content-center mt-1 align-items-center"
                             style="padding: 7px 16px 7px 10px;">
                             <i class="bi bi-plus fs-5" style="vertical-align: -0.1em;"></i>Tambah
@@ -177,7 +194,8 @@
                     </div>
                     <div class="modal-body row">
                         <div class="col-6 mb-3">
-                            <label for="#film"class="form-label">Serial<span class="text-danger" x-model="">*</span></label>
+                            <label for="#film"class="form-label">Serial<span class="text-danger"
+                                    x-model="">*</span></label>
                             <select name="film_id[]" id="film" class="form-select">
                                 <option value="">Pilih Serial...</option>
                                 @foreach ($films->where('tipe', 'Serial') as $item)
@@ -193,7 +211,8 @@
                             </select>
                         </div>
                         <div class="col-12 mb-3">
-                            <label for="#season" class="form-label">Season<span class="text-danger" x-model="">*</span></label>
+                            <label for="#season" class="form-label">Season<span class="text-danger"
+                                    x-model="">*</span></label>
                             <input type="text" id="season" name="season" class="form-control"
                                 placeholder="Ketik disini...">
                         </div>
@@ -315,6 +334,36 @@
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
     <script src="{{ asset('admin') }}/dist/libs/prismjs/prism.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#editForm').submit(function(e) {
+                e.preventDefault();
+
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/daftarseason/postSeason',
+                    data: formData,
+                    success: function(data) {
+                        $('#password').modal('hide');
+                        alert(data.success);
+                    },
+                    error: function(data) {
+                        var errors = data.responseJSON;
+                        $('#validation-errors').html('');
+                        $.each(errors.errors, function(key, value) {
+                            $('#validation-errors').show();
+                            $('#validation-errors').append(
+                                '<div class="alert alert-danger">' + value +
+                                '</div>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
     <script type="text/javascript">
         $("#rowAdder").click(function() {
             newRowAdd =

@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Request::is('film', 'film/*') ? 'active' : null }}"
+                    <a class="sidebar-link {{ Request::is('film', 'film/*', 'daftareps', 'daftarseason') ? 'active' : null }}"
                         href="{{ route('film.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-movie"></i>
