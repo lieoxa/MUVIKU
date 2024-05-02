@@ -109,10 +109,10 @@
                                 <tr>
                                     <td>{{ $item->season_id }}</td>
                                     <td>{{ $item->episode }}</td>
-                                    <td><img src="{{ asset('imgfilm/' . $item->thumbnail) }}" alt="" width="120"
+                                    <td><img src="{{ asset('imgthumb/' . $item->thumb_eps) }}" alt="" width="120"
                                             height="60" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
-                                    <td>{{ $item->thumb_eps }}</td>
+                                    <td>{{ $item->vid_eps }}</td>
                                     <td><span
                                             class="usr-status-kost @if ($item->is_publish == 1) published @endif">{{ $item->is_publish ? 'Publish' : 'Unpublish' }}</span>
                                     </td>
@@ -158,7 +158,7 @@
                                                                 </select>
                                                             </div>
                                                             <div class="col-6 mb-3">
-                                                                <label for="1" class="form-label">Season<span
+                                                                <label for="1" class="form-label">_<span
                                                                         class="text-danger" x-model="">*</span></label>
                                                                 <select name="season_id" id="" class="form-select">
                                                                     <option value="">Pilih...</option>
@@ -310,10 +310,10 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="{{ route('postEps') }}" method="POST" class="w-100">
+                <form action="{{ route('postEps') }}" method="POST" class="w-100" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Episode</h1>
+                        <h1 class="modal-title fs-5">Tambah Episode</h1>
                     </div>
                     <div class="modal-body row">
                         <div class="col-6 mb-3 ">
@@ -349,18 +349,23 @@
                                 <div class="dropdown-menu w-100 border" style="padding: 0.5rem 22px;">
                                     <div class="py-2">
                                         <div class="row">
-                                            <div class="mb-2 col-6">
+                                            <div class="mb-2 col-12">
                                                 <label for="judul-episode" class="form-label">Judul<span
                                                         class="text-danger" x-model="">*</span></label>
                                                 <input type="text" name="judul" class="form-control"
                                                     id="judul-episode" placeholder="Ketik disini...">
                                             </div>
                                             <div class="mb-2 col-6">
+                                                <label for="judul-episode" class="form-label">Episode<span
+                                                        class="text-danger" x-model="">*</span></label>
+                                                <input type="text" name="episode" class="form-control"
+                                                    id="judul-episode" placeholder="Ketik disini...">
+                                            </div>
+                                            <div class="mb-2 col-6">
                                                 <label for="exampleDropdownFormPassword1"
                                                     class="form-label">Thumbnail<span class="text-danger"
                                                         x-model="">*</span></label>
-                                                <input type="file" class="form-control" name="thumb_eps"
-                                                    id="exampleDropdownFormPassword1">
+                                                <input type="file" class="form-control" name="thumb_eps">
                                             </div>
                                             <div class="mb-2 col-6">
                                                 <label for="exampleDropdownFormPassword1" class="form-label">Video<span
@@ -406,6 +411,7 @@
 @endsection
 
 @push('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
     <script src="{{ asset('admin') }}/dist/libs/bootstrap-table/dist/bootstrap-table.min.js"></script>
     <script src="{{ asset('admin') }}/dist/js/plugins/tables/bootstrap-table.init.js"></script>
@@ -419,8 +425,9 @@
                 '<div id="row" class="row"> <div class="col-12 mb-2"> <div class="input-group-prepend"> <div class="btn-group w-100">' +
                 '<button type="button" class="btn btn-light-primary text-primary dropdown-toggle rounded-end-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Form Episode </button>' +
                 '<div><button class="btn btn-danger rounded-start-0" id="DeleteRow" type="button"> <i class="bi bi-trash"></i></button></div> ' +
-                '<div class="dropdown-menu w-100 border" style="padding: 0.5rem 22px;"> <div class="py-2"> <div class="row"> <div class="mb-2 col-6">' +
+                '<div class="dropdown-menu w-100 border" style="padding: 0.5rem 22px;"> <div class="py-2"> <div class="row"> <div class="mb-2 col-12">' +
                 '<label for="exampleDropdownFormEmail1" class="form-label">Judul</label> <input type="text" class="form-control" name="judul" id=""placeholder="Ketik disini..." /></div>' +
+                '<div class="mb-2 col-6"> <label for = "judul-episode" class = "form-label" > Episode <span class = "text-danger" x - model = "" > * </span></label ><input type = "text" name = "episode" class = "form-control" id = "judul-episode" placeholder = "Ketik disini..." ></div>' +
                 '<div class="mb-2 col-6"> <label for="" class="form-label">Thumbnail</label> <input type="file" class="form-control" name="thumb_eps" id=""></div>' +
                 '<div class="mb-2 col-6"> <label for="" class="form-label">Video</label> <input type="url" class="form-control" id="" name="vid_eps"> </div>' +
                 '<div class="mb-2 col-6"> <label for="" class="form-label">Status</label> <select name="is_publish" class="form-select" required> <option value="1">Publish</option> <option value="0" selected>Unpublish</option> </select> </div>' +
@@ -431,35 +438,36 @@
         $("body").on("click", "#DeleteRow", function() {
             $(this).parents("#row").remove();
         })
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        $('document').ready(function(){
-            $('#film').change(function(){
+        // 
+        $('document').ready(function() {
+            $('#film').change(function() {
                 let film_id = $(this).val();
                 // $('input[name="idDivisi"]').val(film_id);
-                if(film_id){
+                if (film_id) {
                     // console.log(film_id);
                     $.ajax({
-                        type:"GET",
-                        url:"{{ route('getSeason') }}",
-                        data: {'film_id': film_id},
+                        type: "GET",
+                        url: "{{ route('getSeason') }}",
+                        data: {
+                            'film_id': film_id
+                        },
                         dataType: 'JSON',
-                        success:function(response){
+                        success: function(response) {
                             // console.log(response.season);
-                            if(response){
+                            if (response) {
                                 $("#season").empty();
                                 $("#season").append('<option>---Pilih Season---</option>');
-                                $.each(response,function(key, value){
+                                $.each(response, function(key, value) {
                                     // console.log(value);
-                                    $("#season").append('<option value="'+value.id+'">'+value.season+'</option>');
+                                    $("#season").append('<option value="' + value.id +
+                                        '">' + value.season + '</option>');
                                 });
-                            }else{
+                            } else {
                                 $("#season").empty();
                             }
                         }
                     });
-                }else{
+                } else {
                     $("#season").empty();
                 }
             });

@@ -40,6 +40,15 @@ class FilmController extends Controller
         ]);
     }
 
+    public function detail()
+    {
+        return view('admin.film.detail')->with([
+            'films' => Film::all(),
+            'seasons' => Season::all(),
+            'episodes' => Episode::all(),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -107,8 +116,23 @@ class FilmController extends Controller
 
     public function postEps(Request $request)
     {
-        $episode = Episode::create($request->all());
-        $episode->episode()->attach($request->input('season_id'));
+        // dd($request);
+
+        $thumbnail = $request->file('thumb_eps');
+        $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
+        $thumbnail->move(public_path('imgthumb'), $imgFile);
+
+        $episode = Episode::create([
+            'season_id' => $request->input('season_id'),
+            'episode' => $request->input('episode'),
+            'serial' => $request->input('serial'),
+            'judul' => $request->input('judul'),
+            'thumb_eps' => $imgFile,
+            'vid_eps' => $request->input('vid_eps'),
+            'desk_eps' => $request->input('desk_eps'),
+            'is_publish' => $request->input('is_publish'),
+        ]);
+
         return redirect()->back()->with('status', 'Episode berhasil ditambahkan');
     }
 
@@ -156,12 +180,12 @@ class FilmController extends Controller
         ]);
 
         if ($request->thumb_eps) {
-            $thumbnail = $request->file('thumb_eps');
+            $thumbnail = $request->file('thumbnail');
             $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
             $thumbnail->move(public_path('imgthum'), $imgFile);
         } else {
-            $eps = Episode::find($id);
-            $thumbnail = $eps->thumbnail;
+            $imgFile = Film::find($id);
+            $thumbnail = $imgFile->thumbnail;
         }
 
         $film = Film::find($id);

@@ -29,7 +29,8 @@
             @if (Auth::user())
                 {{-- <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="40.59" height="40.59"> --}}
                 <a href="/profile">
-                    <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}" class="navbar-brand my-auto me-0 rounded-circle foto py-0" height="40.59" width="40.59">
+                    <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
+                        class="navbar-brand my-auto me-0 rounded-circle foto py-0" height="40.59" width="40.59">
                 </a>
             @else
                 <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
@@ -198,11 +199,13 @@
                         <section class="splide new-1" aria-label="Splide Basic HTML Example">
                             <div class="splide__track">
                                 <ul class="splide__list">
-                                    <li onclick="window.location='{{ route('op') }}'" class="splide__slide li">
-                                        <img src="{{ asset('img/anim.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
+                                    @foreach ($films->where('status', 'Publish') as $item)
+                                        <li class="splide__slide li">
+                                            <img src="{{ asset('imgthum/' . $item->thumbnail) }}" class="card-img-top slider-img"
+                                                alt="...">
+                                        </li>
+                                    @endforeach
+                                    {{-- <li class="splide__slide li">
                                         <img src="{{ asset('img/hero.jpg') }}" class="card-img-top slider-img"
                                             alt="...">
                                     </li>
@@ -281,7 +284,7 @@
                                     <li class="splide__slide li">
                                         <img src="{{ asset('img/comedy5.jpg') }}" class="card-img-top slider-img"
                                             alt="...">
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </section>
@@ -534,7 +537,8 @@
                                                     style="width: 25%;">
                                                 <img src="img/logo-podcast.png"
                                                     class="logo-podcast position-absolute">
-                                                <img src="{{ asset('imgthum/' . $item->thumbnail) }}" class="podcast">
+                                                <img src="{{ asset('imgthum/' . $item->thumbnail) }}"
+                                                    class="podcast">
                                             </div>
                                 @endforeach
                         </div>
@@ -785,7 +789,8 @@
                         @foreach ($films->where('id')->where('status', 'Publish')->where('kategori', 'Horror') as $item)
                             <div class="li position-relative">
                                 <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
-                                <img src="{{ asset('imgthum/' . $item->thumbnail) }}" class="card-img-top slider-img">
+                                <img src="{{ asset('imgthum/' . $item->thumbnail) }}"
+                                    class="card-img-top slider-img">
                             </div>
                         @endforeach
 
@@ -1071,14 +1076,14 @@
                         <i class="bi bi-person fs-4" aria-hidden="true"></i>
                         <span style="margin-top: -4px">Profil</span>
                     </a>
-                </li>
-            @else
-                <li>
-                    <a href="{{ route('login') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
-                        <i class="bi bi-person fs-4" aria-hidden="true"></i>
-                        <span style="margin-top: -4px">Profil</span>
-                    </a>
-                </li>
+            </li>
+        @else
+            <li>
+                <a href="{{ route('login') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                    <i class="bi bi-person fs-4" aria-hidden="true"></i>
+                    <span style="margin-top: -4px">Profil</span>
+                </a>
+            </li>
             @endif
 
         </div>
@@ -1144,7 +1149,7 @@
         splide.mount();
     </script>
 
-    <script>
+    {{-- <script>
         var splide = new Splide('.splide.slider-1', {
             // perPage: 5,
             // type: 'loop',
@@ -1160,7 +1165,7 @@
             // omitEnd: true,
         });
         splide.mount();
-    </script>
+    </script> --}}
 
     <Script>
         var splide = new Splide('.splide.new-1', {

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
+            $table->string('episode');
             $table->foreignId('season_id');
-            $table->string('episode')->nullable();
+            $table->string('serial');
             $table->string('judul');
             $table->string('thumb_eps')->nullable();
             $table->string('vid_eps')->nullable();
