@@ -254,10 +254,59 @@ class FilmController extends Controller
         return back()->with('success', 'Data Berhasil Di hapus');
     }
 
+    // public function deleteEps(string $id)
+    // {
+    //     $episode = Episode::find($id);
+    //     $episode->delete();
+
+    //     return back()->with('success', 'Data Berhasil Di hapus');
+    // }
+
     public function getSeason(Request $request)
     {
 
         $seasons = Season::whereFilmId($request->film_id)->get();
         return response()->json($seasons);
     }
+
+    public function getEpisode(Request $request)
+{
+    $episodes = Episode::whereSeasonId($request->season_id)->get();
+    
+    $data_episode = '';
+    if(count($episodes) > 0){
+        foreach($episodes as $episode){
+            // Set warna font berdasarkan is_publish
+            if($episode->is_publish == 1){
+                $is_publish = '<span style="color: green;">Published</span>';
+            } else {
+                $is_publish = '<span style="color: red;">Unpublished</span>';
+            }
+            $data_episode .= 
+                '<tr>
+                    <td class="text-center py-4">' . $episode->episode . '</td>
+                    <td class="text-center py-4">' . $episode->judul . '</td>
+                    <td class="text-center py-3"><img src="' .asset('imgthumb/' . $episode->thumb_eps). '" alt="" width="50" height="34" class="rounded"></td>
+                    <td class="text-center py-4">' . $is_publish . '</td>
+                    <td class="text-center">
+                        <button class="ms-0 btn btn-outline-danger ms-2">
+                            <i class="ti ti-trash fs-5"></i>
+                        </button>
+                        <a href=""
+                            class="btn btn-outline-warning ms-1"
+                            style="padding: 7px 18px">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+                </tr>';
+        }
+    }
+
+    $data = array(
+        'table_episode' => $data_episode
+    );
+
+    echo json_encode($data);
+}
+
 }
