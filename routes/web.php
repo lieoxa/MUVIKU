@@ -103,8 +103,11 @@ Route::get('detailserial', [FilmController::class, 'detail']);
 Route::group(['namespace'=>'App\Http\Controllers'], function () {
     Route::post('season', 'FilmController@post')->name('postSeason');
     Route::post('episode', 'FilmController@postEps')->name('postEps');
-    // Route::delete('episode', 'FilmController@deleteEps')->name('deleteEps');
+    Route::post('editEps/{id}', [FilmController::class, 'editEps'])->name('editEps');
+    Route::get('/episode/{id}', [FilmController::class, 'deleteEps'])->name('deleteEps');
+    Route::get('/season/{id}', [FilmController::class, 'deleteSeason'])->name('deleteSeason');
     Route::resource('film', 'FilmController');
+    // Route::delete('episode', 'FilmController@deleteEps')->name('deleteEps');
     // Route::put('editeps', 'FilmController@put')->name('putEps');
 });
 

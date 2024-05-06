@@ -76,13 +76,9 @@
                             style="padding: 7px 16px 7px 10px;">
                             <i class="ti ti-plus fs-5"></i>Tambah
                         </a>
-                        <a href="/daftarseason" class="btn btn-warning d-flex align-items-center"
+                        <a href="/detailserial" class="btn btn-warning d-flex align-items-center"
                             style="padding: 7px 16px 7px 16px;">
-                            Daftar Season
-                        </a>
-                        <a href="/daftareps" class="btn btn-warning d-flex align-items-center"
-                            style="padding: 7px 16px 7px 16px;">
-                            Daftar Episode
+                            Season & Episode
                         </a>
                     </div>
                 </div>

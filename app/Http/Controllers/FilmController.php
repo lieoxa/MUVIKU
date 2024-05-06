@@ -81,7 +81,7 @@ class FilmController extends Controller
 
         $thumbnail = $request->file('thumbnail');
         $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-        $thumbnail->move(public_path('imgfilm'), $imgFile);
+        $thumbnail->move(public_path('imgthumb'), $imgFile);
 
 
         $film = new Film;
@@ -208,7 +208,7 @@ class FilmController extends Controller
         return redirect()->route('film.index')->with('success', 'Film berhasil diedit.');
     }
 
-    public function editeps(Request $request, string $id)
+    public function editEps(Request $request, string $id)
     {
         $request->validate([
             'serial' => 'required',
@@ -254,13 +254,24 @@ class FilmController extends Controller
         return back()->with('success', 'Data Berhasil Di hapus');
     }
 
-    // public function deleteEps(string $id)
-    // {
-    //     $episode = Episode::find($id);
-    //     $episode->delete();
+    public function deleteSeason(string $id)
+    {
+        $season = Season::find($id);
+        // dd($episode);
+        $season->delete();
 
-    //     return back()->with('success', 'Data Berhasil Di hapus');
-    // }
+        return back()->with('success', 'Data Berhasil Di hapus');
+    }
+
+
+    public function deleteEps(string $id)
+    {
+        $episode = Episode::find($id);
+        // dd($episode);
+        $episode->delete();
+
+        return back()->with('success', 'Data Berhasil Di hapus');
+    }
 
     public function getSeason(Request $request)
     {
@@ -289,13 +300,16 @@ class FilmController extends Controller
                     <td class="text-center py-3"><img src="' .asset('imgthumb/' . $episode->thumb_eps). '" alt="" width="50" height="34" class="rounded"></td>
                     <td class="text-center py-4">' . $is_publish . '</td>
                     <td class="text-center">
-                        <button class="ms-0 btn btn-outline-danger ms-2">
-                            <i class="ti ti-trash fs-5"></i>
-                        </button>
-                        <a href=""
+                        <a href="' .route('editEps', $episode->id). '" data-bs-toggle="modal" data-bs-target="#edit_episode-{{ $episodes->id }}"
                             class="btn btn-outline-warning ms-1"
                             style="padding: 7px 18px">
                             <i class="bi bi-pencil-square"></i>
+                        </a>
+                    
+                        <a href="' .route('deleteEps', $episode->id). '"
+                            class="btn btn-outline-danger ms-1"
+                            style="padding: 7px 18px">
+                            <i class="bi bi-trash"></i>
                         </a>
                     </td>
                 </tr>';

@@ -24,13 +24,13 @@
         }
 
         .published {
-            color: rgb(0, 192, 0);
-            font-weight: medium;
+            color: green;
+            /* Warna font hijau untuk status publish */
         }
 
-        .Unpublish {
+        .unpublished {
             color: red;
-            font-weight: medium;
+            /* Warna font merah untuk status unpublish */
         }
 
         p {
@@ -62,6 +62,10 @@
         .form-label {
             color: #646464;
         }
+
+        .dropdown-toggle::after {
+            margin-left: 0px;
+        }
     </style>
 @endsection
 
@@ -76,7 +80,7 @@
                     class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0 gap-1">
                     <a href="{{ route('film.index') }}" class="btn btn-warning d-flex align-items-center"
                         style="padding: 7px 16px 7px 16px;">
-                        Daftar Film
+                        Daftar Film & Serial
                     </a>
                     <a data-bs-toggle="modal" data-bs-target="#modal_season"
                         class="btn btn-warning d-flex align-items-center" style="padding: 7px 16px 7px 8px;">
@@ -120,22 +124,40 @@
                                         class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light"
                                         id="invoice-123">
                                         <div class="rounded d-flex align-items-center justify-content-center gap-2">
-                                            <input type="radio" id="season_id" name="season" value="{{ $item->id }}" class="pe-2 season">
-                                            <img src="{{ asset('imgfilm/' . $item->film->thumbnail) }}" alt=""
-                                                width="34" height="45" class="rounded">
+                                            <input type="radio" id="season_id" name="season" value="{{ $item->id }}"
+                                                class="pe-2 season" hidden>
+                                            <img src="{{ asset('imgthumb/' . $item->film->thumbnail) }}" alt=""
+                                                width="40" height="58.8" class="rounded">
                                         </div>
                                         <div class="ms-3 d-inline-block w-75">
                                             <h6 class="mb-0 invoice-customer">{{ $item->film->judul }}</h6>
-
                                             <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Season
                                                 {{ $item->season }}</span>
+                                            <small
+                                                class="usr-status-kost {{ $item->is_publish ? 'published' : 'unpublished' }}">
+                                                {{ $item->is_publish ? 'Publish' : 'Unpublish' }}
+                                            </small>
+
                                             {{-- <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab
                                                     2020</span> --}}
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn p-0 border-0" type="button" data-bs-toggle="dropdown"
+                                                aria-expanded="false"><i class="ti ti-dots-vertical"
+                                                    style="font-size: 15px"></i>
+                                            </button>
+                                            <ul class="dropdown-menu p-0 rounded-1" style="background: #fbfbfb">
+                                                <li><a class="dropdown-item text-warning" href="#"><i
+                                                            class="ti ti-pencil"></i> Edit</a></li>
+                                                <li class="border border-gray-200"></li>
+                                                <li><a href="{{ route('deleteSeason', $item->id) }}"
+                                                        class="dropdown-item text-danger"><i class="ti ti-trash"></i>
+                                                        Hapus</a></li>
+                                            </ul>
                                         </div>
                                     </label>
                                 </li>
                             @endforeach
-
                         </ul>
                     </div>
                 </div>
@@ -468,7 +490,7 @@
                         <h5 class="modal-title" id="exampleModalLabel">Tambah Season</h5>
                     </div>
                     <div class="modal-body row">
-                        <div class="col-6 mb-3">
+                        <div class="col-12 mb-3">
                             <label for="#film"class="form-label">Serial<span class="text-danger"
                                     x-model="">*</span></label>
                             <select name="film_id[]" id="film" class="form-select">
@@ -485,7 +507,7 @@
                                 <option value="0" selected>Unpublish</option>
                             </select>
                         </div>
-                        <div class="col-12 mb-3">
+                        <div class="col-6 mb-3">
                             <label for="#input_season" class="form-label">Season<span class="text-danger"
                                     x-model="">*</span></label>
                             <input type="text" id="input_season" name="season" class="form-control"
@@ -501,6 +523,50 @@
             </form>
         </div>
     </div>
+    {{-- <div class="modal fade" id="edit_season" data-bs-backdrop="static" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form action="{{ route('postSeason') }}" method="POST" class="w-100">
+                {{ csrf_field() }}
+                @method('put')
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Season</h5>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="col-12 mb-3">
+                            <label for="#film"class="form-label">Serial<span class="text-danger"
+                                    x-model="">*</span></label>
+                            <select name="film_id[]" id="film" class="form-select">
+                                <option value="">Pilih Serial...</option>
+                                @foreach ($films->where('tipe', 'Serial') as $item)
+                                    <option value="{{ $item->id }}" {{ $item }}>{{ $item->judul }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label">Status<span class="text-danger" x-model="">*</span></label>
+                            <select name="is_publish" class="form-select mr-sm-2" required>
+                                <option value="1" {{ $films->is_publish == 1 ? 'selected' : '' }}>Publish</option>
+                                <option value="0" {{ $films->is_publish == 0 ? 'selected' : '' }}>Unpublish</option>
+                            </select>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="#input_season" class="form-label">Season<span class="text-danger"
+                                    x-model="">*</span></label>
+                            <input type="text" id="input_season" name="season" class="form-control"
+                                placeholder="Ketik disini..." value="{{ $films->season }}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light text-white" style="background: #5c5c5c;"
+                            data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-warning">Tambah</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> --}}
     <div class="modal fade" id="episode" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -524,10 +590,6 @@
                             <label for="1" class="form-label">Season<span class="text-danger"
                                     x-model="">*</span></label>
                             <select name="season_id" class="form-select" id="season">
-                                {{-- <option value="">Pilih...</option>
-                                @foreach ($seasons as $item)
-                                    <option value="{{ $item->id }}">{{ $item->season }}</option>
-                                @endforeach --}}
                             </select>
                         </div>
                         <div class="col-12">
@@ -602,6 +664,76 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="edit_episode-{{ $episodes->id }}" data-bs-backdrop="static" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('editEps') }}" method="POST" class="w-100" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    @method('put')
+                    <input type="hidden" name="id" value="{{ $episodes->id }}">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Edit Episode</h1>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="col-6 mb-3 ">
+                            <label class="form-label">Serial<span class="text-danger" x-model="">*</span></label>
+                            <select name="serial" id="getSeason" class="form-select">
+                                <option value="">Pilih...</option>
+                                <option value="{{ $item->id }}">{{ $item->judul }}</option>
+                            </select>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="1" class="form-label">Season<span class="text-danger"
+                                    x-model="">*</span></label>
+                            <select name="season_id" class="form-select" id="season">
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="judul-episode" class="form-label">Judul<span class="text-danger"
+                                    x-model="">*</span></label>
+                            <input type="text" name="judul" class="form-control" id="judul-episode"
+                                placeholder="Ketik disini..." value="{{ $episodes->judul }}">
+                        </div>
+                        <div class="mb-2 col-6">
+                            <label for="judul-episode" class="form-label">Episode<span class="text-danger"
+                                    x-model="">*</span></label>
+                            <input type="text" name="episode" class="form-control" id="judul-episode"
+                                placeholder="Ketik disini...">
+                        </div>
+                        <div class="mb-2 col-6">
+                            <label for="exampleDropdownFormPassword1" class="form-label">Thumbnail<span
+                                    class="text-danger" x-model="">*</span></label>
+                            <input type="file" class="form-control" name="thumb_eps">
+                        </div>
+                        <div class="mb-2 col-6">
+                            <label for="exampleDropdownFormPassword1" class="form-label">Video<span class="text-danger"
+                                    x-model="">*</span></label>
+                            <input type="url" class="form-control" name="vid_eps" id="exampleDropdownFormPassword1" value="">
+                        </div>
+                        <div class="mb-2 col-6">
+                            <label for="exampleDropdownFormPassword1" class="form-label">Status<span class="text-danger"
+                                    x-model="">*</span></label>
+                            <select name="is_publish" class="form-select">
+                                <option value="1">Publish</option>
+                                <option value="0" selected>Unpublish</option>
+                            </select>
+                        </div>
+                        <div class="mb-2 col-12">
+                            <label for="exampleDropdownFormPassword1" class="form-label d-block">Deskripsi<span
+                                    class="text-danger" x-model="">*</span></label>
+                            <textarea name="desk_eps" id="" class="d-block form-control py-1 px-2" style="resize: none; height: 85px;"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light text-white" style="background: #5c5c5c;"
+                            data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-warning">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
@@ -633,7 +765,7 @@
         })
         // 
         // $('document').ready(function() {
-            
+
         // });
     </script>
     <script>
