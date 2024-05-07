@@ -108,7 +108,6 @@
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Status<span class="text-danger">*</span></label>
                     <select name="is_publish" class="form-select mr-sm-2">
-                        <option value="">Pilih...</option>
                         <option value="1" {{ $films->is_publish == 1 ? 'selected' : '' }}>Publish</option>
                         <option value="0" {{ $films->is_publish == 0 ? 'selected' : '' }}>Unpublish</option>
                     </select>

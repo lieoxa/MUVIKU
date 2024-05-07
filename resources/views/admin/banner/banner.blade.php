@@ -89,7 +89,7 @@
                         <tbody class="text-center">
                             @foreach ($banner as $items)
                                 <tr>
-                                    <td class="w-0">{{ $items->id }}</td>
+                                    <td class="w-0">{{ $loop->iteration }}</td>
                                     <td><img src="{{ asset('imgdb/' . $items->gambar) }}" alt="" width="120"
                                             height="60" class="rounded"></td>
                                     <td>{{ $items->nama }}</td>
@@ -190,9 +190,6 @@
                                                                                     <option value="Unpublish"
                                                                                         {{ $items->status == 'Unpublish' ? 'selected' : '' }}>
                                                                                         Unpublish</option>
-                                                                                    @error('status')
-                                                                                        {{ $message }}
-                                                                                    @enderror
                                                                                 </select>
                                                                             </div>
                                                                         </div>

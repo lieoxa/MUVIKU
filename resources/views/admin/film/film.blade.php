@@ -100,7 +100,7 @@
                         <tbody class="text-center">
                             @foreach ($films as $item)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->judul }}</td>
                                     <td><img src="{{ asset('imgthumb/' . $item->thumbnail) }}" alt="" width="60"
                                             height="90" class="rounded"></td>

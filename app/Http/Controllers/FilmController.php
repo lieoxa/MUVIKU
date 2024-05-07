@@ -116,22 +116,50 @@ class FilmController extends Controller
 
     public function postEps(Request $request)
     {
-        // dd($request);
-
-        $thumbnail = $request->file('thumb_eps');
-        $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-        $thumbnail->move(public_path('imgthumb'), $imgFile);
-
-        $episode = Episode::create([
-            'season_id' => $request->input('season_id'),
-            'episode' => $request->input('episode'),
-            'serial' => $request->input('serial'),
-            'judul' => $request->input('judul'),
-            'thumb_eps' => $imgFile,
-            'vid_eps' => $request->input('vid_eps'),
-            'desk_eps' => $request->input('desk_eps'),
-            'is_publish' => $request->input('is_publish'),
+        $request->validate([
+            'season_id' => 'required',
+            'episode' => 'required',
+            'serial' => 'required',
+            'judul' => 'required',
+            'thumb_eps' => 'required',
+            'desk_eps' => 'required',
+            'is_publish' => 'required',
         ]);
+
+        dd($request);
+
+        $getArrays = [];
+        foreach ($request->judul as $key => $judul) {
+            $getArrays[] = [
+                'judul'=>$request->judul[$key],
+                'serial'=>$request->serial,
+                'season_id'=>$request->season_id,
+                'episode'=>$request->episode[$key],
+                'vid_eps'=>$request->vid_eps[$key],
+                'is_publish'=>$request->is_publish[$key],
+                'thumb_eps'=>$request->thumb_eps[$key],
+                'desk_eps'=>$request->desk_eps[$key],
+            ];
+        }
+        // dd($getArrays);
+
+        foreach ($getArrays as $key => $getArray) {
+            // dd($getArray);
+            $thumbnail = $getArray['thumb_eps'];
+            $imgFile = time() . rand() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('imgthumb'), $imgFile);
+
+            Episode::create([
+                'season_id' => $getArray['season_id'],
+                'episode' => $getArray['episode'],
+                'serial' => $getArray['serial'],
+                'judul' => $getArray['judul'],
+                'thumb_eps' => $imgFile,
+                'vid_eps' => $getArray['vid_eps'],
+                'desk_eps' => $getArray['desk_eps'],
+                'is_publish' => $getArray['is_publish'],
+            ]);
+        }
 
         return redirect()->back()->with('status', 'Episode berhasil ditambahkan');
     }
@@ -210,6 +238,7 @@ class FilmController extends Controller
 
     public function editEps(Request $request, string $id)
     {
+        dd($request);
         $request->validate([
             'serial' => 'required',
             'season_id' => 'nullable',
@@ -240,7 +269,26 @@ class FilmController extends Controller
 
         $eps->save();
 
-        return redirect()->route('daftareps')->with('success', 'Film berhasil diedit.');
+        return redirect()->route('detailserial')->with('success', 'Film berhasil diedit.');
+    }
+    
+    public function editSeason(Request $request, string $id)
+    {
+        $request->validate([
+            'film_id' => 'required',
+            'season' => 'required',
+            'is_publish' => 'required',
+        ]);
+
+        // dd($request->film_id);
+        $season = Season::find($id);
+        $season->film_id = $request->film_id;
+        $season->season = $request->season;
+        $season->is_publish = $request->is_publish;
+
+        $season->save();
+
+        return back()->with('success', 'Film berhasil diedit.');
     }
 
     /**
@@ -275,7 +323,6 @@ class FilmController extends Controller
 
     public function getSeason(Request $request)
     {
-
         $seasons = Season::whereFilmId($request->film_id)->get();
         return response()->json($seasons);
     }
@@ -300,7 +347,7 @@ class FilmController extends Controller
                     <td class="text-center py-3"><img src="' .asset('imgthumb/' . $episode->thumb_eps). '" alt="" width="50" height="34" class="rounded"></td>
                     <td class="text-center py-4">' . $is_publish . '</td>
                     <td class="text-center">
-                        <a href="' .route('editEps', $episode->id). '" data-bs-toggle="modal" data-bs-target="#edit_episode-{{ $episodes->id }}"
+                        <a data-bs-toggle="modal" data-bs-target="#edit-episode-{{ $episode->id }}"
                             class="btn btn-outline-warning ms-1"
                             style="padding: 7px 18px">
                             <i class="bi bi-pencil-square"></i>

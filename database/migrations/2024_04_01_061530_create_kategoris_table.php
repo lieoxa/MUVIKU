@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
             $table->string('kategori');
+            $table->boolean('is_publish')->default(0);
             $table->timestamps();
         });
     }

@@ -171,7 +171,7 @@
 
 
     <div class="modal bg-modal fade" id="lapor" tabindex="-1" aria-labelledby="laporLabel" aria-hidden="true">
-        <div class="modal-dialog container my-auto">
+        <div class="modal-dialog container modal-dialog-centered">
             <div class="modal-content rounded-5 lapor mx-auto">
                 <div class="modal-header border-bottom-0 d-block pt-0">
                     <h1 class="modal-title fs-5" id="laporLabel">Laporkan Kesalahan Film</h1>

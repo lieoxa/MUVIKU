@@ -10,13 +10,13 @@
         }
 
         .published {
-            color: rgb(0, 192, 0);
-            font-weight: bolder;
+            color: green;
+            /* Warna font hijau untuk status publish */
         }
 
-        .Unpublish {
+        .unpublished {
             color: red;
-            font-weight: bolder;
+            /* Warna font merah untuk status unpublish */
         }
 
         .btn.disabled {
@@ -69,8 +69,8 @@
                 </div>
             </div>
             <!-- ---------------------
-                                                            end Contact
-                                                            ---------------- -->
+                                                                        end Contact
+                                                                        ---------------- -->
             <!-- Modal -->
 
             <div class="card card-body">
@@ -79,13 +79,17 @@
                         <thead class="header-item text-center">
                             <th class="w-0">No.</th>
                             <th>Nama Kategori</th>
+                            <th>Status</th>
                             <th class="text-center justify-content-center">Aksi</th>
                         </thead>
                         <tbody class="text-center">
                             @foreach ($kategoris as $items)
                                 <tr>
-                                    <td class="w-0">{{ $items->id }}</td>
+                                    <td class="w-0">{{ $loop->iteration }}</td>
                                     <td>{{ $items->kategori }}</td>
+                                    <td><span class="usr-status-kost {{ $items->is_publish ? 'published' : 'unpublished' }}">
+                                            {{ $items->is_publish ? 'Publish' : 'Unpublish' }}</span>
+                                    </td>
                                     <td class="px-0">
                                         <div class="action-btn d-flex justify-content-center">
                                             <form action="{{ route('kategori.destroy', $items->id) }}" method="POST">
@@ -108,22 +112,27 @@
                                                     <div class="modal-header d-flex align-items-center">
                                                         <h5 class="modal-title">Edit</h5>
                                                     </div>
-                                                    <form action="{{ route('kategori.update', $items->id) }}" method="POST" enctype="multipart/form-data">
+                                                    <form action="{{ route('kategori.update', $items->id) }}" method="POST"
+                                                        enctype="multipart/form-data">
                                                         @csrf
                                                         @method('put')
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class=" contact-name">
-                                                                    <label for="">Nama Kategori</label><span class="text-danger">*</span>
-                                                                    <input type="text" class="form-control" placeholder="Ketik..."
-                                                                        name="kategori" value="{{ $items->kategori }}">
+                                                                    <label for="">Nama Kategori</label><span
+                                                                        class="text-danger">*</span>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Ketik..." name="kategori"
+                                                                        value="{{ $items->kategori }}">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn rounded-2 px-3"
-                                                                style="background: #5c5c5c; color: white;" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" id="btn-add" class="rounded-2 px-3 btn btn-warning border-0"
+                                                                style="background: #5c5c5c; color: white;"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" id="btn-add"
+                                                                class="rounded-2 px-3 btn btn-warning border-0"
                                                                 :class="kategori ? null : 'disabled'">Tambah</button>
                                                         </div>
                                                     </form>
@@ -154,7 +163,7 @@
     </div>
     <div class="modal fade" id="create" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document" x-data="{ kategori: '' }">
+        <div class="modal-dialog modal-dialog-centered" role="document" x-data="{ kategori: '', status: 'Unpublish', }">
             <div class="modal-content px-2">
                 <div class="modal-header d-flex align-items-center">
                     <h5 class="modal-title">Tambah Kategori</h5>
@@ -165,18 +174,20 @@
                             <form action="{{ route('kategori.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class=" contact-name">
                                             <label for="">Nama Kategori</label><span class="text-danger">*</span>
                                             <input type="text" class="form-control" placeholder="Ketik..."
                                                 name="kategori" x-model="kategori" />
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mt-3" x-show="lokasi == 'product'">
-                                        <label for="">Icon Kategori</label>
-                                        <div class="mb-3 contact-email" x-model="gambar">
-                                            <input type="file" class="form-control" name="gambar" placeholder="" />
-                                            <span class="validation-text text-danger"></span>
+                                    <div class="col-md-6">
+                                        <div class=" contact-name">
+                                            <label for="">Status</label><span class="text-danger">*</span>
+                                            <select name="is_publish" class="form-select" x-model="status">
+                                                <option value="0" selected>Unpublish</option>
+                                                <option value="1">Publish</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +195,7 @@
                                     <button type="button" class="btn rounded-2 px-3"
                                         style="background: #5c5c5c; color: white;" data-bs-dismiss="modal">Batal</button>
                                     <button type="submit" id="btn-add" class="rounded-2 px-3 btn btn-warning border-0"
-                                        :class="kategori ? null : 'disabled'">Tambah</button>
+                                        :class="kategori && status ? null : 'disabled'">Tambah</button>
                                 </div>
                             </form>
                         </div>
@@ -193,26 +204,26 @@
             </div>
         </div>
     </div>
-            @endsection
+@endsection
 
-            @push('scripts')
-                <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
+@push('scripts')
+    <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
 
-                <script>
-                    function previewImage() {
-                        var imgProfil = document.getElementById('gambar');
-                        var preview = document.getElementById('preview');
+    <script>
+        function previewImage() {
+            var imgProfil = document.getElementById('gambar');
+            var preview = document.getElementById('preview');
 
-                        if (imgProfil.files && imgProfil.files[0]) {
-                            var reader = new FileReader();
+            if (imgProfil.files && imgProfil.files[0]) {
+                var reader = new FileReader();
 
-                            reader.onload = function(e) {
-                                preview.src = e.target.result;
-                                preview.style.display = 'block';
-                            }
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
 
-                            reader.readAsDataURL(imgProfil.files[0]);
-                        }
-                    }
-                </script>
-            @endpush
+                reader.readAsDataURL(imgProfil.files[0]);
+            }
+        }
+    </script>
+@endpush

@@ -36,6 +36,7 @@ class KategoriController extends Controller
 
         $kategoris = new Kategori;
         $kategoris->kategori = $request->kategori;
+        $kategoris->is_publish = $request->is_publish;
 
         $kategoris->save();
 
@@ -71,6 +72,7 @@ class KategoriController extends Controller
 
         $kategoris = Kategori::find($id);
         $kategoris->kategori = $request->kategori;
+        $kategoris->is_publish = $request->is_publish;
 
         $kategoris->save();
 

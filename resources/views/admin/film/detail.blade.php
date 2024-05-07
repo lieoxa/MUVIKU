@@ -137,9 +137,6 @@
                                                 class="usr-status-kost {{ $item->is_publish ? 'published' : 'unpublished' }}">
                                                 {{ $item->is_publish ? 'Publish' : 'Unpublish' }}
                                             </small>
-
-                                            {{-- <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab
-                                                    2020</span> --}}
                                         </div>
                                         <div class="dropdown">
                                             <button class="btn p-0 border-0" type="button" data-bs-toggle="dropdown"
@@ -147,12 +144,13 @@
                                                     style="font-size: 15px"></i>
                                             </button>
                                             <ul class="dropdown-menu p-0 rounded-1" style="background: #fbfbfb">
-                                                <li><a class="dropdown-item text-warning" href="#"><i
-                                                            class="ti ti-pencil"></i> Edit</a></li>
-                                                <li class="border border-gray-200"></li>
+                                                <li><a class="dropdown-item text-warning border border-warning rounded-top-1"
+                                                        data-bs-target="#edit-season-{{ $item->id }}"
+                                                        data-bs-toggle="modal"><i class="bi bi-pencil-square"></i> Edit</a></li>
                                                 <li><a href="{{ route('deleteSeason', $item->id) }}"
-                                                        class="dropdown-item text-danger"><i class="ti ti-trash"></i>
-                                                        Hapus</a></li>
+                                                        class="dropdown-item text-danger border border-danger rounded-bottom-1"><i class="ti ti-trash"></i>
+                                                        Hapus</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </label>
@@ -167,40 +165,6 @@
                             <div class="p-3" id="custom-invoice">
                                 <div class="invoice-123">
                                     <div class="row">
-                                        {{-- <div class="col-md-12">
-                                            <div class="">
-                                                <address>
-                                                    <h6>&nbsp;From,</h6>
-                                                    <h6 class="fw-bold">&nbsp;Steve Jobs</h6>
-                                                    <p class="ms-1">
-                                                        1108, Clair Street, <br />Massachusetts,
-                                                        <br />Woods Hole - 02543
-                                                    </p>
-                                                </address>
-                                            </div>
-                                            <div class="text-end">
-                                                <address>
-                                                    <h6>To,</h6>
-                                                    <h6 class="fw-bold invoice-customer">
-                                                        James Anderson,
-                                                    </h6>
-                                                    <p class="ms-4">
-                                                        455, Shobe Lane, <br />Colorado, <br />Fort
-                                                        Collins - 80524
-                                                    </p>
-                                                    <p class="mt-4 mb-1">
-                                                        <span>Invoice Date :</span>
-                                                        <i class="ti ti-calendar"></i>
-                                                        23rd Jan 2021
-                                                    </p>
-                                                    <p>
-                                                        <span>Due Date :</span>
-                                                        <i class="ti ti-calendar"></i>
-                                                        25th Jan 2021
-                                                    </p>
-                                                </address>
-                                            </div>
-                                        </div> --}}
                                         <div class="col-md-12">
                                             <div class="table-responsive" style="clear: both">
                                                 <table class="table table-hover">
@@ -216,159 +180,12 @@
                                                         <!-- end row -->
                                                     </thead>
                                                     <tbody id="data-episode">
-                                                        <!-- start row -->
-                                                        {{-- <tr>
-                                                            <td class="text-center">1</td>
-                                                            <td class="text-center">Milk Powder</td>
-                                                            <td class="text-center">2</td>
-                                                            <td class="text-center">$24</td>
-                                                            <td class="text-center">
-                                                                <button class="ms-0 btn btn-outline-danger ms-2">
-                                                                    <i class="ti ti-trash fs-5"></i>
-                                                                </button>
-                                                                <a href=""
-                                                                    class="btn btn-outline-warning ms-1"
-                                                                    style="padding: 7px 18px">
-                                                                    <i class="bi bi-pencil-square"></i>
-                                                                </a>
-                                                            </td>
-                                                        </tr> --}}
-                                                        <!-- end row -->
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                        {{-- <div class="col-md-12">
-                                            <div class="pull-right mt-4 text-end">
-                                                <p>Sub - Total amount: $20,858</p>
-                                                <p>vat (10%) : $2,085</p>
-                                                <hr />
-                                                <h3><b>Total :</b> $22,943</h3>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                            <hr />
-                                            <div class="text-end">
-                                                <button class="btn btn-danger" type="submit">
-                                                    Proceed to payment
-                                                </button>
-                                                <button class="btn btn-default print-page" type="button">
-                                                    <span><i class="ti ti-printer fs-5"></i>
-                                                        Print</span>
-                                                </button>
-                                            </div>
-                                        </div> --}}
                                     </div>
                                 </div>
-                                {{-- <div class="row pt-3">
-                                    <div class="col-md-12">
-                                        <div class="">
-                                            <address>
-                                                <h6>&nbsp;From,</h6>
-                                                <h6 class="fw-bold">&nbsp;Steve Jobs</h6>
-                                                <p class="ms-1">
-                                                    1108, Clair Street, <br />Massachusetts,
-                                                    <br />Woods Hole - 02543
-                                                </p>
-                                            </address>
-                                        </div>
-                                        <div class="text-end">
-                                            <address>
-                                                <h6>To,</h6>
-                                                <h6 class="fw-bold invoice-customer">
-                                                    Gabriel Jobs,
-                                                </h6>
-                                                <p class="ms-4">
-                                                    455, Shobe Lane, <br />Colorado, <br />Fort
-                                                    Collins - 80524
-                                                </p>
-                                                <p class="mt-4 mb-1">
-                                                    <span>Invoice Date :</span>
-                                                    <i class="ti ti-calendar"></i>
-                                                    23rd Jan 2021
-                                                </p>
-                                                <p>
-                                                    <span>Due Date :</span>
-                                                    <i class="ti ti-calendar"></i>
-                                                    25th Jan 2021
-                                                </p>
-                                            </address>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="table-responsive mt-5" style="clear: both">
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <!-- start row -->
-                                                    <tr>
-                                                        <th class="text-center">#</th>
-                                                        <th>Description</th>
-                                                        <th class="text-end">Quantity</th>
-                                                        <th class="text-end">Unit Cost</th>
-                                                        <th class="text-end">Total</th>
-                                                    </tr>
-                                                    <!-- end row -->
-                                                </thead>
-                                                <tbody>
-                                                    <!-- start row -->
-                                                    <tr>
-                                                        <td class="text-center">1</td>
-                                                        <td>Milk Powder</td>
-                                                        <td class="text-end">2</td>
-                                                        <td class="text-end">$24</td>
-                                                        <td class="text-end">$48</td>
-                                                    </tr>
-                                                    <!-- end row -->
-                                                    <!-- start row -->
-                                                    <tr>
-                                                        <td class="text-center">2</td>
-                                                        <td>Air Conditioner</td>
-                                                        <td class="text-end">5</td>
-                                                        <td class="text-end">$500</td>
-                                                        <td class="text-end">$2500</td>
-                                                    </tr>
-                                                    <!-- end row -->
-                                                    <!-- start row -->
-                                                    <tr>
-                                                        <td class="text-center">3</td>
-                                                        <td>RC Cars</td>
-                                                        <td class="text-end">30</td>
-                                                        <td class="text-end">$600</td>
-                                                        <td class="text-end">$18000</td>
-                                                    </tr>
-                                                    <!-- end row -->
-                                                    <!-- start row -->
-                                                    <tr>
-                                                        <td class="text-center">4</td>
-                                                        <td>Down Coat</td>
-                                                        <td class="text-end">62</td>
-                                                        <td class="text-end">$5</td>
-                                                        <td class="text-end">$310</td>
-                                                    </tr>
-                                                    <!-- end row -->
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="pull-right mt-4 text-end">
-                                            <p>Sub - Total amount: $20,858</p>
-                                            <p>vat (10%) : $2,085</p>
-                                            <hr />
-                                            <h3><b>Total :</b> $22,943</h3>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <hr />
-                                        <div class="text-end">
-                                            <button class="btn btn-danger" type="submit">
-                                                Proceed to payment
-                                            </button>
-                                            <button class="btn btn-default print-page" type="button">
-                                                <span><i class="ti ti-printer fs-5"></i>
-                                                    Print</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -390,96 +207,133 @@
                             class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                     </form>
                 </div>
-                {{-- <div class="app-invoice overflow-auto">
-                    <ul class="invoice-users">
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user bg-light"
-                                id="invoice-123" data-invoice-id="123">
-                                <div
-                                    class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-user fs-6"></i>
-                                </div>
-                                <div class="ms-3 d-inline-block w-75">
-                                    <h6 class="mb-0 invoice-customer">James Anderson</h6>
-
-                                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">Id:
-                                        #123</span>
-                                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab
-                                        2020</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user"
-                                id="invoice-124" data-invoice-id="124">
-                                <div
-                                    class="btn btn-danger round rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-user fs-6"></i>
-                                </div>
-                                <div class="ms-3 d-inline-block w-75">
-                                    <h6 class="mb-0 invoice-customer">Bianca Doe</h6>
-                                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">#124</span>
-                                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab
-                                        2020</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user"
-                                id="invoice-125" data-invoice-id="125">
-                                <div
-                                    class="btn btn-info round rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-user fs-6"></i>
-                                </div>
-                                <div class="ms-3 d-inline-block w-75">
-                                    <h6 class="mb-0 invoice-customer">Angelina Rhodes</h6>
-                                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">#125</span>
-                                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab
-                                        2020</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user"
-                                id="invoice-126" data-invoice-id="126">
-                                <div
-                                    class="btn btn-warning round rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-user fs-6"></i>
-                                </div>
-                                <div class="ms-3 d-inline-block w-75">
-                                    <h6 class="mb-0 invoice-customer">Samuel Smith</h6>
-                                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">#126</span>
-                                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab
-                                        2020</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)"
-                                class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user"
-                                id="invoice-127" data-invoice-id="127">
-                                <div
-                                    class="btn btn-primary round rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="ti ti-user fs-6"></i>
-                                </div>
-                                <div class="ms-3 d-inline-block w-75">
-                                    <h6 class="mb-0 invoice-customer">Gabriel Jobs</h6>
-                                    <span class="fs-3 invoice-id text-truncate text-body-color d-block w-85">#127</span>
-                                    <span class="fs-3 invoice-date text-nowrap text-body-color d-block">9 Fab
-                                        2020</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div> --}}
             </div>
         </div>
     </div>
     </div>
+    @foreach ($seasons as $season)
+        <div class="modal fade" id="edit-season-{{ $season->id }}" data-bs-backdrop="static" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <input type="radio" name="" id="season_id" value="{{ $season->film_id }}" hidden>
+            <div class="modal-dialog modal-dialog-centered">
+                <form action="/editseason/{{ $season->id }}" method="POST" class="w-100">
+                    {{ csrf_field() }}
+                    @method('post')
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Season
+                            </h5>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-12 mb-3">
+                                <label for="#film"class="form-label">Serial</label>
+                                <select name="film_id" id="film" class="form-select">
+                                    <option value="">Pilih Serial...</option>
+                                    @foreach ($films->where('tipe', 'Serial') as $serial)
+
+                                        <option value="{{ $serial->id }}"
+                                            {{ $serial->id == $season->film_id ? 'selected' : '' }} {{ $serial }}>
+                                            {{ $serial->judul }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label">Status<span class="text-danger" x-model="">*</span></label>
+                                <select name="is_publish" class="form-select mr-sm-2" id="status">
+                                    <option value="1"{{ $season->is_publish == 1 ? 'selected' : '' }}>Publish
+                                    </option>
+                                    <option value="0" {{ $season->is_publish == 0 ? 'selected' : '' }}>Unpublish
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="#input_season" class="form-label">Season</label>
+                                <input type="text" id="input_season" name="season" class="form-control"
+                                    value="{{ $season->season }}">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light text-white" style="background: #5c5c5c;"
+                                data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-warning">Tambah</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endforeach
+    @foreach ($episodes as $episode)
+        <div class="modal fade" id="edit-episode-{{ $episode->id }}" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="/editeps/{{ $episode->id }}" method="POST" class="w-100" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        @method('post')
+                        <input type="hidden" name="id" value="{{ $episode->id }}">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Edit Episode</h1>
+                        </div>
+                        <div class="modal-body row">
+                            <div class="col-6 mb-3 ">
+                                <label class="form-label">Serial<span class="text-danger" x-model="">*</span></label>
+                                <select name="serial" id="getSeasonEdit" class="form-select">
+                                    <option value="">Pilih...</option>
+                                    <option value="{{ $episode->id }}">{{ $episode->judul }}</option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="1" class="form-label">Season<span class="text-danger"
+                                        x-model="">*</span></label>
+                                <select name="season_id" class="form-select" id="seasonEdit">
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="judul-episode" class="form-label">Judul<span class="text-danger"
+                                        x-model="">*</span></label>
+                                <input type="text" name="judul" class="form-control" id="judul-episode"
+                                    placeholder="Ketik disini..." value="{{ $episode->judul }}">
+                            </div>
+                            <div class="mb-2 col-6">
+                                <label for="judul-episode" class="form-label">Episode<span class="text-danger"
+                                        x-model="">*</span></label>
+                                <input type="text" name="episode" class="form-control" id="judul-episode"
+                                    placeholder="Ketik disini...">
+                            </div>
+                            <div class="mb-2 col-6">
+                                <label for="exampleDropdownFormPassword1" class="form-label">Thumbnail<span
+                                        class="text-danger" x-model="">*</span></label>
+                                <input type="file" class="form-control" name="thumb_eps">
+                            </div>
+                            <div class="mb-2 col-6">
+                                <label for="exampleDropdownFormPassword1" class="form-label">Video<span
+                                        class="text-danger" x-model="">*</span></label>
+                                <input type="url" class="form-control" name="vid_eps"
+                                    id="exampleDropdownFormPassword1" value="">
+                            </div>
+                            <div class="mb-2 col-6">
+                                <label for="exampleDropdownFormPassword1" class="form-label">Status<span
+                                        class="text-danger" x-model="">*</span></label>
+                                <select name="is_publish" class="form-select">
+                                    <option value="1">Publish</option>
+                                    <option value="0" selected>Unpublish</option>
+                                </select>
+                            </div>
+                            <div class="mb-2 col-12">
+                                <label for="exampleDropdownFormPassword1" class="form-label d-block">Deskripsi<span
+                                        class="text-danger" x-model="">*</span></label>
+                                <textarea name="desk_eps" id="" class="d-block form-control py-1 px-2" style="resize: none; height: 85px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light text-white" style="background: #5c5c5c;"
+                                data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-warning">Tambah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
     <div class="modal fade" id="modal_season" data-bs-backdrop="static" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -523,50 +377,6 @@
             </form>
         </div>
     </div>
-    {{-- <div class="modal fade" id="edit_season" data-bs-backdrop="static" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <form action="{{ route('postSeason') }}" method="POST" class="w-100">
-                {{ csrf_field() }}
-                @method('put')
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Season</h5>
-                    </div>
-                    <div class="modal-body row">
-                        <div class="col-12 mb-3">
-                            <label for="#film"class="form-label">Serial<span class="text-danger"
-                                    x-model="">*</span></label>
-                            <select name="film_id[]" id="film" class="form-select">
-                                <option value="">Pilih Serial...</option>
-                                @foreach ($films->where('tipe', 'Serial') as $item)
-                                    <option value="{{ $item->id }}" {{ $item }}>{{ $item->judul }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-6 mb-3">
-                            <label class="form-label">Status<span class="text-danger" x-model="">*</span></label>
-                            <select name="is_publish" class="form-select mr-sm-2" required>
-                                <option value="1" {{ $films->is_publish == 1 ? 'selected' : '' }}>Publish</option>
-                                <option value="0" {{ $films->is_publish == 0 ? 'selected' : '' }}>Unpublish</option>
-                            </select>
-                        </div>
-                        <div class="col-6 mb-3">
-                            <label for="#input_season" class="form-label">Season<span class="text-danger"
-                                    x-model="">*</span></label>
-                            <input type="text" id="input_season" name="season" class="form-control"
-                                placeholder="Ketik disini..." value="{{ $films->season }}">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light text-white" style="background: #5c5c5c;"
-                            data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-warning">Tambah</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> --}}
     <div class="modal fade" id="episode" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -579,7 +389,7 @@
                     <div class="modal-body row">
                         <div class="col-6 mb-3 ">
                             <label class="form-label">Serial<span class="text-danger" x-model="">*</span></label>
-                            <select name="serial" id="getSeason" class="form-select">
+                            <select name="serial" id="getSeasonCreate" class="form-select">
                                 <option value="">Pilih...</option>
                                 @foreach ($films->where('tipe', 'Serial') as $item)
                                     <option value="{{ $item->id }}">{{ $item->judul }}</option>
@@ -589,7 +399,7 @@
                         <div class="col-6 mb-3">
                             <label for="1" class="form-label">Season<span class="text-danger"
                                     x-model="">*</span></label>
-                            <select name="season_id" class="form-select" id="season">
+                            <select name="season_id" class="form-select" id="seasonCreate">
                             </select>
                         </div>
                         <div class="col-12">
@@ -609,31 +419,31 @@
                                             <div class="mb-2 col-12">
                                                 <label for="judul-episode" class="form-label">Judul<span
                                                         class="text-danger" x-model="">*</span></label>
-                                                <input type="text" name="judul" class="form-control"
+                                                <input type="text" name="judul[]" class="form-control"
                                                     id="judul-episode" placeholder="Ketik disini...">
                                             </div>
                                             <div class="mb-2 col-6">
                                                 <label for="judul-episode" class="form-label">Episode<span
                                                         class="text-danger" x-model="">*</span></label>
-                                                <input type="text" name="episode" class="form-control"
+                                                <input type="text" name="episodes[]" class="form-control"
                                                     id="judul-episode" placeholder="Ketik disini...">
                                             </div>
                                             <div class="mb-2 col-6">
                                                 <label for="exampleDropdownFormPassword1"
                                                     class="form-label">Thumbnail<span class="text-danger"
                                                         x-model="">*</span></label>
-                                                <input type="file" class="form-control" name="thumb_eps">
+                                                <input type="file" class="form-control" name="thumb_eps[]">
                                             </div>
                                             <div class="mb-2 col-6">
                                                 <label for="exampleDropdownFormPassword1" class="form-label">Video<span
                                                         class="text-danger" x-model="">*</span></label>
-                                                <input type="url" class="form-control" name="vid_eps"
+                                                <input type="url" class="form-control" name="vid_eps[]"
                                                     id="exampleDropdownFormPassword1">
                                             </div>
                                             <div class="mb-2 col-6">
                                                 <label for="exampleDropdownFormPassword1" class="form-label">Status<span
                                                         class="text-danger" x-model="">*</span></label>
-                                                <select name="is_publish" class="form-select">
+                                                <select name="is_publish[]" class="form-select">
                                                     <option value="1">Publish</option>
                                                     <option value="0" selected>Unpublish</option>
                                                 </select>
@@ -642,7 +452,7 @@
                                                 <label for="exampleDropdownFormPassword1"
                                                     class="form-label d-block">Deskripsi<span class="text-danger"
                                                         x-model="">*</span></label>
-                                                <textarea name="desk_eps" id="" class="d-block form-control py-1 px-2" style="resize: none; height: 85px;"></textarea>
+                                                <textarea name="desk_eps[]" id="" class="d-block form-control py-1 px-2" style="resize: none; height: 85px;"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -664,8 +474,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="edit_episode-{{ $episodes->id }}" data-bs-backdrop="static" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="edit_episode" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <form action="{{ route('editEps') }}" method="POST" class="w-100" enctype="multipart/form-data">
@@ -679,8 +488,10 @@
                         <div class="col-6 mb-3 ">
                             <label class="form-label">Serial<span class="text-danger" x-model="">*</span></label>
                             <select name="serial" id="getSeason" class="form-select">
-                                <option value="">Pilih...</option>
-                                <option value="{{ $item->id }}">{{ $item->judul }}</option>
+                                <option value="">Pilih...
+                                </option>
+                                <option value="{{ $item->id }}">
+                                    {{ $item->judul }}</option>
                             </select>
                         </div>
                         <div class="col-6 mb-3">
@@ -709,14 +520,16 @@
                         <div class="mb-2 col-6">
                             <label for="exampleDropdownFormPassword1" class="form-label">Video<span class="text-danger"
                                     x-model="">*</span></label>
-                            <input type="url" class="form-control" name="vid_eps" id="exampleDropdownFormPassword1" value="">
+                            <input type="url" class="form-control" name="vid_eps" id="exampleDropdownFormPassword1"
+                                value="">
                         </div>
                         <div class="mb-2 col-6">
                             <label for="exampleDropdownFormPassword1" class="form-label">Status<span class="text-danger"
                                     x-model="">*</span></label>
                             <select name="is_publish" class="form-select">
                                 <option value="1">Publish</option>
-                                <option value="0" selected>Unpublish</option>
+                                <option value="0" selected>
+                                    Unpublish</option>
                             </select>
                         </div>
                         <div class="mb-2 col-12">
@@ -733,7 +546,8 @@
                 </form>
             </div>
         </div>
-    </div>
+        `
+    </div> --}}
 @endsection
 
 @push('scripts')
@@ -751,12 +565,12 @@
                 '<button type="button" class="btn btn-light-primary text-primary dropdown-toggle rounded-end-0" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Form Episode </button>' +
                 '<div><button class="btn btn-danger rounded-start-0" id="DeleteRow" type="button"> <i class="bi bi-trash"></i></button></div> ' +
                 '<div class="dropdown-menu w-100 border" style="padding: 0.5rem 22px;"> <div class="py-2"> <div class="row"> <div class="mb-2 col-12">' +
-                '<label for="exampleDropdownFormEmail1" class="form-label">Judul</label> <input type="text" class="form-control" name="judul" id=""placeholder="Ketik disini..." /></div>' +
+                '<label for="exampleDropdownFormEmail1" class="form-label">Judul</label> <input type="text" class="form-control" name="judul[]" id=""placeholder="Ketik disini..." /></div>' +
                 '<div class="mb-2 col-6"> <label for = "judul-episode" class = "form-label" > Episode <span class = "text-danger" x - model = "" > * </span></label ><input type = "text" name = "episode" class = "form-control" id = "judul-episode" placeholder = "Ketik disini..." ></div>' +
-                '<div class="mb-2 col-6"> <label for="" class="form-label">Thumbnail</label> <input type="file" class="form-control" name="thumb_eps" id=""></div>' +
-                '<div class="mb-2 col-6"> <label for="" class="form-label">Video</label> <input type="url" class="form-control" id="" name="vid_eps"> </div>' +
-                '<div class="mb-2 col-6"> <label for="" class="form-label">Status</label> <select name="is_publish" class="form-select" required> <option value="1">Publish</option> <option value="0" selected>Unpublish</option> </select> </div>' +
-                '<div class="mb-2 col-12"> <label for="" class="form-label d-block">Deskripsi</label> <textarea name="desk_eps" id="" class="d-block form-control" style="resize: none; height: 85px;"></textarea> </div>' +
+                '<div class="mb-2 col-6"> <label for="" class="form-label">Thumbnail</label> <input type="file" class="form-control" name="thumb_eps[]" id=""></div>' +
+                '<div class="mb-2 col-6"> <label for="" class="form-label">Video</label> <input type="url" class="form-control" id="" name="vid_eps[]"> </div>' +
+                '<div class="mb-2 col-6"> <label for="" class="form-label">Status</label> <select name="is_publish[]" class="form-select" required> <option value="1">Publish</option> <option value="0" selected>Unpublish</option> </select> </div>' +
+                '<div class="mb-2 col-12"> <label for="" class="form-label d-block">Deskripsi</label> <textarea name="desk_eps[]" id="" class="d-block form-control" style="resize: none; height: 85px;"></textarea> </div>' +
                 '</div> </div> </div> </div> </div>'
             $('#newinput').append(newRowAdd);
         });
@@ -773,7 +587,7 @@
             $('.season').change(function() {
                 let season_id = $(this).val();
                 // $('input[name="idDivisi"]').val(season_id);
-                console.log(season_id);
+                // console.log(season_id);
                 if (season_id) {
                     $.ajax({
                         type: "GET",
@@ -793,11 +607,11 @@
                     $('#data-episode').empty();
                 }
             });
-            $('#getSeason').change(function() {
+            $('#getSeasonCreate').change(function() {
                 let film_id = $(this).val();
                 // $('input[name="idDivisi"]').val(film_id);
+                console.log(film_id);
                 if (film_id) {
-                    console.log(film_id);
                     $.ajax({
                         type: "GET",
                         url: "{{ route('getSeason') }}",
@@ -808,20 +622,51 @@
                         success: function(response) {
                             // console.log(response.season);
                             if (response) {
-                                $("#season").empty();
-                                $("#season").append('<option>---Pilih Season---</option>');
+                                $("#seasonCreate").empty();
+                                $("#seasonCreate").append('<option>---Pilih Season---</option>');
                                 $.each(response, function(key, value) {
                                     // console.log(value);
-                                    $("#season").append('<option value="' + value.id +
+                                    $("#seasonCreate").append('<option value="' + value.id +
                                         '">' + value.season + '</option>');
                                 });
                             } else {
-                                $("#season").empty();
+                                $("#seasonCreate").empty();
                             }
                         }
                     });
                 } else {
-                    $("#season").empty();
+                    $("#seasonCreate").empty();
+                }
+            });
+            $('#getSeasonEdit').change(function() {
+                let film_id = $(this).val();
+                // $('input[name="idDivisi"]').val(film_id);
+                console.log(film_id);
+                if (film_id) {
+                    $.ajax({
+                        type: "GET",
+                        url: "{{ route('getSeason') }}",
+                        data: {
+                            'film_id': film_id
+                        },
+                        dataType: 'JSON',
+                        success: function(response) {
+                            // console.log(response.season);
+                            if (response) {
+                                $("#seasonEdit").empty();
+                                $("#seasonEdit").append('<option>---Pilih Season---</option>');
+                                $.each(response, function(key, value) {
+                                    // console.log(value);
+                                    $("#seasonEdit").append('<option value="' + value.id +
+                                        '">' + value.season + '</option>');
+                                });
+                            } else {
+                                $("#seasonEdit").empty();
+                            }
+                        }
+                    });
+                } else {
+                    $("#seasonEdit").empty();
                 }
             });
         });

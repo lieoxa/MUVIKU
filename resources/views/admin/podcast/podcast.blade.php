@@ -72,7 +72,7 @@
                         <tbody class="text-center">
                             @foreach ($podcast as $item)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td><img src="{{ asset('imgthum/' . $item->thumbnail) }}" alt="" width="120"
                                             height="60" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
