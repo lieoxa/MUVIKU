@@ -425,7 +425,7 @@
                                             <div class="mb-2 col-6">
                                                 <label for="judul-episode" class="form-label">Episode<span
                                                         class="text-danger" x-model="">*</span></label>
-                                                <input type="text" name="episodes[]" class="form-control"
+                                                <input type="number" name="episode[]" class="form-control"
                                                     id="judul-episode" placeholder="Ketik disini...">
                                             </div>
                                             <div class="mb-2 col-6">
@@ -566,7 +566,7 @@
                 '<div><button class="btn btn-danger rounded-start-0" id="DeleteRow" type="button"> <i class="bi bi-trash"></i></button></div> ' +
                 '<div class="dropdown-menu w-100 border" style="padding: 0.5rem 22px;"> <div class="py-2"> <div class="row"> <div class="mb-2 col-12">' +
                 '<label for="exampleDropdownFormEmail1" class="form-label">Judul</label> <input type="text" class="form-control" name="judul[]" id=""placeholder="Ketik disini..." /></div>' +
-                '<div class="mb-2 col-6"> <label for = "judul-episode" class = "form-label" > Episode <span class = "text-danger" x - model = "" > * </span></label ><input type = "text" name = "episode" class = "form-control" id = "judul-episode" placeholder = "Ketik disini..." ></div>' +
+                '<div class="mb-2 col-6"> <label for = "judul-episode" class = "form-label" > Episode <span class = "text-danger" x - model = "" > * </span></label ><input type = "number" name = "episode[]" class = "form-control" id = "judul-episode" placeholder = "Ketik disini..." ></div>' +
                 '<div class="mb-2 col-6"> <label for="" class="form-label">Thumbnail</label> <input type="file" class="form-control" name="thumb_eps[]" id=""></div>' +
                 '<div class="mb-2 col-6"> <label for="" class="form-label">Video</label> <input type="url" class="form-control" id="" name="vid_eps[]"> </div>' +
                 '<div class="mb-2 col-6"> <label for="" class="form-label">Status</label> <select name="is_publish[]" class="form-select" required> <option value="1">Publish</option> <option value="0" selected>Unpublish</option> </select> </div>' +

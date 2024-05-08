@@ -18,30 +18,40 @@
     * {
         font-family: 'Ubuntu';
     }
+
+    .dropdown-item{
+        padding: 0px;
+    }
 </style>
 
 <body>
+    @php
+        use App\Models\AccUser;
 
+        $get_acc_user = AccUser::find(Auth::user()->id);
+        // dd($get_acc_user->statuss);
+    @endphp
     <nav class="navbar sticky-top pb-3" style="background: #222327;">
         <div class="container-fluid d-flex mt-2 justify-content-between">
 
             <img src="img/muviku.png" class="navbar-brand my-auto" style="width: 30%;" loading="lazy">
             @if (Auth::user())
                 {{-- <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="40.59" height="40.59"> --}}
-                <a href="/profile">
+                <div class="btn-group">
                     <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
-                        class="navbar-brand my-auto me-0 rounded-circle foto py-0" height="40.59" width="40.59">
-                </a>
+                        class="navbar-brand my-auto me-0 rounded-circle foto py-0 dropdown-toggle border" data-bs-toggle="dropdown" aria-expanded="false" height="40.59" width="40.59">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start border-light p-3 rounded-4 mt-2 text-white" style="text-align: center; background: #222327; min-width: 250px;">
+                        <li class="mb-2"><img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}" height="70" width="70" class="rounded-pill border"></li>
+                        <li>{{ $get_acc_user->statuss }}</li>
+                        <li class="text-secondary text-start" style="font-size: 12px">Nama</li>
+                        <li class="text-start">{{ Str::title(Auth::user()->name) }}</li>
+                        <li class="text-secondary text-start" style="font-size: 12px">Email</li>
+                        <li class="text-start">{{ Str::title(Auth::user()->email) }}</li>
+                    </ul>
+                </div>
             @else
                 <a href="{{ route('login') }}" type="submit" class="logout btn btn-outline-light my-auto">Masuk</a>
             @endif
-
-
-            {{-- SUDAH LOGIN --}}
-
-            {{-- BLUM LOGIN --}}
-
-
 
         </div>
     </nav>
@@ -123,72 +133,6 @@
 
         {{-- SLIDE FILM --}}
         <div x-data="{ sliders: '' }">
-            {{-- <div class="container-sm">
-                <div class="container mb-3 p-0 border-bottom-1" style="max-height: 44px;" x-data="{ filter: 'all' }">
-                    <section class="splide slider-1 mt-0 mb-4" aria-label="Splide Basic HTML Example">
-                        <div class="splide__track">
-                            <ul class="splide__list">
-                                <li class="splide__slide">
-                                    <span
-                                        :class="filter == 'all' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'all';sliders = ''">Rekomendasi</span>
-                                </li>
-                                <li class="splide__slide ">
-                                    <span
-                                        :class="filter == 'indonesia' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'indonesia';sliders = 'indonesia'">Film Indonesia</span>
-                                </li>
-                                <li class="splide__slide">
-                                    <span
-                                        :class="filter == 'korea' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'korea';sliders = 'korea'">Film Korea</span>
-                                </li>
-                                <li class="splide__slide">
-                                    <span
-                                        :class="filter == 'podcast' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'podcast';sliders = 'podcast'">Podcast</span>
-                                </li>
-                                <li class="splide__slide ">
-                                    <span
-                                        :class="filter == 'anime' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'anime';sliders = 'anime'">Anime</span>
-                                </li>
-                                <li class="splide__slide">
-                                    <span
-                                        :class="filter == 'hero' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'hero';sliders = 'hero'">Super Hero</span>
-                                </li>
-                                <li class="splide__slide ">
-                                    <span
-                                        :class="filter == 'serial' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'serial';sliders = 'serial'">Serial</span>
-                                </li>
-                                <li class="splide__slide">
-                                    <span
-                                        :class="filter == 'horror' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'horror';sliders = 'horror'">Horror</span>
-                                </li>
-                                <li class="splide__slide ">
-                                    <span
-                                        :class="filter == 'animasi' ? 'title-service text-white fs-8 fw-bold' :
-                                            'text-secondary'"
-                                        x-on:click="filter = 'animasi';sliders = 'animasi'">Animasi</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </section>
-                    <div class="d-flex gap-2 bar mt-3">
-                    </div>
-                </div>
-            </div> --}}
 
             {{-- SLIDE Rekomendasi --}}
 
@@ -201,90 +145,10 @@
                                 <ul class="splide__list">
                                     @foreach ($films->where('status', 'Publish') as $item)
                                         <li class="splide__slide li">
-                                            <img src="{{ asset('imgthum/' . $item->thumbnail) }}" class="card-img-top slider-img"
-                                                alt="...">
+                                            <img src="{{ asset('imgthum/' . $item->thumbnail) }}"
+                                                class="card-img-top slider-img" alt="...">
                                         </li>
                                     @endforeach
-                                    {{-- <li class="splide__slide li">
-                                        <img src="{{ asset('img/hero.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/horror1.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/drakor1.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/anim7.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/animasi7.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/comedy7.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/anim1.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/hero1.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/horror1.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/drakor1.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/fi1.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/animasi8.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/comedy6.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/anim2.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/hero2.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/horror2.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/drakor2.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/horror4.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/animasi9.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li>
-                                    <li class="splide__slide li">
-                                        <img src="{{ asset('img/comedy5.jpg') }}" class="card-img-top slider-img"
-                                            alt="...">
-                                    </li> --}}
                                 </ul>
                             </div>
                         </section>
@@ -296,8 +160,7 @@
                         <h1 class="text-white text-start fw-bold">Animasi Anak-Anak</h1>
                         <section class="animasi">
                             <div class="d-flex gap-2 bar mt-1">
-                                <div class="li position-relative"
-                                    onclick="window.location='{{ route('toystory') }}'">
+                                <div class="li position-relative" onclick="window.location='{{ route('toystory') }}'">
                                     <div class="tonton position-absolute start-50 translate-middle w-100"
                                         style="top: 88%">
                                         <input type="button"

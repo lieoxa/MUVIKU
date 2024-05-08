@@ -14,12 +14,10 @@ class AccUser extends Model
 
     protected $guarded = ["id"];
 
-    public function getStatusAttribute()
+    public function getStatussAttribute()
     {
-        // Hitung perbedaan waktu antara sekarang dan tanggal pembuatan akun
         $diffInDays = Carbon::parse($this->created_at)->diffInDays();
 
-        // Jika perbedaan waktu kurang dari 1 hari, berarti masih "member baru"
         if ($diffInDays < 1) {
             return 'User Baru';
         } else {

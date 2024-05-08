@@ -13,12 +13,30 @@ class AccUserController extends Controller
      */
     public function index() 
     {
+        // dd(AccUser::first()->status);
         return view('admin.user.user')->with([
             'users' => AccUser::all(),
             // 'films' => Film::get(),
         ]);
     }
     
+    public function switchstatus($id)
+    {
+        $switch = AccUser::findOrFail($id);
+        $switch->status = 'block';
+        $switch->save();
+
+        return back();
+    }
+    public function switchstatuss($id)
+    {
+        $switch = AccUser::findOrFail($id);
+        $switch->status = 'Pengguna Lama';
+        $switch->save();
+
+        return back();
+    }
+
     /**
      * Show the form for creating a new resource.
      */

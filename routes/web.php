@@ -40,6 +40,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+    Route::get('/loginadmin', [AuthController::class, 'getAdmin'])->name('getAdmin');
+    Route::post('/loginadmin', [AuthController::class, 'postAdmin'])->name('postAdmin');
 });
 Route::get('/log-out', [AuthController::class, 'logoutLogin'])->name('logoutLogin');
 
@@ -47,6 +49,8 @@ Route::get('/log-out', [AuthController::class, 'logoutLogin'])->name('logoutLogi
 Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('/switchstatus/{id}', [AccUserController::class, 'switchstatus']);
+    Route::post('/switchstatuss/{id}', [AccUserController::class, 'switchstatuss']);
     Route::post('/profile/editSandi', [ValidateController::class, 'editSandi']);
     Route::post('/profile/editAkun', [ValidateController::class, 'editAkun']);
     Route::post('/profile/editProfil', [ValidateController::class, 'editProfil']);

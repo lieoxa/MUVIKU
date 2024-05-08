@@ -8,6 +8,10 @@ class UserPageController extends Controller
     {
         return view('user.serial');
     }
+    public function formlogin()
+    {
+        return view('admin.login.login');
+    }
     public function watchlist()
     {
         return view('user.watchlist');

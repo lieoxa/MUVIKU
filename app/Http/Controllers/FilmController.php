@@ -126,7 +126,7 @@ class FilmController extends Controller
             'is_publish' => 'required',
         ]);
 
-        dd($request);
+        // dd($request);
 
         $getArrays = [];
         foreach ($request->judul as $key => $judul) {

@@ -23,7 +23,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'nohp' => 'required|string|max:20',
             'password' => 'required|min:8|confirmed',
-        ],[
+        ], [
             'name.required' => 'Kolom nama wajib diisi.',
             'email.required' => 'Kolom email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
@@ -60,10 +60,33 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credetails)) {
+            if(Auth::user()?->status == 'diblokir'){
+                Auth::logout();
+                return back()->with('error', 'Maaf, Akun Anda telah di nonaktifkan !');
+            }
             return redirect('utama')->with('success', 'Login berhasil');
         }
 
-        return back()->with('error', 'Email or Password salah');
+        return back()->with('error', 'Email atau Sandi salah');
+    }
+
+    public function getAdmin()
+    {
+        return view('admin.login.login');
+    }
+
+    public function postAdmin(Request $request)
+    {
+        $credetails = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        if (Auth::attempt($credetails)) {
+            return redirect('user')->with('success', 'Login berhasil');
+        }
+
+        return back()->with('error', 'Email atau Sandi salah');
     }
 
     public function search()
@@ -75,7 +98,7 @@ class AuthController extends Controller
     {
         return view('user.favorit');
     }
-    
+
     public function watchlist()
     {
         return view('user.watchlist');
@@ -86,7 +109,8 @@ class AuthController extends Controller
         return view('user.profile', compact('users'));
     }
 
-    public function logoutLogin() {
+    public function logoutLogin()
+    {
         Auth::logout();
         return redirect('/login');
     }

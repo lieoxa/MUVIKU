@@ -55,7 +55,7 @@
                                     <td>{{ $useracc->name }}</td>
                                     <td>{{ $useracc->email }}</td>
                                     <td>{{ $useracc->nohp }}</td>
-                                    <td>{{ $useracc->status }}</td>
+                                    <td>{{ $useracc->status == 'block' ? 'Diblokir' : $useracc->statuss }}</td>
                                     <td class="px-0">
                                         <div class="action-btn d-flex justify-content-center">
                                             <form action="{{ route('user.destroy', $useracc->id) }}" method="POST">
@@ -65,9 +65,19 @@
                                                     <i class="ti ti-trash fs-5"></i>
                                                 </button>
                                             </form>
-                                            <a href="" class="btn btn-danger ms-1" style="padding: 7px 18px">
-                                                <i class="bi bi-ban align-items-center"></i>
-                                            </a>
+                                            @if ($useracc->status == 'block')
+                                                <button class="btn btn-warning ms-1" style="padding: 7px 18px"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#switchstatuss-{{ $useracc->id }}">
+                                                    <i class="bi bi-ban align-items-center"></i>
+                                                </button>
+                                            @else
+                                                <button class="btn btn-danger ms-1" style="padding: 7px 18px"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#switchstatus-{{ $useracc->id }}">
+                                                    <i class="bi bi-ban align-items-center"></i>
+                                                </button>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
@@ -86,10 +96,53 @@
             </div>
         @endif
     </div>
+    @foreach ($users as $user)
+        <div class="modal bg-modal fade" id="switchstatus-{{ $user->id }}" tabindex="-1" aria-labelledby="logoutLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered container">
+                <form action="/switchstatus/{{ $user->id }}" class="w-100" enctype="multipart/form-data"
+                    method="POST">
+                    @csrf
+                    <div class="modal-content logout rounded-5">
+                        <div class="modal-header border-bottom-0 text-center d-block pb-0">
+                            <h1 class="modal-title fs-5" id="logoutLabel">Anda Yakin Ingin Mem block?</h1>
+                        </div>
+                        <div class="modal-footer border-top-0 justify-content-center gap-2">
+                            <button type="submit" class="btn bg-secondary text-white px-3 py-2"
+                                style="width: 72.53px">Iya</button>
+                            <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal bg-modal fade" id="switchstatuss-{{ $user->id }}" tabindex="-1" aria-labelledby="logoutLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered container">
+                <form action="/switchstatuss/{{ $user->id }}" class="w-100" enctype="multipart/form-data"
+                    method="POST">
+                    @csrf
+                    <div class="modal-content logout rounded-5">
+                        <div class="modal-header border-bottom-0 text-center d-block pb-0">
+                            <h1 class="modal-title fs-5" id="logoutLabel">Anda Yakin Ingin Me unblock?</h1>
+                        </div>
+                        <div class="modal-footer border-top-0 justify-content-center gap-2">
+                            <button type="submit" class="btn bg-secondary text-white px-3 py-2"
+                                style="width: 72.53px">Iya</button>
+                            <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endforeach
 @endsection
 
 @push('scripts')
     <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 
     <script>
         $(document).ready(function() {
