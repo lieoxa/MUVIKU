@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AccUser;
+// use App\Models\AccUser;
 use App\Models\User;
+use App\Models\AccAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -77,13 +78,19 @@ class AuthController extends Controller
 
     public function postAdmin(Request $request)
     {
-        $credetails = [
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
+        $request->validate([
+            'name'     => 'required',
+            'password' => 'required',
+        ]);
 
-        if (Auth::attempt($credetails)) {
-            return redirect('user')->with('success', 'Login berhasil');
+        // dd($request);
+
+        $get_admin = AccAdmin::whereName($request->name)->first();
+
+
+        if (Auth::guard('acc_admin')->attempt(['name' => $request->name, 'password' => $request->password])) {
+            // dd(Auth::user());
+            return redirect('/admin/dashboard')->with('success', 'Login berhasil');
         }
 
         return back()->with('error', 'Email atau Sandi salah');

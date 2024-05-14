@@ -69,8 +69,8 @@
                 </div>
             </div>
             <!-- ---------------------
-                                                                        end Contact
-                                                                        ---------------- -->
+                                                                            end Contact
+                                                                            ---------------- -->
             <!-- Modal -->
 
             <div class="card card-body">
@@ -87,7 +87,8 @@
                                 <tr>
                                     <td class="w-0">{{ $loop->iteration }}</td>
                                     <td>{{ $items->kategori }}</td>
-                                    <td><span class="usr-status-kost {{ $items->is_publish ? 'published' : 'unpublished' }}">
+                                    <td><span
+                                            class="usr-status-kost {{ $items->is_publish ? 'published' : 'unpublished' }}">
                                             {{ $items->is_publish ? 'Publish' : 'Unpublish' }}</span>
                                     </td>
                                     <td class="px-0">
@@ -117,13 +118,28 @@
                                                         @csrf
                                                         @method('put')
                                                         <div class="row">
-                                                            <div class="col-md-12">
+                                                            <div class="col-md-6">
                                                                 <div class=" contact-name">
                                                                     <label for="">Nama Kategori</label><span
                                                                         class="text-danger">*</span>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Ketik..." name="kategori"
                                                                         value="{{ $items->kategori }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class=" contact-name">
+                                                                    <label for="">Status</label><span
+                                                                        class="text-danger">*</span>
+                                                                    <select name="is_publish" class="form-select"
+                                                                        x-model="status">
+                                                                        <option value="1"
+                                                                            {{ $items->is_publish == 1 ? 'selected' : '' }}>
+                                                                            Publish</option>
+                                                                        <option value="0"
+                                                                            {{ $items->is_publish == 0 ? 'selected' : '' }}>
+                                                                            Unpublish</option>
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>

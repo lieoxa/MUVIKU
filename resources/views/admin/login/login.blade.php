@@ -13,8 +13,12 @@
         filter: drop-shadow(5px 5px 5px #000000);
     }
 
-    .input100{
+    .input100 {
         padding: 0 38px 0 38px;
+    }
+
+    .input100:focus{
+        padding-right: 6px !important   ;
     }
 </style>
 
@@ -58,18 +62,18 @@
                 <img src="img/muviku.png">
             </div>
             <div class="wrap-login100">
-                <form action="{{ route('login') }}" method="POST" class="login100-form validate-form">
+                <form action="/adminlog" method="POST" class="login100-form validate-form" enctype="multipart/form-data">
                     @csrf
                     <span class="login100-form-logo">
                         <img src="img/logo-muviku.png" height="60" width="60">
                     </span>
 
                     <span class="login100-form-title p-b-34 p-t-27">
-                        Login
+                        admin
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate = "Enter username">
-                        <input class="input100" type="text" name="nama" placeholder="Nama">
+                        <input class="input100" type="text" name="name" placeholder="Nama">
                         <span class="focus-input100" data-placeholder="&#xf207;"></span>
                     </div>
 

@@ -153,9 +153,6 @@
                                                                                 <input name="tglfilm" id="tglfilm"
                                                                                     type="date" class="form-control"
                                                                                     value="{{ $items->tglfilm }}">
-                                                                                @error('tglfilm')
-                                                                                    {{ $message }}
-                                                                                @enderror
                                                                             </div>
                                                                         </div>
                                                                     </div>

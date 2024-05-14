@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('acc_admins', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('name');
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

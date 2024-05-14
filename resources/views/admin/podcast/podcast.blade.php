@@ -73,7 +73,7 @@
                             @foreach ($podcast as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><img src="{{ asset('imgthum/' . $item->thumbnail) }}" alt="" width="120"
+                                    <td><img src="{{ asset('imgthumb/' . $item->thumbnail) }}" alt="" width="120"
                                             height="60" class="rounded"></td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->channel }}</td>
@@ -425,10 +425,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="img-profil mb-2">
+                                    <div class="img-profil mb-2">
                                         <img class="mx-auto rounded" id="preview" src="#" alt="Preview" height="100"
                                             width="200.66" style="display: none;">
-                                    </div> --}}
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3 contact-occupation">
@@ -460,7 +460,7 @@
 
     <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
 
-    {{-- <script>
+    <script>
         function previewImage() {
             var imgProfil = document.getElementById('gambar');
             var preview = document.getElementById('preview');
@@ -476,5 +476,5 @@
                 reader.readAsDataURL(imgProfil.files[0]);
             }
         }
-    </script> --}}
+    </script>
 @endpush

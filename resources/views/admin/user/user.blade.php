@@ -45,7 +45,7 @@
                         <tbody class="text-center">
                             @foreach ($users as $useracc)
                                 <tr>
-                                    <td>{{ $useracc->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <div class=" justify-content-center">
                                             <img src="{{ asset($useracc->gambar ? 'imgprofil/' . $useracc->gambar : 'img/imgProfile/profile.png') }}"
@@ -140,9 +140,9 @@
 
 @push('scripts')
     <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    </script> --}}
 
     <script>
         $(document).ready(function() {

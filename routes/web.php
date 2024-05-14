@@ -43,7 +43,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::get('/adminlog', [AuthController::class, 'getAdmin']);
-Route::post('/loginadmin', [AuthController::class, 'postAdmin']);
+Route::post('/adminlog', [AuthController::class, 'postAdmin']);
 
 Route::get('/log-out', [AuthController::class, 'logoutLogin'])->name('logoutLogin');
 

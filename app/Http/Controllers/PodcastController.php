@@ -42,7 +42,7 @@ class PodcastController extends Controller
 
         $thumbnail = $request->file('thumbnail');
         $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-        $thumbnail->move(public_path('imgthum'), $imgFile);
+        $thumbnail->move(public_path('imgthumb'), $imgFile);
         
 
         $podcast = new Podcast;
@@ -96,7 +96,7 @@ class PodcastController extends Controller
         if($request->thumbnail){
             $thumbnail = $request->file('thumbnail');
             $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-            $thumbnail->move(public_path('imgthum'), $imgFile);
+            $thumbnail->move(public_path('imgthumb'), $imgFile);
             } else {
                 $podcast=Podcast::find( $id );
                 $thumbnail = $podcast->thumbnail;

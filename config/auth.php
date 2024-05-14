@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'acc_admin' => [
+            'driver'   => 'session',
+            'provider' => 'acc_admins',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'acc_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\AccAdmin::class,
         ],
 
         // 'users' => [
@@ -93,8 +101,14 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_reset_tokens',
-            'expire' => 60,
+            'table'    => 'password_reset_tokens',
+            'expire'   => 60,
+            'throttle' => 60,
+        ],
+        'acc_admins' => [
+            'provider' => 'acc_admins',
+            'table'    => 'password_reset_tokens',
+            'expire'   => 60,
             'throttle' => 60,
         ],
     ],

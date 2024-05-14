@@ -86,7 +86,7 @@
                 </li>
                 <li>
                     <a href="/favorit" class="btnn border-end-0 border-bottom-0 border-start-0 active">
-                        <img src="img/love.png" width="20">
+                        <img src="img/heart.png" width="20">
                         <span>Suka</span>
                     </a>
                 </li>
