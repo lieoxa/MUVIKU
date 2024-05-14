@@ -139,23 +139,24 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-secondary bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e1"
                                                     aria-expanded="false" aria-controls="s1-e1">
-                                                    <img class="w-10 rounded-3" src="img/e1.png">
-                                                    <h6 class="my-auto">Ryomen Sukuna</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">1</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Tempat Untuk Pulang</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e1" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e1">
                                                 <div class="accordion-body p-0 p-2 d-flex">
                                                     <div class="img-eps">
-                                                        <img src="img/jjk1.webp">
+                                                        <img src="img/f1-1.webp">
                                                     </div>
                                                     <div class="desc text-white w-75 container">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate class.
+                                                        Hutang menumpuk, rumah akan disita, Ical menghilang.
                                                     </div>
                                                 </div>
-                                                <div class="icon-play w-25">
-                                                    <img src="img/play-button.png" class="w-75">
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -167,18 +168,24 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-secondary bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e2"
                                                     aria-expanded="false" aria-controls="s1-e2">
-                                                    <img class="w-10 rounded-3" src="img/e2.png">
-                                                    <h6 class="my-auto">For My Self</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">2</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Barat dan Timur</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e2" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e2">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/f1-2.webp">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Elzan bergabung dengan Rio dan Ara menjadi anak buah Tony
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -191,17 +198,21 @@
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e3"
                                                     aria-expanded="false" aria-controls="s1-e3">
                                                     <img class="w-10 rounded-3" src="img/e3.png">
-                                                    <h6 class="my-auto">Girl of Steel</h6>
+                                                    <h6 class="my-auto">Peperangan</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e3" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e3">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/f1-3.webp">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Perang antara dua geng preman di pasar.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -214,17 +225,21 @@
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e4"
                                                     aria-expanded="false" aria-controls="s1-e4">
                                                     <img class="w-10 rounded-3" src="img/e4.png">
-                                                    <h6 class="my-auto">Curse Womb Must Die</h6>
+                                                    <h6 class="my-auto">Jeruji dan Kepalan Besi</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e4" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e4">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/f1-4.webp">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Kilas balik kehidupan Elzan dan Rio di penjara.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -237,17 +252,21 @@
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e5"
                                                     aria-expanded="false" aria-controls="s1-e5">
                                                     <img class="w-10 rounded-3" src="img/e5.png">
-                                                    <h6 class="my-auto">Curse Womb Must Die -ll-</h6>
+                                                    <h6 class="my-auto">Rencana-Rencana</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e5" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e5">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/f1-5.webp">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Elzan terseret dalam intrik preman pasar.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -260,17 +279,21 @@
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e6"
                                                     aria-expanded="false" aria-controls="s1-e6">
                                                     <img class="w-10 rounded-3" src="img/e6.png">
-                                                    <h6 class="my-auto">After Rain</h6>
+                                                    <h6 class="my-auto">Doa dan Pendosa</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e6" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e6">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/f1-6.webp">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Elzan dan Rio mencurangi sistem penagihan utang.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -283,17 +306,21 @@
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e7"
                                                     aria-expanded="false" aria-controls="s1-e7">
                                                     <img class="w-10 rounded-3" src="img/e7.png">
-                                                    <h6 class="my-auto">Assault</h6>
+                                                    <h6 class="my-auto">Waktu Para Serigala</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e7" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e7">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/f1-7.webp">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Mereka dalam bahaya, sekaligus mengadu domba Elzan dan Ical.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -306,17 +333,21 @@
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e8"
                                                     aria-expanded="false" aria-controls="s1-e8">
                                                     <img class="w-10 rounded-3" src="img/e8.png">
-                                                    <h6 class="my-auto">Boredom</h6>
+                                                    <h6 class="my-auto">Pertaruhan</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e8" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e8">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/f1-8.webp">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Kilas balik kehidupan Elzan dan Rio dipenjara.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>

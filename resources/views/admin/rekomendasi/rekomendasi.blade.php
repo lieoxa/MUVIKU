@@ -84,7 +84,7 @@
                         <tbody class="text-center">
                             @foreach ($rekomendasis as $items)
                                 <tr>
-                                    <td class="w-0">{{ $items->id }}</td>
+                                    <td class="w-0">{{ $loop->iteration }}</td>
                                     <td><img src="{{ asset('imgdb/' . $items->gambar) }}" alt="" width="60"
                                             height="60" class="rounded"></td>
                                     <td>{{ $items->judul }}</td>

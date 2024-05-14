@@ -69,13 +69,13 @@
                                                 <button class="btn btn-danger ms-1" style="padding: 7px 18px"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#switchstatuss-{{ $useracc->id }}">
-                                                    <i class="ti ti-lock-open"></i>
+                                                    <i class="ti ti-lock-open" style="font-size: 18px;"></i>
                                                 </button>
                                             @else
-                                                <button class="btn btn-danger ms-1" style="padding: 7px 18px"
+                                                <button class="btn btn-outline-danger ms-1" style="padding: 7px 18px"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#switchstatus-{{ $useracc->id }}">
-                                                    <i class="ti ti-lock"></i>
+                                                    <i class="ti ti-lock" style="font-size: 18px;"></i>
                                                 </button>
                                             @endif
                                         </div>

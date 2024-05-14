@@ -127,7 +127,9 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-secondary bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e1"
                                                     aria-expanded="false" aria-controls="s1-e1">
-                                                    <img class="w-10 rounded-3" src="img/e1.png">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">1</h5>
+                                                    </div>
                                                     <h6 class="my-auto">Ryomen Sukuna</h6>
                                                 </button>
                                             </h2>
@@ -135,11 +137,10 @@
                                                 data-bs-parent="#s1_e1">
                                                 <div class="accordion-body p-0 p-2 d-flex">
                                                     <div class="img-eps">
-                                                        <img src="img/jjk1.webp">
+                                                        <img src="img/jjk1.jpg">
                                                     </div>
                                                     <div class="desc text-white w-75 container">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate class.
+                                                        Di dunia di mana para iblis memakan manusia.
                                                     </div>
                                                 </div>
                                                 <div class="icon-play w-25">
@@ -155,18 +156,24 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-secondary bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e2"
                                                     aria-expanded="false" aria-controls="s1-e2">
-                                                    <img class="w-10 rounded-3" src="img/e2.png">
-                                                    <h6 class="my-auto">For My Self</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">2</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Untuk Diriku Sendiri</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e2" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e2">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk2.jpg">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Yuji berhasil mengendalikan kutukan Ryomen Sukuna.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -178,18 +185,24 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e3"
                                                     aria-expanded="false" aria-controls="s1-e3">
-                                                    <img class="w-10 rounded-3" src="img/e3.png">
-                                                    <h6 class="my-auto">Girl of Steel</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">3</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Gadis Baja</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e3" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e3">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk3.jpg">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Nobara Kugisaki ikut dalam perjalanan ke Roppongi.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -201,18 +214,24 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e4"
                                                     aria-expanded="false" aria-controls="s1-e4">
-                                                    <img class="w-10 rounded-3" src="img/e4.png">
-                                                    <h6 class="my-auto">Curse Womb Must Die</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">4</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Rahim Kutukan Harus Mati</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e4" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e4">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk4.jpg">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika rahim kutukan menyerang sebuah lapas remaja.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -224,18 +243,24 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e5"
                                                     aria-expanded="false" aria-controls="s1-e5">
-                                                    <img class="w-10 rounded-3" src="img/e5.png">
-                                                    <h6 class="my-auto">Curse Womb Must Die -ll-</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">5</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Rahim Kutukan Harus Mati -ll-</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e5" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e5">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk5.jpg">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Sukuna menyandera tubuh Yuji dengan cara mengerikan.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -247,18 +272,24 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e6"
                                                     aria-expanded="false" aria-controls="s1-e6">
-                                                    <img class="w-10 rounded-3" src="img/e6.png">
-                                                    <h6 class="my-auto">After Rain</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">6</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Setelah Hujan</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e6" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e6">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk6.jpg">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Sukuna memberi tahu Yuji bahwa ia akan menghidupkannya.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -270,18 +301,24 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e7"
                                                     aria-expanded="false" aria-controls="s1-e7">
-                                                    <img class="w-10 rounded-3" src="img/e7.png">
-                                                    <h6 class="my-auto">Assault</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">7</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Serangan</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e7" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e7">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk7.jpg">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Roh Kutukan bernama Jogo menyerang Gojo.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -293,18 +330,489 @@
                                                     class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
                                                     type="button" data-bs-toggle="collapse" data-bs-target="#s1-e8"
                                                     aria-expanded="false" aria-controls="s1-e8">
-                                                    <img class="w-10 rounded-3" src="img/e8.png">
-                                                    <h6 class="my-auto">Boredom</h6>
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">8</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Kebosanan</h6>
                                                 </button>
                                             </h2>
                                             <div id="s1-e8" class="accordion-collapse collapse"
                                                 data-bs-parent="#s1_e8">
-                                                <div class="accordion-body p-0 p-2">
-                                                    <div class="desc text-white">
-                                                        Placeholder content for this accordion,
-                                                        which is intended to demonstrate the class. This is the first
-                                                        item's accordion body.
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk8.jpg">
                                                     </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e9">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e9"
+                                                    aria-expanded="false" aria-controls="s1-e9">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">9</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Orang Tidak Penting dan Hukuman</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e9" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e9">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk9.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Junpei Yoshino, seorang siswa SMA, mendapati para perundungnya terbunuh
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e10">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e10"
+                                                    aria-expanded="false" aria-controls="s1-e10">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">10</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Transfigurasi</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e10" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e10">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk10.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e11">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e11"
+                                                    aria-expanded="false" aria-controls="s1-e11">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">11</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Berpikiran Sempit</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e11" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e11">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk11.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e12">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e12"
+                                                    aria-expanded="false" aria-controls="s1-e12">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">12</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Untukmu, Suatu Hari Nanti
+                                                    </h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e12" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e12">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk12.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e13">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e13"
+                                                    aria-expanded="false" aria-controls="s1-e13">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">13</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Besok</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e13" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e13">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk13.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e14">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e14"
+                                                    aria-expanded="false" aria-controls="s1-e14">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:1px;padding-bottom:1px">14</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Adu Kemampuan - Kelompok 0</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e14" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e14">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk14.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e15">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e15"
+                                                    aria-expanded="false" aria-controls="s1-e15">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:1px;padding-bottom:1px">15</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Adu Kemampuan - Kelompok 1</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e15" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e15">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk15.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e16">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e16"
+                                                    aria-expanded="false" aria-controls="s1-e16">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:1px;padding-bottom:1px">16</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Adu Kemampuan - Kelompok 2</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e16" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e16">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk16.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e17">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e17"
+                                                    aria-expanded="false" aria-controls="s1-e17">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:1px;padding-bottom:1px">17</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Adu Kemampuan - Kelompok 3</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e17" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e17">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk17.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e18">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e18"
+                                                    aria-expanded="false" aria-controls="s1-e18">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:1px;padding-bottom:1px">18</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Orang Bijaksana</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e18" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e18">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk18.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e19">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e19"
+                                                    aria-expanded="false" aria-controls="s1-e19">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:1px;padding-bottom:1px">19</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Kilatan Hitam</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e19" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e19">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk19.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e20">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e20"
+                                                    aria-expanded="false" aria-controls="s1-e20">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:1px;padding-bottom:1px">20</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Nonstandar</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e20" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e20">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk20.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e21">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e21"
+                                                    aria-expanded="false" aria-controls="s1-e21">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:1px;padding-bottom:1px">21</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Jujutsu Koshien</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e21" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e21">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk21.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e22">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e22"
+                                                    aria-expanded="false" aria-controls="s1-e22">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">22</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Asal Mula Ketaatan Buta</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e22" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e22">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk22.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e23">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e23"
+                                                    aria-expanded="false" aria-controls="s1-e23">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">23</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Asal Mula Ketaatan Buta - 2 -</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e23" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e23">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk23.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion accordion-flush" id="s1_e24">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header">
+                                                <button
+                                                    class="accordion-button eps-icon-down collapsed border px-2 py-2 rounded-4 border-info bg-dark gap-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#s1-e24"
+                                                    aria-expanded="false" aria-controls="s1-e24">
+                                                    <div class="px-2 text-black rounded-2 text-center" style="background: #d7d7d7; height:26.49px;">
+                                                        <h5 class="border-0 my-0" style="font-weight: 650 !important;padding-top:2px;padding-bottom:1px">24</h5>
+                                                    </div>
+                                                    <h6 class="my-auto">Komplotan</h6>
+                                                </button>
+                                            </h2>
+                                            <div id="s1-e24" class="accordion-collapse collapse"
+                                                data-bs-parent="#s1_e24">
+                                                <div class="accordion-body p-0 p-2 d-flex">
+                                                    <div class="img-eps">
+                                                        <img src="img/jjk24.jpg">
+                                                    </div>
+                                                    <div class="desc text-white w-75 container">
+                                                        Ketika Kugisaki dan Fushiguro berlatih untuk acara pertukaran.
+                                                    </div>
+                                                </div>
+                                                <div class="icon-play">
+                                                    <img src="img/play-button.png" class="w-25">
                                                 </div>
                                             </div>
                                         </div>
@@ -381,8 +889,9 @@
                     </div>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-center p-0 pt-3">
-                    <input type="submit" id="laporbtn" class="text-white text-center border-0 btn-simpan py-2 rounded-3"
-                        style="width: 35%" data-bs-dismiss="modal" value="Laporkan" disabled>
+                    <input type="submit" id="laporbtn"
+                        class="text-white text-center border-0 btn-simpan py-2 rounded-3" style="width: 35%"
+                        data-bs-dismiss="modal" value="Laporkan" disabled>
                 </div>
             </div>
         </div>

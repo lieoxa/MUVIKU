@@ -1,3 +1,26 @@
+<style>
+    .sidebar-nav ul .sidebar-item .sidebar-link-1:hover {
+        background-color: rgba(255, 93, 93, 0.1);
+        color: #ff5d5d;
+    }
+
+    .sidebar-nav ul .sidebar-item .sidebar-link-1 {
+        color: #ff5d5d;
+        display: flex;
+        font-size: 22px;
+        white-space: nowrap;
+        align-items: center;
+        line-height: 25px;
+        position: relative;
+        margin: 0 0 2px;
+        padding: 10px;
+        border-radius: 7px;
+        gap: 15px;
+        text-decoration: none;
+        font-weight: 400;
+    }
+</style>
+
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div>
@@ -70,7 +93,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Request::is('banner', 'banner/*') ? 'active' : null }}" href="{{ route('banner.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('banner', 'banner/*') ? 'active' : null }}"
+                        href="{{ route('banner.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-badge-ad"></i>
                         </span>
@@ -78,7 +102,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Request::is('rekomendasi', 'rekomendasi/*') ? 'active' : null }}" href="{{ route('rekomendasi.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('rekomendasi', 'rekomendasi/*') ? 'active' : null }}"
+                        href="{{ route('rekomendasi.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-photo-search"></i>
                         </span>
@@ -87,7 +112,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ Request::is('laporan', 'laporan/*') ? 'active' : null }}" href="{{ route('laporan.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('laporan', 'laporan/*') ? 'active' : null }}"
+                        href="{{ route('laporan.index') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-clipboard-text"></i>
                         </span>
@@ -102,14 +128,13 @@
                         <span class="hide-menu">Tambah Kategori</span>
                     </a>
                 </li>
-
             </ul>
         </nav>
         <div class="fixed-profile p-3 bg-light-secondary rounded sidebar-ad mt-3">
             <div class="hstack gap-3">
                 <div class="john-img">
-                    <img src="{{ asset('admin') }}/dist/images/profile/user-1.jpg" class="rounded-circle" width="40"
-                        height="40" alt="">
+                    <img src="{{ asset('admin') }}/dist/images/profile/user-1.jpg" class="rounded-circle"
+                        width="40" height="40" alt="">
                 </div>
                 <div class="john-title">
                     <h6 class="mb-0 fs-4 fw-semibold">Mathew</h6>
@@ -124,3 +149,20 @@
         <!-- End Sidebar navigation -->
     </div>
 </aside>
+<div class="modal bg-modal fade" id="logout" tabindex="-1" aria-labelledby="logoutLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered container">
+        <form class="w-100">
+            <div class="modal-content logout rounded-5">
+                <div class="modal-header border-bottom-0 text-center d-block pb-0">
+                    <h1 class="modal-title fs-5" id="logoutLabel">Anda Yakin Ingin Log Out?</h1>
+                </div>
+                <div class="modal-footer border-top-0 justify-content-center gap-2">
+                    <a href="{{ route('logoutAdmin') }}" class="btn bg-secondary text-white px-3 py-2"
+                        style="width: 72.53px">Iya</a>
+                    <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

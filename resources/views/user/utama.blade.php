@@ -666,7 +666,8 @@
                             <div class="d-flex gap-2 bar mt-1">
 
                                 @foreach ($films->where('is_publish', '1')->where('kategori_id', '1') as $item)
-                                    <div class="li position-relative" onclick="window.location='{{ route('jawa') }}'">
+                                    <div class="li position-relative"
+                                        onclick="window.location='{{ route('jawa') }}'">
                                         <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
                                         <img src="{{ asset('imgthumb/' . $item->thumbnail) }}"
                                             class="card-img-top slider-img">
@@ -728,7 +729,76 @@
                     <section class="splide new-4" aria-label="Splide Basic HTML Example">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                <li class="splide__slide saran-2">
+                                @foreach ($films->where('is_publish', '1')->where('tipe', 'Serial') as $filmindo)
+                                    <li class="splide__slide saran-2">
+                                        <div
+                                            class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
+                                            <div id="main-slider" class="splide pb-2">
+                                                <div class="splide__track">
+                                                    <ul class="splide__list">
+                                                        {{-- <li class="splide__slide rounded-3">
+                                                            <!-- Content for thumbnail slider item 1 -->
+                                                            <img src="{{ asset('imgthumb/' . $filmindo->episode->thumb_eps) }}">
+                                                        </li> --}}
+                                                        <li class="splide__slide rounded-3">
+                                                            <!-- Content for thumbnail slider item 2 -->
+                                                            <img src="img/f1-2.webp">
+                                                        </li>
+                                                        <li class="splide__slide rounded-3">
+                                                            <!-- Content for thumbnail slider item 1 -->
+                                                            <img src="img/f1-3.webp">
+                                                        </li>
+                                                        <li class="splide__slide rounded-3">
+                                                            <!-- Content for thumbnail slider item 2 -->
+                                                            <img src="img/f1-4.webp">
+                                                        </li>
+                                                        <!-- Add more thumbnail slider items as needed -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div id="thumbnail-slider" class="splide">
+                                                <div class="splide__track border-0">
+                                                    <ul class="splide__list">
+                                                        {{-- <li class="splide__slide rounded border">
+                                                            <!-- Content for thumbnail slider item 1 -->
+                                                            <img src="{{ asset('imgthumb/' . $filmindo->episode->thumb_eps) }}">
+                                                        </li> --}}
+                                                        <li class="splide__slide rounded border">
+                                                            <!-- Content for thumbnail slider item 2 -->
+                                                            <img src="img/f1-2.webp">
+                                                        </li>
+                                                        <li class="splide__slide rounded border">
+                                                            <!-- Content for thumbnail slider item 1 -->
+                                                            <img src="img/f1-3.webp">
+                                                        </li>
+                                                        <li class="splide__slide rounded border">
+                                                            <!-- Content for thumbnail slider item 2 -->
+                                                            <img src="img/f1-4.webp">
+                                                        </li>
+                                                        <li
+                                                            class="splide__slide rounded border bg-secondary text-white">
+                                                            <div class="sisa-eps mt-2" style="font-size: 20px"><i
+                                                                    class="bi bi-plus"></i>4</div>
+                                                        </li>
+                                                        <!-- Add more thumbn    ail slider items as needed -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="saran-bawah d-flex ps-6 pe-4">
+                                                <div class="text-white my-auto text-start" style="width: 80%">
+                                                    <h6 class="m-0">{{ $filmindo->judul }}</h6>
+                                                    <p class="mb-0 text-secondary" style="font-size: 12px">{{ $filmindo->judul }}</p>
+                                                </div>
+                                                <div class="tombol text-end" style="width: 20%">
+                                                    <i class="bi bi-play-circle-fill text-white fs-6 my-auto me-0"
+                                                        style="width: 50%"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                                {{-- <li class="splide__slide saran-2">
                                     <div class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
                                         <div id="main-slider" class="splide pb-2"
                                             onclick="window.location='{{ route('pertaruhan') }}'">
@@ -794,29 +864,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                                 <li class="splide__slide saran-2">
                                     <div class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
                                         <div id="main-slider1" class="splide pb-2">
                                             <div class="splide__track">
                                                 <ul class="splide__list">
                                                     <li class="splide__slide rounded-3">
-                                                        <!-- Content for thumbnail slider item 2 -->
                                                         <img src="img/switch1.webp">
                                                     </li>
                                                     <li class="splide__slide rounded-3">
-                                                        <!-- Content for thumbnail slider item 2 -->
                                                         <img src="img/switch2.webp">
                                                     </li>
                                                     <li class="splide__slide rounded-3">
-                                                        <!-- Content for thumbnail slider item 1 -->
                                                         <img src="img/switch3.webp">
                                                     </li>
                                                     <li class="splide__slide rounded-3">
-                                                        <!-- Content for thumbnail slider item 2 -->
                                                         <img src="img/switch4.webp">
                                                     </li>
-                                                    <!-- Add more thumbnail slider items as needed -->
                                                 </ul>
                                             </div>
                                         </div>

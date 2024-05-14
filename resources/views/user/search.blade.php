@@ -59,6 +59,16 @@
         <div class="mb-4">
             <h1 class="text-white text-start fw-bold">Rekomendasi</h1>
             <section class="d-flex gap-2 bar" style="height: 161px">
+                <div class=" li" onclick="window.location='{{ route('jumanji') }}'">
+                    <div class="card bg-transparent card-img-top">
+                        <img src="img/jumanji.jpg" width="160" height="160"
+                            class="card-img-top-1 w-100">
+                        <div class="card-img-overlay card-1 text-white p-6">
+                            <h5 class="card-title fw-bold" style="color: #DA137F">Jumanji</h5>
+                            <p class="card-text lh-1"><small>Petualangan Digame</small></p>
+                        </div>
+                    </div>
+                </div>
                 @foreach ($rekomendasis->where('id')->where('status', 'Publish') as $item)
                     <div class=" li">
                         <div class="card bg-transparent card-img-top">

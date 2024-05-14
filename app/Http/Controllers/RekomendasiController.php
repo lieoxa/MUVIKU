@@ -86,6 +86,7 @@ class RekomendasiController extends Controller
             'jam' => 'required',
             'status' => 'required',
         ]);
+        // dd($request);
 
         if($request->thumbnail){
             $namaFile = $request->file('thumbnail');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Episode;
 use App\Models\Film;
 use App\Models\Kategori;
 use App\Models\Podcast;
@@ -27,8 +28,9 @@ class UtamaController extends Controller
         $films = Film::all();
         $kategoris = Kategori::all();
         $users = User::all();
+        $episodes = Episode::all();
         
-        return view('user.utama', compact('banner','podcast','films','kategoris','users'));
+        return view('user.utama', compact('banner','podcast','films','kategoris','users','episodes'));
     }
     /**
      * Show the form for creating a new resource.   
