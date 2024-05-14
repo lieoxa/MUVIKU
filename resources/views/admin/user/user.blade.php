@@ -66,16 +66,16 @@
                                                 </button>
                                             </form>
                                             @if ($useracc->status == 'block')
-                                                <button class="btn btn-warning ms-1" style="padding: 7px 18px"
+                                                <button class="btn btn-danger ms-1" style="padding: 7px 18px"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#switchstatuss-{{ $useracc->id }}">
-                                                    <i class="bi bi-ban align-items-center"></i>
+                                                    <i class="ti ti-lock-open"></i>
                                                 </button>
                                             @else
                                                 <button class="btn btn-danger ms-1" style="padding: 7px 18px"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#switchstatus-{{ $useracc->id }}">
-                                                    <i class="bi bi-ban align-items-center"></i>
+                                                    <i class="ti ti-lock"></i>
                                                 </button>
                                             @endif
                                         </div>

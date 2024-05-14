@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AccAdmin extends Model
 {
     use HasFactory;
+    protected $table = "acc_admins";
+
+    protected $guarded = ["id"]; 
 }

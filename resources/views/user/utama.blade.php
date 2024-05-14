@@ -47,6 +47,8 @@
                         <li class="text-start">{{ Str::title(Auth::user()->name) }}</li>
                         <li class="text-secondary text-start" style="font-size: 12px">Email</li>
                         <li class="text-start">{{ Str::title(Auth::user()->email) }}</li>
+                        <li class="text-secondary text-start" style="font-size: 12px">No. Hp</li>
+                        <li class="text-start">{{ Str::title(Auth::user()->nohp) }}</li>
                     </ul>
                 </div>
             @else

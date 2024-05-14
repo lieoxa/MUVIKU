@@ -60,7 +60,7 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credetails)) {
-            if(Auth::user()?->status == 'diblokir'){
+            if(Auth::user()?->status == 'block'){
                 Auth::logout();
                 return back()->with('error', 'Maaf, Akun Anda telah di nonaktifkan !');
             }
