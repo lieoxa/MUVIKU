@@ -104,7 +104,7 @@
                     <div class="desk">
                         <p>Film ini mengisahkan tentang investigasi paranormal untuk membantu keluarga Perron (Ron
                             Livingston dan Lili Taylor), yang mengalami peristiwa-peristiwa mistis di rumah mereka di
-                            Harrisville, Rhode Island, pada tahun 1971.[6]<span class="additional-text">
+                            Harrisville, Rhode Island, pada tahun 1971.<span class="additional-text">
 
                                 Pada tahun 1971, Carolyn dan Roger Perron pindah ke sebuah rumah pertanian tua di
                                 Harrisville, Rhode Island, bersama kelima putri mereka. Selama hari pertama, kepindahan
