@@ -652,19 +652,19 @@
                             </div>
                             <div class="li position-relative">
                                 <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
-                                <img src="{{ asset('img/drakor10.jpg') }}" class="card-img-top slider-img">
+                                <img src="{{ asset('img/drakor12.jpg') }}" class="card-img-top slider-img">
                             </div>
                             <div class="li position-relative">
                                 <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
-                                <img src="{{ asset('img/drakor10.jpg') }}" class="card-img-top slider-img">
+                                <img src="{{ asset('img/drakor13.jpg') }}" class="card-img-top slider-img">
                             </div>
                             <div class="li position-relative">
                                 <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
-                                <img src="{{ asset('img/drakor10.jpg') }}" class="card-img-top slider-img">
+                                <img src="{{ asset('img/drakor14.jpg') }}" class="card-img-top slider-img">
                             </div>
                             <div class="li position-relative">
                                 <img src="img/logo-podcast.png" class="logo-podcast-1 position-absolute">
-                                <img src="{{ asset('img/drakor10.jpg') }}" class="card-img-top slider-img">
+                                <img src="{{ asset('img/drakor15.jpg') }}" class="card-img-top slider-img">
                             </div>
                         </div>
                     </section>
