@@ -533,7 +533,7 @@
                                 <img src="{{ asset('img/anim15.jpg') }}" class="card-img-top slider-img"
                                     style="width: 100%">
                                 <div class="card-body mt-1 mx-auto">
-                                    <h6 class="card-title text-left text-white">Weathering</h6>
+                                    <h6 class="card-title text-left text-white">AOT</h6>
                                 </div>
                             </div>
                             <div class="li">
