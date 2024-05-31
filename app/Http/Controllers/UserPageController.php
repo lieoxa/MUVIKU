@@ -60,4 +60,8 @@ class UserPageController extends Controller
     {
         return view('user.jumanji');
     }
+    public function cars()
+    {
+        return view('user.cars');
+    }
 }

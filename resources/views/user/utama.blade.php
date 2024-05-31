@@ -85,22 +85,7 @@
                         <ul class="splide__list">
                             <li class="splide__slide li">
                                 <div class="img-slide position-relative">
-                                    <button type="button"
-                                        class="btn-1 putar d-flex btn btn-light bg-white border-black favorit position-absolute translate-middle fw-bold py-0"><span
-                                            class="btn-putar"><i
-                                                class="bi-play-fill icon-putar my-auto"></i></span><span
-                                            class="text-btn1">Putar</span></button>
-                                    <button type="button"
-                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold"><span
-                                            class="wish-list"><i
-                                                class="bi-heart-fill my-auto icon-heart"></i></span><span
-                                            class="text-btn2">Favorit</span></button>
-                                    <img src="{{ asset('img/slide.jpg') }}" class="w-100 rounded-5 img-slide-atas">
-                                </div>
-                            </li>
-                            <li class="splide__slide li">
-                                <div class="img-slide position-relative">
-                                    <button type="button"
+                                    <button type="button" onclick="window.location='{{ route('jujutsu') }}'"
                                         class="btn-1 putar d-flex btn btn-light bg-white border-black favorit position-absolute translate-middle fw-bold py-0"><span
                                             class="btn-putar"><i
                                                 class="bi-play-fill icon-putar my-auto"></i></span><span
@@ -111,6 +96,21 @@
                                                 class="bi-heart-fill my-auto icon-heart"></i></span><span
                                             class="text-btn2">Favorit</span></button>
                                     <img src="{{ asset('img/slide1.jpg') }}" class="w-100 rounded-5 img-slide-atas">
+                                </div>
+                            </li>
+                            <li class="splide__slide li">
+                                <div class="img-slide position-relative">
+                                    <button type="button" onclick="window.location='{{ route('cars') }}'"
+                                        class="btn-1 putar d-flex btn btn-light bg-white border-black favorit position-absolute translate-middle fw-bold py-0"><span
+                                            class="btn-putar"><i
+                                                class="bi-play-fill icon-putar my-auto"></i></span><span
+                                            class="text-btn1">Putar</span></button>
+                                    <button type="button"
+                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold"><span
+                                            class="wish-list"><i
+                                                class="bi-heart-fill my-auto icon-heart"></i></span><span
+                                            class="text-btn2">Favorit</span></button>
+                                    <img src="{{ asset('img/slide.jpg') }}" class="w-100 rounded-5 img-slide-atas">
                                 </div>
                             </li>
                             <li class="splide__slide li">
