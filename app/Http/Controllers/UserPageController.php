@@ -64,4 +64,8 @@ class UserPageController extends Controller
     {
         return view('user.cars');
     }
+    public function conjuring()
+    {
+        return view('user.conjuring');
+    }
 }

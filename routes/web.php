@@ -79,6 +79,7 @@ Route::get('/detailsrc', [UserPageController::class, 'detailsrc'])->name('detail
 Route::get('/jumanji', [UserPageController::class, 'jumanji'])->name('jumanji');
 Route::get('/podcast', [UserPageController::class, 'podcast'])->name('podcast');
 Route::get('/cars', [UserPageController::class, 'cars'])->name('cars');
+Route::get('/conjuring', [UserPageController::class, 'conjuring'])->name('conjuring');
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/admin/product', [AdminController::class, 'product'])->name('product');

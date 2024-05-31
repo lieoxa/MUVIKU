@@ -115,7 +115,7 @@
                             </li>
                             <li class="splide__slide li">
                                 <div class="img-slide position-relative">
-                                    <button type="button"
+                                    <button type="button" onclick="window.location='{{ route('conjuring') }}'"
                                         class="btn-1 putar d-flex btn btn-light bg-white border-black favorit position-absolute translate-middle fw-bold py-0"><span
                                             class="btn-putar"><i
                                                 class="bi-play-fill icon-putar my-auto"></i></span><span
