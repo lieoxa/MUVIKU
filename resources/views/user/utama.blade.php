@@ -434,6 +434,26 @@
                                     <img src="{{ asset('img/hero10.jpg') }}" class="card-img-top slider-img"
                                         style="width: 100%" alt="...">
                                 </div>
+                                <div class="li">
+                                    <img src="{{ asset('img/hero11.jpg') }}" class="card-img-top slider-img"
+                                        style="width: 100%" alt="...">
+                                </div>
+                                <div class="li">
+                                    <img src="{{ asset('img/hero12.jpg') }}" class="card-img-top slider-img"
+                                        style="width: 100%" alt="...">
+                                </div>
+                                <div class="li">
+                                    <img src="{{ asset('img/hero13.jpg') }}" class="card-img-top slider-img"
+                                        style="width: 100%" alt="...">
+                                </div>
+                                <div class="li">
+                                    <img src="{{ asset('img/hero14.jpg') }}" class="card-img-top slider-img"
+                                        style="width: 100%" alt="...">
+                                </div>
+                                <div class="li">
+                                    <img src="{{ asset('img/hero15.jpg') }}" class="card-img-top slider-img"
+                                        style="width: 100%" alt="...">
+                                </div>
                             </div>
                         </section>
                     </div>
@@ -510,10 +530,10 @@
                                 </div>
                             </div>
                             <div class="li">
-                                <img src="{{ asset('img/anim2.jpg') }}" class="card-img-top slider-img"
+                                <img src="{{ asset('img/anim15.jpg') }}" class="card-img-top slider-img"
                                     style="width: 100%">
                                 <div class="card-body mt-1 mx-auto">
-                                    <h6 class="card-title text-left text-white">Demon Slayer</h6>
+                                    <h6 class="card-title text-left text-white">Weathering</h6>
                                 </div>
                             </div>
                             <div class="li">
@@ -535,6 +555,41 @@
                                     style="width: 100%">
                                 <div class="card-body mt-1 mx-auto">
                                     <h6 class="card-title text-left text-white">Mononoke</h6>
+                                </div>
+                            </div>
+                            <div class="li">
+                                <img src="{{ asset('img/anim10.jpeg') }}" class="card-img-top slider-img"
+                                    style="width: 100%">
+                                <div class="card-body mt-1 mx-auto">
+                                    <h6 class="card-title text-left text-white">Naruto</h6>
+                                </div>
+                            </div>
+                            <div class="li">
+                                <img src="{{ asset('img/anim11.jpg') }}" class="card-img-top slider-img"
+                                    style="width: 100%">
+                                <div class="card-body mt-1 mx-auto">
+                                    <h6 class="card-title text-left text-white">Tokyo</h6>
+                                </div>
+                            </div>
+                            <div class="li">
+                                <img src="{{ asset('img/anim12.jpg') }}" class="card-img-top slider-img"
+                                    style="width: 100%">
+                                <div class="card-body mt-1 mx-auto">
+                                    <h6 class="card-title text-left text-white">Haikkyu</h6>
+                                </div>
+                            </div>
+                            <div class="li">
+                                <img src="{{ asset('img/anim13.jpg') }}" class="card-img-top slider-img"
+                                    style="width: 100%">
+                                <div class="card-body mt-1 mx-auto">
+                                    <h6 class="card-title text-left text-white">A Silent</h6>
+                                </div>
+                            </div>
+                            <div class="li">
+                                <img src="{{ asset('img/anim14.jpg') }}" class="card-img-top slider-img"
+                                    style="width: 100%">
+                                <div class="card-body mt-1 mx-auto">
+                                    <h6 class="card-title text-left text-white">Josse</h6>
                                 </div>
                             </div>
                             </ul>
