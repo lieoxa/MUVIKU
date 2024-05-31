@@ -52,16 +52,79 @@
                             <div
                                 class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
                                 <div class="d-flex h-100">
-                                    <img src="{{ asset('img/anim.jpg') }}" class="rounded slider-img" width="80"
+                                    <img src="{{ asset('img/jumanji.jpg') }}" class="rounded slider-img" width="80"
                                         height="90">
                                 </div>
                                 <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">One Piece Red</h5>
-                                    <p>MAPPA</p>
+                                    <h5 class="text-white mb-1">Jumanji</h5>
+                                    <p>TriStar Pictures</p>
                                 </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart" style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-heart-fill fs-4 text-danger"></i>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
                                 </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/drakor7.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Train to Busan</h5>
+                                    <p>RedPeter Film</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/anim8.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Spirited Away</h5>
+                                    <p>Ghibli</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/anim3.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Wuthering With you</h5>
+                                    <p>CoMix</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/hero7.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Thor Ragnarok</h5>
+                                    <p>Marvel Studios</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            
                             </div>
                         </section>
                     </div>

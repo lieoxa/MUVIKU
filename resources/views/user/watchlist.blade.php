@@ -67,6 +67,96 @@
                                     <i class="bi bi-trash-fill fs-4 text-danger"></i>
                                 </div>
                             </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/drakor1.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">20th Cetury Girl</h5>
+                                    <p>Yong Film Inc.</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/anim6.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Howls Moving Castle</h5>
+                                    <p>Ghibli</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/anim4.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Kimi No Nawa</h5>
+                                    <p>CoMix</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/hero5.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Shang Chi</h5>
+                                    <p>Marvel Studios</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/hero10.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Doctor Strange</h5>
+                                    <p>Marvel Studios</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
+                            <div
+                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
+                                <div class="d-flex h-100">
+                                    <img src="{{ asset('img/horror10.jpg') }}" class="rounded slider-img" width="80"
+                                        height="90">
+                                </div>
+                                <div class="ms-1 w-auto my-1">
+                                    <h5 class="text-white mb-1">Doctor Strange</h5>
+                                    <p>Marvel Studios</p>
+                                </div>
+                                <div class="w-auto text-white ms-auto pe-1" id="heart"
+                                    style="margin-top: 4px; margin-right: 0.3rem;">
+                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                </div>
+                            </div>
                         </section>
                     </div>
                 </section>
