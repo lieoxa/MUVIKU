@@ -1096,6 +1096,108 @@
                                         </div>
                                     </div>
                                 </li>
+                                <li class="splide__slide saran-2">
+                                    <div class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
+                                        <div id="main-slider4" class="splide pb-2">
+                                            <div class="splide__track">
+                                                <ul class="splide__list">
+                                                    <li class="splide__slide rounded-3">
+                                                        <!-- Content for main slider item 1 -->
+                                                        <img src="img/cpa1.webp" alt="Main Slide 3">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div id="thumbnail-slider4" class="splide">
+                                            <div class="splide__track border-0">
+                                                <ul class="splide__list">
+                                                    <li class="splide__slide rounded border">
+                                                        <!-- Content for thumbnail slider item 1 -->
+                                                        <img src="img/cpa1.webp">
+                                                    </li>
+                                                    <li class="splide__slide rounded border">
+                                                        <!-- Content for thumbnail slider item 1 -->
+                                                        <img src="img/cpa2.webp">
+                                                    </li>
+                                                    <li class="splide__slide rounded border">
+                                                        <!-- Content for thumbnail slider item 2 -->
+                                                        <img src="img/cpa3.webp">
+                                                    </li>
+                                                    <li class="splide__slide rounded border">
+                                                        <!-- Content for thumbnail slider item 2 -->
+                                                        <img src="img/cpa4.webp">
+                                                    </li>
+                                                    <li class="splide__slide rounded border bg-secondary text-white">
+                                                        <div class="sisa-eps mt-2" style="font-size: 20px"><i
+                                                                class="bi bi-plus"></i>4</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="saran-bawah d-flex ps-6 pe-4">
+                                            <div class="text-white my-auto text-start" style="width: 80%">
+                                                <h6 class="m-0">Cinta Pertama Ayah</h6>
+                                                <p class="mb-0 text-secondary" style="font-size: 12px">2023</p>
+                                            </div>
+                                            <div class="tombol text-end" style="width: 20%">
+                                                <i class="bi bi-play-circle-fill text-white fs-6 my-auto me-0"
+                                                    style="width: 50%"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="splide__slide saran-2">
+                                    <div class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
+                                        <div id="main-slider3" class="splide pb-2">
+                                            <div class="splide__track">
+                                                <ul class="splide__list">
+                                                    <li class="splide__slide rounded-3">
+                                                        <!-- Content for main slider item 1 -->
+                                                        <img src="img/adil01.webp" alt="Main Slide 3">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div id="thumbnail-slider3" class="splide">
+                                            <div class="splide__track border-0">
+                                                <ul class="splide__list">
+                                                    <li class="splide__slide rounded border">
+                                                        <!-- Content for thumbnail slider item 1 -->
+                                                        <img src="img/adil01.webp">
+                                                    </li>
+                                                    <li class="splide__slide rounded border">
+                                                        <!-- Content for thumbnail slider item 1 -->
+                                                        <img src="img/adil02.webp">
+                                                    </li>
+                                                    <li class="splide__slide rounded border">
+                                                        <!-- Content for thumbnail slider item 2 -->
+                                                        <img src="img/adil03.webp">
+                                                    </li>
+                                                    <li class="splide__slide rounded border">
+                                                        <!-- Content for thumbnail slider item 2 -->
+                                                        <img src="img/adil04.webp">
+                                                    </li>
+                                                    <li class="splide__slide rounded border bg-secondary text-white">
+                                                        <div class="sisa-eps mt-2" style="font-size: 20px"><i
+                                                                class="bi bi-plus"></i>4</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="saran-bawah d-flex ps-6 pe-4">
+                                            <div class="text-white my-auto text-start" style="width: 80%">
+                                                <h6 class="m-0">Ratu Adil</h6>
+                                                <p class="mb-0 text-secondary" style="font-size: 12px">2023</p>
+                                            </div>
+                                            <div class="tombol text-end" style="width: 20%">
+                                                <i class="bi bi-play-circle-fill text-white fs-6 my-auto me-0"
+                                                    style="width: 50%"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </section>
@@ -1366,6 +1468,77 @@
             });
 
             var thumbnails = new Splide('#thumbnail-slider2', {
+                arrows: false,
+                rewind: true,
+                fixedWidth: 104,
+                fixedHeight: 58,
+                isNavigation: true,
+                gap: '0.5rem',
+                padding: {
+                    left: '0.5rem',
+                    right: '0.5rem',
+                },
+                pagination: false,
+                cover: true,
+                drag: false,
+                breakpoints: {
+                    640: {
+                        fixedWidth: 45,
+                        fixedHeight: 45,
+                    },
+                },
+            });
+
+            main.sync(thumbnails);
+            main.mount();
+            thumbnails.mount();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var main = new Splide('#main-slider3', {
+                type: 'fade',
+                heightRatio: 0.7,
+                pagination: false,
+                arrows: false,
+                cover: true,
+            });
+
+            var thumbnails = new Splide('#thumbnail-slider3', {
+                arrows: false,
+                rewind: true,
+                fixedWidth: 104,
+                fixedHeight: 58,
+                isNavigation: true,
+                gap: '0.5rem',
+                padding: {
+                    left: '0.5rem',
+                    right: '0.5rem',
+                },
+                pagination: false,
+                cover: true,
+                drag: false,
+                breakpoints: {
+                    640: {
+                        fixedWidth: 45,
+                        fixedHeight: 45,
+                    },
+                },
+            });
+
+            main.sync(thumbnails);
+            main.mount();
+            thumbnails.mount();
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var main = new Splide('#main-slider4', {
+                type: 'fade',
+                heightRatio: 0.7,
+                pagination: false,
+                arrows: false,
+                cover: true,
+            });
+
+            var thumbnails = new Splide('#thumbnail-slider4', {
                 arrows: false,
                 rewind: true,
                 fixedWidth: 104,
