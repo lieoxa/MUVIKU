@@ -210,7 +210,7 @@ class FilmController extends Controller
         if ($request->thumb_eps) {
             $thumbnail = $request->file('thumbnail');
             $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-            $thumbnail->move(public_path('imgthum'), $imgFile);
+            $thumbnail->move(public_path('imgthumb'), $imgFile);
         } else {
             $imgFile = Film::find($id);
             $thumbnail = $imgFile->thumbnail;

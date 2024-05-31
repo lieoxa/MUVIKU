@@ -168,7 +168,34 @@
                                     <img src="img/horror4.jpg">
                                 </div>
                                 <div class="col-4">
-                                    <img src="img/horror5.jpg">
+                                    <img src="img/horror6.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror7.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror8.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror9.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror10.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror11.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror12.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror13.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror14.jpg">
+                                </div>
+                                <div class="col-4">
+                                    <img src="img/horror15.jpg">
                                 </div>
                             </div>
                         </section>

@@ -269,6 +269,51 @@
                                     </div>
                                     <img src="{{ asset('img/animasi10.jpg') }}" class="card-img-top slider-img">
                                 </div>
+                                <div class="li position-relative">
+                                    <div class="tonton position-absolute start-50 translate-middle w-100"
+                                        style="top: 88%">
+                                        <input type="button"
+                                            style="font-size: 10px; background-color:#AD0000;color:white;width:98px;border-style: none; padding: 3px 0 ;"
+                                            value="Tonton Sekarang">
+                                    </div>
+                                    <img src="{{ asset('img/animasi11.jpg') }}" class="card-img-top slider-img">
+                                </div>
+                                <div class="li position-relative">
+                                    <div class="tonton position-absolute start-50 translate-middle w-100"
+                                        style="top: 88%">
+                                        <input type="button"
+                                            style="font-size: 10px; background-color:#ffffff;color:rgb(0, 0, 0);width:98px;border-style: none; padding: 3px 0 ;"
+                                            value="Film Terbaru">
+                                    </div>
+                                    <img src="{{ asset('img/animasi12.jpg') }}" class="card-img-top slider-img">
+                                </div>
+                                <div class="li position-relative">
+                                    <div class="tonton position-absolute start-50 translate-middle w-100"
+                                        style="top: 88%">
+                                        <input type="button"
+                                            style="font-size: 10px; background-color:#AD0000;color:white;width:98px;border-style: none; padding: 3px 0 ;"
+                                            value="Tonton Sekarang">
+                                    </div>
+                                    <img src="{{ asset('img/animasi13.jpg') }}" class="card-img-top slider-img">
+                                </div>
+                                <div class="li position-relative">
+                                    <div class="tonton position-absolute start-50 translate-middle w-100"
+                                        style="top: 88%">
+                                        <input type="button"
+                                            style="font-size: 10px; background-color:#ffffff;color:rgb(0, 0, 0);width:98px;border-style: none; padding: 3px 0 ;"
+                                            value="Film Terbaru">
+                                    </div>
+                                    <img src="{{ asset('img/animasi14.jpg') }}" class="card-img-top slider-img">
+                                </div>
+                                <div class="li position-relative">
+                                    <div class="tonton position-absolute start-50 translate-middle w-100"
+                                        style="top: 88%">
+                                        <input type="button"
+                                            style="font-size: 10px; background-color:#AD0000;color:white;width:98px;border-style: none; padding: 3px 0 ;"
+                                            value="Tonton Sekarang">
+                                    </div>
+                                    <img src="{{ asset('img/animasi15.jpg') }}" class="card-img-top slider-img">
+                                </div>
                             </div>
                         </section>
                     </div>
