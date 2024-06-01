@@ -24,7 +24,7 @@
         }
 
         .published {
-            color: green;
+            color: rgb(0, 192, 0);
             /* Warna font hijau untuk status publish */
         }
 

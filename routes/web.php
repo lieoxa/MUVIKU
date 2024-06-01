@@ -80,6 +80,7 @@ Route::get('/jumanji', [UserPageController::class, 'jumanji'])->name('jumanji');
 Route::get('/podcast', [UserPageController::class, 'podcast'])->name('podcast');
 Route::get('/cars', [UserPageController::class, 'cars'])->name('cars');
 Route::get('/conjuring', [UserPageController::class, 'conjuring'])->name('conjuring');
+Route::get('/justice', [UserPageController::class, 'justice'])->name('justice');
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/admin/product', [AdminController::class, 'product'])->name('product');

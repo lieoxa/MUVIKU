@@ -336,7 +336,7 @@ class FilmController extends Controller
         foreach($episodes as $episode){
             // Set warna font berdasarkan is_publish
             if($episode->is_publish == 1){
-                $is_publish = '<span style="color: green;">Published</span>';
+                $is_publish = '<span style="color: rgb(0, 192, 0);">Published</span>';
             } else {
                 $is_publish = '<span style="color: red;">Unpublished</span>';
             }

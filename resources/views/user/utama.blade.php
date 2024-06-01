@@ -135,6 +135,25 @@
                                         class="w-100 rounded-5 img-slide-atas">
                                 </div>
                             </li>
+                            <li class="splide__slide li">
+                                <div class="img-slide position-relative">
+                                    <button type="button" onclick="window.location='{{ route('justice') }}'"
+                                        class="btn-1 putar d-flex btn btn-light bg-white border-black favorit position-absolute translate-middle fw-bold py-0"><span
+                                            class="btn-putar"><i
+                                                class="bi-play-fill icon-putar my-auto"></i></span><span
+                                            class="text-btn1">Putar</span></button>
+                                    <button type="button"
+                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold">
+                                        <span class="wish-list">
+                                            <i class="bi-heart-fill my-auto icon-heart">
+                                            </i>
+                                        </span>
+                                        <span class="text-btn2">Favorit</span>
+                                    </button>
+                                    <img src="{{ asset('img/hero14.jpg') }}"
+                                        class="w-100 rounded-5 img-slide-atas">
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </section>
@@ -1294,6 +1313,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script>
+        function toggleFavorit(button) {
+            button.classList.toggle('favorit-merah');
+        }
     </script>
     <script>
         const list = document.querySelectorAll('.list');

@@ -68,4 +68,8 @@ class UserPageController extends Controller
     {
         return view('user.conjuring');
     }
+    public function justice()
+    {
+        return view('user.justice');
+    }
 }
