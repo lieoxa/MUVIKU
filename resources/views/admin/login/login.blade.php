@@ -21,7 +21,9 @@
         padding-right: 6px !important   ;
     }
 </style>
-
+{{-- AKUN ADMIN --}}
+{{-- EMAIL : Adriel Felix
+PASSWORD : admin --}}
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
