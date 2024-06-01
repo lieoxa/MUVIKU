@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="splide.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet"> --}}
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('logo-muviku.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>MUVIKU</title>
 </head>
 
@@ -908,7 +911,8 @@
                                             <div class="saran-bawah d-flex ps-6 pe-4">
                                                 <div class="text-white my-auto text-start" style="width: 80%">
                                                     <h6 class="m-0">{{ $filmindo->judul }}</h6>
-                                                    <p class="mb-0 text-secondary" style="font-size: 12px">{{ $filmindo->judul }}</p>
+                                                    <p class="mb-0 text-secondary" style="font-size: 12px">
+                                                        {{ $filmindo->judul }}</p>
                                                 </div>
                                                 <div class="tombol text-end" style="width: 20%">
                                                     <i class="bi bi-play-circle-fill text-white fs-6 my-auto me-0"
@@ -1584,6 +1588,23 @@
             })
         }
     </script> --}}
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+        }
+    </script>
 
 </body>
 
