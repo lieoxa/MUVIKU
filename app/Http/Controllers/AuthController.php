@@ -90,7 +90,7 @@ class AuthController extends Controller
 
         if (Auth::guard('acc_admin')->attempt(['name' => $request->name, 'password' => $request->password])) {
             // dd(Auth::user());
-            return redirect('/admin/dashboard')->with('success', 'Login berhasil');
+            return redirect('/user')->with('success', 'Login berhasil');
         }
 
         return back()->with('error', 'Email atau Sandi salah');
