@@ -40,6 +40,12 @@
             line-height: 1;
             vertical-align: -4px;
         }
+
+        #myVideo {
+            display: none;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -97,10 +103,10 @@
                     <h6 class="mb-2 d-flex" style="font-size:0.9rem">Sutradara : <p class="ms-1">Goro Taniguchi</p>
                     </h6>
                     <div class="btn-play">
-                        <a href="#" id="myButton" onclick="playVideo()"
+                        <button id="toggleButton"
                             class="btn btn-light w-100 mt-2 btn-putar"
                             style="margin-bottom: 14px !important;padding-right: 20px"><i
-                                class="bi bi-play-fill fs-1 my-auto"></i><span class="fs-5 fw-bold">Putar</span></a>
+                                class="bi bi-play-fill fs-1 my-auto"></i><span class="fs-5 fw-bold">Putar</span></button>
                     </div>
                     <div class="desk">
                         <p>Sebagai seorang anak, Uta—mantan musisi Bajak Laut Rambut Merah dan teman masa kecil Monkey
@@ -146,9 +152,9 @@
                             <source src="{{ asset('img/onepiecered.mp4') }}" type="video/mp4">
                         </video>
                     </div>
-                    {{-- <iframe class="d-none"
-                        src="https://drive.google.com/file/d/1dO9S5lNaI5Cqn3xof4Yjmi41j6K0fgAg/preview" width="100%"
-                        height="auto" allow="autoplay" allowfullscreen="true"></iframe> --}}
+                    <video id="myVideo" controls>
+                        <source src="vid/op.mp4" type="video/mp4">
+                    </video>
                     <div class="kategori">
                         <div class="film-relate">
                             <h5 class="mb-2">Film Relate</h5>
@@ -384,30 +390,46 @@
             }
         }
     </script>
-    {{-- <script>
-    function playVideo() {
-        var elem = document.getElementsByTagName('iframe')[0];
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        } else {
-            alert("Full screen not supported");
-            return;
-        }
-        elem.play();
-    }
-</script> --}}
-    {{-- <script>
-    Get iframe element
-    const iframe = document.querySelector('iframe');
+    <script>
+        const button = document.getElementById('toggleButton');
+        const video = document.getElementById('myVideo');
 
-    iframe.classList.add('show');
-</script> --}}
+        button.addEventListener('click', () => {
+            if (video.style.display === "none") {
+                video.style.display = "block";
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.mozRequestFullScreen) { // Firefox
+                    video.mozRequestFullScreen();
+                } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) { // IE/Edge
+                    video.msRequestFullscreen();
+                }
+                video.play();
+            } else {
+                video.style.display = "none";
+                video.pause();
+                video.currentTime = 0;
+            }
+        });
+
+        function exitFullscreenHandler() {
+            if (!document.fullscreenElement &&
+                !document.mozFullScreenElement &&
+                !document.webkitFullscreenElement &&
+                !document.msFullscreenElement) {
+                video.style.display = "none";
+                video.pause();
+                video.currentTime = 0;
+            }
+        }
+
+        document.addEventListener('fullscreenchange', exitFullscreenHandler);
+        document.addEventListener('mozfullscreenchange', exitFullscreenHandler);
+        document.addEventListener('webkitfullscreenchange', exitFullscreenHandler);
+        document.addEventListener('msfullscreenchange', exitFullscreenHandler);
+    </script>
     <script>
         const optionMenu = document.querySelector(".select-menu"),
             selectBtn = optionMenu.querySelector(".select-btn"),

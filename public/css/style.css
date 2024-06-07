@@ -190,10 +190,10 @@ h1 {
 }
 
 .btn-outline-light {
-    --bs-btn-hover-color: rgb(209, 40, 40);
+    --bs-btn-hover-color: none;
     --bs-btn-hover-bg: #a1a1a3b2;
     --bs-btn-hover-border-color: #fff;
-    --bs-btn-active-color: rgb(209, 40, 40);
+    --bs-btn-active-color: none;
     --bs-btn-active-bg: #a1a1a3b2;
     --bs-btn-disabled-color: white;
     --bs-btn-disabled-bg: #a1a1a3b2;

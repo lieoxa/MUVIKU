@@ -138,9 +138,9 @@
                             <source src="{{ asset('img/onepiecered.mp4') }}" type="video/mp4">
                         </video>
                     </div>
-                    {{-- <iframe class="d-none"
-                        src="https://drive.google.com/file/d/1dO9S5lNaI5Cqn3xof4Yjmi41j6K0fgAg/preview" width="100%"
-                        height="auto" allow="autoplay" allowfullscreen="true"></iframe> --}}
+                    <iframe class=""
+                        src="https://drive.google.com/file/d/1P_AvEftZz-fWxd4guBYaKt28HMpM_YqD/view?usp=sharing" width="100%"
+                        height="auto" allow="autoplay" allowfullscreen="true"></iframe>
                     <div class="kategori">
                         <div class="film-relate">
                             <h5 class="mb-2">Film Relate</h5>
@@ -352,30 +352,30 @@
             }
         }
     </script>
-    {{-- <script>
+    <script>
     function playVideo() {
-        var elem = document.getElementsByTagName('iframe')[0];
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        } else {
-            alert("Full screen not supported");
-            return;
+            var elem = document.getElementsByTagName('iframe')[0];
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            } else {
+                alert("Full screen not supported");
+                return;
+            }
+            elem.play();
         }
-        elem.play();
-    }
-</script> --}}
-    {{-- <script>
-    Get iframe element
-    const iframe = document.querySelector('iframe');
+    </script>
+        <script>
+        Get iframe element
+        const iframe = document.querySelector('iframe');
 
-    iframe.classList.add('show');
-</script> --}}
+        iframe.classList.add('show');
+    </script>
     <script>
         const optionMenu = document.querySelector(".select-menu"),
             selectBtn = optionMenu.querySelector(".select-btn"),

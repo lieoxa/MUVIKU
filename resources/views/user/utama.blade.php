@@ -25,6 +25,74 @@
     .dropdown-item {
         padding: 0px;
     }
+
+    #toggleCheckbox {
+        display: none;
+    }
+
+    #toggleLabel {
+        display: inline-block;
+        cursor: pointer;
+        background-color: #a1a1a3b2;
+        border: 1px solid #ffffff;
+        border-radius: 4px;
+        color: white;
+    }
+
+    #toggleCheckbox:checked+#toggleLabel {
+        color: red;
+    }
+
+    #toggleCheckboxx {
+        display: none;
+    }
+
+    #toggleLabell {
+        display: inline-block;
+        cursor: pointer;
+        background-color: #a1a1a3b2;
+        border: 1px solid #ffffff;
+        border-radius: 4px;
+        color: white;
+    }
+
+    #toggleCheckboxx:checked+#toggleLabell {
+        color: red;
+    }
+
+    #toggleCheckboxxx {
+        display: none;
+    }
+
+    #toggleLabelll {
+        display: inline-block;
+        cursor: pointer;
+        background-color: #a1a1a3b2;
+        border: 1px solid #ffffff;
+        border-radius: 4px;
+        color: white;
+    }
+
+    #toggleCheckboxxx:checked+#toggleLabelll {
+        color: red;
+    }
+
+    #toggleCheckboxxxx {
+        display: none;
+    }
+
+    #toggleLabellll {
+        display: inline-block;
+        cursor: pointer;
+        background-color: #a1a1a3b2;
+        border: 1px solid #ffffff;
+        border-radius: 4px;
+        color: white;
+    }
+
+    #toggleCheckboxxxx:checked+#toggleLabellll {
+        color: red;
+    }
 </style>
 
 <body>
@@ -39,7 +107,6 @@
 
             <img src="img/muviku.png" class="navbar-brand my-auto" style="width: 30%;" loading="lazy">
             @if (Auth::user())
-                {{-- <img src="{{ asset('img/imgProfile/profile.png') }}" alt="" width="40.59" height="40.59"> --}}
                 <div class="btn-group">
                     <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
                         class="navbar-brand my-auto me-0 rounded-circle foto py-0 dropdown-toggle border"
@@ -93,11 +160,12 @@
                                             class="btn-putar"><i
                                                 class="bi-play-fill icon-putar my-auto"></i></span><span
                                             class="text-btn1">Putar</span></button>
-                                    <button type="button"
-                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold"><span
+                                    <input type="checkbox" id="toggleCheckbox">
+                                    <label for="toggleCheckbox" id="toggleLabel"
+                                        class="btn-2 d-flex btn favorit position-absolute translate-middle pt-2 fw-bold"><span
                                             class="wish-list"><i
                                                 class="bi-heart-fill my-auto icon-heart"></i></span><span
-                                            class="text-btn2">Favorit</span></button>
+                                            class="text-btn2">Favorit</span></label>
                                     <img src="{{ asset('img/slide1.jpg') }}" class="w-100 rounded-5 img-slide-atas">
                                 </div>
                             </li>
@@ -108,11 +176,12 @@
                                             class="btn-putar"><i
                                                 class="bi-play-fill icon-putar my-auto"></i></span><span
                                             class="text-btn1">Putar</span></button>
-                                    <button type="button"
-                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold"><span
+                                    <input type="checkbox" id="toggleCheckboxx">
+                                    <label for="toggleCheckboxx" id="toggleLabell"
+                                        class="btn-2 d-flex btn favorit position-absolute translate-middle pt-2 fw-bold"><span
                                             class="wish-list"><i
                                                 class="bi-heart-fill my-auto icon-heart"></i></span><span
-                                            class="text-btn2">Favorit</span></button>
+                                            class="text-btn2">Favorit</span></label>
                                     <img src="{{ asset('img/slide.jpg') }}" class="w-100 rounded-5 img-slide-atas">
                                 </div>
                             </li>
@@ -123,14 +192,12 @@
                                             class="btn-putar"><i
                                                 class="bi-play-fill icon-putar my-auto"></i></span><span
                                             class="text-btn1">Putar</span></button>
-                                    <button type="button"
-                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold">
-                                        <span class="wish-list">
-                                            <i class="bi-heart-fill my-auto icon-heart">
-                                            </i>
-                                        </span>
-                                        <span class="text-btn2">Favorit</span>
-                                    </button>
+                                    <input type="checkbox" id="toggleCheckboxxx">
+                                    <label for="toggleCheckboxxx" id="toggleLabelll"
+                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold"><span
+                                            class="wish-list"><i
+                                                class="bi-heart-fill my-auto icon-heart"></i></span><span
+                                            class="text-btn2">Favorit</span></label>
                                     <img src="{{ asset('img/horror10.jpg') }}"
                                         class="w-100 rounded-5 img-slide-atas">
                                 </div>
@@ -142,16 +209,13 @@
                                             class="btn-putar"><i
                                                 class="bi-play-fill icon-putar my-auto"></i></span><span
                                             class="text-btn1">Putar</span></button>
-                                    <button type="button"
-                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold">
-                                        <span class="wish-list">
-                                            <i class="bi-heart-fill my-auto icon-heart">
-                                            </i>
-                                        </span>
-                                        <span class="text-btn2">Favorit</span>
-                                    </button>
-                                    <img src="{{ asset('img/hero14.jpg') }}"
-                                        class="w-100 rounded-5 img-slide-atas">
+                                    <input type="checkbox" id="toggleCheckboxxxx">
+                                    <label for="toggleCheckboxxxx" id="toggleLabellll"
+                                        class="btn-2 d-flex btn btn-outline-light favorit position-absolute translate-middle pt-2 fw-bold"><span
+                                            class="wish-list"><i
+                                                class="bi-heart-fill my-auto icon-heart"></i></span><span
+                                            class="text-btn2">Favorit</span></label>
+                                    <img src="{{ asset('img/hero14.jpg') }}" class="w-100 rounded-5 img-slide-atas">
                                 </div>
                             </li>
                         </ul>
@@ -871,77 +935,7 @@
                     <section class="splide new-4" aria-label="Splide Basic HTML Example">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                @foreach ($films->where('is_publish', '1')->where('tipe', 'Serial') as $filmindo)
-                                    <li class="splide__slide saran-2">
-                                        <div
-                                            class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
-                                            <div id="main-slider" class="splide pb-2">
-                                                <div class="splide__track">
-                                                    <ul class="splide__list">
-                                                        {{-- <li class="splide__slide rounded-3">
-                                                            <!-- Content for thumbnail slider item 1 -->
-                                                            <img src="{{ asset('imgthumb/' . $filmindo->episode->thumb_eps) }}">
-                                                        </li> --}}
-                                                        <li class="splide__slide rounded-3">
-                                                            <!-- Content for thumbnail slider item 2 -->
-                                                            <img src="img/f1-2.webp">
-                                                        </li>
-                                                        <li class="splide__slide rounded-3">
-                                                            <!-- Content for thumbnail slider item 1 -->
-                                                            <img src="img/f1-3.webp">
-                                                        </li>
-                                                        <li class="splide__slide rounded-3">
-                                                            <!-- Content for thumbnail slider item 2 -->
-                                                            <img src="img/f1-4.webp">
-                                                        </li>
-                                                        <!-- Add more thumbnail slider items as needed -->
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div id="thumbnail-slider" class="splide">
-                                                <div class="splide__track border-0">
-                                                    <ul class="splide__list">
-                                                        {{-- <li class="splide__slide rounded border">
-                                                            <!-- Content for thumbnail slider item 1 -->
-                                                            <img src="{{ asset('imgthumb/' . $filmindo->episode->thumb_eps) }}">
-                                                        </li> --}}
-                                                        <li class="splide__slide rounded border">
-                                                            <!-- Content for thumbnail slider item 2 -->
-                                                            <img src="img/f1-2.webp">
-                                                        </li>
-                                                        <li class="splide__slide rounded border">
-                                                            <!-- Content for thumbnail slider item 1 -->
-                                                            <img src="img/f1-3.webp">
-                                                        </li>
-                                                        <li class="splide__slide rounded border">
-                                                            <!-- Content for thumbnail slider item 2 -->
-                                                            <img src="img/f1-4.webp">
-                                                        </li>
-                                                        <li
-                                                            class="splide__slide rounded border bg-secondary text-white">
-                                                            <div class="sisa-eps mt-2" style="font-size: 20px"><i
-                                                                    class="bi bi-plus"></i>4</div>
-                                                        </li>
-                                                        <!-- Add more thumbn    ail slider items as needed -->
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="saran-bawah d-flex ps-6 pe-4">
-                                                <div class="text-white my-auto text-start" style="width: 80%">
-                                                    <h6 class="m-0">{{ $filmindo->judul }}</h6>
-                                                    <p class="mb-0 text-secondary" style="font-size: 12px">
-                                                        {{ $filmindo->judul }}</p>
-                                                </div>
-                                                <div class="tombol text-end" style="width: 20%">
-                                                    <i class="bi bi-play-circle-fill text-white fs-6 my-auto me-0"
-                                                        style="width: 50%"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                @endforeach
-                                {{-- <li class="splide__slide saran-2">
+                                <li class="splide__slide saran-2">
                                     <div class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
                                         <div id="main-slider" class="splide pb-2"
                                             onclick="window.location='{{ route('pertaruhan') }}'">
@@ -1007,7 +1001,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li> --}}
+                                </li>
                                 <li class="splide__slide saran-2">
                                     <div class="card border-white bg-custom bg-gradient rounded-3 rounded-bottom-4">
                                         <div id="main-slider1" class="splide pb-2">
@@ -1315,9 +1309,52 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script>
-        function toggleFavorit(button) {
-            button.classList.toggle('favorit-merah');
-        }
+        const checkbox = document.getElementById('toggleCheckbox');
+        const label = document.getElementById('toggleLabel');
+
+        label.addEventListener('click', () => {
+            if (checkbox.checked) {
+                label.style.color = 'white';
+            } else {
+                label.style.color = 'red';
+            }
+        });
+    </script>
+    <script>
+        const checkbox = document.getElementById('toggleCheckboxx');
+        const label = document.getElementById('toggleLabell');
+
+        label.addEventListener('click', () => {
+            if (checkbox.checked) {
+                label.style.color = 'white';
+            } else {
+                label.style.color = 'red';
+            }
+        });
+    </script>
+    <script>
+        const checkbox = document.getElementById('toggleCheckboxxx');
+        const label = document.getElementById('toggleLabelll');
+
+        label.addEventListener('click', () => {
+            if (checkbox.checked) {
+                label.style.color = 'white';
+            } else {
+                label.style.color = 'red';
+            }
+        });
+    </script>
+    <script>
+        const checkbox = document.getElementById('toggleCheckboxxxx');
+        const label = document.getElementById('toggleLabellll');
+
+        label.addEventListener('click', () => {
+            if (checkbox.checked) {
+                label.style.color = 'white';
+            } else {
+                label.style.color = 'red';
+            }
+        });
     </script>
     <script>
         const list = document.querySelectorAll('.list');
