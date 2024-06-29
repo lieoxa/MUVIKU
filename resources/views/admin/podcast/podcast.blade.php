@@ -242,13 +242,13 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                            <button href="" class="btn btn-outline-success ms-1"
+                                            {{-- <button href="" class="btn btn-outline-success ms-1"
                                                 style="padding: 7px 18px" data-bs-toggle="modal"
                                                 data-bs-target="#detail">
-                                                <i class="bi bi-eye"></i></button>
+                                                <i class="bi bi-eye"></i></button> --}}
                                             <div class="modal fade" id="detail" data-bs-backdrop="static"
                                                 tabindex="-1" data-bs-keyboard="false">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                {{-- <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content px-3">
                                                         <div class="modal-header d-flex align-items-center">
                                                             <h5 class="modal-title fw-medium">Detail</h5>
@@ -283,10 +283,6 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                {{-- <div class="col-md-8">
-                                                                                                                    <div class="ms-2 d-block">
-                                                                                                                    </div>
-                                                                                                                </div> --}}
                                                                             </div>
                                                                             <div class="row">
                                                                                 <div class="col-12"
@@ -324,7 +320,7 @@
                                                             </div>
                                                         </form>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </td>
