@@ -43,11 +43,11 @@
         }
 
         /* .form-select:focus {
-                border-color: none;
-                bottom: 0px;
-                outline: 0;
-                box-shadow: none;
-            } */
+                    border-color: none;
+                    bottom: 0px;
+                    outline: 0;
+                    box-shadow: none;
+                } */
 
         .form-select:focus,
         .form-control:focus {
@@ -112,12 +112,11 @@
                                     </td>
                                     <td class="px-0">
                                         <div class="action-btn d-flex justify-content-center">
-                                            <form action="{{ route('film.destroy', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="ms-0 btn btn-outline-danger ms-2">
-                                                    <i class="ti ti-trash fs-5"></i>
-                                                </button>
+
+                                            <button class="ms-0 btn btn-outline-danger ms-2" data-bs-toggle="modal"
+                                                data-bs-target="#modaldelete-{{ $item->id }}">
+                                                <i class="ti ti-trash fs-5"></i>
+                                            </button>
                                             </form>
                                             <a href="{{ route('film.edit', $item->id) }}"
                                                 class="btn btn-outline-warning ms-1" style="padding: 7px 18px">
@@ -194,8 +193,6 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button"
-                                                                class="btn btn-success">Publish</button>
                                                             <button data-bs-dismiss="modal" type="button"
                                                                 class="btn btn-primary">Tutup</button>
                                                         </div>
@@ -225,139 +222,29 @@
             </div>
         @endif
     </div>
-
-    <!-- Modal -->
-
-    {{-- <div class="modal fade" id="season" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <form action="{{ route('postSeason') }}" method="POST" class="w-100">
-                {{ csrf_field() }}
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Season</h5>
+    @foreach ($films as $item)
+        <div class="modal bg-modal fade" id="modaldelete-{{ $item->id }}" tabindex="-1"
+            aria-labelledby="logoutLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered  container">
+                <div class="modal-content logout rounded-5">
+                    <div class="modal-header border-bottom-0 text-center d-block pb-0">
+                        <h1 class="modal-title fs-5" id="logoutLabel">Apakah Anda Yakin Ingin Menghapus Film Ini?</h1>
                     </div>
-                    <div class="modal-body row">
-                        <div class="col-6 mb-3">
-                            <label for="#film"class="form-label">Serial<span class="text-danger" x-model="">*</span></label>
-                            <select name="film_id[]" id="film" class="form-select">
-                                <option value="">Pilih Serial...</option>
-                                @foreach ($films->where('tipe', 'Serial') as $item)
-                                    <option value="{{ $item->id }}">{{ $item->judul }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-6 mb-3">
-                            <label class="form-label">Status<span class="text-danger" x-model="">*</span></label>
-                            <select name="is_publish" class="form-select mr-sm-2" required>
-                                <option value="1">Publish</option>
-                                <option value="0" selected>Unpublish</option>
-                            </select>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <label for="#season" class="form-label">Season<span class="text-danger" x-model="">*</span></label>
-                            <input type="text" id="season" name="season" class="form-control"
-                                placeholder="Ketik disini...">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light text-white" style="background: #5c5c5c;"
-                            data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-warning">Tambah</button>
+                    <div class="modal-footer border-top-0 justify-content-center gap-2">
+                        <form action="{{ route('film.destroy', $item->id) }}"
+                            enctype="multipart/form-data" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn bg-secondary text-white px-3 py-2"
+                                style="width: 72.53px">Iya</button>
+                        </form>
+                        <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
                     </div>
                 </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div> --}}
-
-    {{-- <div class="modal fade" id="episode" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <form action="" method="POST" class="w-100">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Episode</h1>
-                    </div>
-                    <div class="modal-body row">
-                        <div class="col-6 mb-3 ">
-                            <label class="form-label">Film<span class="text-danger" x-model="">*</span></label>
-                            <select name="season_id" id="" class="form-select">
-                                <option value="">Pilih...</option>
-                                @foreach ($films as $item)
-                                    <option value="{{ $item->id }}">{{ $item->judul }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-6 mb-3">
-                            <label for="1" class="form-label">Season<span class="text-danger" x-model="">*</span></label>
-                            <select name="" id="" class="form-select">
-                                <option value="">Pilih...</option>
-                                @foreach ($seasons as $item)
-                                    <option value="{{ $item->id }}">{{ $item->season }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label">Episode<span class="text-danger" x-model="">*</span></label>
-                            <div class="btn-group w-100 mb-2">
-                                <button type="button" class="btn btn-light-primary text-primary dropdown-toggle rounded-end-0"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Form Episode
-                                </button>
-                                <div id="rowAdder"><button type="button" class="btn btn-success text-white rounded-start-0"><i
-                                            class="ti ti-plus"></i></button></div>
-                                <div class="dropdown-menu w-100 border" style="padding: 0.5rem 22px;">
-                                    <div class="py-2">
-                                        <div class="row">
-                                            <div class="mb-2 col-6">
-                                                <label for="judul-episode" class="form-label">Judul</label>
-                                                <input type="text" name="judul" class="form-control" id="judul-episode"
-                                                    placeholder="Ketik disini...">
-                                            </div>
-                                            <div class="mb-2 col-6">
-                                                <label for="exampleDropdownFormPassword1"
-                                                    class="form-label">Thumbnail</label>
-                                                <input type="file" class="form-control" name="thumb_eps"
-                                                    id="exampleDropdownFormPassword1">
-                                            </div>
-                                            <div class="mb-2 col-6">
-                                                <label for="exampleDropdownFormPassword1" class="form-label">Video</label>
-                                                <input type="file" class="form-control" name="vid_eps"
-                                                    id="exampleDropdownFormPassword1">
-                                            </div>
-                                            <div class="mb-2 col-6">
-                                                <label for="exampleDropdownFormPassword1"
-                                                    class="form-label">Status</label>
-                                                <select name="is_publish" class="form-select" required>
-                                                    <option value="1">Publish</option>
-                                                    <option value="0" selected>Unpublish</option>
-                                                </select>
-                                            </div>
-                                            <div class="mb-2 col-12">
-                                                <label for="exampleDropdownFormPassword1"
-                                                    class="form-label d-block">Deskripsi</label>
-                                                <textarea name="desk_eps" id="" class="d-block form-control" style="resize: none; height: 85px;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div id="row">
-                                </div>
-                                <div id="newinput"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light text-white" style="background: #5c5c5c;"
-                            data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-warning">Tambah</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> --}}
+    @endforeach
 @endsection
 
 @push('scripts')

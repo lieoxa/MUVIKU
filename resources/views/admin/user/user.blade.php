@@ -58,13 +58,13 @@
                                     <td>{{ $useracc->status == 'block' ? 'Diblokir' : $useracc->statuss }}</td>
                                     <td class="px-0">
                                         <div class="action-btn d-flex justify-content-center">
-                                            <form action="{{ route('user.destroy', $useracc->id) }}" method="POST">
+                                            {{-- <form action="{{ route('user.destroy', $useracc->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="ms-0 btn btn-outline-danger ms-2">
                                                     <i class="ti ti-trash fs-5"></i>
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                             @if ($useracc->status == 'block')
                                                 <button class="btn btn-danger ms-1" style="padding: 7px 18px"
                                                     data-bs-toggle="modal"
@@ -105,7 +105,7 @@
                     @csrf
                     <div class="modal-content logout rounded-5">
                         <div class="modal-header border-bottom-0 text-center d-block pb-0">
-                            <h1 class="modal-title fs-5" id="logoutLabel">Anda Yakin Ingin Mem block?</h1>
+                            <h1 class="modal-title fs-5" id="logoutLabel">Apakah Anda Yakin Ingin Memblokir User Ini?</h1>
                         </div>
                         <div class="modal-footer border-top-0 justify-content-center gap-2">
                             <button type="submit" class="btn bg-secondary text-white px-3 py-2"

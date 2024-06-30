@@ -28,6 +28,26 @@
             background: #FFAE1F;
             color: white;
         }
+
+        .modal-content {
+            max-width: 100%;
+            /* Pastikan modal-content tidak melebihi batas layar */
+        }
+
+        .card-text h6 {
+            width: 100%;
+            /* Pastikan elemen mengambil seluruh lebar kontainer */
+            word-wrap: break-word;
+            /* Memastikan kata yang panjang bisa terpecah */
+            white-space: normal;
+            /* Pastikan teks membungkus ke baris berikutnya */
+            text-align: left;
+        }
+
+        .card-text p {
+            margin: 0;
+            /* Hapus margin pada elemen p untuk memastikan tidak ada spasi ekstra */
+        }
     </style>
     <!-- --------------------------------------------------- -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('admin') }}/dist/css/style.min.css" />
@@ -53,8 +73,8 @@
                 </div>
             </div>
             <!-- ---------------------
-                                                                                                                end Contact
-                                                                                                            ---------------- -->
+                                                                                                                                    end Contact
+                                                                                                                                ---------------- -->
             <!-- Modal -->
             <div class="card card-body rounded-top-0">
                 <div class="table-responsive">
@@ -164,7 +184,7 @@
                                                                                             class="form-control"
                                                                                             onchange="previewImage()"
                                                                                             placeholder="Ketik..."
-                                                                                            value="{{ $item->host }}" >
+                                                                                            value="{{ $item->host }}">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -242,13 +262,13 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                            {{-- <button href="" class="btn btn-outline-success ms-1"
+                                            <button href="" class="btn btn-outline-success ms-1"
                                                 style="padding: 7px 18px" data-bs-toggle="modal"
                                                 data-bs-target="#detail">
-                                                <i class="bi bi-eye"></i></button> --}}
+                                                <i class="bi bi-eye"></i></button>
                                             <div class="modal fade" id="detail" data-bs-backdrop="static"
                                                 tabindex="-1" data-bs-keyboard="false">
-                                                {{-- <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content px-3">
                                                         <div class="modal-header d-flex align-items-center">
                                                             <h5 class="modal-title fw-medium">Detail</h5>
@@ -262,7 +282,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-5 pe-0">
                                                                                     <div class="mb-3 contact-email">
-                                                                                        <img src="{{ asset('imgdb/' . $item->thumbnail) }}"
+                                                                                        <img src="{{ asset('imgthumb/' . $item->thumbnail) }}"
                                                                                             alt="" width="180"
                                                                                             height="100"
                                                                                             class="rounded">
@@ -287,7 +307,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-12"
                                                                                     style="max-width: 100%;">
-                                                                                    <textarea style="height: 200px; resize: none; width: 100%;" class="rounded px-1 border-0" readonly>{{ $item->deskripsi }}</textarea>
+                                                                                    <textarea style="height: 200px; resize: none; width: 100%;" class="rounded px-1 border border-black" readonly>{{ $item->deskripsi }}</textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="img-profil mb-2">
@@ -297,30 +317,24 @@
                                                                                     width="266.66" style="display: none;">
                                                                             </div>
                                                                             <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                </div>
+                                                                                <div class="col-md-6"></div>
+                                                                                <div class="col-md-6"></div>
                                                                             </div>
                                                                             <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                </div>
+                                                                                <div class="col-md-6"></div>
+                                                                                <div class="col-md-6"></div>
                                                                             </div>
                                                                         </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button"
-                                                                    class="btn btn-success">Publish</button>
                                                                 <button data-bs-dismiss="modal" class="btn btn-primary"
                                                                     type="button">Tutup</button>
                                                             </div>
                                                         </form>
                                                     </div>
-                                                </div> --}}
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -422,8 +436,8 @@
                                         </div>
                                     </div>
                                     <div class="img-profil mb-2">
-                                        <img class="mx-auto rounded" id="preview" src="#" alt="Preview" height="100"
-                                            width="200.66" style="display: none;">
+                                        <img class="mx-auto rounded" id="preview" src="#" alt="Preview"
+                                            height="100" width="200.66" style="display: none;">
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -436,7 +450,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form> 
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -453,7 +467,6 @@
 @endsection
 
 @push('scripts')
-
     <script src="{{ asset('admin') }}/dist/js/apps/contact.js"></script>
 
     <script>
