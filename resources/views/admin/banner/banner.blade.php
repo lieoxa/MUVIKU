@@ -69,8 +69,8 @@
                 </div>
             </div>
             <!-- ---------------------
-                                                        end Contact
-                                                        ---------------- -->
+                                                            end Contact
+                                                            ---------------- -->
             <!-- Modal -->
 
             <div class="card card-body">
@@ -102,15 +102,12 @@
                                     </td>
                                     <td class="px-0">
                                         <div class="action-btn d-flex justify-content-center">
-                                            <form action="{{ route('banner.destroy', $items->id) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="ms-0 btn btn-outline-danger ms-2">
-                                                    <i class="ti ti-trash fs-5"></i>
-                                                </button>
-                                            </form>
+                                            <button class="ms-0 btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#modaldelete-{{ $items->id }}">
+                                                <i class="ti ti-trash fs-5"></i>
+                                            </button>
                                             <button type="button" class="btn btn-outline-warning ms-1"
-                                                style="padding: 0px 18px;" data-bs-toggle="modal" data-bs-target="#edit-{{ $items->id }}"><i
+                                                style="padding: 0px 18px;" data-bs-toggle="modal"
+                                                data-bs-target="#edit-{{ $items->id }}"><i
                                                     class="bi bi-pencil-square"></i></button>
                                         </div>
 
@@ -369,6 +366,29 @@
             </form>
         </div>
     </div>
+    @foreach ($banner as $item)
+        <div class="modal bg-modal fade" id="modaldelete-{{ $item->id }}" tabindex="-1"
+            aria-labelledby="logoutLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered  container">
+                <div class="modal-content logout rounded-5">
+                    <div class="modal-header border-bottom-0 text-center d-block pb-0">
+                        <h1 class="modal-title fs-5" id="logoutLabel">Apakah Anda Yakin Ingin Menghapus Banner Ini?</h1>
+                    </div>
+                    <div class="modal-footer border-top-0 justify-content-center gap-2">
+                        <form action="{{ route('banner.destroy', $item->id) }}" enctype="multipart/form-data"
+                            method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn bg-secondary text-white px-3 py-2"
+                                style="width: 72.53px">Iya</button>
+                        </form>
+                        <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    @endforeach
 @endsection
 
 @push('scripts')

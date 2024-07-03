@@ -9,6 +9,7 @@
         * {
             font-family: 'Ubuntu';
         }
+
         p {
             margin-bottom: 0px;
         }
@@ -36,14 +37,10 @@
                                         <p class="note-date my-auto fs-2">{{ $items->name }}</p>
                                         <h6>{{ $items->lokasi }}</h6>
                                     </div>
-                                    <form action="{{ route('laporan.destroy', $items->id) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="bg-transparent border-0 text-danger px-2 py-1 ms-auto"
-                                            style="font-size: 13px; text-decoration: underline;">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                    <button class="bg-transparent border-0 text-danger px-2 py-1 ms-auto"
+                                        style="font-size: 13px; text-decoration: underline;" data-bs-toggle="modal" data-bs-target="#modaldelete-{{ $items->id }}">
+                                        Hapus
+                                    </button>
                                 </div>
                                 <div class="note-content">
                                     <p class="note-inner-content mb-0"
@@ -64,6 +61,29 @@
             </div>
         @endif
     </div>
+    @foreach ($laporans as $item)
+        <div class="modal bg-modal fade" id="modaldelete-{{ $item->id }}" tabindex="-1" aria-labelledby="logoutLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered  container">
+                <div class="modal-content logout rounded-5">
+                    <div class="modal-header border-bottom-0 text-center d-block pb-0">
+                        <h1 class="modal-title fs-5" id="logoutLabel">Apakah Anda Yakin Ingin Menghapus Laporan Ini?</h1>
+                    </div>
+                    <div class="modal-footer border-top-0 justify-content-center gap-2">
+                        <form action="{{ route('laporan.destroy', $item->id) }}" enctype="multipart/form-data"
+                            method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn bg-secondary text-white px-3 py-2"
+                                style="width: 72.53px">Iya</button>
+                        </form>
+                        <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    @endforeach
     <!-- Modal Add notes -->
 @endsection
 @push('scripts')

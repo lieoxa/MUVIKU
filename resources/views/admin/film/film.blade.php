@@ -113,8 +113,7 @@
                                     <td class="px-0">
                                         <div class="action-btn d-flex justify-content-center">
 
-                                            <button class="ms-0 btn btn-outline-danger ms-2" data-bs-toggle="modal"
-                                                data-bs-target="#modaldelete-{{ $item->id }}">
+                                            <button class="ms-0 btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#modaldelete-{{ $item->id }}">
                                                 <i class="ti ti-trash fs-5"></i>
                                             </button>
                                             </form>

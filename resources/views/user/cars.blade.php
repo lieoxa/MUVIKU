@@ -6,8 +6,6 @@
     <meta name="theme-color" content="#000">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.9.0/dist/modus-solid/fonts/modus-icons.css">
     <link rel="stylesheet" href="css/detail.css">
     <title>Detail</title>
     <style>
@@ -17,13 +15,11 @@
 
         .btn-simpan.active {
             background-color: #28a745;
-            /* Ganti warna sesuai keinginan Anda */
             cursor: pointer;
         }
 
         .btn-simpan:disabled {
             background-color: #6c757d;
-            /* Ganti warna sesuai keinginan Anda */
             cursor: not-allowed;
         }
 
@@ -71,10 +67,6 @@
                     </div>
                 </div>
             </div>
-            {{-- <span>
-                <button class="btn-heart sticky-top border-0" onclick="changeIconAndColor(this)"><i
-                        class="bi bi-heart"></i></button>
-            </span> --}}
         </nav>
         <div class="full mb-3">
             <img src="img/slide.jpg" class="w-100 thumbnail-detail" alt="...">
@@ -180,66 +172,47 @@
                 <div class="modal-body container py-0 px-4">
                     <label for="aa" class="w-100 mb-2 d-flex">
                         <input id="aa" type="radio" name="when"
-                            style="min-height:20px; min-width:20px; vertical-align: middle;">
-                        <div class="ps-2">Kerusakan Gambar atau Audio Film</div>
+                            style="min-height:20px; min-width:20px; margin-top:5px">
+                        <h5 class="ps-3 my-auto fs-5">Film tidak sesuai dengan Judul</h5>
                     </label>
-
-                    <label for="bb" class="w-100 mb-2 d-flex">
-                        <input id="bb" type="radio" name="when"
-                            style="min-height:20px; min-width:20px; vertical-align: middle;">
-                        <div class="ps-2">Masalah Teknis atau Kualitas Video</div>
+                    <label for="aa" class="w-100 mb-2 d-flex">
+                        <input id="aa" type="radio" name="when"
+                            style="min-height:20px; min-width:20px; margin-top:5px">
+                        <h5 class="ps-3 my-auto fs-5">Film tidak dapat diputar</h5>
                     </label>
-
-                    <label for="cc" class="w-100 mb-2 pb-4 position-relative">
-                        <input id="cc" type="radio" name="when"
-                            style="min-height:20px; min-width:20px; vertical-align: middle;">
-                        <div class="ps-2 position-absolute" style="left: 20px; top: 0;">Kesalahan Tahun Rilis, Nama
-                            Sutradara atau Nama Perusahaan</div>
+                    <label for="aa" class="w-100 mb-2 d-flex">
+                        <input id="aa" type="radio" name="when"
+                            style="min-height:20px; min-width:20px; margin-top:5px">
+                        <h5 class="ps-3 my-auto fs-5">Film Tidak Jelas</h5>
                     </label>
-
-                    <label for="dd" class="w-100 mb-2 pb-4 position-relative">
-                        <input id="dd" type="radio" name="when"
-                            style="min-height:20px; min-width:20px; vertical-align: middle;">
-                        <div class="ps-2 position-absolute" style="left: 20px; top: 0;">Kesalahan Judul, Thumbnail
-                            atau Deskripsi</div>
+                    <label for="aa" class="w-100 mb-2 d-flex">
+                        <input id="aa" type="radio" name="when"
+                            style="min-height:20px; min-width:20px; margin-top:5px">
+                        <h5 class="ps-3 my-auto fs-5">Subtitle tidak cocok</h5>
                     </label>
-
-                    <label for="lainnya" class="w-100 mb-2 d-flex">
-                        <input id="lainnya" type="radio" name="when" value="other"
-                            style="min-height:20px; min-width:20px; vertical-align: middle;">
-                        <div class="ps-2">Lainnya</div>
-                    </label>
-
-                    <div id="lainnyaTextarea" class="w-100 d-flex hidden">
-                        <textarea name="when_other" id="lainnyaInput" rows="4" style="display: none"
-                            placeholder="Tuliskan laporan Anda di sini..."></textarea>
+                    <div class="input-group my-2 mb-4">
+                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-pencil-fill"></i></span>
+                        <input type="text" class="form-control border-start-0"
+                            placeholder="Masukkan Pesan Keluhan Anda" aria-label="pesan">
                     </div>
                 </div>
-                <div class="modal-footer border-top-0 justify-content-center p-0 pt-3">
-                    <input type="submit" id="laporbtn"
-                        class="text-white text-center border-0 btn-simpan py-2 rounded-3" style="width: 35%"
-                        data-bs-dismiss="modal" value="Laporkan" disabled>
+                <div class="modal-footer border-top-0 p-0 mb-3">
+                    <button type="button" class="btn btn-batal w-100 py-3 text-white rounded-3"
+                        data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-lapor w-100 py-3 mt-2 text-white rounded-3">Lapor</button>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        document.addEventListener('fullscreenchange', function() {
-            var video = document.querySelector('video');
-            if (document.fullscreenElement && video) {
-                video.style.setProperty('-webkit-media-controls-timeline', 'none', 'important');
-                video.style.setProperty('-moz-media-controls-timeline', 'none', 'important');
-                video.style.setProperty('-ms-media-controls-timeline', 'none', 'important');
-            }
-        });
-    </script>
+        function playVideo() {
+            window.open('https://drive.google.com/file/d/1P_AvEftZz-fWxd4guBYaKt28HMpM_YqD/view?usp=sharing', '_blank');
+        }
 
-    <script>
         const shareData = {
             title: "OnePiece",
             text: "Learn web development on MDN!",
@@ -248,210 +221,50 @@
 
         const btn = document.querySelector(".share");
 
-        // Share must be triggered by "user activation"
         btn.addEventListener("click", async () => {
-            try {
-                await navigator.share(shareData);
-            } catch (err) {
-                // resultPara.textContent = `Error: ${err}`;
-            }
-        });
-    </script>
-
-    <script>
-        const radioButtons = document.querySelectorAll('input[name="when"]');
-        const submitButton = document.querySelector('.btn-simpan');
-        const lainnyaTextarea = document.getElementById('lainnyaTextarea');
-        const lainnyaInput = document.getElementById('lainnyaInput');
-
-        // Tambahkan event listener untuk setiap radio button
-        radioButtons.forEach(radio => {
-            radio.addEventListener('change', function() {
-                const isAnyRadioSelected = [...radioButtons].some(radio => radio.checked);
-
-                submitButton.disabled = !isAnyRadioSelected;
-
-                if (isAnyRadioSelected) {
-                    submitButton.classList.add('active');
-                } else {
-                    submitButton.classList.remove('active');
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                    console.log('Shared successfully');
+                } catch (err) {
+                    console.error('Error sharing:', err);
                 }
-
-                // Jika radio button "Lainnya" dipilih, tampilkan textarea dan aktifkan tombol
-                if (radio.id === 'lainnya') {
-                    lainnyaTextarea.classList.remove('hidden');
-                    lainnyaInput.style.display = 'block';
-                    submitButton.disabled = lainnyaInput.value.trim() ===
-                        ''; // Nonaktifkan tombol jika textarea kosong
-                } else {
-                    lainnyaTextarea.classList.add('hidden');
-                    lainnyaInput.style.display = 'none';
-                }
-            });
-        });
-
-        // Tambahkan event listener untuk textarea
-        lainnyaInput.addEventListener('input', function() {
-            submitButton.disabled = lainnyaInput.value.trim() === ''; // Nonaktifkan tombol jika textarea kosong
-        });
-    </script>
-    <script type="text/javascript">
-        $("body").on("click", "input[name='when']", function() {
-            if ($("input[name='when']:checked").val() == 'other') {
-                $("textarea[name='when_other']").css('display', 'block');
             } else {
-                $("textarea[name='when_other']").css('display', 'none');
-                $("textarea[name='when_other']").val('');
+                fallbackShare();
             }
         });
-    </script>
 
-    <script>
-        let isFavorite = false;
-
-        function changeIconAndColor(button) {
-            var iconElement = button.querySelector("i");
-
-            iconElement.classList.toggle("bi-heart");
-            iconElement.classList.toggle("bi-heart-fill");
-        }
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            window.addEventListener("scroll", function() {
-                var nav = document.getElementById("mainNav");
-
-                if (window.scrollY > 10) {
-                    nav.classList.add("scrolled");
-                } else {
-                    nav.classList.remove("scrolled");
+        function fallbackShare() {
+            const shareUrl = "http://192.168.184.86:8000/film";
+            Swal.fire({
+                title: 'Bagikan',
+                text: 'Salin tautan berikut untuk membagikan:',
+                input: 'text',
+                inputValue: shareUrl,
+                showCancelButton: true,
+                confirmButtonText: 'Salin',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigator.clipboard.writeText(shareUrl).then(() => {
+                        Swal.fire('Tersalin!', 'Tautan telah tersalin ke papan klip.', 'success');
+                    }).catch(err => {
+                        Swal.fire('Gagal', 'Tidak dapat menyalin tautan.', 'error');
+                    });
                 }
             });
-        });
-    </script>
-    <script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-    </script>
-    <script>
+        }
+
         function toggleReadMore() {
-            const textDesk = document.querySelector('.desk');
-            const readMoreBtn = document.querySelector('.read-more-btn');
             const additionalText = document.querySelector('.additional-text');
-
-            textDesk.classList.toggle('expanded');
-
-            if (textDesk.classList.contains('expanded')) {
+            const readMoreBtn = document.querySelector('.read-more-btn');
+            if (additionalText.style.display === 'none' || additionalText.style.display === '') {
                 additionalText.style.display = 'inline';
-                readMoreBtn.textContent = 'Tutup';
+                readMoreBtn.innerText = 'Sembunyikan';
             } else {
                 additionalText.style.display = 'none';
-                readMoreBtn.textContent = 'Selengkapnya...';
+                readMoreBtn.innerText = 'Selengkapnya...';
             }
-        }
-    </script>
-    <script>
-    function playVideo() {
-            var elem = document.getElementsByTagName('iframe')[0];
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.mozRequestFullScreen) {
-                elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-                elem.msRequestFullscreen();
-            } else {
-                alert("Full screen not supported");
-                return;
-            }
-            elem.play();
-        }
-    </script>
-        <script>
-        Get iframe element
-        const iframe = document.querySelector('iframe');
-
-        iframe.classList.add('show');
-    </script>
-    <script>
-        const optionMenu = document.querySelector(".select-menu"),
-            selectBtn = optionMenu.querySelector(".select-btn"),
-            options = optionMenu.querySelector(".options");
-
-        // Toggle the "active" class on the menu when the button is clicked
-        selectBtn.addEventListener("click", () => {
-            optionMenu.classList.toggle("active");
-        });
-
-        // Close the menu when clicking outside of it
-        document.addEventListener("click", (event) => {
-            if (!optionMenu.contains(event.target)) {
-                optionMenu.classList.remove("active");
-            }
-        });
-
-        // Prevent the menu from closing when clicking inside it
-        options.addEventListener("click", (event) => {
-            event.stopPropagation();
-        });
-
-        // Close the menu when scrolling outside of it
-        document.addEventListener("scroll", () => {
-            optionMenu.classList.remove("active");
-        });
-    </script>
-    <script>
-        document.getElementById('daftar').addEventListener('click', function() {
-
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                text: "Berhasil Ditambah",
-                showConfirmButton: false,
-                timer: 2000
-            });
-        });
-
-
-        document.getElementById('disukai').addEventListener('click', function() {
-
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                text: "Berhasil Ditambah",
-                showConfirmButton: false,
-                timer: 2000
-            });
-        });
-
-        document.getElementById('laporbtn').addEventListener('click', function() {
-
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                text: "Laporan Terkirim",
-                showConfirmButton: false,
-                timer: 2000
-            });
-        });
-    </script>
-    <script>
-        function downloadVideo(videoId, videoName) {
-            var video = document.getElementById(videoId);
-            var url = video.getElementsByTagName('source')[0].src;
-
-            var link = document.createElement('a');
-            link.href = url;
-            link.download = 'downloaded_video_' + videoName + '.mp4';
-
-            document.body.appendChild(link);
-
-            link.click();
-
-            document.body.removeChild(link);
         }
     </script>
 </body>
