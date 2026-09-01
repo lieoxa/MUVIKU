@@ -15,7 +15,7 @@ $defaultEnv = [
     'APP_ENV' => 'production',
     'APP_KEY' => 'base64:OsehxSfpUPSpF7yq+/Uf5UX3x61Azio+gPVQYXiQC5s=',
     'APP_DEBUG' => 'true',
-    'APP_URL' => 'https://' . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
+    'APP_URL' => 'https://' . ($_SERVER['HTTP_HOST'] ?? 'muviku.vercel.app'),
     'LOG_CHANNEL' => 'stderr',
     'CACHE_DRIVER' => 'array',
     'SESSION_DRIVER' => 'cookie',
@@ -42,12 +42,16 @@ try {
     // 2. Prepare writable directories in /tmp for Vercel read-only Lambda
     $storagePath = '/tmp/storage';
     $subDirs = [
+        '/tmp/views',
+        $storagePath,
+        $storagePath . '/framework',
         $storagePath . '/framework/views',
         $storagePath . '/framework/cache',
         $storagePath . '/framework/cache/data',
         $storagePath . '/framework/sessions',
         $storagePath . '/framework/testing',
         $storagePath . '/logs',
+        $storagePath . '/app',
         $storagePath . '/app/public',
     ];
 
@@ -58,27 +62,20 @@ try {
     }
 
     // 3. Set environment variables for writable paths
-    putenv("VIEW_COMPILED_PATH={$storagePath}/framework/views");
-    putenv("APP_CONFIG_CACHE=/tmp/config.php");
-    putenv("APP_EVENTS_CACHE=/tmp/events.php");
-    putenv("APP_PACKAGES_CACHE=/tmp/packages.php");
-    putenv("APP_ROUTES_CACHE=/tmp/routes.php");
-    putenv("APP_SERVICES_CACHE=/tmp/services.php");
-    
-    $_ENV['VIEW_COMPILED_PATH'] = "{$storagePath}/framework/views";
-    $_ENV['APP_CONFIG_CACHE'] = '/tmp/config.php';
-    $_ENV['APP_EVENTS_CACHE'] = '/tmp/events.php';
-    $_ENV['APP_PACKAGES_CACHE'] = '/tmp/packages.php';
-    $_ENV['APP_ROUTES_CACHE'] = '/tmp/routes.php';
-    $_ENV['APP_SERVICES_CACHE'] = '/tmp/services.php';
+    $compiledViewPath = "{$storagePath}/framework/views";
+    putenv("VIEW_COMPILED_PATH={$compiledViewPath}");
+    $_ENV['VIEW_COMPILED_PATH'] = $compiledViewPath;
+    $_SERVER['VIEW_COMPILED_PATH'] = $compiledViewPath;
 
     // 4. Autoload & Bootstrap Laravel
     $autoload = __DIR__ . '/../vendor/autoload.php';
     if (!file_exists($autoload)) {
-        throw new \Exception("vendor/autoload.php not found at {$autoload}. Composer packages must be included or installed.");
+        throw new \Exception("vendor/autoload.php not found at {$autoload}. Composer packages must be installed.");
     }
 
-    define('LARAVEL_START', microtime(true));
+    if (!defined('LARAVEL_START')) {
+        define('LARAVEL_START', microtime(true));
+    }
 
     require $autoload;
 
