@@ -1,0 +1,9 @@
+.git
+.github
+tests
+phpunit.xml
+README.md
+magang.sql
+node_modules
+.env
+.env.example
