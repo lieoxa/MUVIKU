@@ -5,6 +5,5 @@ phpunit.xml
 README.md
 magang.sql
 node_modules
-vendor
 .env
 .env.example
