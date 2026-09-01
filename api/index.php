@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Production-ready Vercel Serverless Entrypoint for Laravel 10
+ * Robust Production-ready Vercel Serverless Entrypoint for Laravel 10
  */
 
 // Enable error reporting to capture startup diagnostics
@@ -9,8 +9,37 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+// 1. In-code Environment Fallbacks for Vercel Serverless
+$defaultEnv = [
+    'APP_NAME' => 'MUVIKU',
+    'APP_ENV' => 'production',
+    'APP_KEY' => 'base64:OsehxSfpUPSpF7yq+/Uf5UX3x61Azio+gPVQYXiQC5s=',
+    'APP_DEBUG' => 'true',
+    'APP_URL' => 'https://' . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
+    'LOG_CHANNEL' => 'stderr',
+    'CACHE_DRIVER' => 'array',
+    'SESSION_DRIVER' => 'cookie',
+    'DB_CONNECTION' => 'pgsql',
+    'DB_HOST' => 'aws-0-ap-northeast-1.pooler.supabase.com',
+    'DB_PORT' => '5432',
+    'DB_DATABASE' => 'postgres',
+    'DB_USERNAME' => 'postgres.wkwzrnzxlbjddijtuhpi',
+    'DB_PASSWORD' => 'M1pcAARrdB8PlJdu',
+    'DB_SSLMODE' => 'require',
+    'SUPABASE_URL' => 'https://wkwzrnzxlbjddijtuhpi.supabase.co',
+    'TMDB_API_KEY' => '2dca580c2a14b55200e784d157207b4d',
+];
+
+foreach ($defaultEnv as $key => $value) {
+    if (!getenv($key) && !isset($_ENV[$key])) {
+        putenv("{$key}={$value}");
+        $_ENV[$key] = $value;
+        $_SERVER[$key] = $value;
+    }
+}
+
 try {
-    // 1. Prepare writable directories in /tmp for Vercel read-only Lambda
+    // 2. Prepare writable directories in /tmp for Vercel read-only Lambda
     $storagePath = '/tmp/storage';
     $subDirs = [
         $storagePath . '/framework/views',
@@ -28,7 +57,7 @@ try {
         }
     }
 
-    // 2. Set environment variables for writable paths
+    // 3. Set environment variables for writable paths
     putenv("VIEW_COMPILED_PATH={$storagePath}/framework/views");
     putenv("APP_CONFIG_CACHE=/tmp/config.php");
     putenv("APP_EVENTS_CACHE=/tmp/events.php");
@@ -43,12 +72,7 @@ try {
     $_ENV['APP_ROUTES_CACHE'] = '/tmp/routes.php';
     $_ENV['APP_SERVICES_CACHE'] = '/tmp/services.php';
 
-    // Set fallback drivers if not explicitly defined in Vercel Dashboard
-    if (!getenv('CACHE_DRIVER')) putenv('CACHE_DRIVER=array');
-    if (!getenv('SESSION_DRIVER')) putenv('SESSION_DRIVER=cookie');
-    if (!getenv('LOG_CHANNEL')) putenv('LOG_CHANNEL=stderr');
-
-    // 3. Autoload & Bootstrap Laravel
+    // 4. Autoload & Bootstrap Laravel
     $autoload = __DIR__ . '/../vendor/autoload.php';
     if (!file_exists($autoload)) {
         throw new \Exception("vendor/autoload.php not found at {$autoload}. Composer packages must be included or installed.");
@@ -60,21 +84,23 @@ try {
 
     $app = require_once __DIR__ . '/../bootstrap/app.php';
 
-    // Explicitly configure Laravel to use the writable /tmp/storage path
+    // Configure Laravel to use the writable /tmp/storage path
     $app->useStoragePath($storagePath);
 
     $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
     $response = $kernel->handle(
         $request = Illuminate\Http\Request::capture()
-    )->send();
+    );
+
+    $response->send();
 
     $kernel->terminate($request, $response);
 
 } catch (\Throwable $e) {
     http_response_code(500);
     echo "<div style='font-family:sans-serif;padding:30px;background:#111215;color:#fff;min-height:100vh;'>";
-    echo "<h2 style='color:#FFAE1F;margin-top:0;'>MUVIKU — Server Diagnostic</h2>";
+    echo "<h2 style='color:#FFAE1F;margin-top:0;'>MUVIKU — Serverless Diagnostic</h2>";
     echo "<p style='color:#ef4444;font-weight:bold;font-size:16px;'>" . htmlspecialchars($e->getMessage()) . "</p>";
     echo "<p style='color:#94a3b8;'><strong>File:</strong> " . htmlspecialchars($e->getFile()) . " (Line " . $e->getLine() . ")</p>";
     echo "<h4 style='margin-top:20px;color:#cbd5e1;'>Stack Trace:</h4>";
