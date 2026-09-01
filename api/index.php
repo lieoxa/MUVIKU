@@ -1,23 +1,55 @@
 <?php
 
 /**
- * Vercel Serverless Entrypoint for Laravel 10
+ * Production-ready Vercel Serverless Entrypoint for Laravel 10
  */
 
-// Initialize writable directories in /tmp for Vercel Serverless environment
-$tmpDirectories = [
-    '/tmp/views',
-    '/tmp/cache',
-    '/tmp/cache/data',
-    '/tmp/sessions',
-    '/tmp/logs',
+// 1. Prepare writable directories in /tmp for Vercel read-only Lambda
+$storagePath = '/tmp/storage';
+$subDirs = [
+    $storagePath . '/framework/views',
+    $storagePath . '/framework/cache',
+    $storagePath . '/framework/cache/data',
+    $storagePath . '/framework/sessions',
+    $storagePath . '/framework/testing',
+    $storagePath . '/logs',
+    $storagePath . '/app/public',
 ];
 
-foreach ($tmpDirectories as $dir) {
+foreach ($subDirs as $dir) {
     if (!is_dir($dir)) {
         @mkdir($dir, 0755, true);
     }
 }
 
-// Forward request to standard Laravel public/index.php
-require __DIR__ . '/../public/index.php';
+// 2. Set environment variables for writable paths
+putenv("VIEW_COMPILED_PATH={$storagePath}/framework/views");
+putenv("APP_CONFIG_CACHE=/tmp/config.php");
+putenv("APP_EVENTS_CACHE=/tmp/events.php");
+putenv("APP_PACKAGES_CACHE=/tmp/packages.php");
+putenv("APP_ROUTES_CACHE=/tmp/routes.php");
+putenv("APP_SERVICES_CACHE=/tmp/services.php");
+$_ENV['VIEW_COMPILED_PATH'] = "{$storagePath}/framework/views";
+$_ENV['APP_CONFIG_CACHE'] = '/tmp/config.php';
+$_ENV['APP_EVENTS_CACHE'] = '/tmp/events.php';
+$_ENV['APP_PACKAGES_CACHE'] = '/tmp/packages.php';
+$_ENV['APP_ROUTES_CACHE'] = '/tmp/routes.php';
+$_ENV['APP_SERVICES_CACHE'] = '/tmp/services.php';
+
+// 3. Autoload & Bootstrap Laravel
+define('LARAVEL_START', microtime(true));
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
+// Explicitly configure Laravel to use the writable /tmp/storage path
+$app->useStoragePath($storagePath);
+
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+
+$response = $kernel->handle(
+    $request = Illuminate\Http\Request::capture()
+)->send();
+
+$kernel->terminate($request, $response);
