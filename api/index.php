@@ -5,9 +5,24 @@
  */
 
 // Enable error reporting to capture startup diagnostics
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
+ini_set('display_errors', '0');
 error_reporting(E_ALL);
+
+// Register shutdown function to catch fatal errors and display friendly diagnostic
+register_shutdown_function(function () {
+    $error = error_get_last();
+    if ($error !== null && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR])) {
+        if (!headers_sent()) {
+            http_response_code(500);
+            header('Content-Type: text/html; charset=utf-8');
+        }
+        echo "<div style='font-family:sans-serif;padding:30px;background:#111215;color:#fff;min-height:100vh;'>";
+        echo "<h2 style='color:#FFAE1F;margin-top:0;'>MUVIKU — Fatal Error Diagnostic</h2>";
+        echo "<p style='color:#ef4444;font-weight:bold;font-size:16px;'>" . htmlspecialchars($error['message']) . "</p>";
+        echo "<p style='color:#94a3b8;'><strong>File:</strong> " . htmlspecialchars($error['file']) . " (Line " . $error['line'] . ")</p>";
+        echo "</div>";
+    }
+});
 
 // 1. In-code Environment Fallbacks for Vercel Serverless
 $defaultEnv = [
