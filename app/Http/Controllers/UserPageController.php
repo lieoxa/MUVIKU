@@ -2,11 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Film;
+use Illuminate\Http\Request;
+
 class UserPageController extends Controller
 {
+    public function detailFilm($id = null)
+    {
+        if (!$id) {
+            $film = Film::with(['seasons.episodes', 'kategorifilm'])->first();
+        } else {
+            $film = Film::with(['seasons.episodes', 'kategorifilm'])->find($id) 
+                ?: Film::where('judul', 'like', "%{$id}%")->first() 
+                ?: Film::first();
+        }
+
+        $rekomendasi = Film::where('id', '!=', $film->id)->inRandomOrder()->take(6)->get();
+
+        return view('user.detail_dynamic', compact('film', 'rekomendasi'));
+    }
+
     public function jujutsu()
     {
-        return view('user.serial');
+        $film = Film::where('judul', 'like', '%Jujutsu%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function formlogin()
     {
@@ -18,7 +37,8 @@ class UserPageController extends Controller
     }
     public function op()
     {
-        return view('user.op');
+        $film = Film::where('judul', 'like', '%Piece%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function podcast()
     {
@@ -26,50 +46,62 @@ class UserPageController extends Controller
     }
     public function toystory()
     {
-        return view('user.toystory');
+        $film = Film::where('judul', 'like', '%Toy Story%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function mario()
     {
-        return view('user.mario');
+        $film = Film::where('judul', 'like', '%Mario%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function spy()
     {
-        return view('user.spy');
+        $film = Film::where('judul', 'like', '%Spider%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function iron3()
     {
-        return view('user.iron3');
+        $film = Film::where('judul', 'like', '%Avengers%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function century()
     {
-        return view('user.century');
+        $film = Film::where('judul', 'like', '%Parasite%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function jawa()
     {
-        return view('user.jawa');
+        $film = Film::where('judul', 'like', '%Laskar Pelangi%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function pertaruhan()
     {
-        return view('user.pertaruhan');
+        $film = Film::where('judul', 'like', '%Pertaruhan%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function detailsrc()
     {
-        return view('user.detailsrc');
+        $film = Film::where('judul', 'like', '%Demon Slayer%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function jumanji()
     {
-        return view('user.jumanji');
+        $film = Film::where('judul', 'like', '%Pengabdi Setan%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function cars()
     {
-        return view('user.cars');
+        $film = Film::where('judul', 'like', '%Moana%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function conjuring()
     {
-        return view('user.conjuring');
+        $film = Film::where('judul', 'like', '%Evil Dead%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
     public function justice()
     {
-        return view('user.justice');
+        $film = Film::where('judul', 'like', '%Reacher%')->first() ?: Film::first();
+        return $this->detailFilm($film->id);
     }
 }

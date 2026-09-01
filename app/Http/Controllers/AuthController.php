@@ -8,6 +8,8 @@ use App\Models\AccAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -69,6 +71,65 @@ class AuthController extends Controller
         }
 
         return back()->with('error', 'Email atau Sandi salah');
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')
+            ->redirectUrl(url('/auth/google/callback'))
+            ->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')
+                ->redirectUrl(url('/auth/google/callback'))
+                ->user();
+            
+            // Check if user already exists with google_id
+            $user = User::where('google_id', $googleUser->id)->first();
+            
+            if (!$user) {
+                // Check if user already exists with email
+                $user = User::where('email', $googleUser->email)->first();
+                
+                if ($user) {
+                    // Update user with google_id and avatar if empty
+                    $user->update([
+                        'google_id' => $googleUser->id,
+                        'gambar' => $user->gambar ?: $googleUser->avatar,
+                    ]);
+                } else {
+                    // Create a new user
+                    $user = User::create([
+                        'name' => $googleUser->name,
+                        'email' => $googleUser->email,
+                        'google_id' => $googleUser->id,
+                        'nohp' => '', // Default value since it's nullable
+                        'password' => Hash::make(Str::random(24)), // Generate random secure password
+                        'gambar' => $googleUser->avatar,
+                    ]);
+                }
+            } else {
+                // If user exists with google_id, update avatar if empty
+                if (empty($user->gambar)) {
+                    $user->update([
+                        'gambar' => $googleUser->avatar,
+                    ]);
+                }
+            }
+            
+            if ($user->status == 'block') {
+                return redirect()->route('login')->with('error', 'Maaf, Akun Anda telah di nonaktifkan !');
+            }
+            
+            Auth::login($user);
+            return redirect('utama')->with('success', 'Login berhasil');
+            
+        } catch (\Exception $e) {
+            return redirect()->route('login')->with('error', 'Terjadi kesalahan saat masuk menggunakan Google. Silakan coba lagi.');
+        }
     }
 
     public function getAdmin()

@@ -79,10 +79,13 @@ class FilmController extends Controller
             'is_publish' => 'required',
         ]);
 
-        $thumbnail = $request->file('thumbnail');
-        $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
-        $thumbnail->move(public_path('imgthumb'), $imgFile);
-
+        if ($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
+            $thumbnail->move(public_path('imgthumb'), $imgFile);
+        } else {
+            $imgFile = $request->thumbnail;
+        }
 
         $film = new Film;
         $film->thumbnail = $imgFile;
@@ -207,16 +210,17 @@ class FilmController extends Controller
             'view' => 'nullable',
         ]);
 
-        if ($request->thumb_eps) {
+        $film = Film::find($id);
+        if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
             $imgFile = time() . '.' . $thumbnail->getClientOriginalExtension();
             $thumbnail->move(public_path('imgthumb'), $imgFile);
+        } elseif ($request->thumbnail) {
+            $imgFile = $request->thumbnail;
         } else {
-            $imgFile = Film::find($id);
-            $thumbnail = $imgFile->thumbnail;
+            $imgFile = $film->thumbnail;
         }
 
-        $film = Film::find($id);
         $film->judul = $request->judul;
         $film->tipe = $request->tipe;
         $film->tahun = $request->tahun;
@@ -224,7 +228,7 @@ class FilmController extends Controller
         $film->durasi = $request->durasi;
         $film->perusahaan = $request->perusahaan;
         $film->sutradara = $request->sutradara;
-        $film->thumbnail = $thumbnail;
+        $film->thumbnail = $imgFile;
         $film->video = $request->video;
         $film->deskripsi = $request->deskripsi;
         $film->kategori_id = $request->kategori_id;

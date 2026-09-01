@@ -38,7 +38,11 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'database' => env('DB_CONNECTION') === 'sqlite'
+                ? (Str::startsWith(env('DB_DATABASE'), ['/', '\\']) || preg_match('/^[A-Za-z]:[\\\\\/]/', env('DB_DATABASE'))
+                    ? env('DB_DATABASE')
+                    : base_path(env('DB_DATABASE')))
+                : database_path('database.sqlite'),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
@@ -75,7 +79,7 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => 'prefer',
+            'sslmode' => env('DB_SSLMODE', 'prefer'),
         ],
 
         'sqlsrv' => [

@@ -37,5 +37,40 @@ class Film extends Model
     {
         return $this->hasManyThrough(Episode::class, Season::class);
     }
+
+    /**
+     * Get full URL for thumbnail (supports external URLs and local assets)
+     */
+    public function getThumbnailUrlAttribute(): string
+    {
+        if (empty($this->thumbnail)) {
+            return asset('img/default-thumbnail.jpg');
+        }
+        if (str_starts_with($this->thumbnail, 'http://') || str_starts_with($this->thumbnail, 'https://')) {
+            return $this->thumbnail;
+        }
+        return asset('imgthumb/' . $this->thumbnail);
+    }
+
+    /**
+     * Get YouTube embed URL or direct video URL
+     */
+    public function getVideoEmbedUrlAttribute(): ?string
+    {
+        if (empty($this->video)) {
+            return null;
+        }
+        if (str_contains($this->video, 'youtube.com/watch?v=')) {
+            parse_str(parse_url($this->video, PHP_URL_QUERY), $params);
+            if (isset($params['v'])) {
+                return 'https://www.youtube.com/embed/' . $params['v'];
+            }
+        }
+        if (str_contains($this->video, 'youtu.be/')) {
+            $path = parse_url($this->video, PHP_URL_PATH);
+            return 'https://www.youtube.com/embed/' . ltrim($path, '/');
+        }
+        return $this->video;
+    }
 }
 

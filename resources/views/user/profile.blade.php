@@ -2,363 +2,744 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="theme-color" content="#fff" />
-    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#111215" />
+    <title>Profile | Muviku</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.9.0/dist/modus-solid/fonts/modus-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"  />
-    <link rel="stylesheet" href="css/profile.css">
-    <title>Profile</title>
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
+    <!-- AlpineJS -->
+    <script src="https://unpkg.com/alpinejs" defer></script>
 
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #111215;
+            color: #f8fafc;
+            min-height: 100vh;
+            margin: 0;
+            padding-bottom: 120px;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        .profile-banner-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 992px) {
+            .profile-banner-container {
+                height: 280px;
+            }
+        }
+
+        .profile-banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5) blur(1px);
+        }
+
+        .profile-banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(to top, #111215, transparent);
+        }
+
+        .profile-main-container {
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+        
+        @media (min-width: 992px) {
+            .profile-main-container {
+                margin-top: -100px;
+            }
+        }
+
+        /* Grid Layout */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        @media (min-width: 992px) {
+            .profile-container {
+                display: grid;
+                grid-template-columns: 340px 1fr;
+                gap: 32px;
+                align-items: start;
+            }
+        }
+
+        /* Left Panel: User Card */
+        .user-card-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .user-avatar-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid #FFAE1F;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .user-avatar-container:hover .user-avatar {
+            transform: scale(1.05);
+        }
+
+        .user-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .user-status-badge {
+            display: inline-block;
+            background: rgba(255, 174, 31, 0.15);
+            color: #FFAE1F;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 174, 31, 0.25);
+        }
+
+        .user-info-list {
+            text-align: left;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+        }
+
+        .info-item {
+            margin-bottom: 16px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            display: block;
+            color: #94a3b8;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            color: #f8fafc;
+            font-size: 0.92rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            word-break: break-all;
+        }
+        
+        .info-value i {
+            color: #FFAE1F;
+            font-size: 1.1rem;
+            margin-right: 8px;
+        }
+
+        /* Right Panel: Menu List */
+        .menu-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-item-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .menu-item-card:active {
+            transform: translateY(0);
+        }
+
+        .menu-item-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .menu-icon {
+            font-size: 1.3rem;
+            color: #FFAE1F;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-title {
+            color: #f8fafc;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+
+        .arrow-icon {
+            color: #64748b;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item-card:hover .arrow-icon {
+            transform: translateX(4px);
+            color: #ffffff;
+        }
+
+        .logout-card:hover {
+            background: rgba(239, 68, 68, 0.1) !important;
+            border-color: rgba(239, 68, 68, 0.25) !important;
+        }
+
+        /* Floating Nav Dock */
+        .menu-wrapper {
+            position: fixed !important;
+            bottom: 24px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 90% !important;
+            max-width: 480px !important;
+            height: 72px !important;
+            background: rgba(18, 18, 22, 0.85) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 36px !important;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5) !important;
+            z-index: 1000 !important;
+            padding: 0 12px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .menu-wrapper .navigation {
+            display: flex !important;
+            justify-content: space-around !important;
+            align-items: center !important;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .menu-wrapper .navigation li {
+            list-style: none !important;
+            text-align: center !important;
+            flex: 1 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .menu-wrapper .navigation li a {
+            color: #94a3b8 !important;
+            text-decoration: none !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            transition: all 0.3s ease !important;
+            gap: 4px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .menu-wrapper .navigation li a i {
+            font-size: 20px !important;
+            display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            color: inherit !important;
+        }
+
+        .menu-wrapper .navigation li a img {
+            width: 20px !important;
+            height: 20px !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .menu-wrapper .navigation li a span {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 11px !important;
+            font-weight: 500 !important;
+            display: block !important;
+            color: inherit !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            letter-spacing: 0.2px !important;
+        }
+
+        .menu-wrapper .navigation li a.active {
+            color: #FFAE1F !important;
+            font-weight: 700 !important;
+        }
+
+        .menu-wrapper .navigation li a:hover {
+            color: #ffffff !important;
+        }
+
+        /* Modals & Forms Glassmorphism */
+        .bg-modal {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 24, 0.95) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 24px !important;
+            color: #f8fafc !important;
+            padding: 32px 24px !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header, .modal-footer {
+            border: none !important;
+            padding: 0 !important;
+        }
+
+        .modal-body {
+            padding: 0 !important;
+        }
+
+        .modal-body h6 {
+            color: #94a3b8;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-body input, .modal-body textarea {
+            background: rgba(255, 255, 255, 0.04) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #ffffff !important;
+            border-radius: 12px !important;
+            padding: 12px 16px !important;
+            transition: all 0.3s ease !important;
+            width: 100%;
+            font-size: 0.92rem;
+            text-indent: 0 !important;
+        }
+
+        .modal-body input:focus, .modal-body textarea:focus {
+            outline: none !important;
+            border-color: #FFAE1F !important;
+            box-shadow: 0 0 0 3px rgba(255, 174, 31, 0.25) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .label-upload {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .label-upload:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #FFAE1F;
+            color: #ffffff;
+        }
+
+        .btn-simpan-profil, #btn-save, #btn-simpan, #btn-add {
+            background: #FFAE1F !important;
+            border: none !important;
+            color: #111215 !important;
+            font-weight: 700 !important;
+            border-radius: 12px !important;
+            padding: 12px 28px !important;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            box-shadow: 0 4px 15px rgba(255, 174, 31, 0.2);
+            width: 100%;
+        }
+
+        .btn-simpan-profil:hover:not(.disabled), #btn-save:hover:not(.disabled), #btn-simpan:hover:not(.disabled), #btn-add:hover:not(.disabled) {
+            background: #e69d1c !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 174, 31, 0.35);
+        }
+
+        .disabled {
+            background: rgba(255, 255, 255, 0.06) !important;
+            color: rgba(255, 255, 255, 0.25) !important;
+            cursor: not-allowed !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        .icon-eye-pw {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .icon-eye-pw:hover {
+            color: #ffffff;
+        }
+    </style>
 </head>
-
-<style>
-    #btn-add.disabled {
-        background-color: #838383 !important;
-        color: white !important;
-    }
-
-    #btn-add {
-        background: #FFAE1F;
-        color: white;
-        /* border: white solid 1px; */
-    }
-
-    #simpanprofil.disabled {
-        background-color: #838383 !important;
-        color: white !important;
-    }
-
-    #simpanprofil {
-        background: #FFAE1F;
-        color: white;
-        /* border: white solid 1px; */
-    }
-
-    #btn-simpan.disabled {
-        background-color: #838383 !important;
-        color: white !important;
-    }
-
-    #btn-simpan {
-        background: #FFAE1F;
-        color: white;
-        /* border: white solid 1px; */
-    }
-
-    #btn-save.disabled {
-        background-color: #838383 !important;
-        color: white !important;
-    }
-
-    #btn-save {
-        background: #FFAE1F;
-        color: white;
-        /* border: white solid 1px; */
-    }
-</style>
 
 <body>
 
-    <div class="old">
-        <div class="bg-img position-relative">
-            <div class="bg-profile-img bg-profile">
-                <img src="img/bg-profile.png" class="w-100">
-            </div>
-            <div class="foto-profile w-100">
-                <div class="foto-nama">
-                    <div class="kelas-foto w-100 mb-3">
-                        <img src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
-                            class="foto" width="107.5" height="107.5">
-                    </div>
-                    <div style="padding: 0px 50px">
-                        <h4 class="text-white text-center">{{ Str::title(Auth::user()->name) }}</h4>
-                    </div>
-                </div>
-            </div>
+    <div class="profile-page-wrapper">
+        <!-- Banner Background -->
+        <div class="profile-banner-container">
+            <img src="{{ asset('images/bg-profile.png') }}" class="profile-banner-img" alt="Banner Background">
+            <div class="profile-banner-overlay"></div>
         </div>
-        <div class="container d-grid gap-3 menu">
-            <div class="accordion">
-                <div class="accordion-item">
-                    <button class="profil accordion-button collapsed position-relative rounded-top-3" type="button"
-                        data-bs-toggle="modal" data-bs-target="#profil">
-                        <i class="modus-icons" aria-hidden="true">person</i>
-                        Edit Profil
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
+        
+        <!-- Main Content -->
+        <div class="container profile-main-container">
+            <div class="profile-container">
+                
+                <!-- Left Side: User Card -->
+                <div class="user-card-panel">
+                    <div class="user-avatar-container">
+                        <img src="{{ Auth::user()->gambar ? (Str::startsWith(Auth::user()->gambar, ['http://', 'https://']) ? Auth::user()->gambar : 'imgprofil/' . Auth::user()->gambar) : 'img/imgProfile/profile.png' }}"
+                            class="user-avatar" id="currentAvatar" alt="Avatar">
+                    </div>
+                    
+                    <h3 class="user-name">{{ Str::title(Auth::user()->name) }}</h3>
+                    <div class="user-status-badge">{{ Auth::user()->status == 'admin' ? 'Admin' : 'User' }}</div>
+                    
+                    <div class="user-info-list">
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <span class="info-value">
+                                <i class="bi bi-envelope-fill text-warning"></i>
+                                {{ Auth::user()->email }}
+                            </span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">No. Handphone</span>
+                            <span class="info-value">
+                                <i class="bi bi-telephone-fill text-warning"></i>
+                                {{ Auth::user()->nohp ?: 'Belum diatur' }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="accordion-item rounded-bottom-3">
-                    <button class="profil accordion-button collapsed position-relative rounded-bottom-3" type="button"
-                        data-bs-toggle="modal" data-bs-target="#akun">
-                        <i class="modus-icons" aria-hidden="true">email</i>
-                        Edit Akun
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
+                
+                <!-- Right Side: Navigation Cards -->
+                <div class="menu-panel">
+                    <div class="menu-item-card" data-bs-toggle="modal" data-bs-target="#profil">
+                        <div class="menu-item-content">
+                            <div class="menu-icon"><i class="bi bi-person-fill"></i></div>
+                            <span class="menu-title">Edit Profil</span>
+                        </div>
+                        <i class="bi bi-chevron-right arrow-icon"></i>
+                    </div>
+                    
+                    <div class="menu-item-card" data-bs-toggle="modal" data-bs-target="#akun">
+                        <div class="menu-item-content">
+                            <div class="menu-icon"><i class="bi bi-envelope-fill"></i></div>
+                            <span class="menu-title">Edit Akun</span>
+                        </div>
+                        <i class="bi bi-chevron-right arrow-icon"></i>
+                    </div>
+                    
+                    <a href="{{ route('watchlist') }}" class="menu-item-card text-decoration-none">
+                        <div class="menu-item-content">
+                            <div class="menu-icon"><i class="bi bi-bookmark-check-fill"></i></div>
+                            <span class="menu-title">Daftar Tonton</span>
+                        </div>
+                        <i class="bi bi-chevron-right arrow-icon"></i>
+                    </a>
+                    
+                    <div class="menu-item-card" data-bs-toggle="modal" data-bs-target="#lapor">
+                        <div class="menu-item-content">
+                            <div class="menu-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
+                            <span class="menu-title">Laporkan Kesalahan</span>
+                        </div>
+                        <i class="bi bi-chevron-right arrow-icon"></i>
+                    </div>
+                    
+                    @if(!Auth::user()->google_id)
+                    <div class="menu-item-card" data-bs-toggle="modal" data-bs-target="#password">
+                        <div class="menu-item-content">
+                            <div class="menu-icon"><i class="bi bi-key-fill"></i></div>
+                            <span class="menu-title">Edit Sandi</span>
+                        </div>
+                        <i class="bi bi-chevron-right arrow-icon"></i>
+                    </div>
+                    @endif
+                    
+                    <div class="menu-item-card logout-card" data-bs-toggle="modal" data-bs-target="#logout">
+                        <div class="menu-item-content">
+                            <div class="menu-icon"><i class="bi bi-box-arrow-right text-danger"></i></div>
+                            <span class="menu-title text-danger">Log Out</span>
+                        </div>
+                        <i class="bi bi-chevron-right arrow-icon text-danger"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="accordion">
-                <div class="accordion-item rounded-top-3">
-                    <button onclick="window.location='{{ route('watchlist') }}'"
-                        class="profil accordion-button collapsed position-relative rounded-top-3" type="button"
-                        data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
-                        <i class="bi bi-bookmark-check-fill fs-5"></i>
-                        Daftar Tonton
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="accordion-item">
-                    <button class="profil accordion-button collapsed position-relative" type="button"
-                        data-bs-toggle="modal" data-bs-target="#lapor">
-                        <i class="modus-icons" aria-hidden="true">help</i>
-                        Laporkan Kesalahan
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="accordion-item">
-                    <button class="profil accordion-button collapsed position-relative" type="button"
-                        data-bs-toggle="modal" data-bs-target="#password">
-                        <i class="modus-icons" aria-hidden="true">key</i>
-                        Edit Sandi
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="accordion-item rounded-bottom-3">
-                    <button class="profil accordion-button collapsed position-relative text-danger rounded-bottom-3"
-                        data-bs-toggle="modal" data-bs-target="#logout" type="button">
-                        <i class="modus-icons" aria-hidden="true">sign_out</i>
-                        Log Out
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
+                
             </div>
         </div>
     </div>
+
+    <!-- Floating Dock Menu -->
     <footer>
-        <div class="menu-wrapper fixed-bottom">
-            <div class="navigation container-fluid" id="navigationn">
+        <div class="menu-wrapper">
+            <div class="navigation" id="navigationn">
                 <li>
-                    <a href="/utama" class="btnn border-end-0 border-bottom-0 border-start-0">
-                        <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
+                    <a href="/utama">
+                        <img src="img/logo-muviku.png" alt="Utama">
                         <span>Utama</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/search" class="btnn border-end-0 border-bottom-0 border-start-0">
-                        <i class="bi bi-search pe-0" aria-hidden="true"></i>
+                    <a href="/search">
+                        <i class="bi bi-search" aria-hidden="true"></i>
                         <span>Cari</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('favorit') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
-                        <i class="bi bi-heart pe-0" aria-hidden="true"></i>
+                    <a href="{{ route('favorit') }}">
+                        <i class="bi bi-heart" aria-hidden="true"></i>
                         <span>Suka</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('profile') }}" class="btnn border-end-0 border-bottom-0 border-start-0 active">
-                        <img src="img/group-1.png" width="20">
-                        <span style="margin-top: -4px">Profil</span>
+                    <a href="{{ route('profile') }}" class="active">
+                        <img src="img/group-1.png" alt="Profil">
+                        <span>Profil</span>
                     </a>
                 </li>
             </div>
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div class="modal fade bg-modal" id="profil" tabindex="-1" aria-labelledby="profilLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered container" x-data="{ name: '{{ Auth::user()->name }}', img: '' }">
+    <!-- Modal Edit Profil -->
+    <div class="modal fade bg-modal" id="profil" tabindex="-1" aria-labelledby="profilLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" x-data="{ name: '{{ Auth::user()->name }}', img: '' }">
             <form class="w-100" action="/profile/editProfil" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-content edit-profil rounded-5">
-                    <div class="modal-body container py-0">
-                        <div class="image-profil">
-                            <div class="img-profil">
-                                <img class="mx-auto mt-3 rounded-circle justify-content-center d-flex" id="preview"
-                                    src="{{ Auth::user()->gambar ? 'imgprofil/' . Auth::user()->gambar : 'img/imgProfile/profile.png' }}"
-                                    alt="Preview" height="100" width="100">
-                            </div>
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center mb-4">
+                            <img class="mx-auto mt-2 rounded-circle justify-content-center d-flex border" id="preview"
+                                src="{{ Auth::user()->gambar ? (Str::startsWith(Auth::user()->gambar, ['http://', 'https://']) ? Auth::user()->gambar : 'imgprofil/' . Auth::user()->gambar) : 'img/imgProfile/profile.png' }}"
+                                alt="Preview" height="100" width="100" style="object-fit: cover; border: 3px solid #FFAE1F !important;">
+                            <h4 class="modal-title fs-5 mt-3" id="profilLabel">Edit Profil</h4>
                         </div>
-                        <div class="body-modal d-grid gap-3">
-                            <div class="modal-dialog text-center">
-                                <h1 class="modal-title fs-5" id="profilLabel">Edit Profil</h1>
-                            </div>
-                            <div class="nama">
+                        <div class="d-grid gap-3">
+                            <div>
                                 <h6>Nama</h6>
-                                <input type="text" name="name" id="name" value="{{ Auth::user()->name }}"
-                                    class="w-100 rounded border txt" x-model="name">
+                                <input type="text" name="name" id="name" value="{{ Auth::user()->name }}" x-model="name">
                             </div>
-                            <div class="img-profile">
+                            <div>
                                 <h6>Foto Profil</h6>
-                                <input type="file" name="gambar" hidden=""
-                                    class="w-100 rounded border" onchange="previewImage()" id="imgProfil"
-                                    x-model="img">
-                                <label for="imgProfil"
-                                    class="bgnya-input label-upload w-100 px-2 pt-2 border rounded  text-center"
-                                    id="file-input-label" for="file-input"><i class="bi bi-upload"></i>Pilih
-                                    File</label>
+                                <input type="file" name="gambar" hidden onchange="previewImage()" id="imgProfil" x-model="img">
+                                <label for="imgProfil" class="label-upload" id="file-input-label">
+                                    <i class="bi bi-upload"></i>Pilih File Gambar
+                                </label>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer mx-auto border-top-0 pb-0 pt-4 justify-content-center">
-                        <button type="submit" id="simpanprofil"
-                            class="btn-simpan-profil btn text-center m-0 py-2 px-4"
-                            :class="name || img ? null : 'disabled'">Simpan</button>
+                    <div class="modal-footer justify-content-center mt-4">
+                        <button type="submit" id="simpanprofil" class="btn-simpan-profil btn" :class="name || img ? null : 'disabled'">Simpan</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="modal fade bg-modal text-white" id="akun" tabindex="-1" aria-labelledby="akunLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered container" x-data="{ email: '{{ Auth::user()->email }}', no: '{{ Auth::user()->nohp }}' }">
-            <form action="/profile/editAkun" method="POST" enctype="multipart/form-data">
+
+    <!-- Modal Edit Akun -->
+    <div class="modal fade bg-modal" id="akun" tabindex="-1" aria-labelledby="akunLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" x-data="{ email: '{{ Auth::user()->email }}', no: '{{ Auth::user()->nohp }}' }">
+            <form action="/profile/editAkun" class="w-100" method="POST">
                 @csrf
-                <div class="modal-content edit-akun rounded-5">
-                    <div>
-                        <div class="img-pw mx-auto d-flex">
-                            <img class="mx-auto" src="img/email.png" style="max-width: 25%; max-height: 25%;">
-                        </div>
+                <div class="modal-content">
+                    <div class="text-center mb-4">
+                        <img class="mx-auto d-block" src="img/email.png" style="width: 70px; height: 70px; object-fit: contain;">
+                        <h4 class="modal-title fs-5 mt-3" id="akunLabel">Edit Akun</h4>
                     </div>
-                    <div class="modal-dialog text-center py-2">
-                        <h1 class="modal-title fs-5" id="akunLabel">Edit Akun</h1>
-                    </div>
-                    <div class="modal-body container d-grid gap-3 pt-0">
-                        <input type="hidden" name="id" value="{{ $users->id }}">
-                        <div class="email">
+                    <div class="modal-body d-grid gap-3">
+                        <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+                        <div>
                             <h6>Email Baru</h6>
-                            <input type="email" name="email" id="email" class="w-100 rounded border txt"
-                                placeholder="Ketik email barumu..." x-model="email"
-                                value="{{ Auth::user()->email }}">
+                            <input type="email" name="email" id="email" placeholder="Ketik email barumu..." x-model="email" value="{{ Auth::user()->email }}">
                         </div>
-                        <div class="img-profile">
-                            <h6>No. Tlpn Baru</h6>
-                            <input type="text" name="nohp" id="tlpn" class="w-100 rounded txt"
-                                placeholder="Ketik no barumu..." x-model="no" value="{{ Auth::user()->nohp }}">
+                        <div>
+                            <h6>No. Handphone Baru</h6>
+                            <input type="text" name="nohp" id="tlpn" placeholder="Ketik no barumu..." x-model="no" value="{{ Auth::user()->nohp }}">
                         </div>
                     </div>
-                    <div class="modal-footer mx-auto border-0 pb-0 pt-2">
-                        <button type="submit" id="btn-save" class="btn-simpan-profil border-0 py-2 px-4 m-0 rounded"
-                            :class="email || no ? null : 'disabled'">Simpan</button>
+                    <div class="modal-footer justify-content-center mt-4">
+                        <button type="submit" id="btn-save" class="btn text-center" :class="email || no ? null : 'disabled'">Simpan</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="modal bg-modal fade" id="lapor" tabindex="-1" aria-labelledby="laporLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered container my-auto" role="document" x-data="{ lapor: '' }">
-            <form action="/profile/laporkan" method="POST" enctype="multipart/form-data">
+
+    <!-- Modal Laporkan Kesalahan -->
+    <div class="modal fade bg-modal" id="lapor" tabindex="-1" aria-labelledby="laporLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" x-data="{ lapor: '' }">
+            <form action="/profile/laporkan" class="w-100" method="POST">
                 @csrf
-                <div class="modal-content rounded-5 laporkan">
-                    <div>
-                        <div class="img-pw mx-auto d-flex">
-                            <img class="mx-auto" src="img/report.png" style="max-width: 25%; max-height: 25%;">
+                <div class="modal-content">
+                    <div class="text-center mb-4">
+                        <img class="mx-auto d-block" src="img/report.png" style="width: 70px; height: 70px; object-fit: contain;">
+                        <h4 class="modal-title fs-5 mt-3" id="laporLabel">Laporkan Kesalahan</h4>
+                    </div>
+                    <div class="modal-body d-grid gap-2">
+                        <textarea id="description" class="w-100 px-1 border" cols="30" rows="5" name="laporan"
+                            placeholder="Tuliskan laporan Anda di sini..." x-model="lapor" onkeyup="charCount(this)"></textarea>
+                        <div class="text-end">
+                            <small class="text-secondary"><span id="textcount">0</span> / 230 kata</small>
                         </div>
                     </div>
-                    <div class="modal-header border-bottom-0 d-block py-3">
-                        <h1 class="modal-title fs-5" id="laporLabel">Laporkan Kesalahan!</h1>
-                    </div>
-                    <div class="modal-body container py-0" style="height: 148px">
-                        <textarea id="description" class="w-100 px-1 border" cols="30" rows="6" name="laporan"
-                            placeholder="Tuliskan laporan Anda di sini..." style="text-indent: 5px" x-model="lapor"
-                            onkeyup="charCount(this)"></textarea>
-                    </div>
-                    <div class="container ms-2">
-                        <small class="text-secondary"><span id="textcount">0</span> dari 230 kata</small>
-                    </div>
-                    <div class="modal-footer border-top-0 justify-content-center p-0 pt-3">
-                        <button type="submit" class="btn text-white btn-simpan py-2 px-4"
-                            :class="lapor ? null : 'disabled'" data-bs-dismiss="modal" id="btn-add"
-                            style="width: 104.25px">Kirim</button>
+                    <div class="modal-footer justify-content-center mt-4">
+                        <button type="submit" class="btn text-white" :class="lapor ? null : 'disabled'" id="btn-add">Kirim</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="modal fade bg-modal px-3" id="password" tabindex="-1" aria-labelledby="passwordLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered text-center py-3 my-0" role="document">
+
+    <!-- Modal Edit Sandi -->
+    <div class="modal fade bg-modal" id="password" tabindex="-1" aria-labelledby="passwordLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <form id="editForm" class="w-100">
                 @csrf
-                <div class="modal-content pw edit-pw rounded-5" role="document" x-data="{ pwlama: '', pwbaru: '', confirmpw: '' }">
-                    <div class="img-lock">
-                        <div class="img-pw mx-auto d-flex">
-                            <img class="mx-auto" src="img/lock.png" width="99" height="99">
-                        </div>
+                <div class="modal-content" x-data="{ pwlama: '', pwbaru: '', confirmpw: '' }">
+                    <div class="text-center mb-4">
+                        <img class="mx-auto d-block" src="img/lock.png" style="width: 70px; height: 70px; object-fit: contain;">
+                        <h4 class="modal-title fs-5 mt-3" id="passwordLabel">Edit Sandi</h4>
                     </div>
-                    <div class="modal-body container d-grid gap-3 py-0 text-start">
-                        <div id="validation-errors" style="display: none;"></div>
-                        <div class="pw-lama position-relative">
+                    <div class="modal-body d-grid gap-3 text-start">
+                        <div id="validation-errors" class="mb-2" style="display: none;"></div>
+                        <div class="position-relative">
                             <h6>Kata Sandi Lama</h6>
-                            <input type="password" name="password" id="pwlama" x-model="pwlama"
-                                class="w-100 pe-55 rounded border txt" placeholder="Ketik kata sandi lamamu...">
-                            <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                                id="togglepwLama"></i>
+                            <input type="password" name="password" id="pwlama" x-model="pwlama" placeholder="Ketik kata sandi lamamu...">
+                            <i class="bi bi-eye icon-eye-pw" id="togglepwLama"></i>
                         </div>
-                        <div class="pw-baru position-relative">
+                        <div class="position-relative">
                             <h6>Kata Sandi Baru</h6>
-                            <input type="password" name="new_password" id="pwbaru" x-model="pwbaru"
-                                class="w-100 pe-55 rounded border txt" placeholder="Ketik kata sandi barumu...">
-                            <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                                id="togglepwBaru"></i>
+                            <input type="password" name="new_password" id="pwbaru" x-model="pwbaru" placeholder="Ketik kata sandi barumu...">
+                            <i class="bi bi-eye icon-eye-pw" id="togglepwBaru"></i>
                         </div>
-                        <div class="confirm-pw position-relative">
-                            <h6>Konfirmasi kata Sandi Baru</h6>
-                            <input type="password" name="new_password_confirmation" id="confirmpw"
-                                x-model="confirmpw" class="w-100 pe-55 rounded border txt"
-                                placeholder="Ketik ulang kata sandi barumu...">
-                            <i class="bi-eye position-absolute icon-eye-pw" style="font-size: 24px; right: 13px;"
-                                id="togglepwConfirm"></i>
-                            <p class="mb-0 mt-1">Lupa kata sandi? <span class="text-warning"><i>Klik disini</i></span>
-                            </p>
+                        <div class="position-relative">
+                            <h6>Konfirmasi Kata Sandi Baru</h6>
+                            <input type="password" name="new_password_confirmation" id="confirmpw" x-model="confirmpw" placeholder="Ketik ulang kata sandi barumu...">
+                            <i class="bi bi-eye icon-eye-pw" id="togglepwConfirm"></i>
                         </div>
                     </div>
-                    <div class="modal-footer mx-auto border-top-0 d-flex text-center pb-0 pt-4 gap-2">
-                        <button type="button" class="btn btn-simpan border py-2" style="width: 104.25px"
-                            data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" id="btn-simpan" class="btn btn-simpan px-4"
-                            :class="pwlama && pwbaru && confirmpw ? null : 'disabled'">Simpan</button>
+                    <div class="modal-footer justify-content-center gap-2 mt-4">
+                        <button type="button" class="btn btn-secondary border py-2 text-white bg-transparent border-secondary" style="width: auto; min-width: 100px; border-radius: 12px;" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" id="btn-simpan" class="btn btn-simpan" :class="pwlama && pwbaru && confirmpw ? null : 'disabled'" style="width: auto; min-width: 100px;">Simpan</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="modal bg-modal fade" id="logout" tabindex="-1" aria-labelledby="logoutLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered container">
-            <div class="modal-content logout rounded-5">
-                <div class="img-lock">
-                    <div class="img-pw mx-auto d-flex">
-                        <img class="mx-auto" src="img/img-logout.png" style="max-width: 25%; max-height: 25%;">
-                    </div>
+
+    <!-- Modal Logout -->
+    <div class="modal fade bg-modal" id="logout" tabindex="-1" aria-labelledby="logoutLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="mb-4">
+                    <img class="mx-auto d-block" src="img/img-logout.png" style="width: 70px; height: 70px; object-fit: contain;">
+                    <h4 class="modal-title fs-5 mt-3" id="logoutLabel">Anda Yakin Ingin Keluar?</h4>
                 </div>
-                <div class="modal-header border-bottom-0 text-center d-block pb-0">
-                    <h1 class="modal-title fs-5" id="logoutLabel">Anda Yakin Ingin Keluar?</h1>
-                </div>
-                <div class="modal-footer border-top-0 justify-content-center gap-2">
-                    <a href="{{ route('logoutLogin') }}" class="btn bg-secondary text-white px-3 py-2"
-                        style="width: 72.53px">Iya</a>
-                    <button type="button" class="btn btn-danger py-2 px-3" data-bs-dismiss="modal">Tidak</button>
+                <div class="modal-footer justify-content-center gap-3">
+                    <a href="{{ route('logoutLogin') }}" class="btn btn-secondary text-white border-0 py-2 px-4" style="border-radius: 12px; background: rgba(255,255,255,0.08) !important;">Iya</a>
+                    <button type="button" class="btn btn-danger border-0 py-2 px-4" data-bs-dismiss="modal" style="border-radius: 12px; background: #dc3545 !important;">Tidak</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>\
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    <!-- Script Bundles -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
+        // Character counter for report description
         function charCount(textarea) {
             var max = 230;
             var length = textarea.value.length;
@@ -368,12 +749,11 @@
                 $('#textcount').text(length);
             }
         }
-    </script>
-    <script>
+        
+        // Form submission for changing password (via Ajax)
         $(document).ready(function() {
             $('#editForm').submit(function(e) {
                 e.preventDefault();
-
                 var formData = $(this).serialize();
 
                 $.ajax({
@@ -390,40 +770,15 @@
                         $.each(errors.errors, function(key, value) {
                             $('#validation-errors').show();
                             $('#validation-errors').append(
-                                '<div class="alert alert-danger">' + value +
-                                '</div>');
+                                '<div class="alert alert-danger p-2" style="font-size:13px; border-radius:8px;">' + value + '</div>'
+                            );
                         });
                     }
                 });
             });
         });
-    </script>
 
-    <script>
-        function checkInputs() {
-            var namaInput = document.getElementById('nama');
-            var imgProfilInput = document.getElementById('imgProfil');
-            var simpanButton = document.getElementById('simpanprofil');
-
-            if (namaInput.value.trim() !== '' || imgProfilInput.value.trim() !== '') {
-                simpanButton.removeAttribute('disabled');
-                simpanButton.classList.remove('btn-secondary');
-                simpanButton.classList.add('btn-primary');
-            } else {
-                simpanButton.setAttribute('disabled', 'disabled');
-                simpanButton.classList.remove('btn-primary');
-                simpanButton.classList.add('btn-secondary');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            var namaInput = document.getElementById('nama');
-            var imgProfilInput = document.getElementById('imgProfil');
-
-            namaInput.addEventListener('input', checkInputs);
-            imgProfilInput.addEventListener('change', checkInputs);
-        });
-
+        // Image Preview logic
         function previewImage() {
             var preview = document.getElementById('preview');
             var imgProfilInput = document.getElementById('imgProfil');
@@ -432,154 +787,39 @@
 
             reader.onloadend = function() {
                 preview.src = reader.result;
-                preview.style.display = 'block';
             };
 
             if (file) {
                 reader.readAsDataURL(file);
             } else {
-                preview.src = '#';
+                preview.src = '{{ Auth::user()->gambar ? (Str::startsWith(Auth::user()->gambar, ["http://", "https://"]) ? Auth::user()->gambar : "imgprofil/" . Auth::user()->gambar) : "img/imgProfile/profile.png" }}';
             }
+        }
+
+        // Toggle password visibilities
+        const setupPasswordToggle = (inputId, toggleId) => {
+            const input = document.getElementById(inputId);
+            const toggle = document.getElementById(toggleId);
+            
+            toggle.addEventListener("click", function() {
+                const type = input.type === "password" ? "text" : "password";
+                input.type = type;
+                if (type === 'text') {
+                    toggle.classList.remove("bi-eye");
+                    toggle.classList.add("bi-eye-slash");
+                } else {
+                    toggle.classList.remove("bi-eye-slash");
+                    toggle.classList.add("bi-eye");
+                }
+            });
+        };
+
+        if (document.getElementById("pwlama")) {
+            setupPasswordToggle("pwlama", "togglepwLama");
+            setupPasswordToggle("pwbaru", "togglepwBaru");
+            setupPasswordToggle("confirmpw", "togglepwConfirm");
         }
     </script>
 </body>
-
-
-<script>
-    function checkInputs() {
-        var emailInput = document.getElementById('email');
-        var tlpnInput = document.getElementById('tlpn');
-        var simpanButton = document.getElementById('simpanakun');
-
-        if (emailInput.value.trim() !== '' || tlpnInput.value.trim() !== '') {
-            simpanButton.removeAttribute('disabled');
-            simpanButton.classList.remove('btn-secondary');
-            simpanButton.classList.add('btn-primary');
-        } else {
-            simpanButton.setAttribute('disabled', 'disabled');
-            simpanButton.classList.remove('btn-primary');
-            simpanButton.classList.add('btn-secondary');
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var emailInput = document.getElementById('email');
-        var tlpnInput = document.getElementById('tlpn');
-
-        emailInput.addEventListener('input', checkInputs);
-        tlpnInput.addEventListener('input', checkInputs);
-    });
-</script>
-
-<script>
-    const InputPwLama = document.getElementById("pwlama");
-    const togglePwLama = document.getElementById("togglepwLama");
-
-    togglePwLama.addEventListener("click", function() {
-        const type = InputPwLama.type === "password" ? "text" : "password";
-        InputPwLama.type = type;
-        if (type == 'text') {
-            togglePwLama.classList.remove("bi-eye");
-            togglePwLama.classList.add("bi-eye-fill");
-        } else {
-            togglePwLama.classList.add("bi-eye");
-            togglePwLama.classList.remove("bi-eye-fill");
-        }
-    });
-</script>
-<script>
-    const InputPwBaru = document.getElementById("pwbaru");
-    const togglePwBaru = document.getElementById("togglepwBaru");
-
-    togglePwBaru.addEventListener("click", function() {
-        const type = InputPwBaru.type === "password" ? "text" : "password";
-        InputPwBaru.type = type;
-        if (type == 'text') {
-            togglePwBaru.classList.remove("bi-eye");
-            togglePwBaru.classList.add("bi-eye-fill");
-        } else {
-            togglePwBaru.classList.add("bi-eye");
-            togglePwBaru.classList.remove("bi-eye-fill");
-        }
-    });
-</script>
-<script>
-    const InputPwConfirm = document.getElementById("confirmpw");
-    const toggleConfirmPw = document.getElementById("togglepwConfirm");
-
-    toggleConfirmPw.addEventListener("click", function() {
-        const type = InputPwConfirm.type === "password" ? "text" : "password";
-        InputPwConfirm.type = type;
-        if (type == 'text') {
-            toggleConfirmPw.classList.remove("bi-eye");
-            toggleConfirmPw.classList.add("bi-eye-fill");
-        } else {
-            toggleConfirmPw.classList.add("bi-eye");
-            toggleConfirmPw.classList.remove("bi-eye-fill");
-        }
-    });
-</script>
-<script>
-    function previewImage() {
-        var imgProfil = document.getElementById('imgProfil');
-        var preview = document.getElementById('preview');
-
-        if (imgProfil.files && imgProfil.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-            }
-
-            reader.readAsDataURL(imgProfil.files[0]);
-        }
-    }
-</script>
-<script>
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-</script>
-{{-- <script>
-    const optionMenu = document.querySelector(".select-menu"),
-        selectBtn = optionMenu.querySelector(".select-btn"),
-        options = optionMenu.querySelectorAll(".option"),
-        sBtn_text = optionMenu.querySelector(".sBtn-text");
-    selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-    options.forEach(option => {
-        option.addEventListener("click", () => {
-            let selectedOption = option.querySelector(".option-text").innerText;
-            sBtn_text.innerText = selectedOption;
-            optionMenu.classList.remove("active");
-        });
-    });
-</script> --}}
-{{-- <script>
-    document.getElementById('simpan').addEventListener('click', function() {
-        let timerInterval;
-        Swal.fire({
-            text: "Harap cek kembali!",
-            width: '15em',
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: () => {
-                Swal.showLoading();
-                const timer = Swal.getPopup().querySelector("b");
-                timerInterval = setInterval(() => {
-                    timer.textContent = `${Swal.getTimerLeft()}`;
-                }, 100);
-            },
-            willClose: () => {
-                clearInterval(timerInterval);
-            }
-        }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                console.log("I was closed by the timer");
-            }
-        });
-    });
-</script> --}}
 
 </html>

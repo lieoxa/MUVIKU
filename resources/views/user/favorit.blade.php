@@ -1,232 +1,426 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Favorit</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Favorit | Muviku</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <link rel="stylesheet" href="css/watchlist.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #111215;
+            color: #f8fafc;
+            min-height: 100vh;
+            margin: 0;
+            padding-bottom: 120px;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        .header-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(17, 18, 21, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 16px 0;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            padding: 24px 0;
+        }
+
+        @media (min-width: 576px) {
+            .favorites-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .favorites-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .favorites-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 24px;
+            }
+        }
+
+        .movie-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .movie-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .poster-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2/3;
+            overflow: hidden;
+            background: #1e1e24;
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .movie-card:hover .movie-poster {
+            transform: scale(1.06);
+        }
+
+        /* Floating Trash Button */
+        .trash-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            background: rgba(17, 18, 21, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ef4444;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .trash-btn:hover {
+            background: #ef4444;
+            color: #ffffff;
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .movie-details {
+            padding: 14px;
+        }
+
+        .movie-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .movie-studio {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Floating Nav Dock */
+        .menu-wrapper {
+            position: fixed !important;
+            bottom: 24px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 90% !important;
+            max-width: 480px !important;
+            height: 72px !important;
+            background: rgba(18, 18, 22, 0.85) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 36px !important;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5) !important;
+            z-index: 1000 !important;
+            padding: 0 12px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .menu-wrapper .navigation {
+            display: flex !important;
+            justify-content: space-around !important;
+            align-items: center !important;
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .menu-wrapper .navigation li {
+            list-style: none !important;
+            text-align: center !important;
+            flex: 1 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .menu-wrapper .navigation li a {
+            color: #94a3b8 !important;
+            text-decoration: none !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            transition: all 0.3s ease !important;
+            gap: 4px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+
+        .menu-wrapper .navigation li a i {
+            font-size: 20px !important;
+            display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            color: inherit !important;
+        }
+
+        .menu-wrapper .navigation li a img {
+            width: 20px !important;
+            height: 20px !important;
+            object-fit: contain !important;
+            display: block !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .menu-wrapper .navigation li a span {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 11px !important;
+            font-weight: 500 !important;
+            display: block !important;
+            color: inherit !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            letter-spacing: 0.2px !important;
+        }
+
+        .menu-wrapper .navigation li a.active {
+            color: #FFAE1F !important;
+            font-weight: 700 !important;
+        }
+
+        .menu-wrapper .navigation li a:hover {
+            color: #ffffff !important;
+        }
+
+        /* Custom SweetAlert integration */
+        .swal2-modal {
+            background-color: rgba(20, 20, 24, 0.95) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 20px !important;
+            color: #ffffff !important;
+        }
+        
+        .swal2-title {
+            color: #ffffff !important;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="old" style="padding-top: 65px">
-        <div class="atas sticky-top position-fixed w-100">
-            <div class="navbar ps-2 pe-3 w-100 p-0 d-flex" style="height:68.59px;" id="mainNav">
-                <div class="txt-daftar ms-2">
-                    <h3 class="mb-0 text-white">Daftar Favorit</h3>
-                </div>
-            </div>
-            <div x-data="{ sliders: '' }">
-                <div class="container-sm">
-                    <div class="container mb-2 p-0 border-bottom-1" style="max-height: 44px;" x-data="{ filter: 'all' }">
-                        <section class="splide slider-1 mt-0 mb-4" aria-label="Splide Basic HTML Example">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                    <li class="splide__slide ">
-                                        <span
-                                            :class="filter == 'anime' ? 'title-service text-white fs-8 fw-bold' :
-                                                'text-secondary'"
-                                            x-on:click="filter = 'anime';sliders = 'anime'">Semua</span>
-                                    </li>
-                                    {{-- <li class="splide__slide ">
-                                        <span
-                                            :class="filter == 'anime' ? 'title-service text-white fs-8 fw-bold' :
-                                                'text-secondary'"
-                                            x-on:click="filter = 'anime';sliders = 'anime'">Anime</span>
-                                    </li> --}}
-                                </ul>
-                            </div>
-                        </section>
-                        <div class="d-flex gap-2 bar mt-3">
-                        </div>
-                    </div>
-                </div>
-                <section>
-                    <div class="hero my-3 container" style="margin-bottom: 1.9rem;"
-                        x-show="sliders == '' ? true : (sliders == 'hero')">
-                        {{-- <h1 class="text-white text-start fw-bold">Super Hero</h1> --}}
-                        <section>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/jumanji.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Jumanji</h5>
-                                    <p>TriStar Pictures</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/drakor7.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Train to Busan</h5>
-                                    <p>RedPeter Film</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/anim8.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Spirited Away</h5>
-                                    <p>Ghibli</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/anim3.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Wuthering With you</h5>
-                                    <p>CoMix</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/hero7.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Thor Ragnarok</h5>
-                                    <p>Marvel Studios</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            
-                            </div>
-                        </section>
-                    </div>
-                </section>
-            </div>
+
+    <!-- Frosted Header Navbar -->
+    <div class="header-nav">
+        <div class="container header-container">
+            <h3 class="header-title">Daftar Favorit</h3>
         </div>
     </div>
+
+    <!-- Main Grid Content -->
+    <div class="container">
+        <div class="favorites-grid">
+            
+            <!-- Movie Card 1 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="{{ asset('img/jumanji.jpg') }}" class="movie-poster" alt="Jumanji">
+                    <div class="trash-btn" title="Hapus dari Favorit">
+                        <i class="bi bi-trash-fill"></i>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h5 class="movie-title">Jumanji</h5>
+                    <p class="movie-studio">TriStar Pictures</p>
+                </div>
+            </div>
+
+            <!-- Movie Card 2 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="{{ asset('img/drakor7.jpg') }}" class="movie-poster" alt="Train to Busan">
+                    <div class="trash-btn" title="Hapus dari Favorit">
+                        <i class="bi bi-trash-fill"></i>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h5 class="movie-title">Train to Busan</h5>
+                    <p class="movie-studio">RedPeter Film</p>
+                </div>
+            </div>
+
+            <!-- Movie Card 3 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="{{ asset('img/anim8.jpg') }}" class="movie-poster" alt="Spirited Away">
+                    <div class="trash-btn" title="Hapus dari Favorit">
+                        <i class="bi bi-trash-fill"></i>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h5 class="movie-title">Spirited Away</h5>
+                    <p class="movie-studio">Studio Ghibli</p>
+                </div>
+            </div>
+
+            <!-- Movie Card 4 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="{{ asset('img/anim3.jpg') }}" class="movie-poster" alt="Weathering With You">
+                    <div class="trash-btn" title="Hapus dari Favorit">
+                        <i class="bi bi-trash-fill"></i>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h5 class="movie-title">Weathering With You</h5>
+                    <p class="movie-studio">CoMix Wave Films</p>
+                </div>
+            </div>
+
+            <!-- Movie Card 5 -->
+            <div class="movie-card">
+                <div class="poster-container">
+                    <img src="{{ asset('img/hero7.jpg') }}" class="movie-poster" alt="Thor Ragnarok">
+                    <div class="trash-btn" title="Hapus dari Favorit">
+                        <i class="bi bi-trash-fill"></i>
+                    </div>
+                </div>
+                <div class="movie-details">
+                    <h5 class="movie-title">Thor Ragnarok</h5>
+                    <p class="movie-studio">Marvel Studios</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Floating Navigation Menu -->
     <footer>
-        <div class="menu-wrapper fixed-bottom">
-            <div class="navigation container-fluid" id="navigationn">
+        <div class="menu-wrapper">
+            <div class="navigation" id="navigationn">
                 <li>
-                    <a href="/utama" class="btnn border-end-0 border-bottom-0 border-start-0">
-                        <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
+                    <a href="/utama">
+                        <img src="img/logo-muviku.png" alt="Utama">
                         <span>Utama</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/search" class="btnn border-end-0 border-bottom-0 border-start-0">
-                        <i class="bi bi-search pe-0" aria-hidden="true"></i>
+                    <a href="/search">
+                        <i class="bi bi-search" aria-hidden="true"></i>
                         <span>Cari</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/favorit" class="btnn border-end-0 border-bottom-0 border-start-0 active">
-                        <img src="img/heart.png" width="20">
+                    <a href="{{ route('favorit') }}" class="active">
+                        <img src="img/heart.png" alt="Suka">
                         <span>Suka</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/profile" class="btnn border-end-0 border-bottom-0 border-start-0 ">
+                    <a href="/profile">
                         <i class="bi bi-person fs-4" aria-hidden="true"></i>
-                        <span style="margin-top: -4px">Profil</span>
+                        <span>Profil</span>
                     </a>
                 </li>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Setup trash action for each movie card
+        document.querySelectorAll('.trash-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Avoid triggering card-level clicks if any
+                
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Berhasil Dihapus!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    background: '#141418',
+                    color: '#ffffff'
+                });
+
+                // Smoothly remove card from interface
+                const card = this.closest('.movie-card');
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.9) translateY(10px)';
+                
+                setTimeout(() => {
+                    card.remove();
+                }, 400);
+            });
+        });
+    </script>
 </body>
-<script>
-    var splide = new Splide('.splide.slider-1', {
-        pagination: false,
-        autoWidth: true,
-        gap: '1.2rem',
-        arrows: false,
-        lazyLoad: 'nearby',
-        drag: 'free',
-    });
-    splide.mount();
-</script>
-<script>
-    let section = document.querySelectorAll('section');
-    let navLinks = document.querySelectorAll('nav a');
-
-    window.onscroll = () => {
-
-        section.forEach(sec => {
-
-            let top = window.scrollY;
-            let offset = sec.offsetTop;
-            let height = sec.offsetHeight;
-            let id = sec.getAttribute('id');
-
-            if (top >= offset && top < offset + height) {
-                navLinks.forEach(links => {
-                    links.classList.remove('active');
-                    document.querySelector('nav a[href*=' + id + ']').classList.add('active');
-                })
-            }
-        });
-    };
-</script>
-<script>
-    document.getElementById('heart').addEventListener('click', function() {
-
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            text: "Berhasil Dihapus!",
-            showConfirmButton: false,
-            timer: 2000
-        });
-    });
-</script>
-<script>
-    const optionMenu = document.querySelector(".select-menu"),
-        selectBtn = optionMenu.querySelector(".select-btn"),
-        options = optionMenu.querySelectorAll(".option"),
-        sBtn_text = optionMenu.querySelector(".sBtn-text");
-    selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-    options.forEach(option => {
-        option.addEventListener("click", () => {
-            let selectedOption = option.querySelector(".option-text").innerText;
-            sBtn_text.innerText = selectedOption;
-            optionMenu.classList.remove("active");
-        });
-    });
-</script>
 
 </html>

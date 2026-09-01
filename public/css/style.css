@@ -1,317 +1,710 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Lexend:wght@700&family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-    justify-content: center;
-    align-items: center;
-    background: #222327;
+    background: #111215;
+    color: #f8fafc;
     user-select: none;
     position: relative;
+    padding-bottom: 120px;
 }
 
-h1 {
-    font-size: 20px;
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+    font-weight: 700;
 }
 
 .row {
-    padding-right: 0px
+    padding-right: 0px;
 }
 
-.card-img-top {
-    max-width: 100%;
-    min-height: 160px;
-    max-height: 160px;
-    border-radius: 0.5rem !important;
+/* =========================================
+   HEADER & NAVBAR
+   ========================================= */
+.navbar {
+    background: rgba(17, 18, 21, 0.92) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.podcast {
-    min-width: 100%;
-    min-height: 180px;
-    max-height: 180px;
-    border-radius: 0.5rem !important;
+.dropdown-menu {
+    background: rgba(20, 20, 24, 0.95) !important;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.saran {
-    min-width: 55% !important;
-}
+/* =========================================
+   HERO BANNER SLIDER (top slides)
+   ========================================= */
 
-.saran-1 {
-    min-width: 85% !important;
-}
-
-.saran-2 {
-    min-width: 75% !important;
-}
-
-.btn-warning:hover {
-    background-color: yellow;
-}
-
-.imimg {
-    width: 100%;
-}
-
-.film-khusus {
-    min-height: 300px;
-    max-height: 300px;
-    width: 200%;
-}
-
-.pe-4 {
-    padding-right: 1.2rem !important;
-}
-
-.film-khusus-1 {
-    min-height: 240px;
-    max-height: 240px;
-    max-width: 150%;
-}
-
-.btn {
-    padding: 0.35rem 0.45rem 0.35rem 0.45rem;
-    font-size: 13px;
-}
-
-.px-6 {
-    padding-left: 3.4rem;
-    padding-right: 3.5rem;
-}
-
-.logo-podcast {
-    top: 10px;
-    left: 15px;
-    width: 10%;
-}
-
-.logo-podcast-1 {
-    top: 5px;
-    left: 5px;
-    width: 20%;
-}
-
-.fs-6 {
-    font-size: 2.7rem !important;
-}
-
-.btn-1 {
-    top: 88%;
-    left: 96px;
-}
-
-.bg-custom {
-    background-color: #1F2544;
-}
-
-.coming-soon {
+/* The hero banner slides use splide__slide.li — we override .li
+   specifically INSIDE the hero splide (.splide.new) so it doesn't
+   inherit the small card widths */
+.splide.new .splide__slide.li {
     min-width: 100% !important;
-    min-height: 70% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
 }
 
-.fs-7 {
-    font-size: 2.7rem !important;
+.img-slide {
+    overflow: hidden;
+    border-radius: 20px !important;
 }
 
-.card-img-top-1 {
-    max-width: 100%;
-    min-height: 210px;
-    max-height: 210px;
-    border-radius: 0.375rem;
+.img-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(17, 18, 21, 0.05) 35%, rgba(17, 18, 21, 0.8) 100%);
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 2;
 }
 
-.ps-6 {
-    padding-left: 0.9rem;
+.img-slide-atas {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 20px !important;
+    filter: brightness(0.9);
+    transition: all 0.4s ease;
 }
 
-.putar {
-    height: 44px;
-    width: 160px;
-    padding-left: 42px;
-    padding-right: 54px;
+@media (min-width: 576px) {
+    .img-slide-atas { height: 280px; object-position: center 20%; }
+}
+@media (min-width: 768px) {
+    .img-slide-atas { height: 340px; object-position: center 20%; }
+}
+@media (min-width: 992px) {
+    .img-slide-atas { height: 420px; object-position: center 25%; }
 }
 
-.btn-putar {
-    margin-bottom: 0;
+/* Glassmorphism Slide Buttons - Centered above Splide Pagination */
+.hero-btns-wrapper {
+    position: absolute !important;
+    bottom: 38px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 10 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: auto !important;
 }
 
-.text-btn1 {
-    font-size: 13px;
-    margin-top: 11px !important;
+.btn-1.putar {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    height: 40px !important;
+    width: 110px !important;
+    background: #FFAE1F !important;
+    border: none !important;
+    color: #111215 !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(255, 174, 31, 0.35) !important;
+    z-index: 5;
 }
 
-.icon-putar {
-    font-size: 27px;
+.btn-1.putar:hover {
+    background: #e69d1c !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 174, 31, 0.5) !important;
 }
 
 .btn-2 {
-    padding-left: 46px;
-    padding-right: 50px;
-    height: 42.5px;
-    width: 160px;
-    background-color: #a1a1a3b2;
-    top: 88%;
-    left: 273px;
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    height: 40px !important;
+    width: 110px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    transition: all 0.3s ease !important;
+    z-index: 5;
 }
 
-.wish-list {
-    margin-right: 0.35rem !important;
+.btn-2:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-2px) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-.icon-heart {
-    font-size: 16px
+/* =========================================
+   MOVIE POSTER CARDS (small poster lists)
+   ========================================= */
+.card-img-top {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px !important;
+    transition: all 0.3s ease;
 }
 
-.text-btn2 {
-    font-size: 13px;
-    margin-top: 2px !important;
-    margin-left: 2px;
+.li:hover .card-img-top {
+    transform: scale(1.04);
 }
 
-.title-service {
-    position: relative;
+/* Splide-based poster cards (Film Terbaru slider etc.) */
+.splide.new-1 .splide__slide.li {
+    min-width: auto !important;
+    max-width: none !important;
+    flex: none !important;
 }
 
-.border-bottom-1 {
-    border-bottom: 0.1px solid #60636d;
+@media (min-width: 576px) {
+    .card-img-top { height: 200px; }
+}
+@media (min-width: 992px) {
+    .card-img-top { height: 240px; }
 }
 
-.fs-8 {
-    font-size: 18px;
+/* Coming Soon / Banner Cards (larger landscape banners) */
+.card-img-top-1 {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px !important;
+    transition: all 0.3s ease;
 }
 
-.btn .btn-outline-light:hover {
-    color: white;
-    background-color: #adadadd7;
+@media (min-width: 768px) {
+    .card-img-top-1 { height: 240px; }
 }
 
-.btn-outline-light {
-    --bs-btn-hover-color: none;
-    --bs-btn-hover-bg: #a1a1a3b2;
-    --bs-btn-hover-border-color: #fff;
-    --bs-btn-active-color: none;
-    --bs-btn-active-bg: #a1a1a3b2;
-    --bs-btn-disabled-color: white;
-    --bs-btn-disabled-bg: #a1a1a3b2;
-}
-
+/* =========================================
+   SCROLLABLE ROW ITEMS (.li and .bar)
+   ========================================= */
 .li {
-    min-width: 29% !important;
-}
-
-.menu-wrapper {
-    border-top: 0.1px solid #646464;
-    height: 70px;
-    width: 100vw;
-    background-color: #2c2c2c;
-    text-align: center;
-}
-
-.menu-wrapper .navigation {
-    display: flex;
-    padding: 0;
-}
-
-.menu-wrapper .navigation li {
-    list-style: none;
-    flex: 1;
-    font-size: 18px;
+    min-width: 120px !important;
+    max-width: 120px;
+    flex: 0 0 120px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border-radius: 12px;
 }
 
-.menu-wrapper .navigation li a {
-    margin-top: 0.5rem;
-    color: #fff;
-    display: inline-block;
-    transition: 0.1s ease;
-    text-decoration: none;
-    /* Tambahkan baris ini agar underline pada teks dihapus */
+.li:hover {
+    transform: translateY(-4px);
 }
 
-.menu-wrapper .navigation li span {
-    display: block;
-    font-size: 14px;
-    /* Sesuaikan ukuran teks sesuai kebutuhan */
-    color: rgb(122, 122, 122);
+@media (min-width: 576px) {
+    .li {
+        min-width: 140px !important;
+        max-width: 140px;
+        flex: 0 0 140px;
+    }
+}
+@media (min-width: 768px) {
+    .li {
+        min-width: 155px !important;
+        max-width: 155px;
+        flex: 0 0 155px;
+    }
+}
+@media (min-width: 992px) {
+    .li {
+        min-width: 170px !important;
+        max-width: 170px;
+        flex: 0 0 170px;
+    }
 }
 
-.menu-wrapper .navigation li .active {
-    padding-top: 7px;
-    margin-top: 0;
-    color: #fff;
-    border-top: 5px solid #15F5BA;
-    width: 100%;
-    border-radius: 1px;
-    transition: 0.3s ease;
-}
-
-.menu-wrapper .navigation li .active i {
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-}
-
-.menu-wrapper .navigation li .active span {
-    color: rgb(255, 255, 255);
-}
-
-.spotlight img{
-    width: 100%;
-    height: 100%;
-}
-
-.thumbnails {
-    display: flex;
-    margin: 1rem auto 0;
-    padding: 0;
-    justify-content: center;
-    overflow: scroll;
-    width: 100%;
-}
-
-
-.thumbnail {
-    width: 60px;
-    height: 60px;
-    list-style: none;
-    margin: 0 0.2rem;
-    cursor: pointer;
-}
-
-
-.thumbnail img {
-    width: 100%;
-    height: 100%;
-}
-
-.thumbnail {
-    opacity: 0.3;
-}
-
-.thumbnail.is-active {
-    opacity: 1;
-}
-.thumb img{
-    width: 50px;
-    height: 50px;
-}
-.muviku{
-    color: #15F5BA;
-}
-.bar{
+.bar {
     overflow-x: auto;
-    overflow: overlay;
+    overflow-y: hidden;
+    display: flex;
+    gap: 10px;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
 }
+
+.bar:active {
+    cursor: grabbing;
+}
+
 .bar::-webkit-scrollbar {
     display: none;
 }
-.img-slide-atas{
-    min-height: 470.94px;
-    max-height: 470.94px;
+
+/* Card title text inside .li */
+.card-body {
+    padding: 6px 4px !important;
 }
-.modal-body::-webkit-scrollbar {
-    display: none;
+
+.card-title {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0 !important;
+}
+
+@media (min-width: 768px) {
+    .card-title { font-size: 0.85rem !important; }
+}
+
+/* =========================================
+   "TONTON" BADGES ON ANIMASI ANAK-ANAK
+   ========================================= */
+.tonton {
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+}
+
+.tonton input[type="button"] {
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 4px 0 !important;
+    width: 88% !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+.tonton input[value="Film Terbaru"] {
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #111215 !important;
+}
+
+.tonton input[value="Tonton Sekarang"] {
+    background: #FFAE1F !important;
+    color: #111215 !important;
+}
+
+.tonton input[type="button"]:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* =========================================
+   "HANYA ADA DI MUVIKU" WIDESCREEN CARDS
+   ========================================= */
+.saran {
+    min-width: 220px !important;
+    max-width: 220px;
+    flex: 0 0 220px;
+}
+
+.film-khusus {
+    width: 100% !important;
+    height: 125px !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+    transition: all 0.3s ease;
+}
+
+.saran:hover .film-khusus {
+    transform: scale(1.04);
+}
+
+@media (min-width: 576px) {
+    .saran { min-width: 280px !important; max-width: 280px; flex: 0 0 280px; }
+    .film-khusus { height: 160px !important; }
+}
+@media (min-width: 992px) {
+    .saran { min-width: 340px !important; max-width: 340px; flex: 0 0 340px; }
+    .film-khusus { height: 195px !important; }
+}
+
+/* =========================================
+   SERIAL CARDS (.saran-1) – Episode cards
+   ========================================= */
+.saran-1 {
+    min-width: 240px !important;
+    max-width: 240px;
+    flex: 0 0 240px;
+}
+
+@media (min-width: 576px) {
+    .saran-1 { min-width: 290px !important; max-width: 290px; flex: 0 0 290px; }
+}
+@media (min-width: 992px) {
+    .saran-1 { min-width: 340px !important; max-width: 340px; flex: 0 0 340px; }
+}
+
+.saran-1 .card,
+.saran-2 .card {
+    background: rgba(30, 30, 36, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.saran-1 .card:hover,
+.saran-2 .card:hover {
+    background: rgba(40, 40, 48, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    transform: translateY(-4px);
+}
+
+.saran-bawah {
+    padding: 8px 12px !important;
+}
+
+.saran-bawah h6 {
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.saran-bawah p {
+    font-size: 0.7rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* =========================================
+   FILM INDONESIA CARDS (.saran-2) – Splide
+   ========================================= */
+.saran-2 {
+    min-width: 240px !important;
+    max-width: 240px;
+    flex: 0 0 240px;
+}
+
+@media (min-width: 576px) {
+    .saran-2 { min-width: 290px !important; max-width: 290px; flex: 0 0 290px; }
+}
+@media (min-width: 992px) {
+    .saran-2 { min-width: 340px !important; max-width: 340px; flex: 0 0 340px; }
+}
+
+/* Film Indonesia card inner image */
+.saran-2 img {
+    border-radius: 12px !important;
+}
+
+/* bg-custom override – Film Indonesia and Serial cards */
+.bg-custom {
+    background: rgba(30, 30, 36, 0.7) !important;
+}
+
+/* =========================================
+   PODCAST VIDEOS
+   ========================================= */
+.podcast-container {
+    width: 260px;
+    height: 146px;
+    position: relative;
+    flex: 0 0 260px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.podcast {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 16px !important;
+    transition: all 0.3s ease;
+}
+
+.podcast-container:hover .podcast {
+    transform: scale(1.04);
+}
+
+@media (min-width: 576px) {
+    .podcast-container { width: 340px; height: 191px; flex: 0 0 340px; }
+}
+@media (min-width: 992px) {
+    .podcast-container { width: 400px; height: 225px; flex: 0 0 400px; }
+}
+
+/* Logo podcast badge (small corner logo) */
+.logo-podcast,
+.logo-podcast-1 {
+    width: 28px !important;
+    height: auto !important;
+    top: 8px !important;
+    left: 8px !important;
+    z-index: 3;
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* =========================================
+   GENERIC CARD OVERRIDE
+   ========================================= */
+.card {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* =========================================
+   BRANDING & UTILITIES
+   ========================================= */
+.muviku {
+    color: #FFAE1F;
+}
+
+.btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+    color: #f8fafc;
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.title-service {
+    font-weight: 600;
+}
+
+.border-bottom-1 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Section Headings */
+.container h1,
+.container-sm h1 {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+}
+
+@media (min-width: 768px) {
+    .container h1,
+    .container-sm h1 {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* =========================================
+   GENERAL LAYOUT
+   ========================================= */
+.container, .container-fluid {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* =========================================
+   BOTTOM NAVIGATION DOCK
+   ========================================= */
+/* Hide on larger screens (desktop/tablet landscape) */
+@media (min-width: 992px) {
+    .menu-wrapper {
+        display: none !important;
+    }
+    body {
+        padding-bottom: 20px;
+    }
+}
+
+/* =========================================
+   CATEGORY FULLSCREEN MODAL
+   ========================================= */
+#exampleModal .modal-content {
+    background: rgba(17, 18, 21, 0.98) !important;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    color: #ffffff !important;
+    border: none !important;
+}
+
+#exampleModal .modal-header {
+    background: transparent !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+#exampleModal .modal-body {
+    background: transparent !important;
+}
+
+#exampleModal .modal-body ul li a {
+    color: #f8fafc !important;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+}
+
+#exampleModal .modal-body ul li a:hover {
+    color: #FFAE1F !important;
+    background: rgba(255, 174, 31, 0.1) !important;
+    transform: scale(1.05);
+}
+
+#exampleModal .modal-footer {
+    background: transparent !important;
+    border-top: none !important;
+}
+
+#exampleModal .modal-footer button {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+#exampleModal .modal-footer button:hover {
+    background: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: #ffffff !important;
+    transform: rotate(90deg) scale(1.05);
+}
+
+/* =========================================
+   FILM INDONESIA THUMBNAIL SLIDERS
+   ========================================= */
+
+/* Main slider images inside Film Indonesia cards */
+.saran-2 .splide img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    border-radius: 8px !important;
+}
+
+/* Thumbnail track border removal */
+.saran-2 .splide__track.border-0 {
+    border: none !important;
+}
+
+/* Episode count badge (+4, +2 etc) */
+.sisa-eps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+}
+
+/* =========================================
+   SLIDER-IMG UNIFORM SIZING
+   ========================================= */
+.slider-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* =========================================
+   SECTION SPACING
+   ========================================= */
+.mb-4 {
+    margin-bottom: 1.25rem !important;
+}
+
+/* =========================================
+   COMING SOON CARDS (.cs wrapper)
+   ========================================= */
+.cs {
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.coming-soon {
+    cursor: pointer;
+}
+
+/* =========================================
+   MOBILE-SPECIFIC TWEAKS
+   ========================================= */
+@media (max-width: 575.98px) {
+    body {
+        padding-bottom: 100px;
+    }
+    
+    .container h1,
+    .container-sm h1 {
+        font-size: 1.1rem !important;
+    }
+    
+    .hero-btns-wrapper {
+        bottom: 28px !important;
+        gap: 8px !important;
+    }
+
+    .btn-1.putar {
+        height: 32px !important;
+        width: 90px !important;
+        font-size: 0.75rem !important;
+        border-radius: 10px !important;
+    }
+    
+    .btn-2 {
+        height: 32px !important;
+        width: 90px !important;
+        font-size: 0.75rem !important;
+        border-radius: 10px !important;
+    }
+    
+    .saran-1 {
+        min-width: 220px !important;
+        max-width: 220px;
+        flex: 0 0 220px;
+    }
+    
+    .saran-2 {
+        min-width: 220px !important;
+        max-width: 220px;
+        flex: 0 0 220px;
+    }
 }

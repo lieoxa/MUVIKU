@@ -19,23 +19,119 @@
     * {
         font-family: 'Ubuntu';
     }
+
+    .menu-wrapper {
+        position: fixed !important;
+        bottom: 24px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 90% !important;
+        max-width: 480px !important;
+        height: 72px !important;
+        background: rgba(18, 18, 22, 0.85) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 36px !important;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5) !important;
+        z-index: 1000 !important;
+        padding: 0 12px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .menu-wrapper .navigation {
+        display: flex !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .menu-wrapper .navigation li {
+        list-style: none !important;
+        text-align: center !important;
+        flex: 1 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .menu-wrapper .navigation li a {
+        color: #94a3b8 !important;
+        text-decoration: none !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        transition: all 0.3s ease !important;
+        gap: 4px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+    }
+
+    .menu-wrapper .navigation li a i {
+        font-size: 20px !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: inherit !important;
+    }
+
+    .menu-wrapper .navigation li a img {
+        width: 20px !important;
+        height: 20px !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .menu-wrapper .navigation li a span {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 11px !important;
+        font-weight: 500 !important;
+        display: block !important;
+        color: inherit !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        letter-spacing: 0.2px !important;
+    }
+
+    .menu-wrapper .navigation li a.active {
+        color: #FFAE1F !important;
+        font-weight: 700 !important;
+    }
+
+    .menu-wrapper .navigation li a:hover {
+        color: #ffffff !important;
+    }
+
+    .search-result-card:hover {
+        transform: translateY(-6px) scale(1.02);
+    }
+    .search-result-card:hover .play-overlay {
+        opacity: 1 !important;
+    }
 </style>
 
 <body class="container">
     <header class="container fixed-top pb-1 pt-2">
         <nav class="navbar">
             <div class="col-12 position-relative">
-                <form class="d-flex col-12" role="search">
-                    <input class="form-control pe-6" type="search" placeholder="Cari disini..." aria-label="Search">
+                <form class="d-flex col-12" action="{{ url('/search') }}" method="GET" role="search">
+                    <input class="form-control pe-6" type="search" name="q" value="{{ $query }}" placeholder="Cari disini..." aria-label="Search">
                     <button type="submit" class="icon-search"><i class="modus-icons"
                             aria-hidden="true">search</i></button>
-                    <a href="#" class="btn-search btn cari text-white">Cari</a>
+                    <button type="submit" class="btn-search btn cari text-white">Cari</button>
                 </form>
             </div>
         </nav>
     </header>
 
-    <div class="old">
+    <div class="old" style="margin-top: 60px;">
         @if (count($banner->where('lokasi', 'Search')->where('status', 'Publish')) > 0)
             <div class="iklan mb-4">
                 <section class="splide new-11" aria-label="Splide Basic HTML Example">
@@ -51,392 +147,172 @@
                         </ul>
                     </div>
                 </section>
-            @else
+            </div>
         @endif
     </div>
 
-    @if (count($rekomendasis->where('id')->where('status', 'Publish')) > 0)
+    {{-- LIVE SEARCH RESULTS --}}
+    @if (!empty($query))
+        <div class="mb-5">
+            <h4 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-film text-warning"></i> Hasil Pencarian: "<span class="text-warning">{{ $query }}</span>"
+                <span class="badge bg-secondary rounded-pill fs-7 fw-normal ms-auto">{{ $searchResults->count() }} Film</span>
+            </h4>
+            @if ($searchResults->isNotEmpty())
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3">
+                    @foreach ($searchResults as $item)
+                        <div class="col">
+                            <div class="card h-100 bg-transparent border-0 search-result-card" 
+                                 onclick="window.location='{{ route('film.detail', $item->id) }}'" 
+                                 style="cursor: pointer; transition: transform 0.3s ease;">
+                                <div class="position-relative overflow-hidden rounded-4 shadow-lg mb-2">
+                                    <img src="{{ $item->thumbnail_url }}" class="w-100" style="height: 240px; object-fit: cover;" alt="{{ $item->judul }}">
+                                    <div class="position-absolute top-0 end-0 m-2">
+                                        <span class="badge px-2 py-1" style="background: rgba(0,0,0,0.75); color: #FFAE1F; border: 1px solid rgba(255,174,31,0.4); font-size: 11px;">
+                                            {{ $item->tipe }}
+                                        </span>
+                                    </div>
+                                    <div class="play-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center opacity-0 hover-opacity-100" 
+                                         style="background: rgba(0, 0, 0, 0.4); transition: opacity 0.3s ease;">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: rgba(255,174,31,0.9); color: #000;">
+                                            <i class="bi bi-play-fill fs-3 ms-1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body p-1">
+                                    <h6 class="card-title text-white fw-bold text-truncate mb-1" style="font-size: 0.9rem;">{{ $item->judul }}</h6>
+                                    <div class="d-flex align-items-center justify-content-between text-secondary" style="font-size: 0.75rem;">
+                                        <span><i class="bi bi-calendar3 me-1"></i>{{ $item->tahun }}</span>
+                                        <span><i class="bi bi-clock me-1"></i>{{ $item->durasi ?: '120m' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div class="p-5 text-center text-white rounded-4" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15);">
+                    <i class="bi bi-search fs-1 text-secondary d-block mb-3"></i>
+                    <h5 class="fw-bold mb-1">Film Tidak Ditemukan</h5>
+                    <p class="text-secondary small mb-0">Coba cari dengan kata kunci lain seperti "Spider-Man", "Anime", "Korea", atau "Horror".</p>
+                </div>
+            @endif
+        </div>
+    @endif
+
+    {{-- DYNAMIC REKOMENDASI --}}
+    @if ($filmsRekomendasi->isNotEmpty())
         <div class="mb-4">
             <h1 class="text-white text-start fw-bold">Rekomendasi</h1>
-            <section class="d-flex gap-2 bar" style="height: 161px">
-                <div class=" li" onclick="window.location='{{ route('jumanji') }}'">
-                    <div class="card bg-transparent card-img-top">
-                        <img src="img/jumanji.jpg" width="160" height="160"
-                            class="card-img-top-1 w-100">
-                        <div class="card-img-overlay card-1 text-white p-6">
-                            <h5 class="card-title fw-bold" style="color: #DA137F">Jumanji</h5>
-                            <p class="card-text lh-1"><small>Petualangan Digame</small></p>
-                        </div>
-                    </div>
-                </div>
-                @foreach ($rekomendasis->where('id')->where('status', 'Publish') as $item)
-                    <div class=" li">
-                        <div class="card bg-transparent card-img-top">
-                            <img src="{{ asset('imgdb/' . $item->gambar) }}" width="160" height="160"
-                                class="card-img-top-1 w-100">
-                            <div class="card-img-overlay card-1 text-white p-6">
-                                <h5 class="card-title fw-bold" style="color: #DA137F">{{ $item->judul }}</h5>
-                                <p class="card-text lh-1"><small>{{ $item->deskripsi }}</small></p>
+            <section class="d-flex gap-2 bar" style="overflow-x: auto; padding-bottom: 8px;">
+                @foreach ($filmsRekomendasi as $item)
+                    <div class="li" style="min-width: 150px; max-width: 150px; flex: 0 0 150px;" onclick="window.location='{{ route('film.detail', $item->id) }}'">
+                        <div class="card bg-transparent card-img-top border-0 position-relative">
+                            <img src="{{ $item->thumbnail_url }}" width="150" height="200" class="card-img-top-1 w-100 rounded-3" style="object-fit: cover;">
+                            <div class="card-img-overlay card-1 text-white p-2 d-flex flex-column justify-content-end" style="background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);">
+                                <h6 class="card-title fw-bold text-truncate m-0" style="font-size: 0.85rem;">{{ $item->judul }}</h6>
+                                <p class="card-text lh-1 m-0 text-truncate"><small class="text-secondary">{{ $item->tahun }} • {{ $item->tipe }}</small></p>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </section>
         </div>
-    @else
     @endif
 
-    <div class="mb-4">
-        <h1 class="text-white text-start fw-bold">Trending Anime</h1>
-        <section class="splide anim" aria-label="Splide Basic HTML Example">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide d-grid gap-2 li-anim" onclick="window.location='{{ route('detailsrc') }}'">
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">One Piece Red</h6>
-                                        <p class="text-secondary perusahaan"><small>Toei Animation</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
+    {{-- DYNAMIC TRENDING ANIME --}}
+    @if ($filmsAnime->isNotEmpty())
+        <div class="mb-4">
+            <h1 class="text-white text-start fw-bold">Trending Anime</h1>
+            <section class="splide anim" aria-label="Trending Anime">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        @foreach ($filmsAnime->chunk(3) as $chunk)
+                            <li class="splide__slide d-grid gap-2 li-anim">
+                                @foreach ($chunk as $item)
+                                    <div class="card bg-transparent border-0" style="max-width: 540px;" onclick="window.location='{{ route('film.detail', $item->id) }}'">
+                                        <div class="row g-0 d-flex align-items-center">
+                                            <div class="col-4">
+                                                <img src="{{ $item->thumbnail_url }}" class="img-fluid rounded img-anim" style="height: 90px; object-fit: cover; width: 100%;" alt="{{ $item->judul }}">
+                                            </div>
+                                            <div class="col-8 text-white">
+                                                <div class="card-body py-0 px-2">
+                                                    <h6 class="card-title text-truncate m-0">{{ $item->judul }}</h6>
+                                                    <p class="text-secondary perusahaan mb-1"><small>{{ $item->perusahaan ?: 'Anime' }}</small></p>
+                                                    <p class="text-secondary view m-0"><i class="bi bi-eye-fill"></i><small class="my-auto"> {{ rand(10, 99) }}.{{ rand(1, 9) }}K</small></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim1.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Your Name</h6>
-                                        <p class="text-secondary perusahaan"><small>CoMix Wave Films</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim6.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Spirited Away</h6>
-                                        <p class="text-secondary perusahaan"><small>Ghibli</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="splide__slide d-grid gap-2 li-anim">
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim2.jpeg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Jujutsu Kaisen 0</h6>
-                                        <p class="text-secondary perusahaan"><small>MAPPA</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim3.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Weathering With You</h6>
-                                        <p class="text-secondary perusahaan"><small>CoMix Wave Films</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim5.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Ocean Waves</h6>
-                                        <p class="text-secondary perusahaan"><small> Ghibli</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="splide__slide d-grid gap-2 li-anim">
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim10.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Drifting Home</h6>
-                                        <p class="text-secondary perusahaan"><small>Studio Colorido</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim13.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Maboroshi</h6>
-                                        <p class="text-secondary perusahaan"><small>MAPPA</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim11.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Hello World</h6>
-                                        <p class="text-secondary perusahaan"><small>Graphinica</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="splide__slide d-grid gap-2 li-anim-end">
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim7.jpg" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Suzume</h6>
-                                        <p class="text-secondary perusahaan"><small>CoMix Wave Films</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim8.webp" class="img-fluid rounded img-anim" alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">Demon Slayer</h6>
-                                        <p class="text-secondary perusahaan"><small>Ufotable</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-transparent border-0" style="max-width: 540px;">
-                            <div class="row g-0 d-flex">
-                                <div class="col-4">
-                                    <img src="img/tren-anim14.jpg" class="img-fluid rounded img-wwwanim"
-                                        alt="...">
-                                </div>
-                                <div class="col-8 text-white">
-                                    <div class="card-body py-0 px-2">
-                                        <h6 class="card-title">One Piece Gold</h6>
-                                        <p class="text-secondary perusahaan"><small>Toei Animation</small></p>
-                                        <p class="text-secondary view"><i class="bi bi-eye-fill"></i><small
-                                                class="my-auto"> 88.8K</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </div>
+                                @endforeach
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </section>
+        </div>
+    @endif
 
-    <div class="mb-5 pb-5">
-        <h1 class="text-white text-start fw-bold">Banyak Ditonton</h1>
-        <section class="splide trend-film" aria-label="Splide Basic HTML Example">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/anim.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/hero.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/horror1.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/drakor1.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/thumb-pertaruhan.jpg') }}" class="card-img-top slider-img"
-                            alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/animasi7.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/comedy7.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/anim1.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/hero1.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/horror1.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/drakor1.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/fi1.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/animasi8.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/comedy6.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/anim2.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/hero2.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/horror2.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/drakor2.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/fi2.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/animasi9.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                    <li class="splide__slide li-1">
-                        <img src="{{ asset('img/comedy5.jpg') }}" class="card-img-top slider-img" alt="...">
-                    </li>
-                </ul>
-            </div>
-        </section>
+    {{-- DYNAMIC BANYAK DITONTON --}}
+    @if ($filmsBanyakDitonton->isNotEmpty())
+        <div class="mb-5 pb-5">
+            <h1 class="text-white text-start fw-bold">Banyak Ditonton</h1>
+            <section class="splide trend-film" aria-label="Banyak Ditonton">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        @foreach ($filmsBanyakDitonton as $item)
+                            <li class="splide__slide li-1">
+                                <img src="{{ $item->thumbnail_url }}" class="card-img-top slider-img" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;" alt="{{ $item->judul }}">
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </section>
+        </div>
+    @endif
     </div>
-    </div>
-    <footer class="menu-wrapper fixed-bottom">
-        <div class="navigation container" id="navigationn">
+    <div class="menu-wrapper">
+        <div class="navigation" id="navigationn">
             <li>
-                <a href="/utama" class="btnn border-end-0 border-bottom-0 border-start-0">
-                    <img src="img/logo-muviku.png" class="mb-1" style="width: 20%;">
+                <a href="/utama">
+                    <img src="img/logo-muviku.png" alt="Utama">
                     <span>Utama</span>
                 </a>
             </li>
             <li>
-                <a class="btnn border-end-0 border-bottom-0 border-start-0 active">
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25"
-                        viewBox="0,0,256,256">
-                        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                            style="mix-blend-mode: normal">
-                            <g transform="scale(5.33333,5.33333)">
-                                <path transform="translate(-15.15512,36.5872) rotate(-45.001)" d="M34.6,28.1h4v17h-4z"
-                                    fill="#e6551c"></path>
-                                <path
-                                    d="M20,4c-8.83656,0 -16,7.16344 -16,16c0,8.83656 7.16344,16 16,16c8.83656,0 16,-7.16344 16,-16c0,-8.83656 -7.16344,-16 -16,-16z"
-                                    fill="#e6551c"></path>
-                                <path transform="translate(-15.83953,38.24094) rotate(-45.001)"
-                                    d="M36.2,32.1h4v12.3h-4z" fill="#e6551c"></path>
-                                <path
-                                    d="M20,7c-7.1797,0 -13,5.8203 -13,13c0,7.1797 5.8203,13 13,13c7.1797,0 13,-5.8203 13,-13c0,-7.1797 -5.8203,-13 -13,-13z"
-                                    fill="#64b5f6"></path>
-                                <path
-                                    d="M26.9,14.2c-1.7,-2 -4.2,-3.2 -6.9,-3.2c-2.7,0 -5.2,1.2 -6.9,3.2c-0.4,0.4 -0.3,1.1 0.1,1.4c0.4,0.4 1.1,0.3 1.4,-0.1c1.4,-1.6 3.3,-2.5 5.4,-2.5c2.1,0 4,0.9 5.4,2.5c0.2,0.2 0.5,0.4 0.8,0.4c0.2,0 0.5,-0.1 0.6,-0.2c0.4,-0.4 0.4,-1.1 0.1,-1.5z"
-                                    fill="#bbdefb"></path>
-                            </g>
-                        </g>
-                        <g fill="#e6551c" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
-                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
-                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
-                            style="mix-blend-mode: normal">
-                            <g>
-                                <path
-                                    d="M214.82,225.79v0c0,-3 0.89,-5.5 2.67,-7.5c1.78,-2 4.45333,-3 8.02,-3c3.56,0 6.26333,1 8.11,3c1.84,2 2.76,4.5 2.76,7.5v0c0,2.87333 -0.92,5.28 -2.76,7.22c-1.84667,1.93333 -4.55,2.9 -8.11,2.9c-3.56667,0 -6.24,-0.96667 -8.02,-2.9c-1.78,-1.94 -2.67,-4.34667 -2.67,-7.22z">
-                                </path>
-                            </g>
-                        </g>
-                    </svg>
+                <a href="/search" class="active">
+                    <i class="bi bi-search" aria-hidden="true"></i>
                     <span>Cari</span>
                 </a>
             </li>
-            @if (Auth::user())
-                <li>
-                    <a href="{{ route('favorit') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+            <li>
+                @if (Auth::user())
+                    <a href="{{ route('favorit') }}">
                         <i class="bi bi-heart" aria-hidden="true"></i>
                         <span>Suka</span>
                     </a>
-                </li>
                 @else
-                <li>
-                    <a href="{{ route('login') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                    <a href="{{ route('login') }}">
                         <i class="bi bi-heart" aria-hidden="true"></i>
                         <span>Suka</span>
                     </a>
-                </li>
-            @endif
-            @if (Auth::user())
-                <li>
-                    <a href="{{ route('profile') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                @endif
+            </li>
+            <li>
+                @if (Auth::user())
+                    <a href="{{ route('profile') }}">
                         <i class="bi bi-person fs-4" aria-hidden="true"></i>
-                        <span style="margin-top: -4px">Profil</span>
+                        <span>Profil</span>
                     </a>
-                </li>
-            @else
-                <li>
-                    <a href="{{ route('login') }}" class="btnn border-end-0 border-bottom-0 border-start-0">
+                @else
+                    <a href="{{ route('login') }}">
                         <i class="bi bi-person fs-4" aria-hidden="true"></i>
-                        <span style="margin-top: -4px">Profil</span>
+                        <span>Profil</span>
                     </a>
-                </li>
-            @endif
+                @endif
+            </li>
         </div>
-    </footer>
+    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 <script>

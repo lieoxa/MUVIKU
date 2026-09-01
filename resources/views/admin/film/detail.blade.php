@@ -126,8 +126,8 @@
                                         <div class="rounded d-flex align-items-center justify-content-center gap-2">
                                             <input type="radio" id="season_id" name="season" value="{{ $item->id }}"
                                                 class="pe-2 season" hidden>
-                                            <img src="{{ asset('imgthumb/' . $item->film->thumbnail) }}" alt=""
-                                                width="40" height="58.8" class="rounded">
+                                            <img src="{{ $item->film->thumbnail_url }}" alt=""
+                                                 width="40" height="58.8" class="rounded">
                                         </div>
                                         <div class="ms-3 d-inline-block w-75">
                                             <h6 class="mb-0 invoice-customer">{{ $item->film->judul }}</h6>

@@ -15,6 +15,7 @@ use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserPageController;
 use App\Http\Controllers\ValidateController;
+use App\Http\Controllers\TmdbController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,6 @@ use App\Http\Controllers\ValidateController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/detail', function () {
     return view('detail');
@@ -39,7 +37,10 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/register', [AuthController::class, 'register'])->name('register');
     Route::post('/register', [AuthController::class, 'registerPost'])->name('register');
     Route::get('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+    Route::get('/', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'loginPost']);
+    Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
+    Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
 });
 
 Route::get('/adminlog', [AuthController::class, 'getAdmin']);
@@ -66,6 +67,7 @@ Route::get('/watchlist', [AuthController::class, 'watchlist'])->name('watchlist'
 Route::get('/favorit', [AuthController::class, 'favorit'])->name('favorit');
 // Route::get('/search', [AuthController::class, 'search'])->name('search');
 
+Route::get('/film/{id?}', [UserPageController::class, 'detailFilm'])->name('film.detail');
 Route::get('/jujutsu', [UserPageController::class, 'jujutsu'])->name('jujutsu');
 Route::get('/op', [UserPageController::class, 'op'])->name('op');
 Route::get('/toystory', [UserPageController::class, 'toystory'])->name('toystory');
@@ -87,6 +89,8 @@ Route::get('/admin/product', [AdminController::class, 'product'])->name('product
 Route::get('/admin/film', [AdminController::class, 'film'])->name('film');
 Route::get('/admin/serial', [AdminController::class, 'serial'])->name('serial');
 Route::get('/admin/laporan', [AdminController::class, 'laporan'])->name('laporan');
+Route::get('/admin/tmdb', [TmdbController::class, 'index'])->name('admin.tmdb.index');
+Route::post('/admin/tmdb/import', [TmdbController::class, 'import'])->name('admin.tmdb.import');
 
 Route::resource('user', AccUserController::class);
 
@@ -102,7 +106,8 @@ Route::resource('kategori', KategoriController::class);
 
 Route::resource('serial', SerialController::class);
 
-Route::get('utama', [UtamaController::class, 'home']);
+Route::get('utama', [UtamaController::class, 'home'])->name('utama');
+Route::get('/api/films/genre/{genre}', [UtamaController::class, 'getFilmsByGenre']);
 
 Route::get('search', [SearchController::class, 'search']);
 

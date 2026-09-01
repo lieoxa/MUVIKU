@@ -102,7 +102,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->judul }}</td>
-                                    <td><img src="{{ asset('imgthumb/' . $item->thumbnail) }}" alt="" width="60"
+                                    <td><img src="{{ $item->thumbnail_url }}" alt="" width="60"
                                             height="90" class="rounded"></td>
                                     <td>{{ $item->tipe }}</td>
                                     <td>{{ $item->kategorifilm?->kategori }}</td>
@@ -141,7 +141,7 @@
                                                                         <div class="row">
                                                                             <div class="col-md-3 pe-0">
                                                                                 <div class="mb-3 contact-email">
-                                                                                    <img src="{{ asset('imgthumb/' . $item->thumbnail) }}"
+                                                                                    <img src="{{ $item->thumbnail_url }}"
                                                                                         alt="" width="100"
                                                                                         height="130" class="rounded">
                                                                                 </div>

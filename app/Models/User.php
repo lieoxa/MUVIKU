@@ -23,6 +23,7 @@ class User extends Authenticatable
         'nohp',
         'password',
         'konfirmasi_password',
+        'google_id',
     ];
 
     /**

@@ -75,6 +75,15 @@
                         <span class="hide-menu">Film</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link {{ Request::is('admin/tmdb*') ? 'active' : null }}"
+                        href="{{ route('admin.tmdb.index') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-cloud-download"></i>
+                        </span>
+                        <span class="hide-menu">Import TMDB API</span>
+                    </a>
+                </li>
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link {{ Request::is('serial', 'serial/*') ? 'active' : null }}" href="{{ route('serial.index') }}" aria-expanded="false">
                         <span>
