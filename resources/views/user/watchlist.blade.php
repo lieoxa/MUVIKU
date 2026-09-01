@@ -1,233 +1,114 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="id">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Favorit</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta name="theme-color" content="#111215" />
+    <title>Daftar Tontonan — MUVIKU</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <link rel="stylesheet" href="css/watchlist.css">
+    
+    <!-- Master Premium CSS -->
+    <link rel="stylesheet" href="{{ asset('css/muviku-premium.css') }}">
 </head>
 
 <body>
-    <div class="old" style="padding-top: 65px">
-        <div class="atas sticky-top position-fixed w-100">
-            <div class="navbar ps-2 pe-3 w-100 p-0 d-flex" style="height:68.59px;" id="mainNav">
-                <a href="javascript:void(0)" onclick="window.history.go(-1); return false;"
-                    class="btn1 border-0 bg-transparent"><i class="bi bi-chevron-left"
-                        style="font-size: 25px; margin-bottom: 20px;"></i></a>
-                <div class="txt-daftar">
-                    <h3 class="mb-0 text-white">Daftar Tontonan</h3>
-                </div>
+    <!-- TOP NAVBAR -->
+    <nav class="navbar sticky-top py-3" style="background: rgba(17, 18, 21, 0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.06); z-index: 1000;">
+        <div class="container-fluid px-3 px-md-5 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-3">
+                <a href="{{ route('utama') }}" class="btn-mv-secondary py-1.5 px-3 text-decoration-none" style="font-size: 13.5px;">
+                    <i class="bi bi-chevron-left"></i> Kembali
+                </a>
+                <span class="fs-5 fw-bold text-white"><i class="bi bi-bookmark-fill text-warning me-2"></i>Daftar Tontonan</span>
             </div>
-            <div x-data="{ sliders: '' }">
-                <div class="container-sm">
-                    <div class="container mb-2 p-0 border-bottom-1" style="max-height: 44px;" x-data="{ filter: 'all' }">
-                        <section class="splide slider-1 mt-0 mb-4" aria-label="Splide Basic HTML Example">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                    <li class="splide__slide ">
-                                        <span
-                                            :class="filter == 'anime' ? 'title-service text-white fs-8 fw-bold' :
-                                                'text-secondary'"
-                                            x-on:click="filter = 'anime';sliders = 'anime'">Semua</span>
-                                    </li>
-                                    {{-- <li class="splide__slide ">
-                                        <span
-                                            :class="filter == 'anime' ? 'title-service text-white fs-8 fw-bold' :
-                                                'text-secondary'"
-                                            x-on:click="filter = 'anime';sliders = 'anime'">Anime</span>
-                                    </li> --}}
-                                </ul>
-                            </div>
-                        </section>
-                        <div class="d-flex gap-2 bar mt-3">
-                        </div>
-                    </div>
-                </div>
-                <section>
-                    <div class="hero my-3 container" style="margin-bottom: 1.9rem;"
-                        x-show="sliders == '' ? true : (sliders == 'hero')">
-                        {{-- <h1 class="text-white text-start fw-bold">Super Hero</h1> --}}
-                        <section>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/anim.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">One Piece Red</h5>
-                                    <p>MAPPA</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/drakor1.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">20th Cetury Girl</h5>
-                                    <p>Yong Film Inc.</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/anim6.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Howls Moving Castle</h5>
-                                    <p>Ghibli</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/anim4.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Kimi No Nawa</h5>
-                                    <p>CoMix</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/hero5.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Shang Chi</h5>
-                                    <p>Marvel Studios</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/hero10.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Doctor Strange</h5>
-                                    <p>Marvel Studios</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                            <div
-                                class="d-flex gap-2 mt-2 card-body p-1 bg-transparent border border-secondary w-auto rounded">
-                                <div class="d-flex h-100">
-                                    <img src="{{ asset('img/horror10.jpg') }}" class="rounded slider-img" width="80"
-                                        height="90">
-                                </div>
-                                <div class="ms-1 w-auto my-1">
-                                    <h5 class="text-white mb-1">Doctor Strange</h5>
-                                    <p>Marvel Studios</p>
-                                </div>
-                                <div class="w-auto text-white ms-auto pe-1" id="heart"
-                                    style="margin-top: 4px; margin-right: 0.3rem;">
-                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                </section>
-            </div>
+            <a href="{{ route('utama') }}" class="d-flex align-items-center text-decoration-none">
+                <img src="{{ asset('img/muviku.png') }}" alt="MUVIKU" style="max-height: 40px; width: auto;" loading="lazy">
+            </a>
         </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="container px-3 px-md-4 pt-4 pb-5 mb-5" style="max-width: 1200px;">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+                <h1 class="fs-4 fw-bold text-white mb-1">Film Disimpan</h1>
+                <p class="text-secondary small mb-0">Daftar film dan serial yang ingin Anda tonton nanti.</p>
+            </div>
+            <span class="badge rounded-pill px-3 py-1.5 font-monospace" style="background: rgba(255, 174, 31, 0.2); color: #FFAE1F; border: 1px solid rgba(255, 174, 31, 0.4);">
+                {{ $films->count() }} Judul
+            </span>
+        </div>
+
+        @if($films->isNotEmpty())
+            <div class="row g-3 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
+                @foreach ($films as $film)
+                    <div class="col">
+                        <a href="{{ route('film.detail', $film->id) }}" class="text-decoration-none">
+                            <div class="mv-movie-card">
+                                <span class="mv-card-badge">{{ $film->tipe }}</span>
+                                <img src="{{ $film->thumbnail_url }}" alt="{{ $film->judul }}" loading="lazy">
+                                <div class="mv-card-overlay">
+                                    <div class="mv-card-play-btn"><i class="bi bi-play-fill"></i></div>
+                                    <div class="fw-bold text-white fs-6 text-truncate mb-1">{{ $film->judul }}</div>
+                                    <div class="text-secondary small d-flex align-items-center justify-content-between">
+                                        <span>{{ $film->tahun }}</span>
+                                        <span class="text-warning"><i class="bi bi-star-fill"></i> 4.9</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="text-center py-5">
+                <i class="bi bi-bookmark fs-1 text-warning opacity-75 mb-3 d-block"></i>
+                <h4 class="text-white fw-bold mb-2">Watchlist Anda Masih Kosong</h4>
+                <p class="text-secondary small mb-4">Jelajahi ribuan film dan simpan judul favorit Anda untuk ditonton nanti.</p>
+                <a href="{{ route('utama') }}" class="btn-mv-primary text-decoration-none">
+                    <i class="bi bi-compass"></i> Jelajahi Film Sekarang
+                </a>
+            </div>
+        @endif
+    </main>
+
+    <!-- FLOATING BOTTOM NAVIGATION BAR -->
+    <div class="mv-bottom-nav-container">
+        <nav class="mv-bottom-nav">
+            <a href="{{ route('utama') }}" class="mv-nav-item">
+                <i class="bi bi-house-door-fill"></i>
+                <span class="d-none d-sm-inline">Beranda</span>
+            </a>
+            <a href="{{ url('/search') }}" class="mv-nav-item">
+                <i class="bi bi-search"></i>
+                <span class="d-none d-sm-inline">Cari</span>
+            </a>
+            <a href="{{ route('watchlist') }}" class="mv-nav-item active">
+                <i class="bi bi-bookmark-fill"></i>
+                <span class="d-none d-sm-inline">Watchlist</span>
+            </a>
+            <a href="{{ route('favorit') }}" class="mv-nav-item">
+                <i class="bi bi-heart-fill"></i>
+                <span class="d-none d-sm-inline">Favorit</span>
+            </a>
+            <a href="{{ route('profile') }}" class="mv-nav-item">
+                <i class="bi bi-person-fill"></i>
+                <span class="d-none d-sm-inline">Profil</span>
+            </a>
+        </nav>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script>
-    var splide = new Splide('.splide.slider-1', {
-        pagination: false,
-        autoWidth: true,
-        gap: '1.2rem',
-        arrows: false,
-        lazyLoad: 'nearby',
-        drag: 'free',
-    });
-    splide.mount();
-</script>
-<script>
-    let section = document.querySelectorAll('section');
-    let navLinks = document.querySelectorAll('nav a');
-
-    window.onscroll = () => {
-
-        section.forEach(sec => {
-
-            let top = window.scrollY;
-            let offset = sec.offsetTop;
-            let height = sec.offsetHeight;
-            let id = sec.getAttribute('id');
-
-            if (top >= offset && top < offset + height) {
-                navLinks.forEach(links => {
-                    links.classList.remove('active');
-                    document.querySelector('nav a[href*=' + id + ']').classList.add('active');
-                })
-            }
-        });
-    };
-</script>
-<script>
-    document.getElementById('heart').addEventListener('click', function() {
-
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            text: "Berhasil Dihapus!",
-            showConfirmButton: false,
-            timer: 2000
-        });
-    });
-</script>
-<script>
-    const optionMenu = document.querySelector(".select-menu"),
-        selectBtn = optionMenu.querySelector(".select-btn"),
-        options = optionMenu.querySelectorAll(".option"),
-        sBtn_text = optionMenu.querySelector(".sBtn-text");
-    selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-    options.forEach(option => {
-        option.addEventListener("click", () => {
-            let selectedOption = option.querySelector(".option-text").innerText;
-            sBtn_text.innerText = selectedOption;
-            optionMenu.classList.remove("active");
-        });
-    });
-</script>
-
 </html>

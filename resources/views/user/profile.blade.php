@@ -18,6 +18,9 @@
     
     <!-- AlpineJS -->
     <script src="https://unpkg.com/alpinejs" defer></script>
+    
+    <!-- Master Premium CSS -->
+    <link rel="stylesheet" href="{{ asset('css/muviku-premium.css') }}">
 
     <style>
         body {
@@ -560,37 +563,31 @@
         </div>
     </div>
 
-    <!-- Floating Dock Menu -->
-    <footer>
-        <div class="menu-wrapper">
-            <div class="navigation" id="navigationn">
-                <li>
-                    <a href="/utama">
-                        <img src="img/logo-muviku.png" alt="Utama">
-                        <span>Utama</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/search">
-                        <i class="bi bi-search" aria-hidden="true"></i>
-                        <span>Cari</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('favorit') }}">
-                        <i class="bi bi-heart" aria-hidden="true"></i>
-                        <span>Suka</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('profile') }}" class="active">
-                        <img src="img/group-1.png" alt="Profil">
-                        <span>Profil</span>
-                    </a>
-                </li>
-            </div>
-        </div>
-    </footer>
+    <!-- FLOATING BOTTOM NAVIGATION BAR -->
+    <div class="mv-bottom-nav-container">
+        <nav class="mv-bottom-nav">
+            <a href="{{ route('utama') }}" class="mv-nav-item">
+                <i class="bi bi-house-door-fill"></i>
+                <span class="d-none d-sm-inline">Beranda</span>
+            </a>
+            <a href="{{ url('/search') }}" class="mv-nav-item">
+                <i class="bi bi-search"></i>
+                <span class="d-none d-sm-inline">Cari</span>
+            </a>
+            <a href="{{ route('watchlist') }}" class="mv-nav-item">
+                <i class="bi bi-bookmark-fill"></i>
+                <span class="d-none d-sm-inline">Watchlist</span>
+            </a>
+            <a href="{{ route('favorit') }}" class="mv-nav-item">
+                <i class="bi bi-heart-fill"></i>
+                <span class="d-none d-sm-inline">Favorit</span>
+            </a>
+            <a href="{{ route('profile') }}" class="mv-nav-item active">
+                <i class="bi bi-person-fill"></i>
+                <span class="d-none d-sm-inline">Profil</span>
+            </a>
+        </nav>
+    </div>
 
     <!-- Modal Edit Profil -->
     <div class="modal fade bg-modal" id="profil" tabindex="-1" aria-labelledby="profilLabel" aria-hidden="true">

@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+
+:root {
+    --mv-bg-main: #111215;
+    --mv-bg-surface: #16181d;
+    --mv-bg-card: rgba(26, 28, 35, 0.75);
+    --mv-bg-card-hover: rgba(35, 38, 48, 0.9);
+    --mv-glass-bg: rgba(17, 18, 21, 0.85);
+    --mv-glass-border: rgba(255, 255, 255, 0.08);
+    --mv-glass-border-hover: rgba(255, 174, 31, 0.5);
+    
+    --mv-text-primary: #f8fafc;
+    --mv-text-secondary: #94a3b8;
+    --mv-text-muted: #64748b;
+    
+    /* Signature MUVIKU Warm Gold / Amber Accent */
+    --mv-primary: #FFAE1F;
+    --mv-primary-hover: #e09918;
+    --mv-primary-gradient: linear-gradient(135deg, #FFAE1F 0%, #ff8800 100%);
+    --mv-accent-glow: rgba(255, 174, 31, 0.35);
+    --mv-danger-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    --mv-gold: #FFAE1F;
+    
+    --mv-radius-sm: 8px;
+    --mv-radius-md: 14px;
+    --mv-radius-lg: 20px;
+    --mv-radius-full: 9999px;
+    
+    --mv-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --mv-shadow-md: 0 10px 25px rgba(0, 0, 0, 0.5);
+    --mv-shadow-glow: 0 8px 30px rgba(255, 174, 31, 0.25);
+    
+    --mv-transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+body {
+    background-color: var(--mv-bg-main);
+    color: var(--mv-text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--mv-bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--mv-radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--mv-primary);
+}
+
+/* Common UI Glass Components */
+.mv-glass {
+    background: var(--mv-glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--mv-glass-border);
+}
+
+.mv-card {
+    background: var(--mv-bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--mv-glass-border);
+    border-radius: var(--mv-radius-md);
+    transition: var(--mv-transition);
+    overflow: hidden;
+}
+
+.mv-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--mv-glass-border-hover);
+    box-shadow: var(--mv-shadow-glow);
+}
+
+/* Buttons */
+.btn-mv-primary {
+    background: var(--mv-primary-gradient);
+    color: #000000 !important;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: var(--mv-radius-full);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--mv-transition);
+    box-shadow: 0 4px 15px rgba(255, 174, 31, 0.35);
+}
+
+.btn-mv-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 174, 31, 0.55);
+    color: #000000;
+}
+
+.btn-mv-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--mv-text-primary) !important;
+    font-weight: 600;
+    padding: 10px 22px;
+    border-radius: var(--mv-radius-full);
+    border: 1px solid var(--mv-glass-border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--mv-transition);
+}
+
+.btn-mv-secondary:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Floating Bottom Navigation Bar */
+.mv-bottom-nav-container {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    width: auto;
+    max-width: 90vw;
+}
+
+.mv-bottom-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    background: rgba(17, 18, 21, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 36px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 174, 31, 0.12);
+}
+
+.mv-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: var(--mv-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--mv-radius-full);
+    transition: var(--mv-transition);
+}
+
+.mv-nav-item i {
+    font-size: 18px;
+    transition: var(--mv-transition);
+}
+
+.mv-nav-item:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.mv-nav-item.active {
+    color: #000000;
+    background: var(--mv-primary-gradient);
+    box-shadow: 0 4px 15px rgba(255, 174, 31, 0.4);
+}
+
+/* Movie Poster Cards */
+.mv-movie-card {
+    position: relative;
+    border-radius: var(--mv-radius-md);
+    overflow: hidden;
+    background: var(--mv-bg-surface);
+    transition: var(--mv-transition);
+    cursor: pointer;
+    box-shadow: var(--mv-shadow-sm);
+    aspect-ratio: 2/3;
+}
+
+.mv-movie-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.mv-movie-card:hover img {
+    transform: scale(1.08);
+}
+
+.mv-movie-card .mv-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(17, 18, 21, 0.95) 0%, rgba(17, 18, 21, 0.4) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+}
+
+.mv-movie-card:hover .mv-card-overlay {
+    opacity: 1;
+}
+
+.mv-card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    z-index: 2;
+}
+
+.mv-card-play-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--mv-primary-gradient);
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    box-shadow: 0 4px 15px rgba(255, 174, 31, 0.6);
+    margin-bottom: 8px;
+    transform: scale(0.8);
+    transition: var(--mv-transition);
+}
+
+.mv-movie-card:hover .mv-card-play-btn {
+    transform: scale(1);
+}
+
+/* Category Filter Pills */
+.mv-genre-pills {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+}
+.mv-genre-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.mv-pill {
+    padding: 8px 18px;
+    border-radius: var(--mv-radius-full);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--mv-text-secondary);
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--mv-transition);
+}
+
+.mv-pill:hover, .mv-pill.active {
+    background: var(--mv-primary-gradient);
+    color: #000000;
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(255, 174, 31, 0.35);
+}
+
+/* Hero Carousel */
+.mv-hero-slide {
+    position: relative;
+    border-radius: var(--mv-radius-lg);
+    overflow: hidden;
+    min-height: 440px;
+    display: flex;
+    align-items: flex-end;
+    padding: 48px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--mv-shadow-md);
+}
+
+.mv-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(17, 18, 21, 0.95) 0%, rgba(17, 18, 21, 0.65) 50%, rgba(17, 18, 21, 0.2) 100%),
+                linear-gradient(0deg, rgba(17, 18, 21, 0.95) 0%, transparent 60%);
+}
+
+.mv-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.mv-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}

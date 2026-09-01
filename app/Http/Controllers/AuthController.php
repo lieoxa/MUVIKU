@@ -164,12 +164,14 @@ class AuthController extends Controller
 
     public function favorit()
     {
-        return view('user.favorit');
+        $films = \App\Models\Film::where('is_publish', '1')->inRandomOrder()->take(8)->get();
+        return view('user.favorit', compact('films'));
     }
 
     public function watchlist()
     {
-        return view('user.watchlist');
+        $films = \App\Models\Film::where('is_publish', '1')->latest()->take(8)->get();
+        return view('user.watchlist', compact('films'));
     }
     public function profile()
     {

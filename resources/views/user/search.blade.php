@@ -1,376 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="theme-color" content="#000000" />
-    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="theme-color" content="#111215" />
+    <title>Pencarian Film & Serial — MUVIKU</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@trimble-oss/modus-icons@1.9.0/dist/modus-solid/fonts/modus-icons.css">
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
-    <link rel="stylesheet" href="css/search.css">
-    <title>Search</title>
+    
+    <!-- Master Premium CSS -->
+    <link rel="stylesheet" href="{{ asset('css/muviku-premium.css') }}">
+
+    <style>
+        .search-input-box {
+            background: rgba(26, 28, 35, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1.5px solid var(--mv-glass-border);
+            border-radius: var(--mv-radius-full);
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            transition: var(--mv-transition);
+        }
+        .search-input-box:focus-within {
+            border-color: var(--mv-primary);
+            box-shadow: 0 0 25px rgba(255, 174, 31, 0.35);
+        }
+        .search-input-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            width: 100%;
+        }
+        .search-input-box input::placeholder {
+            color: var(--mv-text-muted);
+        }
+        .empty-search-state {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .empty-icon-wrap {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 174, 31, 0.1);
+            border: 1px solid rgba(255, 174, 31, 0.25);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--mv-primary);
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 
-<style>
-    * {
-        font-family: 'Ubuntu';
-    }
+<body>
+    <!-- TOP NAVBAR -->
+    <nav class="navbar sticky-top py-3" style="background: rgba(17, 18, 21, 0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.06); z-index: 1000;">
+        <div class="container-fluid px-3 px-md-5 d-flex align-items-center justify-content-between">
+            <a href="{{ route('utama') }}" class="d-flex align-items-center text-decoration-none">
+                <img src="{{ asset('img/muviku.png') }}" alt="MUVIKU" style="max-height: 42px; width: auto;" loading="lazy">
+            </a>
 
-    .menu-wrapper {
-        position: fixed !important;
-        bottom: 24px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 90% !important;
-        max-width: 480px !important;
-        height: 72px !important;
-        background: rgba(18, 18, 22, 0.85) !important;
-        backdrop-filter: blur(20px) !important;
-        -webkit-backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 36px !important;
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5) !important;
-        z-index: 1000 !important;
-        padding: 0 12px !important;
-        display: flex !important;
-        align-items: center !important;
-    }
+            <div class="d-flex align-items-center gap-3">
+                <a href="{{ route('utama') }}" class="btn-mv-secondary py-1.5 px-3 text-decoration-none" style="font-size: 13.5px;">
+                    <i class="bi bi-house-door"></i> <span class="d-none d-sm-inline">Beranda</span>
+                </a>
+            </div>
+        </div>
+    </nav>
 
-    .menu-wrapper .navigation {
-        display: flex !important;
-        justify-content: space-around !important;
-        align-items: center !important;
-        width: 100% !important;
-        height: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .menu-wrapper .navigation li {
-        list-style: none !important;
-        text-align: center !important;
-        flex: 1 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    .menu-wrapper .navigation li a {
-        color: #94a3b8 !important;
-        text-decoration: none !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        transition: all 0.3s ease !important;
-        gap: 4px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: transparent !important;
-        border: none !important;
-    }
-
-    .menu-wrapper .navigation li a i {
-        font-size: 20px !important;
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        color: inherit !important;
-    }
-
-    .menu-wrapper .navigation li a img {
-        width: 20px !important;
-        height: 20px !important;
-        object-fit: contain !important;
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    .menu-wrapper .navigation li a span {
-        font-family: 'Plus Jakarta Sans', sans-serif !important;
-        font-size: 11px !important;
-        font-weight: 500 !important;
-        display: block !important;
-        color: inherit !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        letter-spacing: 0.2px !important;
-    }
-
-    .menu-wrapper .navigation li a.active {
-        color: #FFAE1F !important;
-        font-weight: 700 !important;
-    }
-
-    .menu-wrapper .navigation li a:hover {
-        color: #ffffff !important;
-    }
-
-    .search-result-card:hover {
-        transform: translateY(-6px) scale(1.02);
-    }
-    .search-result-card:hover .play-overlay {
-        opacity: 1 !important;
-    }
-</style>
-
-<body class="container">
-    <header class="container fixed-top pb-1 pt-2">
-        <nav class="navbar">
-            <div class="col-12 position-relative">
-                <form class="d-flex col-12" action="{{ url('/search') }}" method="GET" role="search">
-                    <input class="form-control pe-6" type="search" name="q" value="{{ $query }}" placeholder="Cari disini..." aria-label="Search">
-                    <button type="submit" class="icon-search"><i class="modus-icons"
-                            aria-hidden="true">search</i></button>
-                    <button type="submit" class="btn-search btn cari text-white">Cari</button>
+    <!-- SEARCH CONTAINER -->
+    <main class="container px-3 px-md-4 pt-4 pb-5 mb-5" style="max-width: 1200px;">
+        
+        <!-- SEARCH HEADER & INPUT -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-12 col-md-8 col-lg-7 text-center">
+                <h1 class="fw-bold text-white fs-3 mb-2">Cari Film & Serial TV</h1>
+                <p class="text-secondary small mb-4">Temukan ribuan film blockbuster, serial populer, dan podcast eksklusif.</p>
+                
+                <form action="{{ url('/search') }}" method="GET" class="search-input-box">
+                    <i class="bi bi-search fs-5 text-warning"></i>
+                    <input type="text" name="q" value="{{ request('q') }}" placeholder="Ketik judul film, aktor, genre, atau sutradara..." autofocus>
+                    @if(request('q'))
+                        <a href="{{ url('/search') }}" class="text-secondary text-decoration-none"><i class="bi bi-x-circle-fill"></i></a>
+                    @endif
+                    <button type="submit" class="btn-mv-primary py-1.5 px-3" style="font-size: 13px;">Cari</button>
                 </form>
             </div>
-        </nav>
-    </header>
+        </div>
 
-    <div class="old" style="margin-top: 60px;">
-        @if (count($banner->where('lokasi', 'Search')->where('status', 'Publish')) > 0)
-            <div class="iklan mb-4">
-                <section class="splide new-11" aria-label="Splide Basic HTML Example">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach ($banner->where('lokasi', 'Search')->where('status', 'Publish') as $item)
-                                <li class="splide__slide coming-soon card-img-top">
-                                    <div class="cs">
-                                        <img src="{{ asset('imgdb/' . $item->gambar) }}" class="card-img-top w-100">
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </section>
-            </div>
-        @endif
-    </div>
+        <!-- SEARCH RESULTS -->
+        @if(!empty($query))
+            <section class="mb-5">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h2 class="fs-5 fw-bold text-white mb-0">
+                        Hasil Pencarian untuk "<span class="text-warning">{{ $query }}</span>"
+                    </h2>
+                    <span class="badge bg-secondary bg-opacity-25 text-light px-3 py-1.5 rounded-pill font-monospace">
+                        {{ $searchResults->count() }} Ditemukan
+                    </span>
+                </div>
 
-    {{-- LIVE SEARCH RESULTS --}}
-    @if (!empty($query))
-        <div class="mb-5">
-            <h4 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
-                <i class="bi bi-film text-warning"></i> Hasil Pencarian: "<span class="text-warning">{{ $query }}</span>"
-                <span class="badge bg-secondary rounded-pill fs-7 fw-normal ms-auto">{{ $searchResults->count() }} Film</span>
-            </h4>
-            @if ($searchResults->isNotEmpty())
-                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3">
-                    @foreach ($searchResults as $item)
-                        <div class="col">
-                            <div class="card h-100 bg-transparent border-0 search-result-card" 
-                                 onclick="window.location='{{ route('film.detail', $item->id) }}'" 
-                                 style="cursor: pointer; transition: transform 0.3s ease;">
-                                <div class="position-relative overflow-hidden rounded-4 shadow-lg mb-2">
-                                    <img src="{{ $item->thumbnail_url }}" class="w-100" style="height: 240px; object-fit: cover;" alt="{{ $item->judul }}">
-                                    <div class="position-absolute top-0 end-0 m-2">
-                                        <span class="badge px-2 py-1" style="background: rgba(0,0,0,0.75); color: #FFAE1F; border: 1px solid rgba(255,174,31,0.4); font-size: 11px;">
-                                            {{ $item->tipe }}
-                                        </span>
-                                    </div>
-                                    <div class="play-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center opacity-0 hover-opacity-100" 
-                                         style="background: rgba(0, 0, 0, 0.4); transition: opacity 0.3s ease;">
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: rgba(255,174,31,0.9); color: #000;">
-                                            <i class="bi bi-play-fill fs-3 ms-1"></i>
+                @if($searchResults->isNotEmpty())
+                    <div class="row g-3 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
+                        @foreach ($searchResults as $film)
+                            <div class="col">
+                                <a href="{{ route('film.detail', $film->id) }}" class="text-decoration-none">
+                                    <div class="mv-movie-card">
+                                        <span class="mv-card-badge">{{ $film->tipe }}</span>
+                                        <img src="{{ $film->thumbnail_url }}" alt="{{ $film->judul }}" loading="lazy">
+                                        <div class="mv-card-overlay">
+                                            <div class="mv-card-play-btn"><i class="bi bi-play-fill"></i></div>
+                                            <div class="fw-bold text-white fs-6 text-truncate mb-1">{{ $film->judul }}</div>
+                                            <div class="text-secondary small d-flex align-items-center justify-content-between">
+                                                <span>{{ $film->tahun }}</span>
+                                                <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body p-1">
-                                    <h6 class="card-title text-white fw-bold text-truncate mb-1" style="font-size: 0.9rem;">{{ $item->judul }}</h6>
-                                    <div class="d-flex align-items-center justify-content-between text-secondary" style="font-size: 0.75rem;">
-                                        <span><i class="bi bi-calendar3 me-1"></i>{{ $item->tahun }}</span>
-                                        <span><i class="bi bi-clock me-1"></i>{{ $item->durasi ?: '120m' }}</span>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="empty-search-state">
+                        <div class="empty-icon-wrap">
+                            <i class="bi bi-film"></i>
                         </div>
-                    @endforeach
-                </div>
-            @else
-                <div class="p-5 text-center text-white rounded-4" style="background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15);">
-                    <i class="bi bi-search fs-1 text-secondary d-block mb-3"></i>
-                    <h5 class="fw-bold mb-1">Film Tidak Ditemukan</h5>
-                    <p class="text-secondary small mb-0">Coba cari dengan kata kunci lain seperti "Spider-Man", "Anime", "Korea", atau "Horror".</p>
-                </div>
-            @endif
-        </div>
-    @endif
+                        <h4 class="fw-bold text-white mb-2">Film Tidak Ditemukan</h4>
+                        <p class="text-secondary small mb-4" style="max-width: 420px; margin: auto;">
+                            Tidak menemukan hasil yang cocok untuk kata kunci pencarian Anda. Coba periksa ejaan atau gunakan kata kunci lain.
+                        </p>
+                        <a href="{{ route('utama') }}" class="btn-mv-primary text-decoration-none">
+                            <i class="bi bi-arrow-left"></i> Kembali ke Beranda
+                        </a>
+                    </div>
+                @endif
+            </section>
+        @endif
 
-    {{-- DYNAMIC REKOMENDASI --}}
-    @if ($filmsRekomendasi->isNotEmpty())
-        <div class="mb-4">
-            <h1 class="text-white text-start fw-bold">Rekomendasi</h1>
-            <section class="d-flex gap-2 bar" style="overflow-x: auto; padding-bottom: 8px;">
-                @foreach ($filmsRekomendasi as $item)
-                    <div class="li" style="min-width: 150px; max-width: 150px; flex: 0 0 150px;" onclick="window.location='{{ route('film.detail', $item->id) }}'">
-                        <div class="card bg-transparent card-img-top border-0 position-relative">
-                            <img src="{{ $item->thumbnail_url }}" width="150" height="200" class="card-img-top-1 w-100 rounded-3" style="object-fit: cover;">
-                            <div class="card-img-overlay card-1 text-white p-2 d-flex flex-column justify-content-end" style="background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);">
-                                <h6 class="card-title fw-bold text-truncate m-0" style="font-size: 0.85rem;">{{ $item->judul }}</h6>
-                                <p class="card-text lh-1 m-0 text-truncate"><small class="text-secondary">{{ $item->tahun }} • {{ $item->tipe }}</small></p>
+        <!-- POPULER & REKOMENDASI -->
+        <section class="mb-5">
+            <h3 class="fs-5 fw-bold text-white mb-3"><i class="bi bi-fire text-warning me-1"></i> Rekomendasi Populer</h3>
+            <div class="row g-3 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6">
+                @foreach ($filmsBanyakDitonton->take(12) as $film)
+                    <div class="col">
+                        <a href="{{ route('film.detail', $film->id) }}" class="text-decoration-none">
+                            <div class="mv-movie-card">
+                                <span class="mv-card-badge">{{ $film->tipe }}</span>
+                                <img src="{{ $film->thumbnail_url }}" alt="{{ $film->judul }}" loading="lazy">
+                                <div class="mv-card-overlay">
+                                    <div class="mv-card-play-btn"><i class="bi bi-play-fill"></i></div>
+                                    <div class="fw-bold text-white fs-6 text-truncate mb-1">{{ $film->judul }}</div>
+                                    <div class="text-secondary small">{{ $film->tahun }}</div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
-            </section>
-        </div>
-    @endif
+            </div>
+        </section>
 
-    {{-- DYNAMIC TRENDING ANIME --}}
-    @if ($filmsAnime->isNotEmpty())
-        <div class="mb-4">
-            <h1 class="text-white text-start fw-bold">Trending Anime</h1>
-            <section class="splide anim" aria-label="Trending Anime">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        @foreach ($filmsAnime->chunk(3) as $chunk)
-                            <li class="splide__slide d-grid gap-2 li-anim">
-                                @foreach ($chunk as $item)
-                                    <div class="card bg-transparent border-0" style="max-width: 540px;" onclick="window.location='{{ route('film.detail', $item->id) }}'">
-                                        <div class="row g-0 d-flex align-items-center">
-                                            <div class="col-4">
-                                                <img src="{{ $item->thumbnail_url }}" class="img-fluid rounded img-anim" style="height: 90px; object-fit: cover; width: 100%;" alt="{{ $item->judul }}">
-                                            </div>
-                                            <div class="col-8 text-white">
-                                                <div class="card-body py-0 px-2">
-                                                    <h6 class="card-title text-truncate m-0">{{ $item->judul }}</h6>
-                                                    <p class="text-secondary perusahaan mb-1"><small>{{ $item->perusahaan ?: 'Anime' }}</small></p>
-                                                    <p class="text-secondary view m-0"><i class="bi bi-eye-fill"></i><small class="my-auto"> {{ rand(10, 99) }}.{{ rand(1, 9) }}K</small></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </section>
-        </div>
-    @endif
+    </main>
 
-    {{-- DYNAMIC BANYAK DITONTON --}}
-    @if ($filmsBanyakDitonton->isNotEmpty())
-        <div class="mb-5 pb-5">
-            <h1 class="text-white text-start fw-bold">Banyak Ditonton</h1>
-            <section class="splide trend-film" aria-label="Banyak Ditonton">
-                <div class="splide__track">
-                    <ul class="splide__list">
-                        @foreach ($filmsBanyakDitonton as $item)
-                            <li class="splide__slide li-1">
-                                <img src="{{ $item->thumbnail_url }}" class="card-img-top slider-img" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px;" alt="{{ $item->judul }}">
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </section>
-        </div>
-    @endif
+    <!-- FLOATING BOTTOM NAVIGATION BAR -->
+    <div class="mv-bottom-nav-container">
+        <nav class="mv-bottom-nav">
+            <a href="{{ route('utama') }}" class="mv-nav-item">
+                <i class="bi bi-house-door-fill"></i>
+                <span class="d-none d-sm-inline">Beranda</span>
+            </a>
+            <a href="{{ url('/search') }}" class="mv-nav-item active">
+                <i class="bi bi-search"></i>
+                <span class="d-none d-sm-inline">Cari</span>
+            </a>
+            <a href="{{ route('watchlist') }}" class="mv-nav-item">
+                <i class="bi bi-bookmark-fill"></i>
+                <span class="d-none d-sm-inline">Watchlist</span>
+            </a>
+            <a href="{{ route('favorit') }}" class="mv-nav-item">
+                <i class="bi bi-heart-fill"></i>
+                <span class="d-none d-sm-inline">Favorit</span>
+            </a>
+            <a href="{{ route('profile') }}" class="mv-nav-item">
+                <i class="bi bi-person-fill"></i>
+                <span class="d-none d-sm-inline">Profil</span>
+            </a>
+        </nav>
     </div>
-    <div class="menu-wrapper">
-        <div class="navigation" id="navigationn">
-            <li>
-                <a href="/utama">
-                    <img src="img/logo-muviku.png" alt="Utama">
-                    <span>Utama</span>
-                </a>
-            </li>
-            <li>
-                <a href="/search" class="active">
-                    <i class="bi bi-search" aria-hidden="true"></i>
-                    <span>Cari</span>
-                </a>
-            </li>
-            <li>
-                @if (Auth::user())
-                    <a href="{{ route('favorit') }}">
-                        <i class="bi bi-heart" aria-hidden="true"></i>
-                        <span>Suka</span>
-                    </a>
-                @else
-                    <a href="{{ route('login') }}">
-                        <i class="bi bi-heart" aria-hidden="true"></i>
-                        <span>Suka</span>
-                    </a>
-                @endif
-            </li>
-            <li>
-                @if (Auth::user())
-                    <a href="{{ route('profile') }}">
-                        <i class="bi bi-person fs-4" aria-hidden="true"></i>
-                        <span>Profil</span>
-                    </a>
-                @else
-                    <a href="{{ route('login') }}">
-                        <i class="bi bi-person fs-4" aria-hidden="true"></i>
-                        <span>Profil</span>
-                    </a>
-                @endif
-            </li>
-        </div>
-    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-<script>
-    var inputElement = document.querySelector('.form-control');
-
-    inputElement.addEventListener('input', function() {
-        if (this.value.trim() !== '') {
-            this.classList.add('form-control-filled');
-        } else {
-            this.classList.remove('form-control-filled');
-        }
-    });
-</script>
-
-<script>
-    var splide = new Splide('.splide.new-11', {
-        arrows: false,
-        lazyLoad: 'nearby',
-        autoplay: true,
-        interval: 4000,
-        type: 'loop',
-        gap: '0.5rem',
-    });
-    splide.mount();
-</script>
-<script>
-    document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-    });
-</script>
-<script>
-    var splide = new Splide('.splide.anim', {
-        perPage: 4,
-        focus: 0,
-        omitEnd: true,
-        rewind: true,
-        arrows: false,
-        pagination: false,
-        lazyLoad: 'nearby',
-        gap: '0.5rem',
-        drag: 'free',
-    });
-
-    splide.mount();
-
-    var splide = new Splide('.splide.trend-film', {
-        perPage: 4,
-        focus: 0,
-        omitEnd: true,
-        rewind: true,
-        arrows: false,
-        pagination: false,
-        lazyLoad: 'nearby',
-        gap: '0.5rem',
-        drag: 'free',
-    });
-
-    splide.mount();
-</script>
-
 </html>
